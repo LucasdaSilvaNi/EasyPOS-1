@@ -37,7 +37,7 @@ namespace EasyPOS.Controllers
         {
             var itemPrices = from d in db.MstItemPrices
                              where d.ItemId == itemId
-                             && d.TriggerQuantity == quantity
+                             && d.TriggerQuantity <= quantity
                              select new Entities.MstItemPriceEntity
                              {
                                  Id = d.Id,
