@@ -322,14 +322,6 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             {
                 var currentCollectionLines = currentCollectionLinesQuery.ToArray();
 
-                Decimal changeAmount = 0;
-                for (Int32 i = 0; i < currentCollectionLines.Count(); i++)
-                {
-                    var collectionLine = currentCollectionLines[i];
-
-                    changeAmount += collectionLine.TotalChangeAmount;
-                }
-
                 for (Int32 i = 0; i < currentCollectionLines.Count(); i++)
                 {
                     var collectionLine = currentCollectionLines[i];
@@ -337,7 +329,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                     Decimal amount = collectionLine.TotalAmount;
                     if (collectionLine.PayTypeCode.Equals("CASH") == true)
                     {
-                        amount = collectionLine.TotalAmount - changeAmount;
+                        amount = collectionLine.TotalAmount - collectionLine.TotalChangeAmount;
                     }
 
                     repZReadingReportEntity.CollectionLines.Add(new Entities.TrnCollectionLineEntity()
