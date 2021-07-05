@@ -255,5 +255,73 @@ namespace EasyPOS.Forms.Software.TrnCollection
             sysSoftwareForm.RemoveTabPage();
         }
 
+        private void buttonCollectionListPageListFirst_Click(object sender, EventArgs e)
+        {
+            itemListPageList = new PagedList<Entities.DgvTrnCollectionListEntity>(collectionListData, 1, pageSize);
+            itemListDataSource.DataSource = itemListPageList;
+
+            buttonCollectionListPageListFirst.Enabled = false;
+            buttonCollectionListPageListPrevious.Enabled = false;
+            buttonCollectionListPageListNext.Enabled = true;
+            buttonCollectionListPageListLast.Enabled = true;
+
+            pageNumber = 1;
+            textBoxCollectionListPageNumber.Text = pageNumber + " / " + itemListPageList.PageCount;
+
+        }
+
+        private void buttonCollectionListPageListPrevious_Click(object sender, EventArgs e)
+        {
+            if (itemListPageList.HasPreviousPage == true)
+            {
+                itemListPageList = new PagedList<Entities.DgvTrnCollectionListEntity>(collectionListData, --pageNumber, pageSize);
+                itemListDataSource.DataSource = itemListPageList;
+            }
+
+            buttonCollectionListPageListNext.Enabled = true;
+            buttonCollectionListPageListLast.Enabled = true;
+
+            if (pageNumber == 1)
+            {
+                buttonCollectionListPageListFirst.Enabled = false;
+                buttonCollectionListPageListPrevious.Enabled = false;
+            }
+
+            textBoxCollectionListPageNumber.Text = pageNumber + " / " + itemListPageList.PageCount;
+        }
+
+        private void buttonCollectionListPageListNext_Click(object sender, EventArgs e)
+        {
+            if (itemListPageList.HasNextPage == true)
+            {
+                itemListPageList = new PagedList<Entities.DgvTrnCollectionListEntity>(collectionListData, ++pageNumber, pageSize);
+                itemListDataSource.DataSource = itemListPageList;
+            }
+
+            buttonCollectionListPageListFirst.Enabled = true;
+            buttonCollectionListPageListPrevious.Enabled = true;
+
+            if (pageNumber == itemListPageList.PageCount)
+            {
+                buttonCollectionListPageListNext.Enabled = false;
+                buttonCollectionListPageListLast.Enabled = false;
+            }
+
+            textBoxCollectionListPageNumber.Text = pageNumber + " / " + itemListPageList.PageCount;
+        }
+
+        private void buttonCollectionListPageListLast_Click(object sender, EventArgs e)
+        {
+            itemListPageList = new PagedList<Entities.DgvTrnCollectionListEntity>(collectionListData, itemListPageList.PageCount, pageSize);
+            itemListDataSource.DataSource = itemListPageList;
+
+            buttonCollectionListPageListFirst.Enabled = true;
+            buttonCollectionListPageListPrevious.Enabled = true;
+            buttonCollectionListPageListNext.Enabled = false;
+            buttonCollectionListPageListLast.Enabled = false;
+
+            pageNumber = itemListPageList.PageCount;
+            textBoxCollectionListPageNumber.Text = pageNumber + " / " + itemListPageList.PageCount;
+        }
     }
 }
