@@ -301,8 +301,6 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                                               where d.TrnCollection.TerminalId == filterTerminalId
                                               && d.TrnCollection.CollectionDate == filterDate
                                               && d.TrnCollection.IsLocked == true
-                                              && d.TrnCollection.IsCancelled == false
-                                              && d.TrnCollection.TrnSale.IsReturned == false
                                               group d by new
                                               {
                                                   d.MstPayType.PayTypeCode,
@@ -312,8 +310,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                                               {
                                                   g.Key.PayTypeCode,
                                                   g.Key.PayType,
-                                                  TotalAmount = g.Sum(s => s.Amount),
-                                                  TotalChangeAmount = g.Sum(s => s.TrnCollection.ChangeAmount)
+                                                  Amount = g.Sum(s => s.TrnCollection.IsCancelled == false ? s.MstPayType.PayTypeCode == "CASH" ? s.Amount - s.TrnCollection.ChangeAmount : s.Amount : 0)
                                               };
 
             Decimal totalCollectionAmount = 0;
@@ -326,19 +323,13 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 {
                     var collectionLine = currentCollectionLines[i];
 
-                    Decimal amount = collectionLine.TotalAmount;
-                    if (collectionLine.PayTypeCode.Equals("CASH") == true)
-                    {
-                        amount = collectionLine.TotalAmount - collectionLine.TotalChangeAmount;
-                    }
-
                     repZReadingReportEntity.CollectionLines.Add(new Entities.TrnCollectionLineEntity()
                     {
                         PayType = collectionLine.PayType,
-                        Amount = amount
+                        Amount = collectionLine.Amount
                     });
 
-                    totalCollectionAmount += amount;
+                    totalCollectionAmount += collectionLine.Amount;
                 }
             }
 
