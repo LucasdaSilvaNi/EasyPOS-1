@@ -246,5 +246,73 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
             pageNumber = 1;
             UpdatePurchaseOrderListDataSource();
         }
+
+        private void buttonPurchaseOrderListPageListFirst_Click(object sender, EventArgs e)
+        {
+            itemListPageList = new PagedList<Entities.DgvTrnPurchaseOrderListEntity>(itemListData, 1, pageSize);
+            itemListDataSource.DataSource = itemListPageList;
+
+            buttonPurchaseOrderListPageListFirst.Enabled = false;
+            buttonPurchaseOrderListPageListPrevious.Enabled = false;
+            buttonPurchaseOrderListPageListNext.Enabled = true;
+            buttonPurchaseOrderListPageListLast.Enabled = true;
+
+            pageNumber = 1;
+            textBoxPurchaseOrderListPageNumber.Text = pageNumber + " / " + itemListPageList.PageCount;
+        }
+
+        private void buttonPurchaseOrderListPageListPrevious_Click(object sender, EventArgs e)
+        {
+            if (itemListPageList.HasPreviousPage == true)
+            {
+                itemListPageList = new PagedList<Entities.DgvTrnPurchaseOrderListEntity>(itemListData, --pageNumber, pageSize);
+                itemListDataSource.DataSource = itemListPageList;
+            }
+
+            buttonPurchaseOrderListPageListNext.Enabled = true;
+            buttonPurchaseOrderListPageListLast.Enabled = true;
+
+            if (pageNumber == 1)
+            {
+                buttonPurchaseOrderListPageListFirst.Enabled = false;
+                buttonPurchaseOrderListPageListPrevious.Enabled = false;
+            }
+
+            textBoxPurchaseOrderListPageNumber.Text = pageNumber + " / " + itemListPageList.PageCount;
+        }
+
+        private void buttonPurchaseOrderListPageListNext_Click(object sender, EventArgs e)
+        {
+            if (itemListPageList.HasNextPage == true)
+            {
+                itemListPageList = new PagedList<Entities.DgvTrnPurchaseOrderListEntity>(itemListData, ++pageNumber, pageSize);
+                itemListDataSource.DataSource = itemListPageList;
+            }
+
+            buttonPurchaseOrderListPageListFirst.Enabled = true;
+            buttonPurchaseOrderListPageListPrevious.Enabled = true;
+
+            if (pageNumber == itemListPageList.PageCount)
+            {
+                buttonPurchaseOrderListPageListNext.Enabled = false;
+                buttonPurchaseOrderListPageListLast.Enabled = false;
+            }
+
+            textBoxPurchaseOrderListPageNumber.Text = pageNumber + " / " + itemListPageList.PageCount;
+        }
+
+        private void buttonPurchaseOrderListPageListLast_Click(object sender, EventArgs e)
+        {
+            itemListPageList = new PagedList<Entities.DgvTrnPurchaseOrderListEntity>(itemListData, itemListPageList.PageCount, pageSize);
+            itemListDataSource.DataSource = itemListPageList;
+
+            buttonPurchaseOrderListPageListFirst.Enabled = true;
+            buttonPurchaseOrderListPageListPrevious.Enabled = true;
+            buttonPurchaseOrderListPageListNext.Enabled = false;
+            buttonPurchaseOrderListPageListLast.Enabled = false;
+
+            pageNumber = itemListPageList.PageCount;
+            textBoxPurchaseOrderListPageNumber.Text = pageNumber + " / " + itemListPageList.PageCount;
+        }
     }
 }

@@ -375,6 +375,7 @@
             this.buttonPurchaseOrderListPageListFirst.TabIndex = 13;
             this.buttonPurchaseOrderListPageListFirst.Text = "First";
             this.buttonPurchaseOrderListPageListFirst.UseVisualStyleBackColor = false;
+            this.buttonPurchaseOrderListPageListFirst.Click += new System.EventHandler(this.buttonPurchaseOrderListPageListFirst_Click);
             // 
             // buttonPurchaseOrderListPageListPrevious
             // 
@@ -390,6 +391,7 @@
             this.buttonPurchaseOrderListPageListPrevious.TabIndex = 14;
             this.buttonPurchaseOrderListPageListPrevious.Text = "Previous";
             this.buttonPurchaseOrderListPageListPrevious.UseVisualStyleBackColor = false;
+            this.buttonPurchaseOrderListPageListPrevious.Click += new System.EventHandler(this.buttonPurchaseOrderListPageListPrevious_Click);
             // 
             // buttonPurchaseOrderListPageListNext
             // 
@@ -404,6 +406,7 @@
             this.buttonPurchaseOrderListPageListNext.TabIndex = 15;
             this.buttonPurchaseOrderListPageListNext.Text = "Next";
             this.buttonPurchaseOrderListPageListNext.UseVisualStyleBackColor = false;
+            this.buttonPurchaseOrderListPageListNext.Click += new System.EventHandler(this.buttonPurchaseOrderListPageListNext_Click);
             // 
             // buttonPurchaseOrderListPageListLast
             // 
@@ -418,6 +421,7 @@
             this.buttonPurchaseOrderListPageListLast.TabIndex = 16;
             this.buttonPurchaseOrderListPageListLast.Text = "Last";
             this.buttonPurchaseOrderListPageListLast.UseVisualStyleBackColor = false;
+            this.buttonPurchaseOrderListPageListLast.Click += new System.EventHandler(this.buttonPurchaseOrderListPageListLast_Click);
             // 
             // textBoxPurchaseOrderListPageNumber
             // 
