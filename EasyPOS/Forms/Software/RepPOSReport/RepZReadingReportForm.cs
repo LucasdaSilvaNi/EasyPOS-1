@@ -411,28 +411,28 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                                         (d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.Price * d.Quantity
                                 : d.MstTax.Rate > 0 ?
                                         (d.Price * d.Quantity) - d.TaxAmount : d.Price * d.Quantity
-                            ) * Modules.SysCurrentModule.GetCurrentSettings().DeclareRate
+                            ) * currentDeclareRate
                     );
 
                     totalAccumulatedRegularDiscount = salesLines.Sum(d =>
                         previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).Any() == true ?
                             (d.MstDiscount.Discount != "Senior Citizen Discount" && d.MstDiscount.Discount != "PWD" ? d.DiscountAmount * d.Quantity : 0) * Convert.ToDecimal(previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).FirstOrDefault().DeclareRate)
                         :
-                            (d.MstDiscount.Discount != "Senior Citizen Discount" && d.MstDiscount.Discount != "PWD" ? d.DiscountAmount * d.Quantity : 0) * Modules.SysCurrentModule.GetCurrentSettings().DeclareRate
+                            (d.MstDiscount.Discount != "Senior Citizen Discount" && d.MstDiscount.Discount != "PWD" ? d.DiscountAmount * d.Quantity : 0) * currentDeclareRate
                     );
 
                     totalAccumulatedSeniorCitizenDiscount = salesLines.Sum(d =>
                         previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).Any() == true ?
                             (d.MstDiscount.Discount == "Senior Citizen Discount" ? d.DiscountAmount * d.Quantity : 0) * Convert.ToDecimal(previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).FirstOrDefault().DeclareRate)
                         :
-                            (d.MstDiscount.Discount == "Senior Citizen Discount" ? d.DiscountAmount * d.Quantity : 0) * Modules.SysCurrentModule.GetCurrentSettings().DeclareRate
+                            (d.MstDiscount.Discount == "Senior Citizen Discount" ? d.DiscountAmount * d.Quantity : 0) * currentDeclareRate
                     );
 
                     totalAccumulatedPWDDiscount = salesLines.Sum(d =>
                         previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).Any() == true ?
                             (d.MstDiscount.Discount == "PWD" ? d.DiscountAmount * d.Quantity : 0) * Convert.ToDecimal(previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).FirstOrDefault().DeclareRate)
                         :
-                            (d.MstDiscount.Discount == "PWD" ? d.DiscountAmount * d.Quantity : 0) * Modules.SysCurrentModule.GetCurrentSettings().DeclareRate
+                            (d.MstDiscount.Discount == "PWD" ? d.DiscountAmount * d.Quantity : 0) * currentDeclareRate
                     );
                 }
 
@@ -458,28 +458,28 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                         previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).Any() == true ?
                             Convert.ToDecimal(((d.MstTax.Code == "VAT" ? d.Amount : 0) * Convert.ToDecimal(previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).FirstOrDefault().DeclareRate)).ToString("#,##0.00"))
                         :
-                            Convert.ToDecimal(((d.MstTax.Code == "VAT" ? d.Amount : 0) * Modules.SysCurrentModule.GetCurrentSettings().DeclareRate).ToString("#,##0.00"))
+                            Convert.ToDecimal(((d.MstTax.Code == "VAT" ? d.Amount : 0) * currentDeclareRate).ToString("#,##0.00"))
                     );
 
                     VATAmountSalesReturn = salesReturnLines.Sum(d =>
                         previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).Any() == true ?
                             Convert.ToDecimal(((d.MstTax.Code == "VAT" ? d.TaxAmount : 0) * Convert.ToDecimal(previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).FirstOrDefault().DeclareRate)).ToString("#,##0.00"))
                         :
-                            Convert.ToDecimal(((d.MstTax.Code == "VAT" ? d.TaxAmount : 0) * Modules.SysCurrentModule.GetCurrentSettings().DeclareRate).ToString("#,##0.00"))
+                            Convert.ToDecimal(((d.MstTax.Code == "VAT" ? d.TaxAmount : 0) * currentDeclareRate).ToString("#,##0.00"))
                     ) * -1;
 
                     VATExemptSalesReturn = salesReturnLines.Sum(d =>
                         previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).Any() == true ?
                             Convert.ToDecimal(((d.MstTax.Code == "EXEMPTVAT" ? d.Amount : 0) * Convert.ToDecimal(previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).FirstOrDefault().DeclareRate)).ToString("#,##0.00"))
                         :
-                            Convert.ToDecimal(((d.MstTax.Code == "EXEMPTVAT" ? d.Amount : 0) * Modules.SysCurrentModule.GetCurrentSettings().DeclareRate).ToString("#,##0.00"))
+                            Convert.ToDecimal(((d.MstTax.Code == "EXEMPTVAT" ? d.Amount : 0) * currentDeclareRate).ToString("#,##0.00"))
                     );
 
                     VATAmountExemptSalesReturn = salesReturnLines.Sum(d =>
                         previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).Any() == true ?
                             Convert.ToDecimal(((d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * (d.Quantity * -1)) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount) * Convert.ToDecimal(previousDeclareRatesValues.Where(p => p.Date == d.TrnSale.SalesDate).FirstOrDefault().DeclareRate)).ToString("#,##0.00"))
                         :
-                            Convert.ToDecimal(((d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * (d.Quantity * -1)) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount) * Modules.SysCurrentModule.GetCurrentSettings().DeclareRate).ToString("#,##0.00"))
+                            Convert.ToDecimal(((d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * (d.Quantity * -1)) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount) * currentDeclareRate).ToString("#,##0.00"))
                     ) * -1;
 
                     totalAccumulatedSalesReturn = (VATSalesReturn + VATExemptSalesReturn);
