@@ -484,9 +484,9 @@ namespace EasyPOS.Controllers
                                 StockInId = newStockIn.Id,
                                 ItemId = purchaseOrderLine.ItemId,
                                 UnitId = purchaseOrderLine.UnitId,
-                                Quantity = purchaseOrderLine.Quantity,
+                                Quantity = purchaseOrderLine.ReceivedQuantity,
                                 Cost = purchaseOrderLine.Cost,
-                                Amount = purchaseOrderLine.Amount,
+                                Amount = purchaseOrderLine.ReceivedQuantity * purchaseOrderLine.Cost,
                                 AssetAccountId = purchaseOrderLine.MstItem.AssetAccountId
                             });
                         }

@@ -19,5 +19,6 @@ namespace EasyPOS.Entities
         public Decimal ColumnPurchaseOrderLineListQuantity { get; set; }
         public Decimal ColumnPurchaseOrderLineListCost { get; set; }
         public Decimal ColumnPurchaseOrderLineListAmount { get; set; }
+        public Decimal ColumnPurchaseOrderLineListReceivedQuantity { get; set; }
     }
 }

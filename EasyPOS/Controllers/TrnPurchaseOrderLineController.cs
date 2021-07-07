@@ -19,23 +19,24 @@ namespace EasyPOS.Controllers
         public List<Entities.TrnPurchaseOrderLineEntity> ListPurchaseOrderLine(Int32 purchaseOrderId)
         {
             var purchaseOrderLines = from d in db.TrnPurchaseOrderLines
-                               where d.PurchaseOrderId == purchaseOrderId
+                                     where d.PurchaseOrderId == purchaseOrderId
                                      select new Entities.TrnPurchaseOrderLineEntity
-                               {
-                                   Id = d.Id,
-                                   PurchaseOrderId = d.PurchaseOrderId,
-                                   ItemId = d.ItemId,
-                                   ItemDescription = d.MstItem.ItemDescription,
-                                   UnitId = d.UnitId,
-                                   Unit = d.MstUnit.Unit,
-                                   Quantity = d.Quantity,
-                                   Cost = d.MstItem.Cost,
-                                   Amount = d.Amount,
-                                   
-                               };
+                                     {
+                                         Id = d.Id,
+                                         PurchaseOrderId = d.PurchaseOrderId,
+                                         ItemId = d.ItemId,
+                                         ItemDescription = d.MstItem.ItemDescription,
+                                         UnitId = d.UnitId,
+                                         Unit = d.MstUnit.Unit,
+                                         Quantity = d.Quantity,
+                                         Cost = d.MstItem.Cost,
+                                         Amount = d.Amount,
+                                         ReceivedQuantity = d.ReceivedQuantity,
+                                     };
 
             return purchaseOrderLines.OrderByDescending(d => d.Id).ToList();
         }
+
         // ================
         // List Search Item
         // ================
@@ -61,9 +62,10 @@ namespace EasyPOS.Controllers
                             Cost = d.Cost,
                             OnhandQuantity = d.OnhandQuantity
                         };
+
             return items.OrderBy(d => d.ItemDescription).ToList();
 
-            
+
         }
         // ===========
         // Detail Item
@@ -105,8 +107,8 @@ namespace EasyPOS.Controllers
                 }
 
                 var purchaseOrder = from d in db.TrnPurchaseOrders
-                              where d.Id == objPurchaseOrderLine.PurchaseOrderId
-                              select d;
+                                    where d.Id == objPurchaseOrderLine.PurchaseOrderId
+                                    select d;
 
                 if (purchaseOrder.Any() == false)
                 {
@@ -142,6 +144,7 @@ namespace EasyPOS.Controllers
                     Quantity = objPurchaseOrderLine.Quantity,
                     Cost = objPurchaseOrderLine.Cost,
                     Amount = objPurchaseOrderLine.Amount,
+                    ReceivedQuantity = objPurchaseOrderLine.ReceivedQuantity
                 };
 
                 db.TrnPurchaseOrderLines.InsertOnSubmit(newPurchaseOrderLine);
@@ -182,14 +185,14 @@ namespace EasyPOS.Controllers
                 }
 
                 var purchaseOrderLine = from d in db.TrnPurchaseOrderLines
-                                  where d.Id == id
-                                  select d;
+                                        where d.Id == id
+                                        select d;
 
                 if (purchaseOrderLine.Any())
                 {
                     var purchaseOrderLines = from d in db.TrnPurchaseOrderLines
-                                  where d.Id == objPurchaseOrderLine.PurchaseOrderId
-                                  select d;
+                                             where d.Id == objPurchaseOrderLine.PurchaseOrderId
+                                             select d;
 
                     if (purchaseOrderLine.Any() == false)
                     {
@@ -244,8 +247,8 @@ namespace EasyPOS.Controllers
                 }
 
                 var purchaseOrderLine = from d in db.TrnPurchaseOrderLines
-                                  where d.Id == id
-                                  select d;
+                                        where d.Id == id
+                                        select d;
 
                 if (purchaseOrderLine.Any())
                 {
@@ -279,6 +282,7 @@ namespace EasyPOS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
+
         // =====================
         // Barcode Stock-In Line
         // =====================
@@ -293,7 +297,7 @@ namespace EasyPOS.Controllers
                 }
 
                 var purchaseOrder = from d in db.TrnPurchaseOrders
-                              where d.Id == purchaseorderId
+                                    where d.Id == purchaseorderId
                                     select d;
 
                 if (purchaseOrder.Any() == false)
@@ -330,6 +334,7 @@ namespace EasyPOS.Controllers
                     Quantity = 1,
                     Cost = 0,
                     Amount = 0,
+                    ReceivedQuantity = 0
                 };
 
                 db.TrnPurchaseOrderLines.InsertOnSubmit(newPurchaseOrderLine);
@@ -349,6 +354,57 @@ namespace EasyPOS.Controllers
                 Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
 
                 return new String[] { "", "1" };
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
+
+        // ========================
+        // Update Received Quantity
+        // ========================
+        public String[] UpdatePurchaseOrderLineReceivedQuantity(Int32 id, Decimal receivedQuantity)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var purchaseOrderLine = from d in db.TrnPurchaseOrderLines
+                                        where d.Id == id
+                                        select d;
+
+                if (purchaseOrderLine.Any())
+                {
+                    String oldObject = Modules.SysAuditTrailModule.GetObjectString(purchaseOrderLine.FirstOrDefault());
+
+                    var updatePurchaseOrderLine = purchaseOrderLine.FirstOrDefault();
+                    updatePurchaseOrderLine.ReceivedQuantity = receivedQuantity;
+                    db.SubmitChanges();
+
+                    String newObject = Modules.SysAuditTrailModule.GetObjectString(purchaseOrderLine.FirstOrDefault());
+
+                    Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
+                    {
+                        UserId = currentUserLogin.FirstOrDefault().Id,
+                        AuditDate = DateTime.Now,
+                        TableInformation = "TrnPurchaseOrderLine",
+                        RecordInformation = oldObject,
+                        FormInformation = newObject,
+                        ActionInformation = "UpdatePurchaseOrderLine"
+                    };
+                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
+
+                    return new String[] { "", "1" };
+                }
+                else
+                {
+                    return new String[] { "Purchase Order line not found.  " + id, "0" };
+                }
             }
             catch (Exception e)
             {

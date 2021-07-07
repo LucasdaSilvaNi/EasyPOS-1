@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonStockIn = new System.Windows.Forms.Button();
             this.buttonPrint = new System.Windows.Forms.Button();
@@ -42,6 +43,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.Forms = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
             this.textBoxRemarks = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -57,6 +60,15 @@
             this.dateTimePickerPurchaseOrderDate = new System.Windows.Forms.DateTimePicker();
             this.textBoxPurchaseOrderNumber = new System.Windows.Forms.TextBox();
             this.dataGridViewPurchaseOrderLineList = new System.Windows.Forms.DataGridView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.buttonPurchaseOrderLineListPageListFirst = new System.Windows.Forms.Button();
+            this.buttonPurchaseOrderLineListPageListPrevious = new System.Windows.Forms.Button();
+            this.buttonPurchaseOrderLineListPageListNext = new System.Windows.Forms.Button();
+            this.buttonPurchaseOrderLineListPageListLast = new System.Windows.Forms.Button();
+            this.textBoxPurchaseOrderLineListPageNumber = new System.Windows.Forms.TextBox();
+            this.buttonBarcode = new System.Windows.Forms.Button();
+            this.textBoxBarcode = new System.Windows.Forms.TextBox();
+            this.buttonSearchItem = new System.Windows.Forms.Button();
             this.ColumnPurchaseOrderLineListButtonEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ColumnPurchaseOrderLineListButtonDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ColumnPurchaseOrderLineListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,17 +80,7 @@
             this.ColumnPurchaseOrderLineListQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPurchaseOrderLineListCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPurchaseOrderLineListAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.buttonPurchaseOrderLineListPageListFirst = new System.Windows.Forms.Button();
-            this.buttonPurchaseOrderLineListPageListPrevious = new System.Windows.Forms.Button();
-            this.buttonPurchaseOrderLineListPageListNext = new System.Windows.Forms.Button();
-            this.buttonPurchaseOrderLineListPageListLast = new System.Windows.Forms.Button();
-            this.textBoxPurchaseOrderLineListPageNumber = new System.Windows.Forms.TextBox();
-            this.buttonBarcode = new System.Windows.Forms.Button();
-            this.textBoxBarcode = new System.Windows.Forms.TextBox();
-            this.buttonSearchItem = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.ColumnPurchaseOrderLineListReceivedQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Forms.SuspendLayout();
@@ -96,7 +98,7 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.buttonClose);
-            this.panel1.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.panel1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -108,6 +110,7 @@
             // 
             this.buttonStockIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonStockIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonStockIn.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.buttonStockIn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
             this.buttonStockIn.FlatAppearance.BorderSize = 0;
             this.buttonStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -127,6 +130,7 @@
             // 
             this.buttonPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonPrint.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.buttonPrint.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
             this.buttonPrint.FlatAppearance.BorderSize = 0;
             this.buttonPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -146,6 +150,7 @@
             // 
             this.buttonLock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonLock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonLock.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.buttonLock.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
             this.buttonLock.FlatAppearance.BorderSize = 0;
             this.buttonLock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -165,6 +170,7 @@
             // 
             this.buttonUnlock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonUnlock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonUnlock.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.buttonUnlock.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
             this.buttonUnlock.FlatAppearance.BorderSize = 0;
             this.buttonUnlock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -182,6 +188,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.pictureBox1.Image = global::EasyPOS.Properties.Resources.PurchaseOrder;
             this.pictureBox1.Location = new System.Drawing.Point(10, 10);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
@@ -194,6 +201,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
             this.label1.Location = new System.Drawing.Point(50, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
@@ -206,6 +214,7 @@
             // 
             this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(79)))), ((int)(((byte)(28)))));
+            this.buttonClose.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.buttonClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(79)))), ((int)(((byte)(28)))));
             this.buttonClose.FlatAppearance.BorderSize = 0;
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -247,6 +256,27 @@
             this.Forms.Padding = new System.Windows.Forms.Padding(8);
             this.Forms.Size = new System.Drawing.Size(1096, 177);
             this.Forms.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label3.Location = new System.Drawing.Point(513, 97);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 19);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "Status:";
+            // 
+            // comboBoxStatus
+            // 
+            this.comboBoxStatus.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Location = new System.Drawing.Point(570, 94);
+            this.comboBoxStatus.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxStatus.Name = "comboBoxStatus";
+            this.comboBoxStatus.Size = new System.Drawing.Size(231, 27);
+            this.comboBoxStatus.TabIndex = 24;
             // 
             // textBoxRemarks
             // 
@@ -426,14 +456,14 @@
             this.ColumnPurchaseOrderLineListUnit,
             this.ColumnPurchaseOrderLineListQuantity,
             this.ColumnPurchaseOrderLineListCost,
-            this.ColumnPurchaseOrderLineListAmount});
+            this.ColumnPurchaseOrderLineListAmount,
+            this.ColumnPurchaseOrderLineListReceivedQuantity});
             this.dataGridViewPurchaseOrderLineList.Location = new System.Drawing.Point(10, 266);
             this.dataGridViewPurchaseOrderLineList.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewPurchaseOrderLineList.MultiSelect = false;
             this.dataGridViewPurchaseOrderLineList.Name = "dataGridViewPurchaseOrderLineList";
-            this.dataGridViewPurchaseOrderLineList.ReadOnly = true;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.dataGridViewPurchaseOrderLineList.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.dataGridViewPurchaseOrderLineList.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewPurchaseOrderLineList.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.dataGridViewPurchaseOrderLineList.RowTemplate.Height = 24;
             this.dataGridViewPurchaseOrderLineList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -441,98 +471,8 @@
             this.dataGridViewPurchaseOrderLineList.TabIndex = 10;
             this.dataGridViewPurchaseOrderLineList.TabStop = false;
             this.dataGridViewPurchaseOrderLineList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPurchaseOrderLineList_CellClick);
-            // 
-            // ColumnPurchaseOrderLineListButtonEdit
-            // 
-            this.ColumnPurchaseOrderLineListButtonEdit.DataPropertyName = "ColumnPurchaseOrderLineListButtonEdit";
-            this.ColumnPurchaseOrderLineListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ColumnPurchaseOrderLineListButtonEdit.HeaderText = "";
-            this.ColumnPurchaseOrderLineListButtonEdit.Name = "ColumnPurchaseOrderLineListButtonEdit";
-            this.ColumnPurchaseOrderLineListButtonEdit.ReadOnly = true;
-            this.ColumnPurchaseOrderLineListButtonEdit.Width = 70;
-            // 
-            // ColumnPurchaseOrderLineListButtonDelete
-            // 
-            this.ColumnPurchaseOrderLineListButtonDelete.DataPropertyName = "ColumnPurchaseOrderLineListButtonDelete";
-            this.ColumnPurchaseOrderLineListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ColumnPurchaseOrderLineListButtonDelete.HeaderText = "";
-            this.ColumnPurchaseOrderLineListButtonDelete.Name = "ColumnPurchaseOrderLineListButtonDelete";
-            this.ColumnPurchaseOrderLineListButtonDelete.ReadOnly = true;
-            this.ColumnPurchaseOrderLineListButtonDelete.Width = 70;
-            // 
-            // ColumnPurchaseOrderLineListId
-            // 
-            this.ColumnPurchaseOrderLineListId.DataPropertyName = "ColumnPurchaseOrderLineListId";
-            this.ColumnPurchaseOrderLineListId.HeaderText = "Id";
-            this.ColumnPurchaseOrderLineListId.Name = "ColumnPurchaseOrderLineListId";
-            this.ColumnPurchaseOrderLineListId.ReadOnly = true;
-            this.ColumnPurchaseOrderLineListId.Visible = false;
-            // 
-            // ColumnPurchaseOrderLineListPurchaseOrderId
-            // 
-            this.ColumnPurchaseOrderLineListPurchaseOrderId.DataPropertyName = "ColumnPurchaseOrderLineListPurchaseOrderId";
-            this.ColumnPurchaseOrderLineListPurchaseOrderId.HeaderText = "Purchase Order Id";
-            this.ColumnPurchaseOrderLineListPurchaseOrderId.Name = "ColumnPurchaseOrderLineListPurchaseOrderId";
-            this.ColumnPurchaseOrderLineListPurchaseOrderId.ReadOnly = true;
-            this.ColumnPurchaseOrderLineListPurchaseOrderId.Visible = false;
-            // 
-            // ColumnPurchaseOrderLineListItemId
-            // 
-            this.ColumnPurchaseOrderLineListItemId.DataPropertyName = "ColumnPurchaseOrderLineListItemId";
-            this.ColumnPurchaseOrderLineListItemId.HeaderText = "Item Id";
-            this.ColumnPurchaseOrderLineListItemId.Name = "ColumnPurchaseOrderLineListItemId";
-            this.ColumnPurchaseOrderLineListItemId.ReadOnly = true;
-            this.ColumnPurchaseOrderLineListItemId.Visible = false;
-            // 
-            // ColumnPurchaseOrderLineListItemDescription
-            // 
-            this.ColumnPurchaseOrderLineListItemDescription.DataPropertyName = "ColumnPurchaseOrderLineListItemDescription";
-            this.ColumnPurchaseOrderLineListItemDescription.HeaderText = "Item Description";
-            this.ColumnPurchaseOrderLineListItemDescription.Name = "ColumnPurchaseOrderLineListItemDescription";
-            this.ColumnPurchaseOrderLineListItemDescription.ReadOnly = true;
-            this.ColumnPurchaseOrderLineListItemDescription.Width = 200;
-            // 
-            // ColumnPurchaseOrderLineListUnitId
-            // 
-            this.ColumnPurchaseOrderLineListUnitId.DataPropertyName = "ColumnPurchaseOrderLineListUnitId";
-            this.ColumnPurchaseOrderLineListUnitId.HeaderText = "Unit Id";
-            this.ColumnPurchaseOrderLineListUnitId.Name = "ColumnPurchaseOrderLineListUnitId";
-            this.ColumnPurchaseOrderLineListUnitId.ReadOnly = true;
-            this.ColumnPurchaseOrderLineListUnitId.Visible = false;
-            // 
-            // ColumnPurchaseOrderLineListUnit
-            // 
-            this.ColumnPurchaseOrderLineListUnit.DataPropertyName = "ColumnPurchaseOrderLineListUnit";
-            this.ColumnPurchaseOrderLineListUnit.HeaderText = "Unit";
-            this.ColumnPurchaseOrderLineListUnit.Name = "ColumnPurchaseOrderLineListUnit";
-            this.ColumnPurchaseOrderLineListUnit.ReadOnly = true;
-            // 
-            // ColumnPurchaseOrderLineListQuantity
-            // 
-            this.ColumnPurchaseOrderLineListQuantity.DataPropertyName = "ColumnPurchaseOrderLineListQuantity";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnPurchaseOrderLineListQuantity.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnPurchaseOrderLineListQuantity.HeaderText = "Quantity";
-            this.ColumnPurchaseOrderLineListQuantity.Name = "ColumnPurchaseOrderLineListQuantity";
-            this.ColumnPurchaseOrderLineListQuantity.ReadOnly = true;
-            // 
-            // ColumnPurchaseOrderLineListCost
-            // 
-            this.ColumnPurchaseOrderLineListCost.DataPropertyName = "ColumnPurchaseOrderLineListCost";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnPurchaseOrderLineListCost.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ColumnPurchaseOrderLineListCost.HeaderText = "Cost";
-            this.ColumnPurchaseOrderLineListCost.Name = "ColumnPurchaseOrderLineListCost";
-            this.ColumnPurchaseOrderLineListCost.ReadOnly = true;
-            // 
-            // ColumnPurchaseOrderLineListAmount
-            // 
-            this.ColumnPurchaseOrderLineListAmount.DataPropertyName = "ColumnPurchaseOrderLineListAmount";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnPurchaseOrderLineListAmount.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ColumnPurchaseOrderLineListAmount.HeaderText = "Amount";
-            this.ColumnPurchaseOrderLineListAmount.Name = "ColumnPurchaseOrderLineListAmount";
-            this.ColumnPurchaseOrderLineListAmount.ReadOnly = true;
+            this.dataGridViewPurchaseOrderLineList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPurchaseOrderLineList_CellEndEdit);
+            this.dataGridViewPurchaseOrderLineList.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridViewPurchaseOrderLineList_EditingControlShowing);
             // 
             // panel4
             // 
@@ -680,26 +620,105 @@
             this.buttonSearchItem.UseVisualStyleBackColor = false;
             this.buttonSearchItem.Click += new System.EventHandler(this.buttonSearchItem_Click);
             // 
-            // label3
+            // ColumnPurchaseOrderLineListButtonEdit
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label3.Location = new System.Drawing.Point(513, 97);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 19);
-            this.label3.TabIndex = 25;
-            this.label3.Text = "Status:";
+            this.ColumnPurchaseOrderLineListButtonEdit.DataPropertyName = "ColumnPurchaseOrderLineListButtonEdit";
+            this.ColumnPurchaseOrderLineListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColumnPurchaseOrderLineListButtonEdit.HeaderText = "";
+            this.ColumnPurchaseOrderLineListButtonEdit.Name = "ColumnPurchaseOrderLineListButtonEdit";
+            this.ColumnPurchaseOrderLineListButtonEdit.ReadOnly = true;
+            this.ColumnPurchaseOrderLineListButtonEdit.Width = 70;
             // 
-            // comboBoxStatus
+            // ColumnPurchaseOrderLineListButtonDelete
             // 
-            this.comboBoxStatus.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.comboBoxStatus.FormattingEnabled = true;
-            this.comboBoxStatus.Location = new System.Drawing.Point(570, 94);
-            this.comboBoxStatus.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBoxStatus.Name = "comboBoxStatus";
-            this.comboBoxStatus.Size = new System.Drawing.Size(231, 27);
-            this.comboBoxStatus.TabIndex = 24;
+            this.ColumnPurchaseOrderLineListButtonDelete.DataPropertyName = "ColumnPurchaseOrderLineListButtonDelete";
+            this.ColumnPurchaseOrderLineListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColumnPurchaseOrderLineListButtonDelete.HeaderText = "";
+            this.ColumnPurchaseOrderLineListButtonDelete.Name = "ColumnPurchaseOrderLineListButtonDelete";
+            this.ColumnPurchaseOrderLineListButtonDelete.ReadOnly = true;
+            this.ColumnPurchaseOrderLineListButtonDelete.Width = 70;
+            // 
+            // ColumnPurchaseOrderLineListId
+            // 
+            this.ColumnPurchaseOrderLineListId.DataPropertyName = "ColumnPurchaseOrderLineListId";
+            this.ColumnPurchaseOrderLineListId.HeaderText = "Id";
+            this.ColumnPurchaseOrderLineListId.Name = "ColumnPurchaseOrderLineListId";
+            this.ColumnPurchaseOrderLineListId.ReadOnly = true;
+            this.ColumnPurchaseOrderLineListId.Visible = false;
+            // 
+            // ColumnPurchaseOrderLineListPurchaseOrderId
+            // 
+            this.ColumnPurchaseOrderLineListPurchaseOrderId.DataPropertyName = "ColumnPurchaseOrderLineListPurchaseOrderId";
+            this.ColumnPurchaseOrderLineListPurchaseOrderId.HeaderText = "Purchase Order Id";
+            this.ColumnPurchaseOrderLineListPurchaseOrderId.Name = "ColumnPurchaseOrderLineListPurchaseOrderId";
+            this.ColumnPurchaseOrderLineListPurchaseOrderId.ReadOnly = true;
+            this.ColumnPurchaseOrderLineListPurchaseOrderId.Visible = false;
+            // 
+            // ColumnPurchaseOrderLineListItemId
+            // 
+            this.ColumnPurchaseOrderLineListItemId.DataPropertyName = "ColumnPurchaseOrderLineListItemId";
+            this.ColumnPurchaseOrderLineListItemId.HeaderText = "Item Id";
+            this.ColumnPurchaseOrderLineListItemId.Name = "ColumnPurchaseOrderLineListItemId";
+            this.ColumnPurchaseOrderLineListItemId.ReadOnly = true;
+            this.ColumnPurchaseOrderLineListItemId.Visible = false;
+            // 
+            // ColumnPurchaseOrderLineListItemDescription
+            // 
+            this.ColumnPurchaseOrderLineListItemDescription.DataPropertyName = "ColumnPurchaseOrderLineListItemDescription";
+            this.ColumnPurchaseOrderLineListItemDescription.HeaderText = "Item Description";
+            this.ColumnPurchaseOrderLineListItemDescription.Name = "ColumnPurchaseOrderLineListItemDescription";
+            this.ColumnPurchaseOrderLineListItemDescription.ReadOnly = true;
+            this.ColumnPurchaseOrderLineListItemDescription.Width = 200;
+            // 
+            // ColumnPurchaseOrderLineListUnitId
+            // 
+            this.ColumnPurchaseOrderLineListUnitId.DataPropertyName = "ColumnPurchaseOrderLineListUnitId";
+            this.ColumnPurchaseOrderLineListUnitId.HeaderText = "Unit Id";
+            this.ColumnPurchaseOrderLineListUnitId.Name = "ColumnPurchaseOrderLineListUnitId";
+            this.ColumnPurchaseOrderLineListUnitId.ReadOnly = true;
+            this.ColumnPurchaseOrderLineListUnitId.Visible = false;
+            // 
+            // ColumnPurchaseOrderLineListUnit
+            // 
+            this.ColumnPurchaseOrderLineListUnit.DataPropertyName = "ColumnPurchaseOrderLineListUnit";
+            this.ColumnPurchaseOrderLineListUnit.HeaderText = "Unit";
+            this.ColumnPurchaseOrderLineListUnit.Name = "ColumnPurchaseOrderLineListUnit";
+            this.ColumnPurchaseOrderLineListUnit.ReadOnly = true;
+            // 
+            // ColumnPurchaseOrderLineListQuantity
+            // 
+            this.ColumnPurchaseOrderLineListQuantity.DataPropertyName = "ColumnPurchaseOrderLineListQuantity";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnPurchaseOrderLineListQuantity.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnPurchaseOrderLineListQuantity.HeaderText = "Quantity";
+            this.ColumnPurchaseOrderLineListQuantity.Name = "ColumnPurchaseOrderLineListQuantity";
+            this.ColumnPurchaseOrderLineListQuantity.ReadOnly = true;
+            // 
+            // ColumnPurchaseOrderLineListCost
+            // 
+            this.ColumnPurchaseOrderLineListCost.DataPropertyName = "ColumnPurchaseOrderLineListCost";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnPurchaseOrderLineListCost.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ColumnPurchaseOrderLineListCost.HeaderText = "Cost";
+            this.ColumnPurchaseOrderLineListCost.Name = "ColumnPurchaseOrderLineListCost";
+            this.ColumnPurchaseOrderLineListCost.ReadOnly = true;
+            // 
+            // ColumnPurchaseOrderLineListAmount
+            // 
+            this.ColumnPurchaseOrderLineListAmount.DataPropertyName = "ColumnPurchaseOrderLineListAmount";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnPurchaseOrderLineListAmount.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ColumnPurchaseOrderLineListAmount.HeaderText = "Amount";
+            this.ColumnPurchaseOrderLineListAmount.Name = "ColumnPurchaseOrderLineListAmount";
+            this.ColumnPurchaseOrderLineListAmount.ReadOnly = true;
+            // 
+            // ColumnPurchaseOrderLineListReceivedQuantity
+            // 
+            this.ColumnPurchaseOrderLineListReceivedQuantity.DataPropertyName = "ColumnPurchaseOrderLineListReceivedQuantity";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnPurchaseOrderLineListReceivedQuantity.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ColumnPurchaseOrderLineListReceivedQuantity.HeaderText = "Received Qty.";
+            this.ColumnPurchaseOrderLineListReceivedQuantity.Name = "ColumnPurchaseOrderLineListReceivedQuantity";
             // 
             // TrnPurchaseOrderDetailForm
             // 
@@ -768,6 +787,9 @@
         private System.Windows.Forms.TextBox textBoxBarcode;
         private System.Windows.Forms.Button buttonSearchItem;
         private System.Windows.Forms.Button buttonPrint;
+        private System.Windows.Forms.Button buttonStockIn;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxStatus;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnPurchaseOrderLineListButtonEdit;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnPurchaseOrderLineListButtonDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPurchaseOrderLineListId;
@@ -779,8 +801,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPurchaseOrderLineListQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPurchaseOrderLineListCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPurchaseOrderLineListAmount;
-        private System.Windows.Forms.Button buttonStockIn;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPurchaseOrderLineListReceivedQuantity;
     }
 }

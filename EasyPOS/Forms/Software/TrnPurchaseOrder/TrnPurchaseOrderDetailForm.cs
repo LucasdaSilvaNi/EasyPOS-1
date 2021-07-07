@@ -140,6 +140,8 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
                 textBoxBarcode.Enabled = !isLocked;
             }
 
+            buttonStockIn.Enabled = isLocked;
+
             dateTimePickerPurchaseOrderDate.Enabled = !isLocked;
             comboBoxSupplier.Enabled = !isLocked;
             textBoxRemarks.Enabled = !isLocked;
@@ -150,12 +152,14 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
 
             dataGridViewPurchaseOrderLineList.Columns[0].Visible = !isLocked;
             dataGridViewPurchaseOrderLineList.Columns[1].Visible = !isLocked;
+            dataGridViewPurchaseOrderLineList.Columns[11].Visible = isLocked;
+            dataGridViewPurchaseOrderLineList.Columns[11].ReadOnly = !isLocked;
             dateTimePickerPurchaseOrderDate.Focus();
         }
 
         private void buttonLock_Click(object sender, EventArgs e)
         {
-             Controllers.TrnPurchaseOrderController trnPurchaseOrderController = new Controllers.TrnPurchaseOrderController();
+            Controllers.TrnPurchaseOrderController trnPurchaseOrderController = new Controllers.TrnPurchaseOrderController();
 
             Entities.TrnPurchaseOrderEntity newPurchaseOrderEntity = new Entities.TrnPurchaseOrderEntity()
             {
@@ -284,6 +288,7 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
                                 ColumnPurchaseOrderLineListQuantity = Convert.ToDecimal(d.Quantity.ToString("#,##0.00")),
                                 ColumnPurchaseOrderLineListCost = Convert.ToDecimal(d.Cost.ToString("#,##0.00")),
                                 ColumnPurchaseOrderLineListAmount = Convert.ToDecimal(d.Amount.ToString("#,##0.00")),
+                                ColumnPurchaseOrderLineListReceivedQuantity = Convert.ToDecimal(d.ReceivedQuantity.ToString("#,##0.00")),
                             };
 
                 return Task.FromResult(items.ToList());
@@ -304,6 +309,8 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
             dataGridViewPurchaseOrderLineList.Columns[1].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#F34F1C");
             dataGridViewPurchaseOrderLineList.Columns[1].DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#F34F1C");
             dataGridViewPurchaseOrderLineList.Columns[1].DefaultCellStyle.ForeColor = Color.White;
+
+
 
             dataGridViewPurchaseOrderLineList.DataSource = purchaseOrderLineDataSource;
         }
@@ -330,6 +337,7 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
                 var quantity = Convert.ToDecimal(dataGridViewPurchaseOrderLineList.Rows[e.RowIndex].Cells[dataGridViewPurchaseOrderLineList.Columns["ColumnPurchaseOrderLineListQuantity"].Index].Value);
                 var cost = Convert.ToDecimal(dataGridViewPurchaseOrderLineList.Rows[e.RowIndex].Cells[dataGridViewPurchaseOrderLineList.Columns["ColumnPurchaseOrderLineListCost"].Index].Value);
                 var amount = Convert.ToDecimal(dataGridViewPurchaseOrderLineList.Rows[e.RowIndex].Cells[dataGridViewPurchaseOrderLineList.Columns["ColumnPurchaseOrderLineListAmount"].Index].Value);
+                var receivedQuantity = Convert.ToDecimal(dataGridViewPurchaseOrderLineList.Rows[e.RowIndex].Cells[dataGridViewPurchaseOrderLineList.Columns["ColumnPurchaseOrderLineListReceivedQuantity"].Index].Value);
 
                 Entities.TrnPurchaseOrderLineEntity trnPurchaseOrderLineEntity = new Entities.TrnPurchaseOrderLineEntity()
                 {
@@ -342,6 +350,7 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
                     Quantity = quantity,
                     Cost = cost,
                     Amount = amount,
+                    ReceivedQuantity = receivedQuantity
                 };
 
                 TrnPurchaseOrderLineItemDetailForm trnPurchaseOrderDetailPurchaseOrderLineItemDetailForm = new TrnPurchaseOrderLineItemDetailForm(this, trnPurchaseOrderLineEntity);
@@ -471,7 +480,7 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
                         var itemDescription = detailItem.ItemDescription;
                         var unitId = detailItem.UnitId;
                         var unit = detailItem.Unit;
-                        
+
                         Entities.TrnPurchaseOrderLineEntity trnPurchaseOrderLineEntity = new Entities.TrnPurchaseOrderLineEntity()
                         {
                             Id = 0,
@@ -526,6 +535,54 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
                 }
             }
         }
+
+        private void dataGridViewPurchaseOrderLineList_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show("HELLO");
+        }
+
+        private void dataGridViewPurchaseOrderLineList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && dataGridViewPurchaseOrderLineList.CurrentCell.ColumnIndex == dataGridViewPurchaseOrderLineList.Columns["ColumnPurchaseOrderLineListReceivedQuantity"].Index)
+            {
+                var id = Convert.ToInt32(dataGridViewPurchaseOrderLineList.Rows[e.RowIndex].Cells[dataGridViewPurchaseOrderLineList.Columns["ColumnPurchaseOrderLineListId"].Index].Value);
+                var receivedQuantity = Convert.ToDecimal(dataGridViewPurchaseOrderLineList.Rows[e.RowIndex].Cells[dataGridViewPurchaseOrderLineList.Columns["ColumnPurchaseOrderLineListReceivedQuantity"].Index].Value);
+
+                Controllers.TrnPurchaseOrderLineController trnPurchaseOrderLineController = new Controllers.TrnPurchaseOrderLineController();
+                trnPurchaseOrderLineController.UpdatePurchaseOrderLineReceivedQuantity(id, receivedQuantity);
+            }
+        }
+
+        private void dataGridViewPurchaseOrderLineList_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.KeyPress -= new KeyPressEventHandler(ColumnPurchaseOrderLineListReceivedQuantityKeyPress);
+
+            if (dataGridViewPurchaseOrderLineList.CurrentCell.ColumnIndex == dataGridViewPurchaseOrderLineList.Columns["ColumnPurchaseOrderLineListReceivedQuantity"].Index)
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress += new KeyPressEventHandler(ColumnPurchaseOrderLineListReceivedQuantityKeyPress);
+                }
+            }
+        }
+
+        private void ColumnPurchaseOrderLineListReceivedQuantityKeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != '-'))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '-') && ((sender as TextBox).Text.IndexOf('-') > -1))
+            {
+                e.Handled = true;
+            }
+        }
     }
-    
 }

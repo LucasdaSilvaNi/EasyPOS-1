@@ -17,6 +17,7 @@ namespace EasyPOS.Entities
         public Decimal Quantity { get; set; }
         public Decimal Cost { get; set; }
         public Decimal Amount { get; set; }
+        public Decimal ReceivedQuantity { get; set; }
 
     }
 }
