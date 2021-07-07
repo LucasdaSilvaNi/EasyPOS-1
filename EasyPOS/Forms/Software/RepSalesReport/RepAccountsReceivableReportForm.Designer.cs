@@ -37,7 +37,18 @@
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewAccountsReceivableSummaryReport = new System.Windows.Forms.DataGridView();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.textBoxTotalAmount = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonSalesListPageListFirst = new System.Windows.Forms.Button();
+            this.buttonSalesListPageListNext = new System.Windows.Forms.Button();
+            this.buttonSalesListPageListLast = new System.Windows.Forms.Button();
+            this.buttonSalesListPageListPrevious = new System.Windows.Forms.Button();
+            this.textBoxPageNumber = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialogGenerateCSV = new System.Windows.Forms.FolderBrowserDialog();
             this.ColumnCustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTerm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCreditLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,15 +60,6 @@
             this.Column60Days = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column90Days = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column120Days = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.textBoxTotalAmount = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonSalesListPageListFirst = new System.Windows.Forms.Button();
-            this.buttonSalesListPageListNext = new System.Windows.Forms.Button();
-            this.buttonSalesListPageListLast = new System.Windows.Forms.Button();
-            this.buttonSalesListPageListPrevious = new System.Windows.Forms.Button();
-            this.textBoxPageNumber = new System.Windows.Forms.TextBox();
-            this.folderBrowserDialogGenerateCSV = new System.Windows.Forms.FolderBrowserDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -182,6 +184,8 @@
             this.dataGridViewAccountsReceivableSummaryReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewAccountsReceivableSummaryReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnCustomer,
+            this.ColumnTerm,
+            this.ColumnCreditLimit,
             this.ColumnSalesNumber,
             this.ColumnSalesDate,
             this.ColumnSalesAmount,
@@ -203,90 +207,6 @@
             this.dataGridViewAccountsReceivableSummaryReport.ShowEditingIcon = false;
             this.dataGridViewAccountsReceivableSummaryReport.Size = new System.Drawing.Size(1076, 419);
             this.dataGridViewAccountsReceivableSummaryReport.TabIndex = 22;
-            // 
-            // ColumnCustomer
-            // 
-            this.ColumnCustomer.DataPropertyName = "ColumnCustomer";
-            this.ColumnCustomer.HeaderText = "Customer";
-            this.ColumnCustomer.Name = "ColumnCustomer";
-            this.ColumnCustomer.ReadOnly = true;
-            // 
-            // ColumnSalesNumber
-            // 
-            this.ColumnSalesNumber.DataPropertyName = "ColumnSalesNumber";
-            this.ColumnSalesNumber.HeaderText = "Sales Number";
-            this.ColumnSalesNumber.Name = "ColumnSalesNumber";
-            this.ColumnSalesNumber.ReadOnly = true;
-            // 
-            // ColumnSalesDate
-            // 
-            this.ColumnSalesDate.DataPropertyName = "ColumnSalesDate";
-            this.ColumnSalesDate.HeaderText = "Sales Date";
-            this.ColumnSalesDate.Name = "ColumnSalesDate";
-            this.ColumnSalesDate.ReadOnly = true;
-            // 
-            // ColumnSalesAmount
-            // 
-            this.ColumnSalesAmount.DataPropertyName = "ColumnSalesAmount";
-            this.ColumnSalesAmount.HeaderText = "Sales Amount";
-            this.ColumnSalesAmount.Name = "ColumnSalesAmount";
-            this.ColumnSalesAmount.ReadOnly = true;
-            // 
-            // ColumnPaymentAmount
-            // 
-            this.ColumnPaymentAmount.DataPropertyName = "ColumnPaymentAmount";
-            this.ColumnPaymentAmount.HeaderText = "Payment";
-            this.ColumnPaymentAmount.Name = "ColumnPaymentAmount";
-            this.ColumnPaymentAmount.ReadOnly = true;
-            // 
-            // ColumnBalanceAmount
-            // 
-            this.ColumnBalanceAmount.DataPropertyName = "ColumnBalanceAmount";
-            this.ColumnBalanceAmount.HeaderText = "Balance";
-            this.ColumnBalanceAmount.Name = "ColumnBalanceAmount";
-            this.ColumnBalanceAmount.ReadOnly = true;
-            // 
-            // ColumnDueDate
-            // 
-            this.ColumnDueDate.DataPropertyName = "ColumnDueDate";
-            this.ColumnDueDate.HeaderText = "Due Date";
-            this.ColumnDueDate.Name = "ColumnDueDate";
-            this.ColumnDueDate.ReadOnly = true;
-            // 
-            // ColumnCurrent
-            // 
-            this.ColumnCurrent.DataPropertyName = "ColumnCurrent";
-            this.ColumnCurrent.HeaderText = "Current";
-            this.ColumnCurrent.Name = "ColumnCurrent";
-            this.ColumnCurrent.ReadOnly = true;
-            // 
-            // Column30Days
-            // 
-            this.Column30Days.DataPropertyName = "Column30Days";
-            this.Column30Days.HeaderText = "30 Days";
-            this.Column30Days.Name = "Column30Days";
-            this.Column30Days.ReadOnly = true;
-            // 
-            // Column60Days
-            // 
-            this.Column60Days.DataPropertyName = "Column60Days";
-            this.Column60Days.HeaderText = "60 Days";
-            this.Column60Days.Name = "Column60Days";
-            this.Column60Days.ReadOnly = true;
-            // 
-            // Column90Days
-            // 
-            this.Column90Days.DataPropertyName = "Column90Days";
-            this.Column90Days.HeaderText = "90 Days";
-            this.Column90Days.Name = "Column90Days";
-            this.Column90Days.ReadOnly = true;
-            // 
-            // Column120Days
-            // 
-            this.Column120Days.DataPropertyName = "Column120Days";
-            this.Column120Days.HeaderText = "120 Days";
-            this.Column120Days.Name = "Column120Days";
-            this.Column120Days.ReadOnly = true;
             // 
             // panel4
             // 
@@ -410,6 +330,104 @@
             this.textBoxPageNumber.TabStop = false;
             this.textBoxPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // ColumnCustomer
+            // 
+            this.ColumnCustomer.DataPropertyName = "ColumnCustomer";
+            this.ColumnCustomer.HeaderText = "Customer";
+            this.ColumnCustomer.Name = "ColumnCustomer";
+            this.ColumnCustomer.ReadOnly = true;
+            // 
+            // ColumnTerm
+            // 
+            this.ColumnTerm.DataPropertyName = "ColumnTerm";
+            this.ColumnTerm.HeaderText = "Term";
+            this.ColumnTerm.Name = "ColumnTerm";
+            this.ColumnTerm.ReadOnly = true;
+            // 
+            // ColumnCreditLimit
+            // 
+            this.ColumnCreditLimit.DataPropertyName = "ColumnCreditLimit";
+            this.ColumnCreditLimit.HeaderText = "Credit Limit";
+            this.ColumnCreditLimit.Name = "ColumnCreditLimit";
+            this.ColumnCreditLimit.ReadOnly = true;
+            // 
+            // ColumnSalesNumber
+            // 
+            this.ColumnSalesNumber.DataPropertyName = "ColumnSalesNumber";
+            this.ColumnSalesNumber.HeaderText = "Sales Number";
+            this.ColumnSalesNumber.Name = "ColumnSalesNumber";
+            this.ColumnSalesNumber.ReadOnly = true;
+            // 
+            // ColumnSalesDate
+            // 
+            this.ColumnSalesDate.DataPropertyName = "ColumnSalesDate";
+            this.ColumnSalesDate.HeaderText = "Sales Date";
+            this.ColumnSalesDate.Name = "ColumnSalesDate";
+            this.ColumnSalesDate.ReadOnly = true;
+            // 
+            // ColumnSalesAmount
+            // 
+            this.ColumnSalesAmount.DataPropertyName = "ColumnSalesAmount";
+            this.ColumnSalesAmount.HeaderText = "Sales Amount";
+            this.ColumnSalesAmount.Name = "ColumnSalesAmount";
+            this.ColumnSalesAmount.ReadOnly = true;
+            // 
+            // ColumnPaymentAmount
+            // 
+            this.ColumnPaymentAmount.DataPropertyName = "ColumnPaymentAmount";
+            this.ColumnPaymentAmount.HeaderText = "Payment";
+            this.ColumnPaymentAmount.Name = "ColumnPaymentAmount";
+            this.ColumnPaymentAmount.ReadOnly = true;
+            // 
+            // ColumnBalanceAmount
+            // 
+            this.ColumnBalanceAmount.DataPropertyName = "ColumnBalanceAmount";
+            this.ColumnBalanceAmount.HeaderText = "Balance";
+            this.ColumnBalanceAmount.Name = "ColumnBalanceAmount";
+            this.ColumnBalanceAmount.ReadOnly = true;
+            // 
+            // ColumnDueDate
+            // 
+            this.ColumnDueDate.DataPropertyName = "ColumnDueDate";
+            this.ColumnDueDate.HeaderText = "Due Date";
+            this.ColumnDueDate.Name = "ColumnDueDate";
+            this.ColumnDueDate.ReadOnly = true;
+            // 
+            // ColumnCurrent
+            // 
+            this.ColumnCurrent.DataPropertyName = "ColumnCurrent";
+            this.ColumnCurrent.HeaderText = "Current";
+            this.ColumnCurrent.Name = "ColumnCurrent";
+            this.ColumnCurrent.ReadOnly = true;
+            // 
+            // Column30Days
+            // 
+            this.Column30Days.DataPropertyName = "Column30Days";
+            this.Column30Days.HeaderText = "30 Days";
+            this.Column30Days.Name = "Column30Days";
+            this.Column30Days.ReadOnly = true;
+            // 
+            // Column60Days
+            // 
+            this.Column60Days.DataPropertyName = "Column60Days";
+            this.Column60Days.HeaderText = "60 Days";
+            this.Column60Days.Name = "Column60Days";
+            this.Column60Days.ReadOnly = true;
+            // 
+            // Column90Days
+            // 
+            this.Column90Days.DataPropertyName = "Column90Days";
+            this.Column90Days.HeaderText = "90 Days";
+            this.Column90Days.Name = "Column90Days";
+            this.Column90Days.ReadOnly = true;
+            // 
+            // Column120Days
+            // 
+            this.Column120Days.DataPropertyName = "Column120Days";
+            this.Column120Days.HeaderText = "120 Days";
+            this.Column120Days.Name = "Column120Days";
+            this.Column120Days.ReadOnly = true;
+            // 
             // RepAccountsReceivableSummaryReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -453,7 +471,10 @@
         private System.Windows.Forms.TextBox textBoxTotalAmount;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialogGenerateCSV;
         private System.Windows.Forms.DataGridView dataGridViewAccountsReceivableSummaryReport;
+        private System.Windows.Forms.Button buttonPrint;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCustomer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTerm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCreditLimit;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesAmount;
@@ -465,6 +486,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column60Days;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column90Days;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column120Days;
-        private System.Windows.Forms.Button buttonPrint;
     }
 }

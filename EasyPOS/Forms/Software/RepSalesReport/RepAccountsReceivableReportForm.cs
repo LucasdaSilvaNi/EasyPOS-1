@@ -49,6 +49,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                           select new Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity
                           {
                               ColumnCustomer = d.ColumnCustomer,
+                              ColumnTerm = d.ColumnTerm,
+                              ColumnCreditLimit = d.ColumnCreditLimit,
                               ColumnSalesNumber = d.ColumnSalesNumber,
                               ColumnSalesDate = d.ColumnSalesDate,
                               ColumnSalesAmount = d.ColumnSalesAmount,
