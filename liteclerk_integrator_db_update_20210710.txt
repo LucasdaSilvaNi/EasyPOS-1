@@ -1,0 +1,90 @@
+USE [pos13]
+GO
+/****** Object:  Table [dbo].[IntCloudSettings]    Script Date: 07/08/2021 15:50:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[IntCloudSettings](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[BranchCode] [nvarchar](50) NOT NULL,
+	[UserCode] [nvarchar](50) NOT NULL,
+	[PostUserId] [int] NOT NULL,
+	[PostSupplierId] [int] NOT NULL,
+	[UseItemPrice] [bit] NOT NULL,
+	[Domain] [nvarchar](255) NOT NULL,
+	[LogFileLocation] [nvarchar](max) NOT NULL,
+	[Application] [nvarchar](255) NULL,
+ CONSTRAINT [PK_IntCloudSettings] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Default [DF_IntCloudSettings_Domain]    Script Date: 07/08/2021 15:50:20 ******/
+ALTER TABLE [dbo].[IntCloudSettings] ADD  CONSTRAINT [DF_IntCloudSettings_Domain]  DEFAULT (N'NA') FOR [Domain]
+GO
+/****** Object:  Default [DF_IntCloudSettings_LogFileLocation]    Script Date: 07/08/2021 15:50:20 ******/
+ALTER TABLE [dbo].[IntCloudSettings] ADD  CONSTRAINT [DF_IntCloudSettings_LogFileLocation]  DEFAULT (N'NA') FOR [LogFileLocation]
+GO
+/****** Object:  ForeignKey [FK_IntCloudSettings_MstSupplier]    Script Date: 07/08/2021 15:50:20 ******/
+ALTER TABLE [dbo].[IntCloudSettings]  WITH CHECK ADD  CONSTRAINT [FK_IntCloudSettings_MstSupplier] FOREIGN KEY([PostSupplierId])
+REFERENCES [dbo].[MstSupplier] ([Id])
+GO
+ALTER TABLE [dbo].[IntCloudSettings] CHECK CONSTRAINT [FK_IntCloudSettings_MstSupplier]
+GO
+/****** Object:  ForeignKey [FK_IntCloudSettings_MstUser]    Script Date: 07/08/2021 15:50:20 ******/
+ALTER TABLE [dbo].[IntCloudSettings]  WITH CHECK ADD  CONSTRAINT [FK_IntCloudSettings_MstUser] FOREIGN KEY([PostUserId])
+REFERENCES [dbo].[MstUser] ([Id])
+GO
+ALTER TABLE [dbo].[IntCloudSettings] CHECK CONSTRAINT [FK_IntCloudSettings_MstUser]
+GO
+
+ALTER TABLE TrnSales
+ADD PostCode nvarchar(50) null
+
+ALTER TABLE TrnSales
+ADD CollectionNumber nvarchar(50) null
+
+ALTER TABLE TrnSales
+ADD DeliveryId int null
+
+ALTER TABLE TrnSales
+ADD DeliveryDriver nvarchar(50) null
+
+ALTER TABLE TrnSales
+ADD IsTendered bit default(0) not null
+
+ALTER TABLE TrnSales
+ADD IsDispatched bit default(0) not null
+
+ALTER TABLE TrnSales
+ADD IsReturned bit default(0) not null
+
+ALTER TABLE TrnSales
+ADD ReturnApplication nvarchar(50) null
+
+ALTER TABLE TrnSales
+ADD DiscountedPax int null;
+
+ALTER TABLE TrnSalesLine
+ADD IsPrepared bit default(0) not null;
+
+ALTER TABLE TrnCollection
+ADD CancelledCollectionNumber nvarchar(50) null
+
+ALTER TABLE MstItem
+ADD cValue decimal(18,5) default(0) not null
+
+ALTER TABLE MstItem
+ADD ChildItemId int null
+
+ALTER TABLE MstCustomer
+ADD BusinessStyle nvarchar(50) null
+
+ALTER TABLE MstCustomer
+ADD AvailableReward  decimal(18,5) default(0) not null
+
+update TrnSales
+set PostCode = 'NA'
+where SalesDate < '2021-01-01'
