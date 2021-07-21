@@ -46,7 +46,8 @@ namespace EasyPOS.Controllers
                                 IsLocked = d.IsLocked,
                                 DefaultPriceDescription = d.DefaultPriceDescription,
                                 CustomerCode = d.CustomerCode,
-                                BusinessStyle = d.BusinessStyle
+                                BusinessStyle = d.BusinessStyle,
+                                LoadAmount = d.LoadAmount
                             };
 
             return customers.OrderByDescending(d => d.Id).ToList();
@@ -81,7 +82,8 @@ namespace EasyPOS.Controllers
                                IsLocked = d.IsLocked,
                                DefaultPriceDescription = d.DefaultPriceDescription,
                                CustomerCode = d.CustomerCode,
-                               BusinessStyle = d.BusinessStyle
+                               BusinessStyle = d.BusinessStyle,
+                               LoadAmount = d.LoadAmount
                            };
 
             return customer.FirstOrDefault();
@@ -148,7 +150,8 @@ namespace EasyPOS.Controllers
                     IsLocked = false,
                     DefaultPriceDescription = null,
                     CustomerCode = null,
-                    BusinessStyle = ""
+                    BusinessStyle = "",
+                    LoadAmount = 0
                 };
 
                 db.MstCustomers.InsertOnSubmit(newCustomer);
@@ -427,7 +430,8 @@ namespace EasyPOS.Controllers
                             IsLocked = false,
                             DefaultPriceDescription = null,
                             CustomerCode = obj.CustomerCode,
-                            BusinessStyle = obj.BusinessStyle
+                            BusinessStyle = obj.BusinessStyle,
+                            LoadAmount = 0
                         };
 
                         db.MstCustomers.InsertOnSubmit(newCustomer);
