@@ -1870,7 +1870,7 @@ namespace EasyPOS.Controllers
                                 PriceSplitPercentage = 0,
                             });
 
-                            totalAmount += objSalesLine.Amount * -1;
+                            totalAmount += (objSalesLine.Price * objSalesLine.Quantity) * -1;
                         }
                     }
 
