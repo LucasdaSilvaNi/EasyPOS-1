@@ -33,40 +33,43 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonLock = new System.Windows.Forms.Button();
             this.buttonUnlock = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBoxBusinessStyle = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBoxDefaultPrice = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBoxAvailableReward = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBoxRewardConversion = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBoxRewardNumber = new System.Windows.Forms.TextBox();
-            this.checkBoxWithReward = new System.Windows.Forms.CheckBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.textBoxTIN = new System.Windows.Forms.TextBox();
-            this.comboBoxTerm = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxCreditLimit = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxContactNumber = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBoxContactPerson = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxAddress = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxCustomer = new System.Windows.Forms.TextBox();
-            this.textBoxCustomerCode = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label16 = new System.Windows.Forms.Label();
+            this.textBoxLoadBalance = new System.Windows.Forms.TextBox();
+            this.textBoxCustomerCode = new System.Windows.Forms.TextBox();
+            this.textBoxBusinessStyle = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxCustomer = new System.Windows.Forms.TextBox();
+            this.textBoxDefaultPrice = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBoxAddress = new System.Windows.Forms.TextBox();
+            this.textBoxAvailableReward = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxContactPerson = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxRewardConversion = new System.Windows.Forms.TextBox();
+            this.textBoxContactNumber = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxRewardNumber = new System.Windows.Forms.TextBox();
+            this.textBoxCreditLimit = new System.Windows.Forms.TextBox();
+            this.checkBoxWithReward = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBoxTerm = new System.Windows.Forms.ComboBox();
+            this.textBoxTIN = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
@@ -75,7 +78,7 @@
             this.buttonCustomerLoadListPageListNext = new System.Windows.Forms.Button();
             this.buttonCustomerLoadListPageListLast = new System.Windows.Forms.Button();
             this.textBoxCustomerLoadListPageNumber = new System.Windows.Forms.TextBox();
-            this.buttonAddItemPrice = new System.Windows.Forms.Button();
+            this.buttonAddLoad = new System.Windows.Forms.Button();
             this.dataGridViewCustomerLoadList = new System.Windows.Forms.DataGridView();
             this.ColumnCustomerLoadId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCustomerLoadCustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,10 +87,8 @@
             this.ColumnCustomerLoadType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCustomerLoadAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCustomerLoadRemarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBoxLoadBalance = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -96,7 +97,6 @@
             this.panel5.SuspendLayout();
             this.panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomerLoadList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -152,6 +152,17 @@
             this.buttonUnlock.UseVisualStyleBackColor = false;
             this.buttonUnlock.Click += new System.EventHandler(this.buttonUnlock_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::EasyPOS.Properties.Resources.Customer;
+            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(38, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -192,298 +203,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1109, 510);
             this.panel2.TabIndex = 6;
-            // 
-            // textBoxBusinessStyle
-            // 
-            this.textBoxBusinessStyle.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxBusinessStyle.Location = new System.Drawing.Point(588, 35);
-            this.textBoxBusinessStyle.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxBusinessStyle.Name = "textBoxBusinessStyle";
-            this.textBoxBusinessStyle.Size = new System.Drawing.Size(172, 26);
-            this.textBoxBusinessStyle.TabIndex = 49;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label15.Location = new System.Drawing.Point(489, 38);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(97, 19);
-            this.label15.TabIndex = 50;
-            this.label15.Text = "Business Style:";
-            // 
-            // textBoxDefaultPrice
-            // 
-            this.textBoxDefaultPrice.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxDefaultPrice.Location = new System.Drawing.Point(588, 6);
-            this.textBoxDefaultPrice.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxDefaultPrice.Name = "textBoxDefaultPrice";
-            this.textBoxDefaultPrice.Size = new System.Drawing.Size(172, 26);
-            this.textBoxDefaultPrice.TabIndex = 12;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label13.Location = new System.Drawing.Point(23, 382);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(115, 19);
-            this.label13.TabIndex = 48;
-            this.label13.Text = "Available Reward:";
-            // 
-            // textBoxAvailableReward
-            // 
-            this.textBoxAvailableReward.Enabled = false;
-            this.textBoxAvailableReward.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxAvailableReward.Location = new System.Drawing.Point(142, 380);
-            this.textBoxAvailableReward.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxAvailableReward.Name = "textBoxAvailableReward";
-            this.textBoxAvailableReward.Size = new System.Drawing.Size(172, 26);
-            this.textBoxAvailableReward.TabIndex = 11;
-            this.textBoxAvailableReward.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBoxAvailableReward.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAvailableReward_KeyPress);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label12.Location = new System.Drawing.Point(495, 9);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(89, 19);
-            this.label12.TabIndex = 46;
-            this.label12.Text = "Default Price:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label11.Location = new System.Drawing.Point(10, 353);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(130, 19);
-            this.label11.TabIndex = 44;
-            this.label11.Text = "Reward Conversion:";
-            // 
-            // textBoxRewardConversion
-            // 
-            this.textBoxRewardConversion.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxRewardConversion.Location = new System.Drawing.Point(142, 351);
-            this.textBoxRewardConversion.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxRewardConversion.Name = "textBoxRewardConversion";
-            this.textBoxRewardConversion.Size = new System.Drawing.Size(172, 26);
-            this.textBoxRewardConversion.TabIndex = 10;
-            this.textBoxRewardConversion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBoxRewardConversion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRewardConversion_KeyPress);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label10.Location = new System.Drawing.Point(27, 324);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(111, 19);
-            this.label10.TabIndex = 42;
-            this.label10.Text = "Reward Number:";
-            // 
-            // textBoxRewardNumber
-            // 
-            this.textBoxRewardNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxRewardNumber.Location = new System.Drawing.Point(142, 322);
-            this.textBoxRewardNumber.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxRewardNumber.Name = "textBoxRewardNumber";
-            this.textBoxRewardNumber.Size = new System.Drawing.Size(172, 26);
-            this.textBoxRewardNumber.TabIndex = 9;
-            // 
-            // checkBoxWithReward
-            // 
-            this.checkBoxWithReward.AutoSize = true;
-            this.checkBoxWithReward.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.checkBoxWithReward.Location = new System.Drawing.Point(142, 296);
-            this.checkBoxWithReward.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxWithReward.Name = "checkBoxWithReward";
-            this.checkBoxWithReward.Size = new System.Drawing.Size(32, 23);
-            this.checkBoxWithReward.TabIndex = 8;
-            this.checkBoxWithReward.Text = " ";
-            this.checkBoxWithReward.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label14.Location = new System.Drawing.Point(49, 296);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(90, 19);
-            this.label14.TabIndex = 40;
-            this.label14.Text = "With Reward:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label9.Location = new System.Drawing.Point(105, 269);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(33, 19);
-            this.label9.TabIndex = 38;
-            this.label9.Text = "TIN:";
-            // 
-            // textBoxTIN
-            // 
-            this.textBoxTIN.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxTIN.Location = new System.Drawing.Point(142, 267);
-            this.textBoxTIN.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxTIN.Name = "textBoxTIN";
-            this.textBoxTIN.Size = new System.Drawing.Size(172, 26);
-            this.textBoxTIN.TabIndex = 7;
-            // 
-            // comboBoxTerm
-            // 
-            this.comboBoxTerm.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.comboBoxTerm.FormattingEnabled = true;
-            this.comboBoxTerm.Location = new System.Drawing.Point(142, 237);
-            this.comboBoxTerm.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBoxTerm.Name = "comboBoxTerm";
-            this.comboBoxTerm.Size = new System.Drawing.Size(172, 27);
-            this.comboBoxTerm.TabIndex = 6;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label8.Location = new System.Drawing.Point(97, 240);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(42, 19);
-            this.label8.TabIndex = 36;
-            this.label8.Text = "Term:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label7.Location = new System.Drawing.Point(56, 211);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 19);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Credit Limit:";
-            // 
-            // textBoxCreditLimit
-            // 
-            this.textBoxCreditLimit.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxCreditLimit.Location = new System.Drawing.Point(142, 208);
-            this.textBoxCreditLimit.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCreditLimit.Name = "textBoxCreditLimit";
-            this.textBoxCreditLimit.Size = new System.Drawing.Size(172, 26);
-            this.textBoxCreditLimit.TabIndex = 5;
-            this.textBoxCreditLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.textBoxCreditLimit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCreditLimit_KeyPress);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label6.Location = new System.Drawing.Point(24, 182);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(114, 19);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Contact Number:";
-            // 
-            // textBoxContactNumber
-            // 
-            this.textBoxContactNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxContactNumber.Location = new System.Drawing.Point(142, 180);
-            this.textBoxContactNumber.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxContactNumber.Name = "textBoxContactNumber";
-            this.textBoxContactNumber.Size = new System.Drawing.Size(172, 26);
-            this.textBoxContactNumber.TabIndex = 4;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label5.Location = new System.Drawing.Point(34, 153);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(105, 19);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Contact Person:";
-            // 
-            // textBoxContactPerson
-            // 
-            this.textBoxContactPerson.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxContactPerson.Location = new System.Drawing.Point(142, 151);
-            this.textBoxContactPerson.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxContactPerson.Name = "textBoxContactPerson";
-            this.textBoxContactPerson.Size = new System.Drawing.Size(228, 26);
-            this.textBoxContactPerson.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label2.Location = new System.Drawing.Point(78, 67);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 19);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Address:";
-            // 
-            // textBoxAddress
-            // 
-            this.textBoxAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxAddress.Location = new System.Drawing.Point(142, 64);
-            this.textBoxAddress.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxAddress.Multiline = true;
-            this.textBoxAddress.Name = "textBoxAddress";
-            this.textBoxAddress.Size = new System.Drawing.Size(328, 82);
-            this.textBoxAddress.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label3.Location = new System.Drawing.Point(67, 38);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 19);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Customer:";
-            // 
-            // textBoxCustomer
-            // 
-            this.textBoxCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxCustomer.Location = new System.Drawing.Point(142, 36);
-            this.textBoxCustomer.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCustomer.Name = "textBoxCustomer";
-            this.textBoxCustomer.Size = new System.Drawing.Size(228, 26);
-            this.textBoxCustomer.TabIndex = 1;
-            // 
-            // textBoxCustomerCode
-            // 
-            this.textBoxCustomerCode.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxCustomerCode.Location = new System.Drawing.Point(142, 7);
-            this.textBoxCustomerCode.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxCustomerCode.Name = "textBoxCustomerCode";
-            this.textBoxCustomerCode.Size = new System.Drawing.Size(172, 26);
-            this.textBoxCustomerCode.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label4.Location = new System.Drawing.Point(31, 9);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 19);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Customer Code:";
             // 
             // tabControl1
             // 
@@ -555,6 +274,320 @@
             this.panel3.Size = new System.Drawing.Size(1095, 472);
             this.panel3.TabIndex = 38;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label16.Location = new System.Drawing.Point(492, 67);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(92, 19);
+            this.label16.TabIndex = 52;
+            this.label16.Text = "Load Balance:";
+            // 
+            // textBoxLoadBalance
+            // 
+            this.textBoxLoadBalance.Enabled = false;
+            this.textBoxLoadBalance.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxLoadBalance.Location = new System.Drawing.Point(588, 65);
+            this.textBoxLoadBalance.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxLoadBalance.Name = "textBoxLoadBalance";
+            this.textBoxLoadBalance.Size = new System.Drawing.Size(172, 26);
+            this.textBoxLoadBalance.TabIndex = 51;
+            this.textBoxLoadBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBoxCustomerCode
+            // 
+            this.textBoxCustomerCode.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxCustomerCode.Location = new System.Drawing.Point(142, 7);
+            this.textBoxCustomerCode.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCustomerCode.Name = "textBoxCustomerCode";
+            this.textBoxCustomerCode.Size = new System.Drawing.Size(172, 26);
+            this.textBoxCustomerCode.TabIndex = 0;
+            // 
+            // textBoxBusinessStyle
+            // 
+            this.textBoxBusinessStyle.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxBusinessStyle.Location = new System.Drawing.Point(588, 35);
+            this.textBoxBusinessStyle.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxBusinessStyle.Name = "textBoxBusinessStyle";
+            this.textBoxBusinessStyle.Size = new System.Drawing.Size(172, 26);
+            this.textBoxBusinessStyle.TabIndex = 49;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label4.Location = new System.Drawing.Point(31, 9);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(108, 19);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Customer Code:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label15.Location = new System.Drawing.Point(489, 38);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(97, 19);
+            this.label15.TabIndex = 50;
+            this.label15.Text = "Business Style:";
+            // 
+            // textBoxCustomer
+            // 
+            this.textBoxCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxCustomer.Location = new System.Drawing.Point(142, 36);
+            this.textBoxCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCustomer.Name = "textBoxCustomer";
+            this.textBoxCustomer.Size = new System.Drawing.Size(228, 26);
+            this.textBoxCustomer.TabIndex = 1;
+            // 
+            // textBoxDefaultPrice
+            // 
+            this.textBoxDefaultPrice.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxDefaultPrice.Location = new System.Drawing.Point(588, 6);
+            this.textBoxDefaultPrice.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxDefaultPrice.Name = "textBoxDefaultPrice";
+            this.textBoxDefaultPrice.Size = new System.Drawing.Size(172, 26);
+            this.textBoxDefaultPrice.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label3.Location = new System.Drawing.Point(67, 38);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(72, 19);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Customer:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label13.Location = new System.Drawing.Point(23, 382);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(115, 19);
+            this.label13.TabIndex = 48;
+            this.label13.Text = "Available Reward:";
+            // 
+            // textBoxAddress
+            // 
+            this.textBoxAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxAddress.Location = new System.Drawing.Point(142, 64);
+            this.textBoxAddress.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxAddress.Multiline = true;
+            this.textBoxAddress.Name = "textBoxAddress";
+            this.textBoxAddress.Size = new System.Drawing.Size(328, 82);
+            this.textBoxAddress.TabIndex = 2;
+            // 
+            // textBoxAvailableReward
+            // 
+            this.textBoxAvailableReward.Enabled = false;
+            this.textBoxAvailableReward.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxAvailableReward.Location = new System.Drawing.Point(142, 380);
+            this.textBoxAvailableReward.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxAvailableReward.Name = "textBoxAvailableReward";
+            this.textBoxAvailableReward.Size = new System.Drawing.Size(172, 26);
+            this.textBoxAvailableReward.TabIndex = 11;
+            this.textBoxAvailableReward.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxAvailableReward.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxAvailableReward_KeyPress);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label2.Location = new System.Drawing.Point(78, 67);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 19);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Address:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label12.Location = new System.Drawing.Point(495, 9);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 19);
+            this.label12.TabIndex = 46;
+            this.label12.Text = "Default Price:";
+            // 
+            // textBoxContactPerson
+            // 
+            this.textBoxContactPerson.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxContactPerson.Location = new System.Drawing.Point(142, 151);
+            this.textBoxContactPerson.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxContactPerson.Name = "textBoxContactPerson";
+            this.textBoxContactPerson.Size = new System.Drawing.Size(228, 26);
+            this.textBoxContactPerson.TabIndex = 3;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label11.Location = new System.Drawing.Point(10, 353);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(130, 19);
+            this.label11.TabIndex = 44;
+            this.label11.Text = "Reward Conversion:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label5.Location = new System.Drawing.Point(34, 153);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(105, 19);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Contact Person:";
+            // 
+            // textBoxRewardConversion
+            // 
+            this.textBoxRewardConversion.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxRewardConversion.Location = new System.Drawing.Point(142, 351);
+            this.textBoxRewardConversion.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxRewardConversion.Name = "textBoxRewardConversion";
+            this.textBoxRewardConversion.Size = new System.Drawing.Size(172, 26);
+            this.textBoxRewardConversion.TabIndex = 10;
+            this.textBoxRewardConversion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxRewardConversion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRewardConversion_KeyPress);
+            // 
+            // textBoxContactNumber
+            // 
+            this.textBoxContactNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxContactNumber.Location = new System.Drawing.Point(142, 180);
+            this.textBoxContactNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxContactNumber.Name = "textBoxContactNumber";
+            this.textBoxContactNumber.Size = new System.Drawing.Size(172, 26);
+            this.textBoxContactNumber.TabIndex = 4;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label10.Location = new System.Drawing.Point(27, 324);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(111, 19);
+            this.label10.TabIndex = 42;
+            this.label10.Text = "Reward Number:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label6.Location = new System.Drawing.Point(24, 182);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(114, 19);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Contact Number:";
+            // 
+            // textBoxRewardNumber
+            // 
+            this.textBoxRewardNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxRewardNumber.Location = new System.Drawing.Point(142, 322);
+            this.textBoxRewardNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxRewardNumber.Name = "textBoxRewardNumber";
+            this.textBoxRewardNumber.Size = new System.Drawing.Size(172, 26);
+            this.textBoxRewardNumber.TabIndex = 9;
+            // 
+            // textBoxCreditLimit
+            // 
+            this.textBoxCreditLimit.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxCreditLimit.Location = new System.Drawing.Point(142, 208);
+            this.textBoxCreditLimit.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCreditLimit.Name = "textBoxCreditLimit";
+            this.textBoxCreditLimit.Size = new System.Drawing.Size(172, 26);
+            this.textBoxCreditLimit.TabIndex = 5;
+            this.textBoxCreditLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxCreditLimit.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCreditLimit_KeyPress);
+            // 
+            // checkBoxWithReward
+            // 
+            this.checkBoxWithReward.AutoSize = true;
+            this.checkBoxWithReward.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.checkBoxWithReward.Location = new System.Drawing.Point(142, 296);
+            this.checkBoxWithReward.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxWithReward.Name = "checkBoxWithReward";
+            this.checkBoxWithReward.Size = new System.Drawing.Size(32, 23);
+            this.checkBoxWithReward.TabIndex = 8;
+            this.checkBoxWithReward.Text = " ";
+            this.checkBoxWithReward.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label7.Location = new System.Drawing.Point(56, 211);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(83, 19);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Credit Limit:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label14.Location = new System.Drawing.Point(49, 296);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(90, 19);
+            this.label14.TabIndex = 40;
+            this.label14.Text = "With Reward:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label8.Location = new System.Drawing.Point(97, 240);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(42, 19);
+            this.label8.TabIndex = 36;
+            this.label8.Text = "Term:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label9.Location = new System.Drawing.Point(105, 269);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(33, 19);
+            this.label9.TabIndex = 38;
+            this.label9.Text = "TIN:";
+            // 
+            // comboBoxTerm
+            // 
+            this.comboBoxTerm.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.comboBoxTerm.FormattingEnabled = true;
+            this.comboBoxTerm.Location = new System.Drawing.Point(142, 237);
+            this.comboBoxTerm.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxTerm.Name = "comboBoxTerm";
+            this.comboBoxTerm.Size = new System.Drawing.Size(172, 27);
+            this.comboBoxTerm.TabIndex = 6;
+            // 
+            // textBoxTIN
+            // 
+            this.textBoxTIN.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.textBoxTIN.Location = new System.Drawing.Point(142, 267);
+            this.textBoxTIN.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxTIN.Name = "textBoxTIN";
+            this.textBoxTIN.Size = new System.Drawing.Size(172, 26);
+            this.textBoxTIN.TabIndex = 7;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel5);
@@ -570,7 +603,7 @@
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.Control;
             this.panel5.Controls.Add(this.panel19);
-            this.panel5.Controls.Add(this.buttonAddItemPrice);
+            this.panel5.Controls.Add(this.buttonAddLoad);
             this.panel5.Controls.Add(this.dataGridViewCustomerLoadList);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 3);
@@ -666,23 +699,23 @@
             this.textBoxCustomerLoadListPageNumber.TabIndex = 17;
             this.textBoxCustomerLoadListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // buttonAddItemPrice
+            // buttonAddLoad
             // 
-            this.buttonAddItemPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddItemPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonAddItemPrice.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonAddItemPrice.FlatAppearance.BorderSize = 0;
-            this.buttonAddItemPrice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAddItemPrice.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddItemPrice.ForeColor = System.Drawing.Color.White;
-            this.buttonAddItemPrice.Location = new System.Drawing.Point(1020, 4);
-            this.buttonAddItemPrice.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonAddItemPrice.Name = "buttonAddItemPrice";
-            this.buttonAddItemPrice.Size = new System.Drawing.Size(70, 32);
-            this.buttonAddItemPrice.TabIndex = 36;
-            this.buttonAddItemPrice.Text = "Add";
-            this.buttonAddItemPrice.UseVisualStyleBackColor = false;
-            this.buttonAddItemPrice.Click += new System.EventHandler(this.buttonAddCustomerLoad_Click);
+            this.buttonAddLoad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAddLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonAddLoad.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonAddLoad.FlatAppearance.BorderSize = 0;
+            this.buttonAddLoad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAddLoad.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAddLoad.ForeColor = System.Drawing.Color.White;
+            this.buttonAddLoad.Location = new System.Drawing.Point(1020, 4);
+            this.buttonAddLoad.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAddLoad.Name = "buttonAddLoad";
+            this.buttonAddLoad.Size = new System.Drawing.Size(70, 32);
+            this.buttonAddLoad.TabIndex = 36;
+            this.buttonAddLoad.Text = "Load";
+            this.buttonAddLoad.UseVisualStyleBackColor = false;
+            this.buttonAddLoad.Click += new System.EventHandler(this.buttonAddCustomerLoad_Click);
             // 
             // dataGridViewCustomerLoadList
             // 
@@ -769,39 +802,6 @@
             this.ColumnCustomerLoadRemarks.ReadOnly = true;
             this.ColumnCustomerLoadRemarks.Width = 300;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::EasyPOS.Properties.Resources.Customer;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(38, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label16.Location = new System.Drawing.Point(492, 67);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(92, 19);
-            this.label16.TabIndex = 52;
-            this.label16.Text = "Load Balance:";
-            // 
-            // textBoxLoadBalance
-            // 
-            this.textBoxLoadBalance.Enabled = false;
-            this.textBoxLoadBalance.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxLoadBalance.Location = new System.Drawing.Point(588, 65);
-            this.textBoxLoadBalance.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxLoadBalance.Name = "textBoxLoadBalance";
-            this.textBoxLoadBalance.Size = new System.Drawing.Size(172, 26);
-            this.textBoxLoadBalance.TabIndex = 51;
-            this.textBoxLoadBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // MstCustomerDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -816,6 +816,7 @@
             this.Text = "MstCustomerDetailForm";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -826,7 +827,6 @@
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCustomerLoadList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -879,7 +879,7 @@
         private System.Windows.Forms.Button buttonCustomerLoadListPageListNext;
         private System.Windows.Forms.Button buttonCustomerLoadListPageListLast;
         private System.Windows.Forms.TextBox textBoxCustomerLoadListPageNumber;
-        private System.Windows.Forms.Button buttonAddItemPrice;
+        private System.Windows.Forms.Button buttonAddLoad;
         private System.Windows.Forms.DataGridView dataGridViewCustomerLoadList;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCustomerLoadId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCustomerLoadCustomerId;

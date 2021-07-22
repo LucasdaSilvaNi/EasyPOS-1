@@ -116,6 +116,7 @@ namespace EasyPOS.Forms.Software.MstCustomer
             textBoxRewardNumber.Enabled = !isLocked;
             textBoxRewardConversion.Enabled = !isLocked;
             textBoxDefaultPrice.Enabled = !isLocked;
+            buttonAddLoad.Enabled = !isLocked;
             textBoxCustomerCode.Focus();
             textBoxBusinessStyle.Enabled = !isLocked;
         }

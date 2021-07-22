@@ -47,7 +47,7 @@ namespace EasyPOS.Controllers
                                 DefaultPriceDescription = d.DefaultPriceDescription,
                                 CustomerCode = d.CustomerCode,
                                 BusinessStyle = d.BusinessStyle,
-                                LoadAmount = d.LoadAmount
+                                LoadAmount = (decimal)d.LoadAmount
                             };
 
             return customers.OrderByDescending(d => d.Id).ToList();
@@ -60,6 +60,43 @@ namespace EasyPOS.Controllers
         {
             var customer = from d in db.MstCustomers
                            where d.Id == id
+                           select new Entities.MstCustomerEntity
+                           {
+                               Id = d.Id,
+                               Customer = d.Customer,
+                               Address = d.Address,
+                               ContactPerson = d.ContactPerson,
+                               ContactNumber = d.ContactNumber,
+                               CreditLimit = d.CreditLimit,
+                               TermId = d.TermId,
+                               TIN = d.TIN,
+                               WithReward = d.WithReward,
+                               RewardNumber = d.RewardNumber,
+                               RewardConversion = d.RewardConversion,
+                               AvailableReward = d.AvailableReward,
+                               AccountId = d.AccountId,
+                               EntryUserId = d.EntryUserId,
+                               EntryDateTime = d.EntryDateTime.ToShortDateString(),
+                               UpdateUserId = d.UpdateUserId,
+                               UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
+                               IsLocked = d.IsLocked,
+                               DefaultPriceDescription = d.DefaultPriceDescription,
+                               CustomerCode = d.CustomerCode,
+                               BusinessStyle = d.BusinessStyle,
+                               LoadAmount = d.LoadAmount
+                           };
+
+            return customer.FirstOrDefault();
+        }
+
+        // =================================
+        // Customer Detail Per Customer Code
+        // =================================
+        public Entities.MstCustomerEntity DetailCustomerPerCustomerCode(String customerCode)
+        {
+            var customer = from d in db.MstCustomers
+                           where d.CustomerCode == customerCode
+                           && d.IsLocked == true
                            select new Entities.MstCustomerEntity
                            {
                                Id = d.Id,

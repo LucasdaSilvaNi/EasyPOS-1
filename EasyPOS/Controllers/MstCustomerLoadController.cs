@@ -33,7 +33,7 @@ namespace EasyPOS.Controllers
 
             return customerLoads.OrderByDescending(d => d.Id).ToList();
         }
-
+    
         // =================
         // Add Customer Load
         // =================

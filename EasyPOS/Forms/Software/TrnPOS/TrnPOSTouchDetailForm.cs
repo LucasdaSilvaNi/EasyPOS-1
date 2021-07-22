@@ -19,7 +19,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public TrnPOSTouchForm trnPOSTouchForm;
         public Entities.TrnSalesEntity trnSalesEntity;
-
+      
         private List<Entities.MstItemGroupEntity> listItemGroups = new List<Entities.MstItemGroupEntity>();
         private ToolTip itemGroupToolTip = new ToolTip();
         private const int itemGroupNoOfButtons = 6;
@@ -382,7 +382,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                             PriceSplitPercentage = 0
                         };
 
-                        TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity,null);
+                        TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity, null);
                         trnSalesDetailSalesItemDetailForm.ShowDialog();
                     }
                     else
@@ -423,7 +423,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             labelInvoiceDate.Text = trnSalesEntity.SalesDate;
             labelCustomerCode.Text = trnSalesEntity.CustomerCode;
             labelCustomer.Text = trnSalesEntity.Customer;
-            labelRemarks.Text = trnSalesEntity.Remarks;
+            labelRemarks.Text = trnSalesEntity.Remarks;  
         }
 
         private void buttonSearchItem_Click(object sender, EventArgs e)
@@ -632,7 +632,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                             PriceSplitPercentage = 0
                         };
 
-                        TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity,null);
+                        TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity, null);
                         trnSalesDetailSalesItemDetailForm.ShowDialog();
                     }
                     else
@@ -788,7 +788,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     PriceSplitPercentage = PriceSplitPercentage,
                 };
 
-                TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity,null);
+                TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity, null);
                 trnSalesDetailSalesItemDetailForm.ShowDialog();
             }
 
