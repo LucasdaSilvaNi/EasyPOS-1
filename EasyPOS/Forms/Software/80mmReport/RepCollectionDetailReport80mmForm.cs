@@ -17,12 +17,20 @@ namespace EasyPOS.Forms.Software._80mmReport
         public DateTime dateStart;
         public DateTime dateEnd;
         public Int32 filterTerminalId;
-        public RepCollectionDetailReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId)
+        public RepCollectionDetailReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId, Boolean isPrintPreview, String printerName)
         {
             InitializeComponent();
             dateStart = startDate;
             dateEnd = endDate;
             filterTerminalId = terminalId;
+
+            if (isPrintPreview == true)
+            {
+                printDocument80mm.PrinterSettings.PrinterName = printerName;
+
+                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
+                printDocument80mm.Print();
+            }
             if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {
                 printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);

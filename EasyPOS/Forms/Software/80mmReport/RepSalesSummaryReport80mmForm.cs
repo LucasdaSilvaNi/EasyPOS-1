@@ -19,36 +19,46 @@ namespace EasyPOS.Forms.Software._80mmReport
         public Int32 filterTerminalId;
         private SysSoftwareForm softwareForm;
 
-        public RepSalesSummaryReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId)
+        public RepSalesSummaryReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId, Boolean isPrintPreview, String printerName)
         {
             InitializeComponent();
             dateStart = startDate;
             dateEnd = endDate;
             filterTerminalId = terminalId;
 
-            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+            if (isPrintPreview == true)
             {
+                printDocumentSalesSummaryReport.PrinterSettings.PrinterName = printerName;
+
                 printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                printDocumentSalesSummaryReport.Print();
-            }
-            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
-            {
-                printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
                 printDocumentSalesSummaryReport.Print();
             }
             else
             {
-                printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                printDocumentSalesSummaryReport.Print();
+                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+                {
+                    printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
+                    printDocumentSalesSummaryReport.Print();
+                }
+                else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+                {
+                    printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
+                    printDocumentSalesSummaryReport.Print();
+                }
+                else
+                {
+                    printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
+                    printDocumentSalesSummaryReport.Print();
+                }
             }
         }
 
         private void printDocumentSalesSummaryReport_PrintPage(object sender, PrintPageEventArgs e)
         {
-                // ============
-                // Data Context
-                // ============
-                Data.easyposdbDataContext db = new Data.easyposdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+            // ============
+            // Data Context
+            // ============
+            Data.easyposdbDataContext db = new Data.easyposdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
 
             // =============
             // Font Settings
@@ -104,7 +114,7 @@ namespace EasyPOS.Forms.Software._80mmReport
             // System Current
             // ==============
             var systemCurrent = Modules.SysCurrentModule.GetCurrentSettings();
-            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType=="58mm Printer")
+            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "58mm Printer")
             {
                 // =================
                 // 80mm Report Title
@@ -348,7 +358,7 @@ namespace EasyPOS.Forms.Software._80mmReport
                 graphics.DrawString(totalNumberOfItemsQuantity, fontArial8Regular, drawBrush, new RectangleF(x, y + 1, width, height), drawFormatLeft);
                 graphics.DrawString(totalSalesAmount, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
             }
-            
+
 
             if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {

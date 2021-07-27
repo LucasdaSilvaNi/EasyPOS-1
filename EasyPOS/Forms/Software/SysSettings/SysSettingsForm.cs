@@ -439,6 +439,14 @@ namespace EasyPOS.Forms.Software.SysSettings
 
             comboBoxPrinterType.DataSource = printerType;
 
+            List<String> salesOrderPrinterType = new List<String>
+            {
+                "Default Printer",
+                "Label Printer",
+            };
+
+            comboBoxSalesOrderPrinterType.DataSource = salesOrderPrinterType;
+
             getSysCurrentDetail();
         }
 
@@ -504,6 +512,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxChoosePrinter.Checked = Convert.ToBoolean(sysCurrent.ChoosePrinter);
                 checkBoxIsTriggeredQuantity.Checked = Convert.ToBoolean(sysCurrent.IsTriggeredQuantity);
                 checkBoxEnableEditPrice.Checked = Convert.ToBoolean(sysCurrent.EnableEditPrice);
+                comboBoxSalesOrderPrinterType.Text = sysCurrent.SalesOrderPrinterType;
             }
         }
 
@@ -583,9 +592,8 @@ namespace EasyPOS.Forms.Software.SysSettings
                 ShowCustomerInfo = checkBoxShowCustomerInfo.Checked,
                 ChoosePrinter = checkBoxChoosePrinter.Checked,
                 IsTriggeredQuantity = checkBoxIsTriggeredQuantity.Checked,
-                EnableEditPrice = checkBoxEnableEditPrice.Checked
-
-
+                EnableEditPrice = checkBoxEnableEditPrice.Checked,
+                SalesOrderPrinterType = comboBoxSalesOrderPrinterType.Text
             };
             
             String[] saveSysCurrent = sysSettingsController.UpdateSysCurrent(sysCurrentEntity);
@@ -646,6 +654,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxChoosePrinter.Enabled = false;
                 checkBoxIsTriggeredQuantity.Enabled = false;
                 checkBoxEnableEditPrice.Enabled = false;
+                comboBoxSalesOrderPrinterType.Enabled = false;
             }
             else
             {
@@ -732,6 +741,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxChoosePrinter.Enabled = true;
                 checkBoxIsTriggeredQuantity.Enabled = true;
                 checkBoxEnableEditPrice.Enabled = true;
+                comboBoxSalesOrderPrinterType.Enabled = true;
             }
         }
 

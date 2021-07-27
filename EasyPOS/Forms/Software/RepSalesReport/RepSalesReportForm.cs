@@ -120,6 +120,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
 
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Sales Detail Report":
                         labelStartDate.Visible = true;
@@ -143,6 +145,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
 
+                        buttonPreview.Visible = false;
+
                         break;
                     case "80mm Sales Summary Report":
                         labelStartDate.Visible = true;
@@ -165,6 +169,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "Print";
+
+                        buttonPreview.Visible = true;
+
                         break;
                     case "80mm Sales Detail Report":
                         labelStartDate.Visible = true;
@@ -187,6 +194,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "Print";
+
+                        buttonPreview.Visible = true;
+
                         break;
                     case "80mm Sales Status Report":
                         labelStartDate.Visible = true;
@@ -209,6 +219,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "Print";
+
+                        buttonPreview.Visible = true;
+
                         break;
                     case "Collection Summary Report":
                         labelStartDate.Visible = true;
@@ -231,6 +244,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
 
                         break;
                     case "Collection Detail Report":
@@ -255,6 +270,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
 
+                        buttonPreview.Visible = false;
+
                         break;
                     case "80mm Collection Detail Report":
                         labelStartDate.Visible = true;
@@ -277,6 +294,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "Print";
+
+                        buttonPreview.Visible = true;
+
                         break;
                     case "Cancelled Summary Report":
                         labelStartDate.Visible = true;
@@ -299,6 +319,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
 
                         break;
                     case "Stock Withdrawal Report":
@@ -323,6 +345,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
 
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Collection Detail Report (Facepay)":
                         labelStartDate.Visible = true;
@@ -346,6 +370,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
 
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Top Selling Items Report":
                         labelStartDate.Visible = true;
@@ -368,6 +394,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Sales Return Detail Report":
                         labelStartDate.Visible = true;
@@ -390,9 +419,14 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Customer List Report":
                         buttonView.Text = "View";
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Sales Summary Reward Report":
                         labelStartDate.Visible = false;
@@ -414,6 +448,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         comboBoxSalesAgent.Visible = false;
 
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Net Sales Summary Report - Daily":
                         labelStartDate.Visible = true;
@@ -434,6 +471,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         comboBoxSalesAgent.Visible = false;
 
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Net Sales Summary Report - Monthly":
                         labelStartDate.Visible = true;
@@ -453,6 +493,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Hourly Top Selling Sales Report":
                         labelStartDate.Visible = true;
@@ -472,6 +515,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
+
                         break;
 
                     case "Unsold Item Report":
@@ -492,6 +538,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
+
                         break;
                     case "Cost Of Sales Report":
                         labelStartDate.Visible = true;
@@ -514,6 +563,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelStartDate.Focus();
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
 
                         break;
                     case "Accounts Receivable":
@@ -538,6 +589,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelDateAsOf.Focus();
                         buttonView.Text = "View";
 
+                        buttonPreview.Visible = false;
+
                         break;
                     default:
                         labelStartDate.Visible = false;
@@ -561,6 +614,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         buttonView.Text = "View";
+
+                        buttonPreview.Visible = false;
+
                         break;
                 }
             }
@@ -638,7 +694,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             {
                                 if (sysUserRights.GetUserRights().CanPrint == true)
                                 {
-                                    _80mmReport.RepSalesSummaryReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesSummaryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue));
+                                    _80mmReport.RepSalesSummaryReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesSummaryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), false, "");
                                 }
                                 else
                                 {
@@ -658,7 +714,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             {
                                 if (sysUserRights.GetUserRights().CanPrint == true)
                                 {
-                                    _80mmReport.RepSalesDetailReport80mmForm repSalesDetailReport80MmForm = new _80mmReport.RepSalesDetailReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue));
+                                    _80mmReport.RepSalesDetailReport80mmForm repSalesDetailReport80MmForm = new _80mmReport.RepSalesDetailReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), false, "");
                                 }
                                 else
                                 {
@@ -679,7 +735,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             {
                                 if (sysUserRights.GetUserRights().CanPrint == true)
                                 {
-                                    _80mmReport.RepSalesStatusReport80mmForm repSalesStatusReport80MmForm = new _80mmReport.RepSalesStatusReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue));
+                                    _80mmReport.RepSalesStatusReport80mmForm repSalesStatusReport80MmForm = new _80mmReport.RepSalesStatusReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), false, "");
                                 }
                                 else
                                 {
@@ -763,7 +819,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             {
                                 if (sysUserRights.GetUserRights().CanPrint == true)
                                 {
-                                    _80mmReport.RepCollectionDetailReport80mmForm repCollectionDetailReport80MmForm = new _80mmReport.RepCollectionDetailReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue));
+                                    _80mmReport.RepCollectionDetailReport80mmForm repCollectionDetailReport80MmForm = new _80mmReport.RepCollectionDetailReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), false, "");
                                 }
                                 else
                                 {
@@ -998,6 +1054,133 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                     MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
                             }
+                            break;
+                        default:
+                            MessageBox.Show("Please select a report.", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            break;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a report.", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void buttonPreview_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                if (listBoxSalesReport.SelectedItem != null)
+                {
+                    String selectedItem = listBoxSalesReport.SelectedItem.ToString();
+                    switch (selectedItem)
+                    {
+                        case "80mm Sales Summary Report":
+                            sysUserRights = new Modules.SysUserRightsModule("RepRestaurantSalesSummary");
+
+                            if (sysUserRights.GetUserRights() == null)
+                            {
+                                MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                DialogResult printDialogResult = printDialog80mmReport.ShowDialog();
+                                if (printDialogResult == DialogResult.OK)
+                                {
+                                    if (sysUserRights.GetUserRights().CanPrint == true)
+                                    {
+                                        String printerName = printDialog80mmReport.PrinterSettings.PrinterName;
+                                        _80mmReport.RepSalesSummaryReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesSummaryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                }
+                            }
+
+                            break;
+                        case "80mm Sales Detail Report":
+                            sysUserRights = new Modules.SysUserRightsModule("RepRestaurantSalesDetail");
+
+                            if (sysUserRights.GetUserRights() == null)
+                            {
+                                MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                DialogResult printDialogResult = printDialog80mmReport.ShowDialog();
+                                if (printDialogResult == DialogResult.OK)
+                                {
+                                    if (sysUserRights.GetUserRights().CanPrint == true)
+                                    {
+                                        String printerName = printDialog80mmReport.PrinterSettings.PrinterName;
+                                        _80mmReport.RepSalesSummaryReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesSummaryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                }
+                            }
+
+                            break;
+                        case "80mm Sales Status Report":
+                            sysUserRights = new Modules.SysUserRightsModule("RepRestaurantSalesStatus");
+
+                            if (sysUserRights.GetUserRights() == null)
+                            {
+                                MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                DialogResult printDialogResult = printDialog80mmReport.ShowDialog();
+                                if (printDialogResult == DialogResult.OK)
+                                {
+                                    if (sysUserRights.GetUserRights().CanPrint == true)
+                                    {
+                                        String printerName = printDialog80mmReport.PrinterSettings.PrinterName;
+                                        _80mmReport.RepSalesSummaryReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesSummaryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                }
+                            }
+
+                            break;
+                        case "80mm Collection Detail Report":
+                            sysUserRights = new Modules.SysUserRightsModule("RepCollectionDetail");
+
+                            if (sysUserRights.GetUserRights() == null)
+                            {
+                                MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                DialogResult printDialogResult = printDialog80mmReport.ShowDialog();
+                                if (printDialogResult == DialogResult.OK)
+                                {
+                                    if (sysUserRights.GetUserRights().CanPrint == true)
+                                    {
+                                        String printerName = printDialog80mmReport.PrinterSettings.PrinterName;
+                                        _80mmReport.RepSalesSummaryReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesSummaryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                }
+                            }
+
                             break;
                         default:
                             MessageBox.Show("Please select a report.", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);

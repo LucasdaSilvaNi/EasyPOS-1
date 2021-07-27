@@ -58,5 +58,6 @@
   "ShowCustomerInfo": false,
   "ChoosePrinter": false,
   "IsTriggeredQuantity": false,
-  "EnableEditPrice": false
+  "EnableEditPrice": false,
+  "SalesOrderPrinterType": "Default Printer"
 }

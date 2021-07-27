@@ -94,6 +94,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 {
                     "All",
                     "Locked",
+                    "Unlocked",
+                    "Tendered",
+                    "Cancelled"
                 };
                 comboBoxLockOption.DataSource = lockOption;
 
