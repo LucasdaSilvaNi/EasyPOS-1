@@ -16,15 +16,108 @@ namespace EasyPOS.Forms.Software.TrnPOS
     {
         public Int32 trnSalesId = 0;
 
+        public Int32 ItemId = 0;
+        public String ItemDescription = "";
+        public String Unit = "";
+        public Decimal Price = 0;
+        public Decimal NetPrice = 0;
+        public Decimal DiscountRate = 0;
+        public String TaxCode = "";
+        public String Tax = "";
+        public Decimal Amount = 0;
+        public Decimal Quantity = 0;
+        public Decimal DiscountAmount = 0;
+        public Decimal TaxAmount = 0;
+        public String Remarks = "";
+
         public TrnPOSSalesOrderReportFormLabelPrinter(Int32 salesId, String printerName)
         {
             InitializeComponent();
             trnSalesId = salesId;
 
             printDocumentLabelReport.PrinterSettings.PrinterName = printerName;
-
             printDocumentLabelReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 170, 135);
-            printDocumentLabelReport.Print();
+
+            Data.easyposdbDataContext db = new Data.easyposdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+
+            var sales = from d in db.TrnSales
+                        where d.Id == trnSalesId
+                        select d;
+            
+            if (sales.Any())
+            {
+                var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId select d;
+                if (salesLines.Any())
+                {
+                    var salesLineGroupbyItem = from s in salesLines
+                                               group s by new
+                                               {
+                                                   s.SalesId,
+                                                   s.ItemId,
+                                                   s.MstItem,
+                                                   s.UnitId,
+                                                   s.MstUnit,
+                                                   s.NetPrice,
+                                                   s.Price,
+                                                   s.TaxId,
+                                                   s.MstTax,
+                                                   s.DiscountId,
+                                                   s.DiscountRate,
+                                                   s.SalesAccountId,
+                                                   s.AssetAccountId,
+                                                   s.CostAccountId,
+                                                   s.TaxAccountId,
+                                                   s.SalesLineTimeStamp,
+                                                   s.UserId,
+                                                   s.Preparation,
+                                                   s.Price1,
+                                                   s.Price2,
+                                                   s.Price2LessTax,
+                                                   s.PriceSplitPercentage
+                                               } into g
+                                               select new
+                                               {
+                                                   g.Key.ItemId,
+                                                   g.Key.MstItem,
+                                                   g.Key.MstItem.ItemDescription,
+                                                   g.Key.MstUnit.Unit,
+                                                   g.Key.Price,
+                                                   g.Key.NetPrice,
+                                                   g.Key.DiscountId,
+                                                   g.Key.DiscountRate,
+                                                   g.Key.TaxId,
+                                                   g.Key.MstTax,
+                                                   g.Key.MstTax.Tax,
+                                                   Amount = g.Sum(a => a.Amount),
+                                                   Quantity = g.Sum(a => a.Quantity),
+                                                   DiscountAmount = g.Sum(a => a.DiscountAmount * a.Quantity),
+                                                   TaxAmount = g.Sum(a => a.TaxAmount),
+                                                   g.Key.Preparation,
+                                               };
+
+                    if (salesLineGroupbyItem.Any())
+                    {
+                        foreach (var salesLine in salesLineGroupbyItem.ToList())
+                        {
+                            ItemId = salesLine.ItemId;
+                            ItemDescription = salesLine.ItemDescription;
+                            Unit = salesLine.Unit;
+                            Price = salesLine.Price;
+                            NetPrice = salesLine.NetPrice;
+                            TaxCode = salesLine.MstTax.Code;
+                            Tax = salesLine.Tax;
+                            Amount = salesLine.Amount;
+                            Quantity = salesLine.Quantity;
+                            DiscountAmount = salesLine.DiscountAmount;
+                            TaxAmount = salesLine.TaxAmount;
+                            Remarks = salesLine.Preparation;
+
+                            printDocumentLabelReport.Print();
+
+                        }
+                    }
+                }
+            }
         }
 
         private void printDocumentLabelReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -72,6 +165,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 x = 5; y = 5;
                 width = 170.0F; height = 0F;
             }
+
             // ==============
             // Tools Settings
             // ==============
@@ -88,7 +182,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
             // System Current
             // ==============
             var systemCurrent = Modules.SysCurrentModule.GetCurrentSettings();
-
 
             var sales = from d in db.TrnSales
                         where d.Id == trnSalesId
@@ -108,82 +201,19 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 graphics.DrawString(collectionTimeText, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                 y += graphics.MeasureString(collectionTimeText, fontArial7Regular).Height;
 
-
                 // ==========
                 // Sales Line
                 // ==========
                 Decimal totalAmount = 0;
-                Decimal totalNumberOfItems = 0;
+                String itemData = ItemDescription + "\n" + Quantity.ToString("#,##0.00") + " " + Unit + " @ " + Price.ToString("#,##0.00") + " - " + TaxCode[0];
 
-                var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId select d;
-                if (salesLines.Any())
+                RectangleF itemDataRectangle = new RectangleF
                 {
-                    var salesLineGroupbyItem = from s in salesLines
-                                               group s by new
-                                               {
-                                                   s.SalesId,
-                                                   s.ItemId,
-                                                   s.MstItem,
-                                                   s.UnitId,
-                                                   s.MstUnit,
-                                                   s.NetPrice,
-                                                   s.Price,
-                                                   s.TaxId,
-                                                   s.MstTax,
-                                                   s.DiscountId,
-                                                   s.DiscountRate,
-                                                   s.SalesAccountId,
-                                                   s.AssetAccountId,
-                                                   s.CostAccountId,
-                                                   s.TaxAccountId,
-                                                   s.SalesLineTimeStamp,
-                                                   s.UserId,
-                                                   s.Preparation,
-                                                   s.Price1,
-                                                   s.Price2,
-                                                   s.Price2LessTax,
-                                                   s.PriceSplitPercentage
-                                               } into g
-                                               select new
-                                               {
-                                                   g.Key.ItemId,
-                                                   g.Key.MstItem,
-                                                   g.Key.MstItem.ItemDescription,
-                                                   g.Key.MstUnit.Unit,
-                                                   g.Key.Price,
-                                                   g.Key.NetPrice,
-                                                   g.Key.DiscountId,
-                                                   g.Key.DiscountRate,
-                                                   g.Key.TaxId,
-                                                   g.Key.MstTax,
-                                                   g.Key.MstTax.Tax,
-                                                   Amount = g.Sum(a => a.Amount),
-                                                   Quantity = g.Sum(a => a.Quantity),
-                                                   DiscountAmount = g.Sum(a => a.DiscountAmount * a.Quantity),
-                                                   TaxAmount = g.Sum(a => a.TaxAmount)
-                                               };
-
-                    if (salesLineGroupbyItem.Any())
-                    {
-                        foreach (var salesLine in salesLineGroupbyItem.ToList())
-                        {
-                            totalNumberOfItems += 1;
-
-                            totalAmount += salesLine.Amount;
-
-                            String itemData = salesLine.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
-
-                            RectangleF itemDataRectangle = new RectangleF
-                            {
-                                X = x,
-                                Y = y,
-                                Size = new Size(170, ((int)graphics.MeasureString(itemData, fontArial7Regular, 170, StringFormat.GenericDefault).Height))
-                            };
-                            graphics.DrawString(itemData, fontArial7Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
-
-                        }
-                    }
-                }
+                    X = x,
+                    Y = y,
+                    Size = new Size(170, ((int)graphics.MeasureString(itemData, fontArial7Regular, 170, StringFormat.GenericDefault).Height))
+                };
+                graphics.DrawString(itemData, fontArial7Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
 
                 // ============
                 // Total Amount
@@ -197,26 +227,25 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 // =======
                 // Remarks
                 // =======
-
-                String remarks = "Remarks: " + salesLines.FirstOrDefault().Preparation;
-                graphics.DrawString(remarks, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                y += graphics.MeasureString(remarks, fontArial7Regular).Height;
+                String remarks = "Remarks: " + Remarks;
+                RectangleF remarksDataRectangle = new RectangleF
+                {
+                    X = x,
+                    Y = y,
+                    Size = new Size(170, ((int)graphics.MeasureString(remarks, fontArial7Regular, 170, StringFormat.GenericDefault).Height))
+                };
+                graphics.DrawString(remarks, fontArial7Regular, Brushes.Black, remarksDataRectangle, drawFormatLeft);
+                y += remarksDataRectangle.Size.Height + 3.0F;
 
                 // ========
                 // Customer
                 // ========
-
                 String customerName = sales.FirstOrDefault().MstCustomer.Customer;
-
 
                 String customerData = customerName;
                 graphics.DrawString(customerData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                 y += graphics.MeasureString(customerData, fontArial7Regular).Height;
-
             }
-
-
-
         }
     }
 }

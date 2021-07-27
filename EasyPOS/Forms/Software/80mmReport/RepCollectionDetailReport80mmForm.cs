@@ -31,22 +31,26 @@ namespace EasyPOS.Forms.Software._80mmReport
                 printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
                 printDocument80mm.Print();
             }
-            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-            {
-                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                printDocument80mm.Print();
-
-            }
-            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
-            {
-                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
-                printDocument80mm.Print();
-            }
             else
             {
-                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                printDocument80mm.Print();
+                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+                {
+                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
+                    printDocument80mm.Print();
+
+                }
+                else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+                {
+                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
+                    printDocument80mm.Print();
+                }
+                else
+                {
+                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
+                    printDocument80mm.Print();
+                }
             }
+            
         }
 
         private void printDocument80mm_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)

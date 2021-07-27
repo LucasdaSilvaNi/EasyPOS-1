@@ -18,28 +18,38 @@ namespace EasyPOS.Forms.Software._80mm_Report
         public DateTime endDate;
         public String category;
         public Int32 itemId;
-        public RepInventoryReport80mmForm(DateTime dateStart, DateTime dateEnd, String filterItemCategory, Int32 itemIds)
+        public RepInventoryReport80mmForm(DateTime dateStart, DateTime dateEnd, String filterItemCategory, Int32 itemIds, Boolean isPrintPreview, String printerName)
         {
             InitializeComponent();
             startDate = dateStart;
             endDate = dateEnd;
             category = filterItemCategory;
             itemId = itemIds;
-            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-            {
-                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                printDocument80mm.Print();
 
-            }
-            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+            if (isPrintPreview == true)
             {
-                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
+                printDocument80mm.PrinterSettings.PrinterName = printerName;
+                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 999999);
                 printDocument80mm.Print();
             }
             else
             {
-                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                printDocument80mm.Print();
+                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+                {
+                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
+                    printDocument80mm.Print();
+
+                }
+                else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+                {
+                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
+                    printDocument80mm.Print();
+                }
+                else
+                {
+                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
+                    printDocument80mm.Print();
+                }
             }
 
         }
@@ -443,8 +453,8 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
                             }
                         }
-                            String space = "\n.";
-                            graphics.DrawString(space, fontArial7Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                        String space = "\n.";
+                        graphics.DrawString(space, fontArial7Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                     }
                     else
                     {
@@ -791,8 +801,8 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
                             }
                         }
-                            String space = "\n.";
-                            graphics.DrawString(space, fontArial7Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                        String space = "\n.";
+                        graphics.DrawString(space, fontArial7Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                     }
                     else
                     {
@@ -1131,8 +1141,8 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
                             }
                         }
-                            String space = "\n.";
-                            graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                        String space = "\n.";
+                        graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                     }
                     else
                     {
@@ -1470,9 +1480,9 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
                             }
                         }
-                        
-                            String space = "\n.";
-                            graphics.DrawString(space, fontArial7Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+
+                        String space = "\n.";
+                        graphics.DrawString(space, fontArial7Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                     }
                     else
                     {

@@ -23,6 +23,7 @@ namespace EasyPOS.Forms.Software._80mmReport
             dateStart = startDate;
             dateEnd = endDate;
             filterTerminalId = terminalId;
+
             if (isPrintPreview == true)
             {
                 printDocumentSalesDetailReport.PrinterSettings.PrinterName = printerName;

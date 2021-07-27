@@ -1122,7 +1122,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                     if (sysUserRights.GetUserRights().CanPrint == true)
                                     {
                                         String printerName = printDialog80mmReport.PrinterSettings.PrinterName;
-                                        _80mmReport.RepSalesSummaryReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesSummaryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
+                                        _80mmReport.RepSalesDetailReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesDetailReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
                                     }
                                     else
                                     {
@@ -1147,7 +1147,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                     if (sysUserRights.GetUserRights().CanPrint == true)
                                     {
                                         String printerName = printDialog80mmReport.PrinterSettings.PrinterName;
-                                        _80mmReport.RepSalesSummaryReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesSummaryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
+                                        _80mmReport.RepSalesStatusReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesStatusReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
                                     }
                                     else
                                     {
@@ -1172,7 +1172,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                     if (sysUserRights.GetUserRights().CanPrint == true)
                                     {
                                         String printerName = printDialog80mmReport.PrinterSettings.PrinterName;
-                                        _80mmReport.RepSalesSummaryReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepSalesSummaryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
+                                        _80mmReport.RepCollectionDetailReport80mmForm repSalesSummaryReport80MmForm = new _80mmReport.RepCollectionDetailReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), true, printerName);
                                     }
                                     else
                                     {

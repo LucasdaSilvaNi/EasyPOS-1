@@ -104,7 +104,7 @@ namespace EasyPOS.Controllers
 
             return suppliers.ToList();
         }
-       
+
 
         // ====================
         // Dropdown List - User
@@ -479,16 +479,23 @@ namespace EasyPOS.Controllers
                         List<Data.TrnStockInLine> newStockInLines = new List<Data.TrnStockInLine>();
                         foreach (var purchaseOrderLine in PurchaseOrder.FirstOrDefault().TrnPurchaseOrderLines)
                         {
-                            newStockInLines.Add(new Data.TrnStockInLine
+                            if (purchaseOrderLine.Quantity < purchaseOrderLine.ReceivedQuantity)
                             {
-                                StockInId = newStockIn.Id,
-                                ItemId = purchaseOrderLine.ItemId,
-                                UnitId = purchaseOrderLine.UnitId,
-                                Quantity = purchaseOrderLine.ReceivedQuantity,
-                                Cost = purchaseOrderLine.Cost,
-                                Amount = purchaseOrderLine.ReceivedQuantity * purchaseOrderLine.Cost,
-                                AssetAccountId = purchaseOrderLine.MstItem.AssetAccountId
-                            });
+                                return new String[] { purchaseOrderLine.MstItem.ItemDescription + " - Cannot stock in more than PO Quantity.", "0" };
+                            }
+                            else
+                            {
+                                newStockInLines.Add(new Data.TrnStockInLine
+                                {
+                                    StockInId = newStockIn.Id,
+                                    ItemId = purchaseOrderLine.ItemId,
+                                    UnitId = purchaseOrderLine.UnitId,
+                                    Quantity = purchaseOrderLine.ReceivedQuantity,
+                                    Cost = purchaseOrderLine.Cost,
+                                    Amount = purchaseOrderLine.ReceivedQuantity * purchaseOrderLine.Cost,
+                                    AssetAccountId = purchaseOrderLine.MstItem.AssetAccountId
+                                });
+                            }
                         }
 
                         db.TrnStockInLines.InsertAllOnSubmit(newStockInLines);
