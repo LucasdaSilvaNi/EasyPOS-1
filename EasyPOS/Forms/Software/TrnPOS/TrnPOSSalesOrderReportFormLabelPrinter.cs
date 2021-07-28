@@ -204,7 +204,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 // ==========
                 // Sales Line
                 // ==========
-                Decimal totalAmount = 0;
                 String itemData = ItemDescription + "\n" + Quantity.ToString("#,##0.00") + " " + Unit + " @ " + Price.ToString("#,##0.00") + " - " + TaxCode[0];
 
                 RectangleF itemDataRectangle = new RectangleF
@@ -219,7 +218,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 // Total Amount
                 // ============
                 String totalSalesLabel = "\n\n\nTotal Amount:";
-                String totalSalesAmount = "\n\n\n" + totalAmount.ToString("#,##0.00");
+                String totalSalesAmount = "\n\n\n" + Amount.ToString("#,##0.00");
                 graphics.DrawString(totalSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                 graphics.DrawString(totalSalesAmount, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                 y += graphics.MeasureString(totalSalesAmount, fontArial7Regular).Height;
