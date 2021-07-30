@@ -425,57 +425,68 @@ namespace EasyPOS.Controllers
                     return new String[] { "Account not found.", "0" };
                 }
 
+                Int32 newStockInId = 0;
+
                 var PurchaseOrder = from d in db.TrnPurchaseOrders
                                     where d.Id == id
                                     select d;
 
                 if (PurchaseOrder.Any())
                 {
-                    String oldObject = Modules.SysAuditTrailModule.GetObjectString(PurchaseOrder.FirstOrDefault());
-
-                    String stockInNumber = "0000000001";
-                    var lastStockIn = from d in db.TrnStockIns.OrderByDescending(d => d.Id) select d;
-                    if (lastStockIn.Any())
-                    {
-                        Int32 newStockInNumber = Convert.ToInt32(lastStockIn.FirstOrDefault().StockInNumber) + 1;
-                        stockInNumber = FillLeadingZeroes(newStockInNumber, 10);
-                    }
-
-                    Data.TrnStockIn newStockIn = new Data.TrnStockIn()
-                    {
-                        PeriodId = PurchaseOrder.FirstOrDefault().PeriodId,
-                        StockInDate = PurchaseOrder.FirstOrDefault().PurchaseOrderDate,
-                        StockInNumber = stockInNumber,
-                        SupplierId = PurchaseOrder.FirstOrDefault().SupplierId,
-                        Remarks = PurchaseOrder.FirstOrDefault().PurchaseOrderNumber + PurchaseOrder.FirstOrDefault().Remarks,
-                        PreparedBy = PurchaseOrder.FirstOrDefault().PreparedBy,
-                        CheckedBy = PurchaseOrder.FirstOrDefault().CheckedBy,
-                        ApprovedBy = PurchaseOrder.FirstOrDefault().ApprovedBy,
-                        IsLocked = true,
-                        EntryUserId = currentUserLogin.FirstOrDefault().Id,
-                        EntryDateTime = DateTime.Now,
-                        UpdateUserId = currentUserLogin.FirstOrDefault().Id,
-                        UpdateDateTime = DateTime.Now
-                    };
-
-                    db.TrnStockIns.InsertOnSubmit(newStockIn);
-                    db.SubmitChanges();
-
-                    String newObject = Modules.SysAuditTrailModule.GetObjectString(newStockIn);
-
-                    Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
-                    {
-                        UserId = currentUserLogin.FirstOrDefault().Id,
-                        AuditDate = DateTime.Now,
-                        TableInformation = "TrnStockCount",
-                        RecordInformation = oldObject,
-                        FormInformation = newObject,
-                        ActionInformation = "PostStockCount"
-                    };
-                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
-
                     if (PurchaseOrder.FirstOrDefault().TrnPurchaseOrderLines.Any() == true)
                     {
+                        foreach (var purchaseOrderLine in PurchaseOrder.FirstOrDefault().TrnPurchaseOrderLines)
+                        {
+                            if (purchaseOrderLine.Quantity < purchaseOrderLine.ReceivedQuantity)
+                            {
+                                return new String[] { purchaseOrderLine.MstItem.ItemDescription + " - Cannot stock in more than PO Quantity.", "0" };
+                            }
+                        }
+
+                        String oldObject = Modules.SysAuditTrailModule.GetObjectString(PurchaseOrder.FirstOrDefault());
+
+                        String stockInNumber = "0000000001";
+                        var lastStockIn = from d in db.TrnStockIns.OrderByDescending(d => d.Id) select d;
+                        if (lastStockIn.Any())
+                        {
+                            Int32 newStockInNumber = Convert.ToInt32(lastStockIn.FirstOrDefault().StockInNumber) + 1;
+                            stockInNumber = FillLeadingZeroes(newStockInNumber, 10);
+                        }
+
+                        Data.TrnStockIn newStockIn = new Data.TrnStockIn()
+                        {
+                            PeriodId = PurchaseOrder.FirstOrDefault().PeriodId,
+                            StockInDate = PurchaseOrder.FirstOrDefault().PurchaseOrderDate,
+                            StockInNumber = stockInNumber,
+                            SupplierId = PurchaseOrder.FirstOrDefault().SupplierId,
+                            Remarks = PurchaseOrder.FirstOrDefault().PurchaseOrderNumber + PurchaseOrder.FirstOrDefault().Remarks,
+                            PreparedBy = PurchaseOrder.FirstOrDefault().PreparedBy,
+                            CheckedBy = PurchaseOrder.FirstOrDefault().CheckedBy,
+                            ApprovedBy = PurchaseOrder.FirstOrDefault().ApprovedBy,
+                            IsLocked = true,
+                            EntryUserId = currentUserLogin.FirstOrDefault().Id,
+                            EntryDateTime = DateTime.Now,
+                            UpdateUserId = currentUserLogin.FirstOrDefault().Id,
+                            UpdateDateTime = DateTime.Now
+                        };
+
+                        db.TrnStockIns.InsertOnSubmit(newStockIn);
+                        db.SubmitChanges();
+
+                        String newObject = Modules.SysAuditTrailModule.GetObjectString(newStockIn);
+
+                        Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
+                        {
+                            UserId = currentUserLogin.FirstOrDefault().Id,
+                            AuditDate = DateTime.Now,
+                            TableInformation = "TrnStockCount",
+                            RecordInformation = oldObject,
+                            FormInformation = newObject,
+                            ActionInformation = "PostStockCount"
+                        };
+                        Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
+
+
                         List<Data.TrnStockInLine> newStockInLines = new List<Data.TrnStockInLine>();
                         foreach (var purchaseOrderLine in PurchaseOrder.FirstOrDefault().TrnPurchaseOrderLines)
                         {
@@ -500,16 +511,18 @@ namespace EasyPOS.Controllers
 
                         db.TrnStockInLines.InsertAllOnSubmit(newStockInLines);
                         db.SubmitChanges();
+
+                        Modules.TrnInventoryModule trnInventoryModule = new Modules.TrnInventoryModule();
+                        trnInventoryModule.UpdateStockInInventory(newStockIn.Id);
+
+                        var updatePO = PurchaseOrder.FirstOrDefault();
+                        updatePO.Status = "RECEIVED";
+                        db.SubmitChanges();
+
+                        newStockInId = newStockIn.Id;
                     }
 
-                    Modules.TrnInventoryModule trnInventoryModule = new Modules.TrnInventoryModule();
-                    trnInventoryModule.UpdateStockInInventory(newStockIn.Id);
-
-                    var updatePO = PurchaseOrder.FirstOrDefault();
-                    updatePO.Status = "RECEIVED";
-                    db.SubmitChanges();
-
-                    return new String[] { "", newStockIn.Id.ToString() };
+                    return new String[] { "", newStockInId.ToString() };
                 }
                 else
                 {

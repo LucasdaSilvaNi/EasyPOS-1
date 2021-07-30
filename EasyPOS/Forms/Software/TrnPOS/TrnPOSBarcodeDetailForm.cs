@@ -867,7 +867,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         }
                         else
                         {
-                            new TrnPOSSalesOrderReportForm(trnSalesEntity.Id);
+                            new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSalesOrder.PrinterSettings.PrinterName);
                         }
                     }
                 }
@@ -880,7 +880,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 }
                 else
                 {
-                    new TrnPOSSalesOrderReportForm(trnSalesEntity.Id);
+                    new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, "");
                 }
             }
         }
