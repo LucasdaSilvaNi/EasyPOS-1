@@ -504,6 +504,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     TrnPOSTenderGiftCertificateInformation trnPOSTenderGiftCertificateInformation = new TrnPOSTenderGiftCertificateInformation(this, dataGridViewTenderPayType, payAmount);
                     trnPOSTenderGiftCertificateInformation.ShowDialog();
                 }
+                else if (payTypeCode == "LOAD")
+                {
+                    TrnPOSTenderLoadInformation trnPOSTenderLoadInformation = new TrnPOSTenderLoadInformation(this, dataGridViewTenderPayType, payAmount);
+                    trnPOSTenderLoadInformation.ShowDialog();
+                }
                 else
                 {
                     TrnPOSTenderOtherInformationForm trnSalesDetailTenderMoreInfoForm = new TrnPOSTenderOtherInformationForm(this, dataGridViewTenderPayType);

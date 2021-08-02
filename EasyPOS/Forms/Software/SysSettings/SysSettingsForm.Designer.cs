@@ -47,6 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.checkBoxEnableEditPrice = new System.Windows.Forms.CheckBox();
             this.checkBoxIsTriggeredQuantity = new System.Windows.Forms.CheckBox();
             this.checkBoxChoosePrinter = new System.Windows.Forms.CheckBox();
             this.checkBoxShowCustomerInfo = new System.Windows.Forms.CheckBox();
@@ -160,7 +161,8 @@
             this.label64 = new System.Windows.Forms.Label();
             this.textBoxCustomerDisplayPort = new System.Windows.Forms.TextBox();
             this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
-            this.checkBoxEnableEditPrice = new System.Windows.Forms.CheckBox();
+            this.comboBoxSalesOrderPrinterType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -461,6 +463,19 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1095, 472);
             this.panel5.TabIndex = 34;
+            // 
+            // checkBoxEnableEditPrice
+            // 
+            this.checkBoxEnableEditPrice.AutoSize = true;
+            this.checkBoxEnableEditPrice.Enabled = false;
+            this.checkBoxEnableEditPrice.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxEnableEditPrice.Location = new System.Drawing.Point(874, 11);
+            this.checkBoxEnableEditPrice.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxEnableEditPrice.Name = "checkBoxEnableEditPrice";
+            this.checkBoxEnableEditPrice.Size = new System.Drawing.Size(128, 23);
+            this.checkBoxEnableEditPrice.TabIndex = 93;
+            this.checkBoxEnableEditPrice.Text = "Enable Edit Price";
+            this.checkBoxEnableEditPrice.UseVisualStyleBackColor = true;
             // 
             // checkBoxIsTriggeredQuantity
             // 
@@ -1454,6 +1469,8 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel9.Controls.Add(this.comboBoxSalesOrderPrinterType);
+            this.panel9.Controls.Add(this.label3);
             this.panel9.Controls.Add(this.textBoxInvoiceFooter);
             this.panel9.Controls.Add(this.label37);
             this.panel9.Controls.Add(this.label35);
@@ -1784,18 +1801,27 @@
             this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
             this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
             // 
-            // checkBoxEnableEditPrice
+            // comboBoxSalesOrderPrinterType
             // 
-            this.checkBoxEnableEditPrice.AutoSize = true;
-            this.checkBoxEnableEditPrice.Enabled = false;
-            this.checkBoxEnableEditPrice.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxEnableEditPrice.Location = new System.Drawing.Point(874, 11);
-            this.checkBoxEnableEditPrice.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxEnableEditPrice.Name = "checkBoxEnableEditPrice";
-            this.checkBoxEnableEditPrice.Size = new System.Drawing.Size(128, 23);
-            this.checkBoxEnableEditPrice.TabIndex = 93;
-            this.checkBoxEnableEditPrice.Text = "Enable Edit Price";
-            this.checkBoxEnableEditPrice.UseVisualStyleBackColor = true;
+            this.comboBoxSalesOrderPrinterType.Enabled = false;
+            this.comboBoxSalesOrderPrinterType.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.comboBoxSalesOrderPrinterType.FormattingEnabled = true;
+            this.comboBoxSalesOrderPrinterType.Location = new System.Drawing.Point(717, 128);
+            this.comboBoxSalesOrderPrinterType.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxSalesOrderPrinterType.Name = "comboBoxSalesOrderPrinterType";
+            this.comboBoxSalesOrderPrinterType.Size = new System.Drawing.Size(199, 27);
+            this.comboBoxSalesOrderPrinterType.TabIndex = 92;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(554, 131);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(159, 19);
+            this.label3.TabIndex = 93;
+            this.label3.Text = "Sales Order Printer Type:";
             // 
             // SysSettingsForm
             // 
@@ -1978,5 +2004,7 @@
         private System.Windows.Forms.CheckBox checkBoxChoosePrinter;
         private System.Windows.Forms.CheckBox checkBoxIsTriggeredQuantity;
         private System.Windows.Forms.CheckBox checkBoxEnableEditPrice;
+        private System.Windows.Forms.ComboBox comboBoxSalesOrderPrinterType;
+        private System.Windows.Forms.Label label3;
     }
 }

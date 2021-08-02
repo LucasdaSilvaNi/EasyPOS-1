@@ -850,19 +850,24 @@ namespace EasyPOS.Forms.Software.TrnPOS
         {
             if (Modules.SysCurrentModule.GetCurrentSettings().ChoosePrinter == true)
             {
-                DialogResult SalesOrderDialogResult = MessageBox.Show("Choose Printer?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (SalesOrderDialogResult == DialogResult.Yes)
+                DialogResult printDialogResult = printDialogSalesOrder.ShowDialog();
+                if (printDialogResult == DialogResult.OK)
                 {
-                    DialogResult printDialogResult = printDialogSalesOrder.ShowDialog();
-                    if (printDialogResult == DialogResult.OK)
+                    if (trnSalesEntity.IsReturned == true)
                     {
-                        if (trnSalesEntity.IsReturned == true)
+                        new TrnPOSReturnReportForm(trnSalesEntity.Id);
+                    }
+                    else
+                    {
+                        Debug.WriteLine(Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType);
+
+                        if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Label Printer")
                         {
-                            new TrnPOSReturnReportForm(trnSalesEntity.Id);
+                            new TrnPOSSalesOrderReportFormLabelPrinter(trnSalesEntity.Id, printDialogSalesOrder.PrinterSettings.PrinterName);
                         }
                         else
                         {
-                            new TrnPOSSalesOrderReportForm(trnSalesEntity.Id);
+                            new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSalesOrder.PrinterSettings.PrinterName);
                         }
                     }
                 }
@@ -875,7 +880,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 }
                 else
                 {
-                    new TrnPOSSalesOrderReportForm(trnSalesEntity.Id);
+                    new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, "");
                 }
             }
         }

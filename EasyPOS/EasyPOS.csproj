@@ -224,6 +224,7 @@
     <Compile Include="Controllers\MstItemComponentController.cs" />
     <Compile Include="Controllers\MstItemController.cs" />
     <Compile Include="Controllers\MstItemGroupController.cs" />
+    <Compile Include="Controllers\MstCustomerLoadController.cs" />
     <Compile Include="Controllers\MstTableController.cs" />
     <Compile Include="Controllers\MstItemPriceController.cs" />
     <Compile Include="Controllers\MstPayTypeController.cs" />
@@ -297,6 +298,7 @@
     <Compile Include="Entities\DgvMstDiscountingListEntity.cs" />
     <Compile Include="Entities\DgvMstItemGroupItemListEntity.cs" />
     <Compile Include="Entities\DgvMstItemGroupSearchItemListEntity.cs" />
+    <Compile Include="Entities\DgvMstCustomerLoadListEntity.cs" />
     <Compile Include="Entities\DgvMstTableListEntity.cs" />
     <Compile Include="Entities\DGVRepHourlyTopSellingSalesReportEntities.cs" />
     <Compile Include="Entities\DgvRepNetSalesSummaryReportDailyEntity.cs" />
@@ -372,6 +374,7 @@
     <Compile Include="Entities\MstItemGroupEntity.cs" />
     <Compile Include="Entities\MstItemGroupItemEntity.cs" />
     <Compile Include="Entities\MstItemInventoryEntity.cs" />
+    <Compile Include="Entities\MstCustomerLoadEntity.cs" />
     <Compile Include="Entities\MstItemPriceEntity.cs" />
     <Compile Include="Entities\RepNetSalesSummaryReportMonthlyEntity.cs" />
     <Compile Include="Entities\RepNetSalesSummaryReportDailyEntity.cs" />
@@ -477,6 +480,12 @@
     </Compile>
     <Compile Include="Forms\Software\MstCustomer\MstCustomerListForm.Designer.cs">
       <DependentUpon>MstCustomerListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Software\MstCustomer\MstCustomerLoadDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\MstCustomer\MstCustomerLoadDetailForm.Designer.cs">
+      <DependentUpon>MstCustomerLoadDetailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Software\MstDiscounting\MstDiscountingListForm.cs">
       <SubType>Form</SubType>
@@ -832,6 +841,12 @@
     <Compile Include="Forms\Software\TrnPOS\TrnPOSBillOutForm.Designer.cs">
       <DependentUpon>TrnPOSBillOutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSSalesOrderReportFormLabelPrinter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSSalesOrderReportFormLabelPrinter.Designer.cs">
+      <DependentUpon>TrnPOSSalesOrderReportFormLabelPrinter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Software\TrnPOS\TrnPOSSalesOrderReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -843,6 +858,12 @@
     </Compile>
     <Compile Include="Forms\Software\TrnPOS\TrnPOSReturnReportForm.Designer.cs">
       <DependentUpon>TrnPOSReturnReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTenderLoadInformation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTenderLoadInformation.Designer.cs">
+      <DependentUpon>TrnPOSTenderLoadInformation.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Software\TrnPOS\TrnPOSTenderGiftCertificateInformation.cs">
       <SubType>Form</SubType>
@@ -1325,6 +1346,9 @@
     <EmbeddedResource Include="Forms\Software\MstCustomer\MstCustomerListForm.resx">
       <DependentUpon>MstCustomerListForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\MstCustomer\MstCustomerLoadDetailForm.resx">
+      <DependentUpon>MstCustomerLoadDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\MstDiscounting\MstDiscountingDetailForm.resx">
       <DependentUpon>MstDiscountingDetailForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1493,11 +1517,17 @@
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSBillOutForm.resx">
       <DependentUpon>TrnPOSBillOutForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSSalesOrderReportFormLabelPrinter.resx">
+      <DependentUpon>TrnPOSSalesOrderReportFormLabelPrinter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSSalesOrderReportForm.resx">
       <DependentUpon>TrnPOSSalesOrderReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSReturnReportForm.resx">
       <DependentUpon>TrnPOSReturnReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTenderLoadInformation.resx">
+      <DependentUpon>TrnPOSTenderLoadInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTenderGiftCertificateInformation.resx">
       <DependentUpon>TrnPOSTenderGiftCertificateInformation.cs</DependentUpon>

@@ -325,6 +325,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                             trnPOSBarcodeDetailForm.trnSalesEntity.IsReturned = true;
                             trnPOSBarcodeDetailForm.trnSalesEntity.ReturnApplication = "Return";
                             trnPOSBarcodeDetailForm.GetSalesLineList();
+                            trnPOSBarcodeDetailForm.trnSalesListForm.UpdateSalesListGridDataSource();
                         }
 
                         if (trnPOSTouchDetailForm != null)
@@ -334,6 +335,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                             trnPOSTouchDetailForm.trnSalesEntity.IsReturned = true;
                             trnPOSTouchDetailForm.trnSalesEntity.ReturnApplication = "Return";
                             trnPOSTouchDetailForm.GetSalesLineList();
+                            trnPOSTouchDetailForm.trnPOSTouchForm.UpdateSalesListGridDataSource();
                         }
 
                         Close();

@@ -202,6 +202,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Point firstLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point firstLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                 graphics.DrawLine(blackPen, firstLineFirstPoint, firstLineSecondPoint);
+
                 if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "58mm Printer")
                 {
                     // ==========
@@ -224,6 +225,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     graphics.DrawString(itemLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     graphics.DrawString(amountLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                     y += graphics.MeasureString(itemLabel, fontArial7Regular).Height + 5.0F;
+
+                    Decimal totalServiceCharge = 0;
+                    Boolean hasServiceCharge = false;
 
                     var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId select d;
                     if (salesLines.Any())
@@ -308,18 +312,26 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                     totalVATZeroRated += salesLine.Amount;
                                 }
 
-                                String itemData = salesLine.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
-                                String itemAmountData = (salesLine.Amount + salesLine.DiscountAmount).ToString("#,##0.00");
-                                RectangleF itemDataRectangle = new RectangleF
+                                if (salesLine.MstItem.BarCode != "0000000001")
                                 {
-                                    X = x,
-                                    Y = y,
-                                    Size = new Size(150, ((int)graphics.MeasureString(itemData, fontArial7Regular, 150, StringFormat.GenericDefault).Height))
-                                };
-                                graphics.DrawString(itemData, fontArial7Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
-                                graphics.DrawString(itemAmountData, fontArial7Regular, drawBrush, new RectangleF(x, y, 170.0F, height), drawFormatRight);
+                                    String itemData = salesLine.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
+                                    String itemAmountData = (salesLine.Amount + salesLine.DiscountAmount).ToString("#,##0.00");
+                                    RectangleF itemDataRectangle = new RectangleF
+                                    {
+                                        X = x,
+                                        Y = y,
+                                        Size = new Size(150, ((int)graphics.MeasureString(itemData, fontArial7Regular, 150, StringFormat.GenericDefault).Height))
+                                    };
+                                    graphics.DrawString(itemData, fontArial7Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
+                                    graphics.DrawString(itemAmountData, fontArial7Regular, drawBrush, new RectangleF(x, y, 170.0F, height), drawFormatRight);
 
-                                y += itemDataRectangle.Size.Height + 3.0F;
+                                    y += itemDataRectangle.Size.Height + 3.0F;
+                                }
+                                else
+                                {
+                                    hasServiceCharge = true;
+                                    totalServiceCharge += salesLine.Amount;
+                                }
                             }
                         }
                     }
@@ -335,10 +347,19 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     // Total Sales and Total Discount
                     // ==============================
                     String totalSalesLabel = "\nTotal Sales";
-                    String totalSalesAmount = "\n" + totalGrossSales.ToString("#,##0.00");
+                    String totalSalesAmount = "\n" + (totalGrossSales - totalServiceCharge).ToString("#,##0.00");
                     graphics.DrawString(totalSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     graphics.DrawString(totalSalesAmount, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                     y += graphics.MeasureString(totalSalesAmount, fontArial7Regular).Height;
+
+                    if (hasServiceCharge == true)
+                    {
+                        String totalServiceChangeLabel = "Service Charge";
+                        String totalServiceChangeAmount = totalServiceCharge.ToString("#,##0.00");
+                        graphics.DrawString(totalServiceChangeLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        graphics.DrawString(totalServiceChangeAmount, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                        y += graphics.MeasureString(totalServiceChangeAmount, fontArial7Regular).Height;
+                    }
 
                     String totalDiscountLabel = "Total Discount";
                     String totalDiscountAmount = totalDiscount.ToString("#,##0.00");
@@ -551,7 +572,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 }
                 else
                 {
-
                     // ==========
                     // Sales Line
                     // ==========
@@ -572,6 +592,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     graphics.DrawString(itemLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     graphics.DrawString(amountLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                     y += graphics.MeasureString(itemLabel, fontArial8Regular).Height + 5.0F;
+
+                    Decimal totalServiceCharge = 0;
+                    Boolean hasServiceCharge = false;
 
                     var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId select d;
                     if (salesLines.Any())
@@ -656,24 +679,33 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                     totalVATZeroRated += salesLine.Amount;
                                 }
 
-                                String itemData = salesLine.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
-                                String itemAmountData = (salesLine.Amount + salesLine.DiscountAmount).ToString("#,##0.00");
-                                RectangleF itemDataRectangle = new RectangleF
+
+                                if (salesLine.MstItem.BarCode != "0000000001")
                                 {
-                                    X = x,
-                                    Y = y,
-                                    Size = new Size(150, ((int)graphics.MeasureString(itemData, fontArial8Regular, 150, StringFormat.GenericDefault).Height))
-                                };
-                                graphics.DrawString(itemData, fontArial8Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
-                                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-                                {
-                                    graphics.DrawString(itemAmountData, fontArial8Regular, drawBrush, new RectangleF(x, y, 245.0F, height), drawFormatRight);
+                                    String itemData = salesLine.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
+                                    String itemAmountData = (salesLine.Amount + salesLine.DiscountAmount).ToString("#,##0.00");
+                                    RectangleF itemDataRectangle = new RectangleF
+                                    {
+                                        X = x,
+                                        Y = y,
+                                        Size = new Size(150, ((int)graphics.MeasureString(itemData, fontArial8Regular, 150, StringFormat.GenericDefault).Height))
+                                    };
+                                    graphics.DrawString(itemData, fontArial8Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
+                                    if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+                                    {
+                                        graphics.DrawString(itemAmountData, fontArial8Regular, drawBrush, new RectangleF(x, y, 245.0F, height), drawFormatRight);
+                                    }
+                                    else
+                                    {
+                                        graphics.DrawString(itemAmountData, fontArial8Regular, drawBrush, new RectangleF(x, y, 250.0F, height), drawFormatRight);
+                                    }
+                                    y += itemDataRectangle.Size.Height + 3.0F;
                                 }
                                 else
                                 {
-                                    graphics.DrawString(itemAmountData, fontArial8Regular, drawBrush, new RectangleF(x, y, 250.0F, height), drawFormatRight);
+                                    hasServiceCharge = true;
+                                    totalServiceCharge += salesLine.Amount;
                                 }
-                                y += itemDataRectangle.Size.Height + 3.0F;
                             }
                         }
                     }
@@ -689,10 +721,19 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     // Total Sales and Total Discount
                     // ==============================
                     String totalSalesLabel = "\nTotal Sales";
-                    String totalSalesAmount = "\n" + totalGrossSales.ToString("#,##0.00");
+                    String totalSalesAmount = "\n" + (totalGrossSales - totalServiceCharge).ToString("#,##0.00");
                     graphics.DrawString(totalSalesLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     graphics.DrawString(totalSalesAmount, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                     y += graphics.MeasureString(totalSalesAmount, fontArial8Regular).Height;
+
+                    if (hasServiceCharge == true)
+                    {
+                        String totalServiceChangeLabel = "Service Charge";
+                        String totalServiceChangeAmount = totalServiceCharge.ToString("#,##0.00");
+                        graphics.DrawString(totalServiceChangeLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        graphics.DrawString(totalServiceChangeAmount, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                        y += graphics.MeasureString(totalServiceChangeAmount, fontArial7Regular).Height;
+                    }
 
                     String totalDiscountLabel = "Total Discount";
                     String totalDiscountAmount = totalDiscount.ToString("#,##0.00");
@@ -821,7 +862,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point seventhLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                     Point seventhLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, seventhLineFirstPoint, seventhLineSecondPoint);
-                    if(Modules.SysCurrentModule.GetCurrentSettings().ShowCustomerInfo == false)
+                    if (Modules.SysCurrentModule.GetCurrentSettings().ShowCustomerInfo == false)
                     {
                         String soldToLabel = "\nCustomer Name: _______________________";
 
@@ -877,7 +918,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         String customerAddress = collections.FirstOrDefault().TrnSale.MstCustomer.Address;
                         String customerTIN = collections.FirstOrDefault().TrnSale.MstCustomer.TIN;
                         String customerBusinessStyle = collections.FirstOrDefault().TrnSale.MstCustomer.BusinessStyle;
-                        String soldToLabel = "\nCustomer Name: "+ customerName;
+                        String soldToLabel = "\nCustomer Name: " + customerName;
                         graphics.DrawString(soldToLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                         y += graphics.MeasureString(soldToLabel, fontArial8Regular).Height;
 
@@ -908,17 +949,17 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                 Point eightLineSecondPoint = new Point(500, Convert.ToInt32(y) + 18);
                                 graphics.DrawLine(blackPen, eightLineFirstPoint, eightLineSecondPoint);
 
-                                 soldToLabel = "\n\nCustomer Name: " + customerName;
+                                soldToLabel = "\n\nCustomer Name: " + customerName;
                             }
                         }
 
-                        
 
-                        String soldToAddressLabel = "Address: "+ customerAddress;
+
+                        String soldToAddressLabel = "Address: " + customerAddress;
                         graphics.DrawString(soldToAddressLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                         y += graphics.MeasureString(soldToAddressLabel, fontArial8Regular).Height;
 
-                        String soldToTINLabel = "TIN: "+ customerTIN;
+                        String soldToTINLabel = "TIN: " + customerTIN;
                         graphics.DrawString(soldToTINLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                         y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
 
@@ -926,7 +967,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         graphics.DrawString(soldToBusinessStyleLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                         y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
                     }
-                   
+
 
                     // ========
                     // 9th Line

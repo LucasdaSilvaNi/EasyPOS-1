@@ -382,7 +382,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                             PriceSplitPercentage = 0
                         };
 
-                        TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity,null);
+                        TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity, null);
                         trnSalesDetailSalesItemDetailForm.ShowDialog();
                     }
                     else
@@ -632,7 +632,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                             PriceSplitPercentage = 0
                         };
 
-                        TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity,null);
+                        TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity, null);
                         trnSalesDetailSalesItemDetailForm.ShowDialog();
                     }
                     else
@@ -788,7 +788,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     PriceSplitPercentage = PriceSplitPercentage,
                 };
 
-                TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity,null);
+                TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity, null);
                 trnSalesDetailSalesItemDetailForm.ShowDialog();
             }
 
@@ -1014,19 +1014,22 @@ namespace EasyPOS.Forms.Software.TrnPOS
         {
             if (Modules.SysCurrentModule.GetCurrentSettings().ChoosePrinter == true)
             {
-                DialogResult SalesOrderDialogResult = MessageBox.Show("Choose Printer?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (SalesOrderDialogResult == DialogResult.Yes)
+                DialogResult printDialogResult = printDialogSelectPrinter.ShowDialog();
+                if (printDialogResult == DialogResult.OK)
                 {
-                    DialogResult printDialogResult = printDialogSelectPrinter.ShowDialog();
-                    if (printDialogResult == DialogResult.OK)
+                    if (trnSalesEntity.IsReturned == true)
                     {
-                        if (trnSalesEntity.IsReturned == true)
+                        new TrnPOSReturnReportForm(trnSalesEntity.Id);
+                    }
+                    else
+                    {
+                        if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Label Printer")
                         {
-                            new TrnPOSReturnReportForm(trnSalesEntity.Id);
+                            new TrnPOSSalesOrderReportFormLabelPrinter(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
                         }
                         else
                         {
-                            new TrnPOSSalesOrderReportForm(trnSalesEntity.Id);
+                            new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
                         }
                     }
                 }
@@ -1039,7 +1042,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 }
                 else
                 {
-                    new TrnPOSSalesOrderReportForm(trnSalesEntity.Id);
+                    new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, "");
                 }
             }
         }
