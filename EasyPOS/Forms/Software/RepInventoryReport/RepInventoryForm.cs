@@ -97,7 +97,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         checkBoxFilter.Checked = false;
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
-                        buttonPreview80mmReport.Visible = false;
 
                         break;
                     case "Item List Report":
@@ -106,7 +105,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         comboBoxItem.Visible = false;
                         labelItem.Visible = false;
                         buttonView.Text = "View";
-                        buttonPreview80mmReport.Visible = false;
 
                         break;
                     case "Stock Card":
@@ -122,7 +120,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         labelCategory.Visible = false;
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
-                        buttonPreview80mmReport.Visible = false;
 
                         break;
                     case "Stock In Detail Report":
@@ -138,7 +135,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         labelItem.Visible = false;
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
-                        buttonPreview80mmReport.Visible = false;
 
                         break;
                     case "Stock Out Detail Report":
@@ -154,7 +150,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         labelItem.Visible = false;
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
-                        buttonPreview80mmReport.Visible = false;
 
                         break;
                     case "Stock Count Detail Report":
@@ -170,7 +165,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         labelItem.Visible = false;
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
-                        buttonPreview80mmReport.Visible = false;
 
                         break;
                     case "Item Expiry Report":
@@ -186,7 +180,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         labelItem.Visible = false;
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "View";
-                        buttonPreview80mmReport.Visible = false;
 
                         break;
                     case "80mm Inventory Report":
@@ -201,7 +194,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         checkBoxFilter.Checked = false;
                         dateTimePickerStartDate.Focus();
                         buttonView.Text = "Print";
-                        buttonPreview80mmReport.Visible = true;
                         break;
                     default:
                         labelStartDate.Visible = false;
@@ -215,7 +207,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         comboBoxItem.Visible = false;
                         labelItem.Visible = false;
                         buttonView.Text = "View";
-                        buttonPreview80mmReport.Visible = false;
 
                         break;
                     
@@ -378,7 +369,8 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         {
                             if (sysUserRights.GetUserRights().CanPrint == true)
                             {
-                                _80mm_Report.RepInventoryReport80mmForm repInventoryReportInventoryReport = new _80mm_Report.RepInventoryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToString(comboBoxCategory.SelectedValue), Convert.ToInt32(comboBoxItem.SelectedValue), false, "");
+                                _80mm_Report.RepInventoryReport80mmForm repInventoryReportInventoryReport = new _80mm_Report.RepInventoryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToString(comboBoxCategory.SelectedValue), Convert.ToInt32(comboBoxItem.SelectedValue));
+                                repInventoryReportInventoryReport.ShowDialog();
                             }
                             else
                             {
@@ -430,43 +422,6 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
             }
         }
 
-        private void buttonPreview80mmReport_Click(object sender, EventArgs e)
-        {
-            if (listBoxInventoryReport.SelectedItem != null)
-            {
-                String selectedItem = listBoxInventoryReport.SelectedItem.ToString();
-                switch (selectedItem)
-                {
-                    
-                    case "80mm Inventory Report":
-                        sysUserRights = new Modules.SysUserRightsModule("RepRestaurantInventory");
-                        if (sysUserRights.GetUserRights() == null)
-                        {
-                            MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            if (sysUserRights.GetUserRights().CanPreview == true)
-                            {
-                                _80mm_Report.RepInventoryReport80mmForm repInventoryReportInventoryReport = new _80mm_Report.RepInventoryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToString(comboBoxCategory.SelectedValue), Convert.ToInt32(comboBoxItem.SelectedValue), false, "");
-                            }
-                            else
-                            {
-
-                                MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                        }
-                        break;
-                    default:
-                        MessageBox.Show("Please select a report.", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        break;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a report.", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+       
     }
 }

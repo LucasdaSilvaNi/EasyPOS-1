@@ -991,5 +991,6 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(zReadingEndLabel, fontArial8Regular).Height;
             }
         }
+
     }
 }

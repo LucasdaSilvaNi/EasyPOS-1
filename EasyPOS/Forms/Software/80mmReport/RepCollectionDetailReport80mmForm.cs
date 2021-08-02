@@ -17,40 +17,25 @@ namespace EasyPOS.Forms.Software._80mmReport
         public DateTime dateStart;
         public DateTime dateEnd;
         public Int32 filterTerminalId;
-        public RepCollectionDetailReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId, Boolean isPrintPreview, String printerName)
+        public RepCollectionDetailReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId)
         {
             InitializeComponent();
             dateStart = startDate;
             dateEnd = endDate;
             filterTerminalId = terminalId;
 
-            if (isPrintPreview == true)
+            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {
-                printDocument80mm.PrinterSettings.PrinterName = printerName;
-
                 printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                printDocument80mm.Print();
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+            {
+                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
             }
             else
             {
-                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-                {
-                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                    printDocument80mm.Print();
-
-                }
-                else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
-                {
-                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
-                    printDocument80mm.Print();
-                }
-                else
-                {
-                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                    printDocument80mm.Print();
-                }
+                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
             }
-            
         }
 
         private void printDocument80mm_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -133,9 +118,9 @@ namespace EasyPOS.Forms.Software._80mmReport
                 // ==================
                 // Terminal Header
                 // ==================
-                String terminalHeader = filterTerminalId.ToString();
-                graphics.DrawString(RangeDateText, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                y += graphics.MeasureString(RangeDateText, fontArial7Regular).Height;
+                String terminalHeader = "Terminal" + " " + filterTerminalId.ToString();
+                graphics.DrawString(terminalHeader, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                y += graphics.MeasureString(terminalHeader, fontArial7Regular).Height;
 
                 // ========
                 // 1st Line
@@ -269,9 +254,9 @@ namespace EasyPOS.Forms.Software._80mmReport
                 // ==================
                 // Terminal Header
                 // ==================
-                String terminalHeader = filterTerminalId.ToString();
-                graphics.DrawString(RangeDateText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                y += graphics.MeasureString(RangeDateText, fontArial8Regular).Height;
+                String terminalHeader = "Terminal " + filterTerminalId.ToString();
+                graphics.DrawString(terminalHeader, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                y += graphics.MeasureString(terminalHeader, fontArial8Regular).Height;
 
                 // ========
                 // 1st Line
@@ -399,6 +384,26 @@ namespace EasyPOS.Forms.Software._80mmReport
                     graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                 }
             }
+        }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            DialogResult printerDialogResult = printDialogCollectionDetailReport.ShowDialog();
+            if (printerDialogResult == DialogResult.OK)
+            {
+                PrintReport();
+                Close();
+            }
+        }
+
+        public void PrintReport()
+        {
+            printDocument80mm.Print();
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

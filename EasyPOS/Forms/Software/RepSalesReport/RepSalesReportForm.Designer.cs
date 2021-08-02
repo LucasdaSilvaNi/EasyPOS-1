@@ -54,7 +54,6 @@
             this.printDialogStockWithdrawalReport = new System.Windows.Forms.PrintDialog();
             this.folderBrowserDialogStockWithdrawalReport = new System.Windows.Forms.FolderBrowserDialog();
             this.folderBrowserDialogCollectionDetailReportFacepay = new System.Windows.Forms.FolderBrowserDialog();
-            this.buttonPreview = new System.Windows.Forms.Button();
             this.printDialog80mmReport = new System.Windows.Forms.PrintDialog();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -300,7 +299,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.buttonPreview);
             this.panel1.Controls.Add(this.buttonView);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label1);
@@ -376,26 +374,6 @@
             // 
             this.printDialogStockWithdrawalReport.UseEXDialog = true;
             // 
-            // buttonPreview
-            // 
-            this.buttonPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPreview.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonPreview.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonPreview.FlatAppearance.BorderSize = 0;
-            this.buttonPreview.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreview.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPreview.ForeColor = System.Drawing.Color.White;
-            this.buttonPreview.Location = new System.Drawing.Point(851, 10);
-            this.buttonPreview.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonPreview.Name = "buttonPreview";
-            this.buttonPreview.Size = new System.Drawing.Size(86, 32);
-            this.buttonPreview.TabIndex = 6;
-            this.buttonPreview.TabStop = false;
-            this.buttonPreview.Text = "Preview";
-            this.buttonPreview.UseVisualStyleBackColor = false;
-            this.buttonPreview.Visible = false;
-            this.buttonPreview.Click += new System.EventHandler(this.buttonPreview_Click);
-            // 
             // printDialog80mmReport
             // 
             this.printDialog80mmReport.UseEXDialog = true;
@@ -452,7 +430,6 @@
         private System.Windows.Forms.Label labelAgent;
         private System.Windows.Forms.DateTimePicker dateTimePickerDateAsOf;
         private System.Windows.Forms.Label labelDateAsOf;
-        private System.Windows.Forms.Button buttonPreview;
         private System.Windows.Forms.PrintDialog printDialog80mmReport;
     }
 }

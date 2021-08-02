@@ -17,40 +17,25 @@ namespace EasyPOS.Forms.Software._80mmReport
         public DateTime dateStart;
         public DateTime dateEnd;
         public Int32 filterTerminalId;
-        public RepSalesDetailReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId, Boolean isPrintPreview, String printerName)
+        public RepSalesDetailReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId)
         {
             InitializeComponent();
             dateStart = startDate;
             dateEnd = endDate;
             filterTerminalId = terminalId;
 
-            if (isPrintPreview == true)
-            {
-                printDocumentSalesDetailReport.PrinterSettings.PrinterName = printerName;
-
-                printDocumentSalesDetailReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                printDocumentSalesDetailReport.Print();
-            }
-            else 
-            {
                 if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
                 {
                     printDocumentSalesDetailReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                    printDocumentSalesDetailReport.Print();
-
                 }
                 else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
                 {
                     printDocumentSalesDetailReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
-                    printDocumentSalesDetailReport.Print();
                 }
                 else
                 {
                     printDocumentSalesDetailReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                    printDocumentSalesDetailReport.Print();
                 }
-            } 
-            
         }
 
         private void printDocumentSalesDetailReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -374,6 +359,26 @@ namespace EasyPOS.Forms.Software._80mmReport
                 }
             }
 
+        }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            DialogResult printerDialogResult = printDialogSalesDetailReport.ShowDialog();
+            if (printerDialogResult == DialogResult.OK)
+            {
+                PrintReport();
+                Close();
+            }
+        }
+
+        public void PrintReport()
+        {
+            printDocumentSalesDetailReport.Print();
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

@@ -17,38 +17,24 @@ namespace EasyPOS.Forms.Software._80mmReport
         public DateTime dateStart;
         public DateTime dateEnd;
         public Int32 filterTerminalId;
-        public RepSalesStatusReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId, Boolean isPrintPreview, String printerName)
+        public RepSalesStatusReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId)
         {
             InitializeComponent();
             dateStart = startDate;
             dateEnd = endDate;
             filterTerminalId = terminalId;
 
-            if (isPrintPreview == true)
+            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {
-                printDocument80mm.PrinterSettings.PrinterName = printerName;
-
                 printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                printDocument80mm.Print();
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+            {
+                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
             }
             else
             {
-                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-                {
-                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                    printDocument80mm.Print();
-
-                }
-                else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
-                {
-                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
-                    printDocument80mm.Print();
-                }
-                else
-                {
-                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                    printDocument80mm.Print();
-                }
+                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
             }
         }
 
@@ -308,5 +294,24 @@ namespace EasyPOS.Forms.Software._80mmReport
             }
         }
 
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            DialogResult printerDialogResult = printDialogSalesStatusReport.ShowDialog();
+            if (printerDialogResult == DialogResult.OK)
+            {
+                PrintReport();
+                Close();
+            }
+        }
+
+        public void PrintReport()
+        {
+            printDocument80mm.Print();
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -19,37 +19,24 @@ namespace EasyPOS.Forms.Software._80mmReport
         public Int32 filterTerminalId;
         private SysSoftwareForm softwareForm;
 
-        public RepSalesSummaryReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId, Boolean isPrintPreview, String printerName)
+        public RepSalesSummaryReport80mmForm(DateTime startDate, DateTime endDate, Int32 terminalId)
         {
             InitializeComponent();
             dateStart = startDate;
             dateEnd = endDate;
             filterTerminalId = terminalId;
 
-            if (isPrintPreview == true)
+            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {
-                printDocumentSalesSummaryReport.PrinterSettings.PrinterName = printerName;
-
                 printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                printDocumentSalesSummaryReport.Print();
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+            {
+                printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
             }
             else
             {
-                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-                {
-                    printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                    printDocumentSalesSummaryReport.Print();
-                }
-                else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
-                {
-                    printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
-                    printDocumentSalesSummaryReport.Print();
-                }
-                else
-                {
-                    printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                    printDocumentSalesSummaryReport.Print();
-                }
+                printDocumentSalesSummaryReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
             }
         }
 
@@ -375,6 +362,26 @@ namespace EasyPOS.Forms.Software._80mmReport
                 String space = "\n.";
                 graphics.DrawString(space, fontArial7Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
             }
+        }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            DialogResult printerDialogResult = printDialogSalesSummaryReport.ShowDialog();
+            if (printerDialogResult == DialogResult.OK)
+            {
+                PrintReport();
+                Close();
+            }
+        }
+
+        public void PrintReport()
+        {
+            printDocumentSalesSummaryReport.Print();
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

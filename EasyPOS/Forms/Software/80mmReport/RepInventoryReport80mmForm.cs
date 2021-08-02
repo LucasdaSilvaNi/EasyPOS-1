@@ -18,7 +18,7 @@ namespace EasyPOS.Forms.Software._80mm_Report
         public DateTime endDate;
         public String category;
         public Int32 itemId;
-        public RepInventoryReport80mmForm(DateTime dateStart, DateTime dateEnd, String filterItemCategory, Int32 itemIds, Boolean isPrintPreview, String printerName)
+        public RepInventoryReport80mmForm(DateTime dateStart, DateTime dateEnd, String filterItemCategory, Int32 itemIds)
         {
             InitializeComponent();
             startDate = dateStart;
@@ -26,31 +26,20 @@ namespace EasyPOS.Forms.Software._80mm_Report
             category = filterItemCategory;
             itemId = itemIds;
 
-            if (isPrintPreview == true)
+            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {
-                printDocument80mm.PrinterSettings.PrinterName = printerName;
-                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 999999);
-                printDocument80mm.Print();
+                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
+
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+            {
+                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
             }
             else
             {
-                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-                {
-                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                    printDocument80mm.Print();
-
-                }
-                else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
-                {
-                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
-                    printDocument80mm.Print();
-                }
-                else
-                {
-                    printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                    printDocument80mm.Print();
-                }
+                printDocument80mm.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
             }
+
 
         }
 
@@ -73,6 +62,8 @@ namespace EasyPOS.Forms.Software._80mm_Report
             Font fontArial10Bold = new Font("Arial", 10, FontStyle.Bold);
             Font fontArial7Regular = new Font("Arial", 7, FontStyle.Regular);
             Font fontArial7Bold = new Font("Arial", 7, FontStyle.Bold);
+            Font fontArial6Regular = new Font("Arial", 6, FontStyle.Regular);
+            Font fontArial6Bold = new Font("Arial", 6, FontStyle.Bold);
 
             // ==================
             // Alignment Settings
@@ -445,11 +436,11 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 {
                                     X = x,
                                     Y = y,
-                                    Size = new Size(240, ((int)graphics.MeasureString(itemData, fontArial7Regular, 240, StringFormat.GenericDefault).Height))
+                                    Size = new Size(240, ((int)graphics.MeasureString(itemData, fontArial6Regular, 240, StringFormat.GenericDefault).Height))
                                 };
-                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, 60, height), drawFormatLeft);
-                                graphics.DrawString(inventoryList.Unit + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial6Regular, drawBrush, new RectangleF(x, y, 60, height), drawFormatLeft);
+                                graphics.DrawString(inventoryList.Unit + "\n", fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                                 y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
                             }
                         }
@@ -1823,11 +1814,11 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 {
                                     X = x,
                                     Y = y,
-                                    Size = new Size(240, ((int)graphics.MeasureString(itemData, fontArial8Regular, 240, StringFormat.GenericDefault).Height))
+                                    Size = new Size(240, ((int)graphics.MeasureString(itemData, fontArial6Regular, 240, StringFormat.GenericDefault).Height))
                                 };
-                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
-                                graphics.DrawString(inventoryList.Unit + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial6Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
+                                graphics.DrawString(inventoryList.Unit + "\n", fontArial6Regular, drawBrush, new RectangleF(x: 60, y, width, height), drawFormatCenter);
+                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                                 y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
                             }
                         }
@@ -2904,6 +2895,26 @@ namespace EasyPOS.Forms.Software._80mm_Report
                 }
             }
 
+        }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            DialogResult printerDialogResult = printDialogInventoryReport.ShowDialog();
+            if (printerDialogResult == DialogResult.OK)
+            {
+                PrintReport();
+                Close();
+            }
+        }
+
+        public void PrintReport()
+        {
+            printDocument80mm.Print();
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

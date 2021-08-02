@@ -49,7 +49,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.buttonPreview80mmReport = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -253,7 +252,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.buttonPreview80mmReport);
             this.panel1.Controls.Add(this.buttonView);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label1);
@@ -326,26 +324,6 @@
             this.buttonClose.UseVisualStyleBackColor = false;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_OnClick);
             // 
-            // buttonPreview80mmReport
-            // 
-            this.buttonPreview80mmReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPreview80mmReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonPreview80mmReport.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonPreview80mmReport.FlatAppearance.BorderSize = 0;
-            this.buttonPreview80mmReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPreview80mmReport.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPreview80mmReport.ForeColor = System.Drawing.Color.White;
-            this.buttonPreview80mmReport.Location = new System.Drawing.Point(863, 10);
-            this.buttonPreview80mmReport.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonPreview80mmReport.Name = "buttonPreview80mmReport";
-            this.buttonPreview80mmReport.Size = new System.Drawing.Size(73, 32);
-            this.buttonPreview80mmReport.TabIndex = 22;
-            this.buttonPreview80mmReport.TabStop = false;
-            this.buttonPreview80mmReport.Text = "Preview";
-            this.buttonPreview80mmReport.UseVisualStyleBackColor = false;
-            this.buttonPreview80mmReport.Visible = false;
-            this.buttonPreview80mmReport.Click += new System.EventHandler(this.buttonPreview80mmReport_Click);
-            // 
             // RepInventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -393,6 +371,5 @@
         private System.Windows.Forms.Label labelCategory;
         private System.Windows.Forms.CheckBox checkBoxFilter;
         private System.Windows.Forms.Label labelFilter;
-        private System.Windows.Forms.Button buttonPreview80mmReport;
     }
 }

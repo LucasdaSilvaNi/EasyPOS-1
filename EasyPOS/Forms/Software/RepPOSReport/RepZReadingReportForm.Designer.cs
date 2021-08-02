@@ -52,8 +52,9 @@
             this.panel1.Controls.Add(this.buttonClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(664, 63);
+            this.panel1.Size = new System.Drawing.Size(531, 51);
             this.panel1.TabIndex = 4;
             // 
             // buttonPrint
@@ -67,9 +68,10 @@
             this.buttonPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPrint.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPrint.ForeColor = System.Drawing.Color.White;
-            this.buttonPrint.Location = new System.Drawing.Point(470, 12);
+            this.buttonPrint.Location = new System.Drawing.Point(376, 10);
+            this.buttonPrint.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(88, 40);
+            this.buttonPrint.Size = new System.Drawing.Size(70, 32);
             this.buttonPrint.TabIndex = 4;
             this.buttonPrint.TabStop = false;
             this.buttonPrint.Text = "Print";
@@ -79,9 +81,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::EasyPOS.Properties.Resources.Reports;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 40);
+            this.pictureBox1.Size = new System.Drawing.Size(38, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -90,10 +93,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(63, 17);
+            this.label1.Location = new System.Drawing.Point(50, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(219, 35);
+            this.label1.Size = new System.Drawing.Size(178, 28);
             this.label1.TabIndex = 2;
             this.label1.Text = "Z Reading Report";
             // 
@@ -108,9 +111,10 @@
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClose.ForeColor = System.Drawing.Color.White;
-            this.buttonClose.Location = new System.Drawing.Point(564, 12);
+            this.buttonClose.Location = new System.Drawing.Point(451, 10);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(2);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(88, 40);
+            this.buttonClose.Size = new System.Drawing.Size(70, 32);
             this.buttonClose.TabIndex = 1;
             this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = false;
@@ -125,9 +129,10 @@
             // 
             this.panel2.Controls.Add(this.printPreviewControlZReadingReport);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 63);
+            this.panel2.Location = new System.Drawing.Point(0, 51);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(664, 653);
+            this.panel2.Size = new System.Drawing.Size(531, 522);
             this.panel2.TabIndex = 5;
             // 
             // printPreviewControlZReadingReport
@@ -136,8 +141,9 @@
             this.printPreviewControlZReadingReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.printPreviewControlZReadingReport.Document = this.printDocumentZReadingReport;
             this.printPreviewControlZReadingReport.Location = new System.Drawing.Point(0, 0);
+            this.printPreviewControlZReadingReport.Margin = new System.Windows.Forms.Padding(2);
             this.printPreviewControlZReadingReport.Name = "printPreviewControlZReadingReport";
-            this.printPreviewControlZReadingReport.Size = new System.Drawing.Size(664, 653);
+            this.printPreviewControlZReadingReport.Size = new System.Drawing.Size(531, 522);
             this.printPreviewControlZReadingReport.TabIndex = 0;
             this.printPreviewControlZReadingReport.Zoom = 1.5D;
             // 
@@ -148,14 +154,14 @@
             // 
             // RepZReadingReportForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(664, 716);
+            this.ClientSize = new System.Drawing.Size(531, 573);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "RepZReadingReportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Z Reading Report";
