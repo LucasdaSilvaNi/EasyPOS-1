@@ -447,9 +447,9 @@ namespace EasyPOS.Controllers
     
             return itemList.OrderBy(d => d.ItemDescription).ToList();
         }
-        // ========================
+        // ==============================
         // Dropdown List - Get Child Item
-        // ========================
+        // ==============================
         public List<Entities.MstItemEntity> DropdownListChildItemList(Int32 currentItemId)
         {
             var itemList = from d in db.MstItems

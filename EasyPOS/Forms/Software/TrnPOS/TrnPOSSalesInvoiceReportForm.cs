@@ -12,42 +12,43 @@ using System.Windows.Forms;
 
 namespace EasyPOS.Forms.Software.TrnPOS
 {
-    public partial class TrnPOSSalesOrderReportForm : Form
+    public partial class TrnPOSSalesInvoiceReportForm : Form
     {
         public Int32 trnSalesId = 0;
 
-        public TrnPOSSalesOrderReportForm(Int32 salesId, String printerName)
+        public TrnPOSSalesInvoiceReportForm(Int32 salesId, String printerName)
         {
             InitializeComponent();
             trnSalesId = salesId;
 
             if (String.IsNullOrEmpty(printerName) == false)
             {
-                printDocumentReturnReport.PrinterSettings.PrinterName = printerName;
-                printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                printDocumentReturnReport.Print();
+                printDocumentSalesInvoiceReport.PrinterSettings.PrinterName = printerName;
+                printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 850, 1100);
+
+                printDocumentSalesInvoiceReport.Print();
             }
             else
             {
-                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Letter Printer")
                 {
-                    printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                    printDocumentReturnReport.Print();
+                    printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 800, 1000);
+                    printDocumentSalesInvoiceReport.Print();
                 }
                 else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
                 {
-                    printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
-                    printDocumentReturnReport.Print();
+                    printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
+                    printDocumentSalesInvoiceReport.Print();
                 }
                 else
                 {
-                    printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                    printDocumentReturnReport.Print();
+                    printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
+                    printDocumentSalesInvoiceReport.Print();
                 }
             }
         }
 
-        private void printDocumentReturnReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void printDocumentSalesInvoiceReport_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
             // ============
             // Data Context
@@ -57,6 +58,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
             // =============
             // Font Settings
             // =============
+            Font fontArial20Bold = new Font("Arial", 20, FontStyle.Bold);
+            Font fontArial20Regular = new Font("Arial", 20, FontStyle.Regular);
             Font fontArial12Bold = new Font("Arial", 12, FontStyle.Bold);
             Font fontArial12Regular = new Font("Arial", 12, FontStyle.Regular);
             Font fontArial11Bold = new Font("Arial", 11, FontStyle.Bold);
@@ -78,7 +81,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {
                 x = 5; y = 5;
-                width = 245.0F; height = 0F;
+                width = 850; height = 0F;
             }
             else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
             {
@@ -117,8 +120,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 adjustStringName = 3;
             }
 
-            graphics.DrawString(companyName, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyName, fontArial8Regular).Height * adjustStringName;
+            graphics.DrawString(companyName, fontArial12Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += graphics.MeasureString(companyName, fontArial12Bold).Height * adjustStringName;
 
             // ===============
             // Company Address
@@ -132,36 +135,36 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 adjuctHeight = 3;
             }
 
-            graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += (graphics.MeasureString(companyAddress, fontArial8Regular).Height * adjuctHeight);
+            graphics.DrawString(companyAddress, fontArial12Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += (graphics.MeasureString(companyAddress, fontArial12Regular).Height * adjuctHeight);
 
             // ==========
             // TIN Number
             // ==========
-            String TINNumber = systemCurrent.TIN;
-            graphics.DrawString("TIN: " + TINNumber, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
+            //String TINNumber = systemCurrent.TIN;
+            //graphics.DrawString("TIN: " + TINNumber, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            //y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
 
             // =============
             // Serial Number
             // =============
-            String serialNo = systemCurrent.SerialNo;
-            graphics.DrawString("SN: " + serialNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
+            //String serialNo = systemCurrent.SerialNo;
+            //graphics.DrawString("SN: " + serialNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            //y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
 
             // ==============
             // Machine Number
             // ==============
-            String machineNo = systemCurrent.MachineNo;
-            graphics.DrawString("MIN: " + machineNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
+            //String machineNo = systemCurrent.MachineNo;
+            //graphics.DrawString("MIN: " + machineNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            //y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
 
             // =================
             // Sales Order Title
             // =================
-            String officialReceiptTitle = "O R D E R   S L I P";
-            graphics.DrawString(officialReceiptTitle, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(officialReceiptTitle, fontArial8Regular).Height;
+            String officialReceiptTitle = "Sales Invoice";
+            graphics.DrawString(officialReceiptTitle, fontArial20Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += graphics.MeasureString(officialReceiptTitle, fontArial20Bold).Height;
 
             // ============
             // Sales Header
@@ -578,18 +581,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     graphics.DrawString(salesInvoiceFooter, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                     y += graphics.MeasureString(salesInvoiceFooter, fontArial8Regular).Height;
                 }
-
-            }
-
-            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-            {
-                String space = "\n\n\n\n\n\n\n\n\n\n.";
-                graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            }
-            else
-            {
-                String space = "\n\n\n.";
-                graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
             }
         }
     }

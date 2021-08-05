@@ -841,6 +841,12 @@
     <Compile Include="Forms\Software\TrnPOS\TrnPOSBillOutForm.Designer.cs">
       <DependentUpon>TrnPOSBillOutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSSalesInvoiceReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSSalesInvoiceReportForm.Designer.cs">
+      <DependentUpon>TrnPOSSalesInvoiceReportForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Software\TrnPOS\TrnPOSSalesOrderReportFormLabelPrinter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1516,6 +1522,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSBillOutForm.resx">
       <DependentUpon>TrnPOSBillOutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSSalesInvoiceReportForm.resx">
+      <DependentUpon>TrnPOSSalesInvoiceReportForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSSalesOrderReportFormLabelPrinter.resx">
       <DependentUpon>TrnPOSSalesOrderReportFormLabelPrinter.cs</DependentUpon>

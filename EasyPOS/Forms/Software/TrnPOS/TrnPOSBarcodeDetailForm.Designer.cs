@@ -103,6 +103,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.buttonDownload = new System.Windows.Forms.Button();
             this.printDialogSalesOrder = new System.Windows.Forms.PrintDialog();
+            this.printDialogSalesInvoice = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -892,6 +893,10 @@
             // 
             this.printDialogSalesOrder.UseEXDialog = true;
             // 
+            // printDialogSalesInvoice
+            // 
+            this.printDialogSalesInvoice.UseEXDialog = true;
+            // 
             // TrnPOSBarcodeDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -991,5 +996,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesLinePrice2;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesLinePrice2LessTax;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesLinePriceSplitPercentage;
+        private System.Windows.Forms.PrintDialog printDialogSalesInvoice;
     }
 }

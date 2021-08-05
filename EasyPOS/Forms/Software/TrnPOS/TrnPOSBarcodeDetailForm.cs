@@ -865,6 +865,10 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         {
                             new TrnPOSSalesOrderReportFormLabelPrinter(trnSalesEntity.Id, printDialogSalesOrder.PrinterSettings.PrinterName);
                         }
+                        else if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Letter Printer")
+                        {
+                            new TrnPOSSalesInvoiceReportForm(trnSalesEntity.Id, printDialogSalesInvoice.PrinterSettings.PrinterName);
+                        }
                         else
                         {
                             new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSalesOrder.PrinterSettings.PrinterName);
