@@ -1210,6 +1210,9 @@ namespace EasyPOS.Controllers
                     };
                     Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
 
+                    Modules.TrnInventoryModule trnInventoryModule = new Modules.TrnInventoryModule();
+                    trnInventoryModule.UpdateSalesInventory(sales.FirstOrDefault().Id);
+
                     var collection = from d in db.TrnCollections
                                      where d.SalesId == salesId
                                      && d.IsLocked == true
