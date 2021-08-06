@@ -178,11 +178,26 @@ namespace EasyPOS.Modules
                                         where d.ItemId == itemId
                                         && d.TrnSale.IsLocked == true
                                         && d.TrnSale.IsCancelled == false
+                                        && d.TrnSale.IsReturned == false
                                         select d;
 
                 if (allSalesLineItems.Any())
                 {
                     totalSalesLineQuantity = allSalesLineItems.Sum(d => d.Quantity);
+                }
+
+                // Get total RETURNED quantity
+                Decimal totalReturnedQuantity = 0;
+                var allReturnedItems = from d in db.TrnSalesLines
+                                        where d.ItemId == itemId
+                                        && d.TrnSale.IsLocked == true
+                                        && d.TrnSale.IsCancelled == false
+                                        && d.TrnSale.IsReturned == true
+                                        select d;
+
+                if (allReturnedItems.Any())
+                {
+                    totalReturnedQuantity = allReturnedItems.Sum(d => d.Quantity < 0 ? d.Quantity * -1 : d.Quantity);
                 }
 
                 // Get total OUT quantity
@@ -221,7 +236,7 @@ namespace EasyPOS.Modules
                 }
 
                 var updateItem = item.FirstOrDefault();
-                updateItem.OnhandQuantity = totalStockInLineQuantity - (totalSalesLineQuantity + totalStockOutLineQuantity + totalSalesLineComponentQuantity);
+                updateItem.OnhandQuantity = (totalStockInLineQuantity + totalReturnedQuantity) - (totalSalesLineQuantity + totalStockOutLineQuantity + totalSalesLineComponentQuantity);
                 db.SubmitChanges();
             }
         }
