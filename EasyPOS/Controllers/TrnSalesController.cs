@@ -1795,7 +1795,7 @@ namespace EasyPOS.Controllers
         // ======
         // Tables
         // ======
-        public List<Entities.MstTableEntity> ListTable(Int32 tableGroupId)
+        public List<Entities.MstTableEntity> ListTable(Int32 tableGroupId, DateTime salesDate)
         {
             var tables = from d in db.MstTables
                          where d.TableGroupId == tableGroupId
@@ -1803,9 +1803,52 @@ namespace EasyPOS.Controllers
                          {
                              Id = d.Id,
                              TableCode = d.TableCode,
+                             HasSales = d.TrnSales.Where(s => s.SalesDate == salesDate && s.IsTendered == false).Any()
                          };
 
             return tables.OrderBy(d => d.TableCode).ToList();
+        }
+
+        // ===============
+        // Tables Sales Id
+        // ===============
+        public Int32 getTableSalesId(String tableCode, DateTime salesDate)
+        {
+            Int32? tableId = null;
+
+            if (tableCode != "")
+            {
+                var table = from d in db.MstTables
+                            where d.TableCode == tableCode
+                            select d;
+
+                if (table.Any() == true)
+                {
+                    tableId = table.FirstOrDefault().Id;
+
+                    var sales = from d in db.TrnSales
+                                where d.SalesDate == salesDate
+                                && d.TableId == tableId
+                                select d;
+
+                    if (sales.Any())
+                    {
+                        return sales.FirstOrDefault().Id;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         // ===============

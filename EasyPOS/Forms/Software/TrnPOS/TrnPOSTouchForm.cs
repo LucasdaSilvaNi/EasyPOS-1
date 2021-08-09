@@ -35,6 +35,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private const int tableNoOfButtons = 30;
         private int tablePages;
         private int tablePage = 1;
+        private int selectedTableGroup = 1;
         Button[] tableButtons;
 
         public TrnPOSTouchForm(SysSoftwareForm softwareForm)
@@ -158,7 +159,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             {
                 Controllers.TrnSalesController trnSalesController = new Controllers.TrnSalesController();
 
-                listTables = trnSalesController.ListTable(tableGroupId);
+                listTables = trnSalesController.ListTable(tableGroupId, dateTimePickerSalesDate.Value.Date);
                 tablePages = listTables.Count();
 
                 for (int i = 0; i < tableNoOfButtons; i++)
@@ -173,6 +174,18 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     for (int i = 0; i < listTablePage.Count(); i++)
                     {
                         tableToolTip.SetToolTip(tableButtons[i], listTablePage[i].TableCode.ToString());
+
+                        if (listTablePage[i].HasSales == true)
+                        {
+                            tableButtons[i].BackColor = Color.Brown;
+                            tableButtons[i].ForeColor = Color.White;
+                        }
+                        else
+                        {
+                            tableButtons[i].BackColor = SystemColors.Control;
+                            tableButtons[i].ForeColor = Color.Black;
+                        }
+
                         tableButtons[i].Text = listTablePage[i].TableCode;
                     }
                 }
@@ -197,16 +210,28 @@ namespace EasyPOS.Forms.Software.TrnPOS
             try
             {
                 Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
-                String[] addSales = trnPOSSalesController.AddSales(tableCode, customerId);
+                Int32 salesId = trnPOSSalesController.getTableSalesId(tableCode, dateTimePickerSalesDate.Value.Date);
 
-                if (addSales[1].Equals("0") == false)
+                if (salesId != 0)
                 {
-                    sysSoftwareForm.AddTabPagePOSTouchSalesDetail(this, trnPOSSalesController.DetailSales(Convert.ToInt32(addSales[1])));
-                    UpdateSalesListGridDataSource();
+                    Entities.TrnSalesEntity salesEntity = trnPOSSalesController.DetailSales(salesId);
+
+                    trnPOSTouchActivityForm = new TrnPOSTouchActivityForm(sysSoftwareForm, this, salesEntity);
+                    trnPOSTouchActivityForm.ShowDialog();
                 }
                 else
                 {
-                    MessageBox.Show(addSales[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    String[] addSales = trnPOSSalesController.AddSales(tableCode, customerId);
+
+                    if (addSales[1].Equals("0") == false)
+                    {
+                        sysSoftwareForm.AddTabPagePOSTouchSalesDetail(this, trnPOSSalesController.DetailSales(Convert.ToInt32(addSales[1])));
+                        UpdateSalesListGridDataSource();
+                    }
+                    else
+                    {
+                        MessageBox.Show(addSales[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
@@ -307,6 +332,61 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
             textBoxLastChange.Text = trnPOSSalesController.GetLastChange(Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().TerminalId)).ToString("#,##0.00");
+
+
+            switch (selectedTableGroup)
+            {
+                case 1:
+                    if (tableGroupToolTip.GetToolTip(buttonTableGroup1) != "")
+                    {
+                        Int32 tableGroupId = Convert.ToInt32(tableGroupToolTip.GetToolTip(buttonTableGroup1));
+                        selectedTableGroupId = tableGroupId;
+                        FillTable(tableGroupId);
+                    }
+                    break;
+                case 2:
+                    if (tableGroupToolTip.GetToolTip(buttonTableGroup2) != "")
+                    {
+                        Int32 tableGroupId = Convert.ToInt32(tableGroupToolTip.GetToolTip(buttonTableGroup2));
+                        selectedTableGroupId = tableGroupId;
+                        FillTable(tableGroupId);
+                    }
+                    break;
+                case 3:
+                    if (tableGroupToolTip.GetToolTip(buttonTableGroup3) != "")
+                    {
+                        Int32 tableGroupId = Convert.ToInt32(tableGroupToolTip.GetToolTip(buttonTableGroup3));
+                        selectedTableGroupId = tableGroupId;
+                        FillTable(tableGroupId);
+                    }
+                    break;
+                case 4:
+                    if (tableGroupToolTip.GetToolTip(buttonTableGroup4) != "")
+                    {
+                        Int32 tableGroupId = Convert.ToInt32(tableGroupToolTip.GetToolTip(buttonTableGroup4));
+                        selectedTableGroupId = tableGroupId;
+                        FillTable(tableGroupId);
+                    }
+                    break;
+                case 5:
+                    if (tableGroupToolTip.GetToolTip(buttonTableGroup5) != "")
+                    {
+                        Int32 tableGroupId = Convert.ToInt32(tableGroupToolTip.GetToolTip(buttonTableGroup5));
+                        selectedTableGroupId = tableGroupId;
+                        FillTable(tableGroupId);
+                    }
+                    break;
+                case 6:
+                    if (tableGroupToolTip.GetToolTip(buttonTableGroup6) != "")
+                    {
+                        Int32 tableGroupId = Convert.ToInt32(tableGroupToolTip.GetToolTip(buttonTableGroup6));
+                        selectedTableGroupId = tableGroupId;
+                        FillTable(tableGroupId);
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
 
         public async void GetSalesListDataAsync(DateTime salesDate, Int32 terminalId, String filter)
@@ -573,6 +653,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private void buttonTableGroup1_Click(object sender, EventArgs e)
         {
             tablePage = 1;
+            selectedTableGroup = 1;
 
             if (tableGroupToolTip.GetToolTip(buttonTableGroup1) != "")
             {
@@ -585,6 +666,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private void buttonTableGroup2_Click(object sender, EventArgs e)
         {
             tablePage = 1;
+            selectedTableGroup = 2;
 
             if (tableGroupToolTip.GetToolTip(buttonTableGroup2) != "")
             {
@@ -597,6 +679,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private void buttonTableGroup3_Click(object sender, EventArgs e)
         {
             tablePage = 1;
+            selectedTableGroup = 3;
 
             if (tableGroupToolTip.GetToolTip(buttonTableGroup3) != "")
             {
@@ -609,6 +692,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private void buttonTableGroup4_Click(object sender, EventArgs e)
         {
             tablePage = 1;
+            selectedTableGroup = 4;
 
             if (tableGroupToolTip.GetToolTip(buttonTableGroup4) != "")
             {
@@ -621,6 +705,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private void buttonTableGroup5_Click(object sender, EventArgs e)
         {
             tablePage = 1;
+            selectedTableGroup = 5;
 
             if (tableGroupToolTip.GetToolTip(buttonTableGroup5) != "")
             {
@@ -633,8 +718,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private void buttonTableGroup6_Click(object sender, EventArgs e)
         {
             tablePage = 1;
+            selectedTableGroup = 6;
 
-            if (tableGroupToolTip.GetToolTip(buttonTableGroup5) != "")
+            if (tableGroupToolTip.GetToolTip(buttonTableGroup6) != "")
             {
                 Int32 tableGroupId = Convert.ToInt32(tableGroupToolTip.GetToolTip(buttonTableGroup5));
                 selectedTableGroupId = tableGroupId;
