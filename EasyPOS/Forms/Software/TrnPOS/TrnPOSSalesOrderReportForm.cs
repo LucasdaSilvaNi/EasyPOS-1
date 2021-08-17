@@ -123,38 +123,48 @@ namespace EasyPOS.Forms.Software.TrnPOS
             // ===============
             // Company Address
             // ===============
-
             String companyAddress = systemCurrent.Address;
-
-            float adjuctHeight = 1;
-            if (companyAddress.Length > 43)
+            RectangleF companyAddressRectangle = new RectangleF
             {
-                adjuctHeight = 3;
-            }
-
-            graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += (graphics.MeasureString(companyAddress, fontArial8Regular).Height * adjuctHeight);
+                X = x,
+                Y = y,
+                Size = new Size(245, ((int)graphics.MeasureString(companyAddress, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
+            };
+            graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, 245.0F, height), drawFormatCenter);
+            y += companyAddressRectangle.Size.Height + 1.0F;
 
             // ==========
             // TIN Number
             // ==========
             String TINNumber = systemCurrent.TIN;
+            RectangleF TINNumbersRectangle = new RectangleF
+            {
+                X = x,
+                Y = y,
+                Size = new Size(245, ((int)graphics.MeasureString(TINNumber, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
+            };
             graphics.DrawString("TIN: " + TINNumber, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
+            y += TINNumbersRectangle.Size.Height + 1.0F;
 
             // =============
             // Serial Number
             // =============
             String serialNo = systemCurrent.SerialNo;
+            RectangleF SNNumbersRectangle = new RectangleF
+            {
+                X = x,
+                Y = y,
+                Size = new Size(245, ((int)graphics.MeasureString(serialNo, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
+            };
             graphics.DrawString("SN: " + serialNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
+            y += SNNumbersRectangle.Size.Height + 1.0F;
 
             // ==============
             // Machine Number
             // ==============
             String machineNo = systemCurrent.MachineNo;
             graphics.DrawString("MIN: " + machineNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
+            y += graphics.MeasureString(machineNo, fontArial8Regular).Height;
 
             // =================
             // Sales Order Title
@@ -338,7 +348,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point thirdLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, thirdLineFirstPoint, thirdLineSecondPoint);
 
-                    String remarks = "\nRemarks: \n\n " + salesLines.FirstOrDefault().TrnSale.Remarks;
+                    String remarks = "\nRemarks: \n\n " + salesLines.FirstOrDefault().Preparation;
                     graphics.DrawString(remarks, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     y += graphics.MeasureString(remarks, fontArial7Regular).Height;
 
@@ -534,7 +544,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point thirdLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, thirdLineFirstPoint, thirdLineSecondPoint);
 
-                    String remarks = "\nRemarks: \n\n " + salesLines.FirstOrDefault().TrnSale.Remarks;
+                    String remarks = "\nRemarks: " + salesLines.FirstOrDefault().Preparation;
                     graphics.DrawString(remarks, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     y += graphics.MeasureString(remarks, fontArial8Regular).Height;
 
@@ -581,16 +591,16 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             }
 
-            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-            {
-                String space = "\n\n\n\n\n\n\n\n\n\n.";
-                graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            }
-            else
-            {
-                String space = "\n\n\n.";
-                graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            }
+            //if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+            //{
+            //    String space = "\n\n\n\n\n\n\n\n\n\n.";
+            //    graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            //}
+            //else
+            //{
+            //    String space = "\n\n\n.";
+            //    graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            //}
         }
     }
 }

@@ -311,7 +311,7 @@ namespace EasyPOS.Forms.Software._80mmReport
                                              where d.MstPayType.PayType == payType
                                              select d;
                             String paytype = payType;
-                            graphics.DrawString(paytype + "\n", fontArial10Bold, Brushes.Black, new RectangleF(x, y + 15, 240, 240), drawFormatLeft);
+                            graphics.DrawString(paytype + "\n", fontArial8Bold, Brushes.Black, new RectangleF(x, y + 15, 240, 240), drawFormatLeft);
 
                             if (collection.Any())
                             {
@@ -322,8 +322,8 @@ namespace EasyPOS.Forms.Software._80mmReport
                                 foreach (var collections in collection)
                                 {
                                     CollectionCount += 1;
-                                    subCollectionTotal = collections.Amount;
-                                    String collectionData = "\n" + collections.TrnCollection.CollectionDate + collections.TrnCollection.ManualORNumber + collections.Amount.ToString("#,##0.00");
+                                    subCollectionTotal = (collections.TrnCollection.IsCancelled == true ? 0 : collections.TrnCollection.Amount);
+                                    String collectionData = "\n" + collections.TrnCollection.CollectionDate + collections.TrnCollection.ManualORNumber + collections.TrnCollection.Amount.ToString("#,##0.00");
 
                                     RectangleF itemDataRectangle = new RectangleF
                                     {
@@ -333,7 +333,7 @@ namespace EasyPOS.Forms.Software._80mmReport
                                     };
                                     graphics.DrawString(collections.TrnCollection.CollectionDate.ToShortDateString() + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatLeft);
                                     graphics.DrawString(collections.TrnCollection.ManualORNumber + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatCenter);
-                                    graphics.DrawString(collections.Amount.ToString("#,##0.00") + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatRight);
+                                    graphics.DrawString(collections.TrnCollection.IsCancelled == true ? "0" : collections.MstPayType.PayTypeCode.Equals("CASH") ? collections.TrnCollection.Amount.ToString("#,##0.00") : "\n", fontArial8Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatRight);
                                     y += itemDataRectangle.Size.Height;
                                     CollectionTotal += subCollectionTotal;
 
@@ -373,16 +373,16 @@ namespace EasyPOS.Forms.Software._80mmReport
                 }
 
 
-                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-                {
-                    String space = "\n\n\n\n\n\n\n\n\n\n.";
-                    graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                }
-                else
-                {
-                    String space = "\n\n\n.";
-                    graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                }
+                //if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+                //{
+                //    String space = "\n\n\n\n\n\n\n\n\n\n.";
+                //    graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                //}
+                //else
+                //{
+                //    String space = "\n\n\n.";
+                //    graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                //}
             }
         }
 

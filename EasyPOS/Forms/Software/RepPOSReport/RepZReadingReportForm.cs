@@ -44,12 +44,12 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             filterDate = date;
             if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {
-                printDocumentZReadingReport.DefaultPageSettings.PaperSize = new PaperSize("Z Reading Report", 255, 1000);
+                printDocumentZReadingReport.DefaultPageSettings.PaperSize = new PaperSize("Z Reading Report", 255, 38500);
                 ZReadingDataSource();
             }
             else
             {
-                printDocumentZReadingReport.DefaultPageSettings.PaperSize = new PaperSize("Z Reading Report", 270, 1000);
+                printDocumentZReadingReport.DefaultPageSettings.PaperSize = new PaperSize("Z Reading Report", 270, 38500);
                 ZReadingDataSource();
             }
 
@@ -603,29 +603,40 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             // Company Address
             // ===============
             String companyAddress = systemCurrent.Address;
-
-            float adjuctHeight = 1;
-            if (companyAddress.Length > 43)
+            RectangleF companyAddressRectangle = new RectangleF
             {
-                adjuctHeight = 3;
-            }
-
-            graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += (graphics.MeasureString(companyAddress, fontArial8Regular).Height * adjuctHeight);
+                X = x,
+                Y = y,
+                Size = new Size(245, ((int)graphics.MeasureString(companyAddress, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
+            };
+            graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, 245.0F, height), drawFormatCenter);
+            y += companyAddressRectangle.Size.Height + 1.0F;
 
             // ==========
             // TIN Number
             // ==========
             String TINNumber = systemCurrent.TIN;
+            RectangleF TINNumbersRectangle = new RectangleF
+            {
+                X = x,
+                Y = y,
+                Size = new Size(245, ((int)graphics.MeasureString(TINNumber, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
+            };
             graphics.DrawString("TIN: " + TINNumber, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
+            y += TINNumbersRectangle.Size.Height + 1.0F;
 
             // =============
             // Serial Number
             // =============
             String serialNo = systemCurrent.SerialNo;
+            RectangleF SNNumbersRectangle = new RectangleF
+            {
+                X = x,
+                Y = y,
+                Size = new Size(245, ((int)graphics.MeasureString(serialNo, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
+            };
             graphics.DrawString("SN: " + serialNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
+            y += SNNumbersRectangle.Size.Height + 1.0F;
 
             // ==============
             // Machine Number
@@ -980,13 +991,13 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
             if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {
-                String zReadingEndLabel = "\n" + zReadingFooter + "\n \n\n\n\n\n\n\n.";
+                String zReadingEndLabel = "\n" + zReadingFooter + "\n \n\n\n.";
                 graphics.DrawString(zReadingEndLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                 y += graphics.MeasureString(zReadingEndLabel, fontArial8Regular).Height;
             }
             else
             {
-                String zReadingEndLabel = "\n" + zReadingFooter + "\n \n\n\n.";
+                String zReadingEndLabel = "\n" + zReadingFooter;
                 graphics.DrawString(zReadingEndLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                 y += graphics.MeasureString(zReadingEndLabel, fontArial8Regular).Height;
             }

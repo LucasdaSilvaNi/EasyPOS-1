@@ -202,7 +202,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             GetSalesListDataAsync(salesDate, terminalId, filter, selectedIsLocked);
 
-            Controllers.MstItemController mstItemController = new Controllers.MstItemController();
             Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
             textBoxLastChange.Text = trnPOSSalesController.GetLastChange(Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().TerminalId)).ToString("#,##0.00");
             
