@@ -57,7 +57,7 @@ namespace EasyPOS.Controllers
                                  PriceSplitPercentage = d.PriceSplitPercentage
                              };
 
-            return salesLines.ToList();
+            return salesLines.OrderByDescending(d => d.Id).ToList();
         }
 
         // =================
