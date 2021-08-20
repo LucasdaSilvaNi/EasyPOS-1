@@ -490,7 +490,7 @@ namespace EasyPOS.Controllers
                     lockCollection.ManualORNumber = objCollection.ManualORNumber;
                     lockCollection.TerminalId = objCollection.TerminalId;
                     lockCollection.CustomerId = objCollection.CustomerId;
-                    lockCollection.TrnSale.SalesNumber = objCollection.SalesNumber;
+                    lockCollection.SalesId = objCollection.SalesId;
                     lockCollection.SalesBalanceAmount = objCollection.SalesBalanceAmount;
                     lockCollection.Amount = objCollection.Amount;
                     lockCollection.Remarks = objCollection.Remarks;
@@ -585,8 +585,6 @@ namespace EasyPOS.Controllers
                         return new String[] { "Already unlocked.", "0" };
                     }
 
-                    UpdateAccountsReceivable(collection.FirstOrDefault().SalesId);
-
                     String oldObject = Modules.SysAuditTrailModule.GetObjectString(collection.FirstOrDefault());
 
                     var unlockCollection = collection.FirstOrDefault();
@@ -594,6 +592,8 @@ namespace EasyPOS.Controllers
                     unlockCollection.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
                     unlockCollection.UpdateDateTime = DateTime.Now;
                     db.SubmitChanges();
+
+                    UpdateAccountsReceivable(collection.FirstOrDefault().SalesId);
 
                     String newObject = Modules.SysAuditTrailModule.GetObjectString(collection.FirstOrDefault());
 

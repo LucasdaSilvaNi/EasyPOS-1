@@ -730,6 +730,7 @@ namespace EasyPOS.Forms.Software.TrnCollection
             this.comboBoxCustomer.Size = new System.Drawing.Size(239, 27);
             this.comboBoxCustomer.TabIndex = 26;
             this.comboBoxCustomer.SelectedIndexChanged += new System.EventHandler(this.comboBoxCustomer_SelectedIndexChanged);
+            this.comboBoxCustomer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBoxCustomer_KeyDown);
             // 
             // textBoxRemarks
             // 

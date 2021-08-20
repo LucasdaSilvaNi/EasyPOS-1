@@ -579,5 +579,15 @@ namespace EasyPOS.Forms.Software.TrnCollection
         {
             new TrnCollectionDetailReportForm(trnCollectionEntity.Id);
         }
+
+        private void comboBoxCustomer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                String inputString = comboBoxCustomer.Text;
+                comboBoxCustomer.SelectedIndex = comboBoxCustomer.FindString(inputString);
+            }
+
+        }
     }
 }

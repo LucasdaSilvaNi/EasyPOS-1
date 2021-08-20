@@ -166,7 +166,7 @@ namespace EasyPOS.Controllers
                 }
 
                 String stockInNumber = "0000000001";
-                var lastStockIn = from d in db.TrnStockIns.OrderByDescending(d => d.Id) select d;
+                var lastStockIn = from d in db.TrnStockIns.OrderByDescending(d => d.Id) where d.StockInNumber.Contains("-") == false select d;
                 if (lastStockIn.Any())
                 {
                     Int32 newStockInNumber = Convert.ToInt32(lastStockIn.FirstOrDefault().StockInNumber) + 1;
