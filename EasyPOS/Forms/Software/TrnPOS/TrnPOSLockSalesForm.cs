@@ -20,7 +20,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         public String customerCode = "";
         public String customerName = "";
 
-        public TrnPOSLockSalesForm(TrnPOSBarcodeDetailForm POSBarcodeDetailForm,TrnPOSTouchDetailForm POSTouchDetailForm, Entities.TrnSalesEntity salesEntity)
+        public TrnPOSLockSalesForm(TrnPOSBarcodeDetailForm POSBarcodeDetailForm, TrnPOSTouchDetailForm POSTouchDetailForm, Entities.TrnSalesEntity salesEntity)
         {
             InitializeComponent();
 
@@ -51,6 +51,15 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public void GetCustomerList()
         {
+            if (Modules.SysCurrentModule.GetCurrentSettings().DisableSalesCustomerSelection == true)
+            {
+                comboBoxTenderSalesCustomer.Enabled = false;
+            }
+            else
+            {
+                comboBoxTenderSalesCustomer.Enabled = true;
+            }
+
             Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
             if (trnPOSSalesController.TenderSalesDropdownListCustomer().Any())
             {
@@ -60,6 +69,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                 GetUserList();
             }
+
         }
 
         public void GetUserList()
@@ -96,6 +106,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 textBoxTenderSalesRewardAvailable.Text = selectedItemCustomer.AvailableReward.ToString("#,##0.00");
                 comboBoxTenderSalesTerms.SelectedValue = selectedItemCustomer.TermId;
                 textBoxCustomerCode2.Text = selectedItemCustomer.CustomerCode;
+
             }
         }
 
@@ -122,7 +133,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                     trnPOSBarcodeDetailForm.GetSalesDetail();
                     trnPOSBarcodeDetailForm.LockComponents(true);
-                    
+
                     trnPOSBarcodeDetailForm.trnSalesEntity.CustomerId = newSalesEntity.CustomerId;
                     trnPOSBarcodeDetailForm.trnSalesEntity.TermId = newSalesEntity.TermId;
                     trnPOSBarcodeDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
@@ -143,7 +154,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     trnPOSTouchDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
                     trnPOSTouchDetailForm.trnSalesEntity.SalesAgent = newSalesEntity.SalesAgent;
                 }
-                
+
                 Close();
             }
             else

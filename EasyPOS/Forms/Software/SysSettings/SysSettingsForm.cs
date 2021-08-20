@@ -37,6 +37,7 @@ namespace EasyPOS.Forms.Software.SysSettings
             {
                 getSettings();
                 GetComboBoxDropDownList();
+                getKitchenPrinter();
             }
 
         }
@@ -514,6 +515,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxIsTriggeredQuantity.Checked = Convert.ToBoolean(sysCurrent.IsTriggeredQuantity);
                 checkBoxEnableEditPrice.Checked = Convert.ToBoolean(sysCurrent.EnableEditPrice);
                 comboBoxSalesOrderPrinterType.Text = sysCurrent.SalesOrderPrinterType;
+                checkBoxDisableSalesCustomerSelection.Checked = Convert.ToBoolean(sysCurrent.DisableSalesCustomerSelection);
             }
         }
 
@@ -594,9 +596,10 @@ namespace EasyPOS.Forms.Software.SysSettings
                 ChoosePrinter = checkBoxChoosePrinter.Checked,
                 IsTriggeredQuantity = checkBoxIsTriggeredQuantity.Checked,
                 EnableEditPrice = checkBoxEnableEditPrice.Checked,
-                SalesOrderPrinterType = comboBoxSalesOrderPrinterType.Text
+                SalesOrderPrinterType = comboBoxSalesOrderPrinterType.Text,
+                DisableSalesCustomerSelection = checkBoxDisableSalesCustomerSelection.Checked
             };
-            
+
             String[] saveSysCurrent = sysSettingsController.UpdateSysCurrent(sysCurrentEntity);
             if (saveSysCurrent[1].Equals("0") == false)
             {
@@ -656,6 +659,8 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxIsTriggeredQuantity.Enabled = false;
                 checkBoxEnableEditPrice.Enabled = false;
                 comboBoxSalesOrderPrinterType.Enabled = false;
+                dataGridViewPrinterSetup.Enabled = false;
+                checkBoxDisableSalesCustomerSelection.Enabled = false;
             }
             else
             {
@@ -698,7 +703,8 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxIsTenderPrint.Enabled = true;
                 checkBoxIsBarcodeQuantityAlwaysOne.Enabled = true;
                 checkBoxWithCustomerDisplay.Enabled = true;
-                
+                dataGridViewPrinterSetup.Enabled = true;
+
 
                 if (checkBoxWithCustomerDisplay.Checked == true)
                 {
@@ -743,6 +749,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxIsTriggeredQuantity.Enabled = true;
                 checkBoxEnableEditPrice.Enabled = true;
                 comboBoxSalesOrderPrinterType.Enabled = true;
+                checkBoxDisableSalesCustomerSelection.Enabled = true;
             }
         }
 
@@ -771,6 +778,23 @@ namespace EasyPOS.Forms.Software.SysSettings
                 textBoxCustomerDisplayBaudRate.Enabled = false;
                 textBoxCustomerDisplayFirstLineMessage.Enabled = false;
                 textBoxCustomerDisplayIfCounterClosedMessage.Enabled = false;
+            }
+        }
+
+
+        private void SysSettingsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void getKitchenPrinter()
+        {
+            Controllers.SysKitchenPrinterController sysPrinterController = new Controllers.SysKitchenPrinterController();
+            var listKitchen = sysPrinterController.ListKitchen();
+            if (listKitchen != null)
+            {
+                //ColumnSysPrinterKitchen = listKitchen.Kitchen.ToString();
+                //ColumnSysPrinterPrinter = listKitchen.Printer;
             }
         }
     }

@@ -133,6 +133,8 @@
             this.checkBoxEnableEasyShopIntegration = new System.Windows.Forms.CheckBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.comboBoxSalesOrderPrinterType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.textBoxInvoiceFooter = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -160,9 +162,13 @@
             this.label56 = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
             this.textBoxCustomerDisplayPort = new System.Windows.Forms.TextBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.dataGridViewPrinterSetup = new System.Windows.Forms.DataGridView();
+            this.ColumnSysPrinterId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSysPrinterKitchen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSysPrinterPrinter = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
-            this.comboBoxSalesOrderPrinterType = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.checkBoxDisableSalesCustomerSelection = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -184,6 +190,8 @@
             this.panel9.SuspendLayout();
             this.tabControl10.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.tabPage8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrinterSetup)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -300,6 +308,7 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabControl10);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -416,6 +425,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel5.Controls.Add(this.checkBoxDisableSalesCustomerSelection);
             this.panel5.Controls.Add(this.checkBoxEnableEditPrice);
             this.panel5.Controls.Add(this.checkBoxIsTriggeredQuantity);
             this.panel5.Controls.Add(this.checkBoxChoosePrinter);
@@ -1491,6 +1501,28 @@
             this.panel9.Size = new System.Drawing.Size(1095, 472);
             this.panel9.TabIndex = 35;
             // 
+            // comboBoxSalesOrderPrinterType
+            // 
+            this.comboBoxSalesOrderPrinterType.Enabled = false;
+            this.comboBoxSalesOrderPrinterType.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.comboBoxSalesOrderPrinterType.FormattingEnabled = true;
+            this.comboBoxSalesOrderPrinterType.Location = new System.Drawing.Point(717, 128);
+            this.comboBoxSalesOrderPrinterType.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxSalesOrderPrinterType.Name = "comboBoxSalesOrderPrinterType";
+            this.comboBoxSalesOrderPrinterType.Size = new System.Drawing.Size(199, 27);
+            this.comboBoxSalesOrderPrinterType.TabIndex = 92;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(554, 131);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(159, 19);
+            this.label3.TabIndex = 93;
+            this.label3.Text = "Sales Order Printer Type:";
+            // 
             // textBoxInvoiceFooter
             // 
             this.textBoxInvoiceFooter.Enabled = false;
@@ -1795,33 +1827,77 @@
             this.textBoxCustomerDisplayPort.Size = new System.Drawing.Size(199, 26);
             this.textBoxCustomerDisplayPort.TabIndex = 22;
             // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.dataGridViewPrinterSetup);
+            this.tabPage8.Location = new System.Drawing.Point(4, 28);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(1101, 478);
+            this.tabPage8.TabIndex = 8;
+            this.tabPage8.Text = "Printer Setup";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewPrinterSetup
+            // 
+            this.dataGridViewPrinterSetup.AllowUserToAddRows = false;
+            this.dataGridViewPrinterSetup.AllowUserToDeleteRows = false;
+            this.dataGridViewPrinterSetup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPrinterSetup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnSysPrinterId,
+            this.ColumnSysPrinterKitchen,
+            this.ColumnSysPrinterPrinter});
+            this.dataGridViewPrinterSetup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewPrinterSetup.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewPrinterSetup.Name = "dataGridViewPrinterSetup";
+            this.dataGridViewPrinterSetup.ReadOnly = true;
+            this.dataGridViewPrinterSetup.Size = new System.Drawing.Size(1095, 472);
+            this.dataGridViewPrinterSetup.TabIndex = 0;
+            // 
+            // ColumnSysPrinterId
+            // 
+            this.ColumnSysPrinterId.DataPropertyName = "ColumnSysPrinterId";
+            this.ColumnSysPrinterId.HeaderText = "Id";
+            this.ColumnSysPrinterId.Name = "ColumnSysPrinterId";
+            this.ColumnSysPrinterId.ReadOnly = true;
+            this.ColumnSysPrinterId.Visible = false;
+            this.ColumnSysPrinterId.Width = 20;
+            // 
+            // ColumnSysPrinterKitchen
+            // 
+            this.ColumnSysPrinterKitchen.DataPropertyName = "ColumnSysPrinterKitchen";
+            this.ColumnSysPrinterKitchen.HeaderText = "Kitchen";
+            this.ColumnSysPrinterKitchen.Name = "ColumnSysPrinterKitchen";
+            this.ColumnSysPrinterKitchen.ReadOnly = true;
+            this.ColumnSysPrinterKitchen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnSysPrinterKitchen.Width = 80;
+            // 
+            // ColumnSysPrinterPrinter
+            // 
+            this.ColumnSysPrinterPrinter.DataPropertyName = "ColumnSysPrinterPrinter";
+            this.ColumnSysPrinterPrinter.HeaderText = "Printer";
+            this.ColumnSysPrinterPrinter.Name = "ColumnSysPrinterPrinter";
+            this.ColumnSysPrinterPrinter.ReadOnly = true;
+            this.ColumnSysPrinterPrinter.Width = 350;
+            // 
             // backgroundWorkerEasyfisIntegration
             // 
             this.backgroundWorkerEasyfisIntegration.WorkerReportsProgress = true;
             this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
             this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
             // 
-            // comboBoxSalesOrderPrinterType
+            // checkBoxDisableSalesCustomerSelection
             // 
-            this.comboBoxSalesOrderPrinterType.Enabled = false;
-            this.comboBoxSalesOrderPrinterType.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.comboBoxSalesOrderPrinterType.FormattingEnabled = true;
-            this.comboBoxSalesOrderPrinterType.Location = new System.Drawing.Point(717, 128);
-            this.comboBoxSalesOrderPrinterType.Margin = new System.Windows.Forms.Padding(2);
-            this.comboBoxSalesOrderPrinterType.Name = "comboBoxSalesOrderPrinterType";
-            this.comboBoxSalesOrderPrinterType.Size = new System.Drawing.Size(199, 27);
-            this.comboBoxSalesOrderPrinterType.TabIndex = 92;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(554, 131);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(159, 19);
-            this.label3.TabIndex = 93;
-            this.label3.Text = "Sales Order Printer Type:";
+            this.checkBoxDisableSalesCustomerSelection.AutoSize = true;
+            this.checkBoxDisableSalesCustomerSelection.Enabled = false;
+            this.checkBoxDisableSalesCustomerSelection.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxDisableSalesCustomerSelection.Location = new System.Drawing.Point(874, 35);
+            this.checkBoxDisableSalesCustomerSelection.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxDisableSalesCustomerSelection.Name = "checkBoxDisableSalesCustomerSelection";
+            this.checkBoxDisableSalesCustomerSelection.Size = new System.Drawing.Size(228, 23);
+            this.checkBoxDisableSalesCustomerSelection.TabIndex = 94;
+            this.checkBoxDisableSalesCustomerSelection.Text = "Disable Sales Customer Selection";
+            this.checkBoxDisableSalesCustomerSelection.UseVisualStyleBackColor = true;
             // 
             // SysSettingsForm
             // 
@@ -1835,6 +1911,7 @@
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "SysSettingsForm";
             this.Text = "Settings";
+            this.Load += new System.EventHandler(this.SysSettingsForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1866,6 +1943,8 @@
             this.tabControl10.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrinterSetup)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2006,5 +2085,11 @@
         private System.Windows.Forms.CheckBox checkBoxEnableEditPrice;
         private System.Windows.Forms.ComboBox comboBoxSalesOrderPrinterType;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.DataGridView dataGridViewPrinterSetup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSysPrinterId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSysPrinterKitchen;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ColumnSysPrinterPrinter;
+        private System.Windows.Forms.CheckBox checkBoxDisableSalesCustomerSelection;
     }
 }

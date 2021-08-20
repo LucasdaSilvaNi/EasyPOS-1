@@ -185,18 +185,18 @@ namespace EasyPOS.Forms.Software._80mmReport
                                 foreach (var collections in collection)
                                 {
                                     CollectionCount += 1;
-                                    subCollectionTotal = collections.Amount;
-                                    String collectionData = "\n" + collections.TrnCollection.CollectionDate + collections.TrnCollection.ManualORNumber + collections.Amount.ToString("#,##0.00");
+                                    subCollectionTotal = (collections.TrnCollection.IsCancelled == true ? 0 : collections.TrnCollection.Amount);
+                                    String collectionData = "\n" + collections.TrnCollection.CollectionDate + collections.TrnCollection.ManualORNumber + collections.TrnCollection.Amount.ToString("#,##0.00");
 
                                     RectangleF itemDataRectangle = new RectangleF
                                     {
                                         X = x,
                                         Y = y,
-                                        Size = new Size(240, ((int)graphics.MeasureString(collectionData, fontArial7Regular, 300, StringFormat.GenericDefault).Height))
+                                        Size = new Size(240, ((int)graphics.MeasureString(collectionData, fontArial8Regular, 300, StringFormat.GenericDefault).Height))
                                     };
-                                    graphics.DrawString(collections.TrnCollection.CollectionDate.ToShortDateString() + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatLeft);
-                                    graphics.DrawString(collections.TrnCollection.ManualORNumber + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatCenter);
-                                    graphics.DrawString(collections.Amount.ToString("#,##0.00") + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatRight);
+                                    graphics.DrawString(collections.TrnCollection.CollectionDate.ToShortDateString() + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatLeft);
+                                    graphics.DrawString(collections.TrnCollection.ManualORNumber + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatCenter);
+                                    graphics.DrawString(collections.TrnCollection.IsCancelled == true ? "0" : collections.MstPayType.PayTypeCode.Equals("CASH") ? collections.TrnCollection.Amount.ToString("#,##0.00") : "\n", fontArial8Regular, drawBrush, new RectangleF(x, y + 30, width, height), drawFormatRight);
                                     y += itemDataRectangle.Size.Height;
                                     CollectionTotal += subCollectionTotal;
 

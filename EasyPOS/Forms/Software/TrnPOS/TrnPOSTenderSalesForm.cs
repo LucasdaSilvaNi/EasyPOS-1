@@ -60,6 +60,15 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public void GetCustomerList()
         {
+            if (Modules.SysCurrentModule.GetCurrentSettings().DisableSalesCustomerSelection == true)
+            {
+                comboBoxTenderSalesCustomer.Enabled = false;
+            }
+            else
+            {
+                comboBoxTenderSalesCustomer.Enabled = true;
+            }
+
             Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
             if (trnPOSSalesController.TenderSalesDropdownListCustomer().Any())
             {
