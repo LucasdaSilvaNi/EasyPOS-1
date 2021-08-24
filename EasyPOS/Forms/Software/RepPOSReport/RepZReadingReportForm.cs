@@ -510,7 +510,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
             if (firstCollection.Any())
             {
-                Double totalDays = (filterDate - firstCollection.FirstOrDefault().CollectionDate).TotalDays + 1;
+                Double totalDays = (filterDate - firstCollection.FirstOrDefault().EntryDateTime).TotalDays + 1;
                 repZReadingReportEntity.ZReadingCounter = totalDays.ToString("#,##0");
             }
 
