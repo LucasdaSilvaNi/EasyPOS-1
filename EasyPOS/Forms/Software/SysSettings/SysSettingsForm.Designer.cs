@@ -47,6 +47,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.checkBoxDisableSalesCustomerSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxEnableEditPrice = new System.Windows.Forms.CheckBox();
             this.checkBoxIsTriggeredQuantity = new System.Windows.Forms.CheckBox();
             this.checkBoxChoosePrinter = new System.Windows.Forms.CheckBox();
@@ -164,11 +165,10 @@
             this.textBoxCustomerDisplayPort = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.dataGridViewPrinterSetup = new System.Windows.Forms.DataGridView();
+            this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
             this.ColumnSysPrinterId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSysPrinterKitchen = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSysPrinterPrinter = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
-            this.checkBoxDisableSalesCustomerSelection = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -473,6 +473,19 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1095, 472);
             this.panel5.TabIndex = 34;
+            // 
+            // checkBoxDisableSalesCustomerSelection
+            // 
+            this.checkBoxDisableSalesCustomerSelection.AutoSize = true;
+            this.checkBoxDisableSalesCustomerSelection.Enabled = false;
+            this.checkBoxDisableSalesCustomerSelection.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxDisableSalesCustomerSelection.Location = new System.Drawing.Point(874, 35);
+            this.checkBoxDisableSalesCustomerSelection.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxDisableSalesCustomerSelection.Name = "checkBoxDisableSalesCustomerSelection";
+            this.checkBoxDisableSalesCustomerSelection.Size = new System.Drawing.Size(228, 23);
+            this.checkBoxDisableSalesCustomerSelection.TabIndex = 94;
+            this.checkBoxDisableSalesCustomerSelection.Text = "Disable Sales Customer Selection";
+            this.checkBoxDisableSalesCustomerSelection.UseVisualStyleBackColor = true;
             // 
             // checkBoxEnableEditPrice
             // 
@@ -1854,10 +1867,16 @@
             this.dataGridViewPrinterSetup.Size = new System.Drawing.Size(1095, 472);
             this.dataGridViewPrinterSetup.TabIndex = 0;
             // 
+            // backgroundWorkerEasyfisIntegration
+            // 
+            this.backgroundWorkerEasyfisIntegration.WorkerReportsProgress = true;
+            this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
+            this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
+            // 
             // ColumnSysPrinterId
             // 
             this.ColumnSysPrinterId.DataPropertyName = "ColumnSysPrinterId";
-            this.ColumnSysPrinterId.HeaderText = "Id";
+            this.ColumnSysPrinterId.HeaderText = "";
             this.ColumnSysPrinterId.Name = "ColumnSysPrinterId";
             this.ColumnSysPrinterId.ReadOnly = true;
             this.ColumnSysPrinterId.Visible = false;
@@ -1879,25 +1898,6 @@
             this.ColumnSysPrinterPrinter.Name = "ColumnSysPrinterPrinter";
             this.ColumnSysPrinterPrinter.ReadOnly = true;
             this.ColumnSysPrinterPrinter.Width = 350;
-            // 
-            // backgroundWorkerEasyfisIntegration
-            // 
-            this.backgroundWorkerEasyfisIntegration.WorkerReportsProgress = true;
-            this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
-            this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
-            // 
-            // checkBoxDisableSalesCustomerSelection
-            // 
-            this.checkBoxDisableSalesCustomerSelection.AutoSize = true;
-            this.checkBoxDisableSalesCustomerSelection.Enabled = false;
-            this.checkBoxDisableSalesCustomerSelection.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxDisableSalesCustomerSelection.Location = new System.Drawing.Point(874, 35);
-            this.checkBoxDisableSalesCustomerSelection.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxDisableSalesCustomerSelection.Name = "checkBoxDisableSalesCustomerSelection";
-            this.checkBoxDisableSalesCustomerSelection.Size = new System.Drawing.Size(228, 23);
-            this.checkBoxDisableSalesCustomerSelection.TabIndex = 94;
-            this.checkBoxDisableSalesCustomerSelection.Text = "Disable Sales Customer Selection";
-            this.checkBoxDisableSalesCustomerSelection.UseVisualStyleBackColor = true;
             // 
             // SysSettingsForm
             // 
@@ -2087,9 +2087,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.DataGridView dataGridViewPrinterSetup;
+        private System.Windows.Forms.CheckBox checkBoxDisableSalesCustomerSelection;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSysPrinterId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSysPrinterKitchen;
         private System.Windows.Forms.DataGridViewComboBoxColumn ColumnSysPrinterPrinter;
-        private System.Windows.Forms.CheckBox checkBoxDisableSalesCustomerSelection;
     }
 }
