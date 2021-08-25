@@ -70,5 +70,6 @@ namespace EasyPOS.Entities
         public Boolean IsTriggeredQuantity { get; set; }
         public Boolean EnableEditPrice { get; set; }
         public String SalesOrderPrinterType { get; set; }
+        public Boolean DisableSalesCustomerSelection { get; set; }
     }
 }
