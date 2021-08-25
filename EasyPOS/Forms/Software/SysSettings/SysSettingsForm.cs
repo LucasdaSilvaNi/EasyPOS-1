@@ -793,8 +793,8 @@ namespace EasyPOS.Forms.Software.SysSettings
             var listKitchen = sysPrinterController.ListKitchen();
             if (listKitchen != null)
             {
-                //ColumnSysPrinterKitchen = listKitchen.Kitchen.ToString();
-                //ColumnSysPrinterPrinter = listKitchen.Printer;
+              
+
             }
         }
     }
