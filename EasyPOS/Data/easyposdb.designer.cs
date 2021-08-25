@@ -114,6 +114,9 @@ namespace EasyPOS.Data
     partial void InsertSysForm(SysForm instance);
     partial void UpdateSysForm(SysForm instance);
     partial void DeleteSysForm(SysForm instance);
+    partial void InsertSysKitchenPrinter(SysKitchenPrinter instance);
+    partial void UpdateSysKitchenPrinter(SysKitchenPrinter instance);
+    partial void DeleteSysKitchenPrinter(SysKitchenPrinter instance);
     partial void InsertSysSalesLocked(SysSalesLocked instance);
     partial void UpdateSysSalesLocked(SysSalesLocked instance);
     partial void DeleteSysSalesLocked(SysSalesLocked instance);
@@ -418,6 +421,14 @@ namespace EasyPOS.Data
 			get
 			{
 				return this.GetTable<SysForm>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SysKitchenPrinter> SysKitchenPrinters
+		{
+			get
+			{
+				return this.GetTable<SysKitchenPrinter>();
 			}
 		}
 		
@@ -12564,7 +12575,7 @@ namespace EasyPOS.Data
 		
 		private System.Nullable<System.DateTime> _Date;
 		
-		private decimal _DeclareRate;
+		private System.Nullable<decimal> _DeclareRate;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -12574,7 +12585,7 @@ namespace EasyPOS.Data
     partial void OnIdChanged();
     partial void OnDateChanging(System.Nullable<System.DateTime> value);
     partial void OnDateChanged();
-    partial void OnDeclareRateChanging(decimal value);
+    partial void OnDeclareRateChanging(System.Nullable<decimal> value);
     partial void OnDeclareRateChanged();
     #endregion
 		
@@ -12603,7 +12614,7 @@ namespace EasyPOS.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="Date")]
 		public System.Nullable<System.DateTime> Date
 		{
 			get
@@ -12623,8 +12634,8 @@ namespace EasyPOS.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeclareRate", DbType="Decimal(18,2) NOT NULL")]
-		public decimal DeclareRate
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeclareRate", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> DeclareRate
 		{
 			get
 			{
@@ -12799,6 +12810,116 @@ namespace EasyPOS.Data
 		{
 			this.SendPropertyChanging();
 			entity.SysForm = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SysKitchenPrinter")]
+	public partial class SysKitchenPrinter : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Kitchen;
+		
+		private string _Printer;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnKitchenChanging(System.Nullable<int> value);
+    partial void OnKitchenChanged();
+    partial void OnPrinterChanging(string value);
+    partial void OnPrinterChanged();
+    #endregion
+		
+		public SysKitchenPrinter()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kitchen", DbType="Int")]
+		public System.Nullable<int> Kitchen
+		{
+			get
+			{
+				return this._Kitchen;
+			}
+			set
+			{
+				if ((this._Kitchen != value))
+				{
+					this.OnKitchenChanging(value);
+					this.SendPropertyChanging();
+					this._Kitchen = value;
+					this.SendPropertyChanged("Kitchen");
+					this.OnKitchenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Printer", DbType="NVarChar(200)")]
+		public string Printer
+		{
+			get
+			{
+				return this._Printer;
+			}
+			set
+			{
+				if ((this._Printer != value))
+				{
+					this.OnPrinterChanging(value);
+					this.SendPropertyChanging();
+					this._Printer = value;
+					this.SendPropertyChanged("Printer");
+					this.OnPrinterChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -23175,7 +23296,7 @@ namespace EasyPOS.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockInNumber", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockInNumber", DbType="NVarChar(250) NOT NULL", CanBeNull=false)]
 		public string StockInNumber
 		{
 			get
