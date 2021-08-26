@@ -45,7 +45,15 @@ namespace EasyPOS.Forms.Software.TrnStockCount
 
                 GetUserList();
             }
+            var id = trnStockCountEntity.Id;
 
+            Controllers.TrnStockCountController trnStockCount = new Controllers.TrnStockCountController();
+            var detail = trnStockCount.DetailStockCount(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdateUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
         }
 
         public void GetUserList()

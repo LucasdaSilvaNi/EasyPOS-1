@@ -21,8 +21,12 @@ namespace EasyPOS.Entities
         public Int32 ApprovedBy { get; set; }
         public Boolean IsLocked { get; set; }
         public Int32 EntryUserId { get; set; }
+        public String EntryUserName { get; set; }
         public String EntryDateTime { get; set; }
+        public String EntryTime { get; set; }
         public Int32 UpdateUserId { get; set; }
+        public String UpdateUserName { get; set; }
         public String UpdateDateTime { get; set; }
+        public String UpdateTime { get; set; }
     }
 }

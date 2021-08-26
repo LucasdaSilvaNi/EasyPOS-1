@@ -24,6 +24,7 @@ namespace EasyPOS.Forms.Software.MstItem
         public List<String> inventoryOption;
         public List<String> lockOption;
         public List<String> supplierOption;
+        public Entities.MstItemEntity mstItemEntity;
         public MstItemListForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
@@ -86,6 +87,7 @@ namespace EasyPOS.Forms.Software.MstItem
 
             }
         }
+
         public void UpdateItemListDataSource()
         {
             String selectedIsInventory = Convert.ToString(comboBoxIsInventory.SelectedValue);
@@ -201,7 +203,14 @@ namespace EasyPOS.Forms.Software.MstItem
 
         public void GetItemListCurrentSelectedCell(Int32 rowIndex)
         {
+            Controllers.MstItemController newItem = new Controllers.MstItemController();
+            var detail = newItem.DetailItem(rowIndex);
 
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+
+            }
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

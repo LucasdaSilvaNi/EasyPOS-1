@@ -57,6 +57,15 @@ namespace EasyPOS.Forms.Software.MstUser
                 GetUserDetail();
                 textBoxFullName.Focus();
             }
+            var id = mstUserEntity.Id;
+
+            Controllers.MstUserController mstUser = new Controllers.MstUserController();
+            var detail = mstUser.DetailUser(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
 
         }
 

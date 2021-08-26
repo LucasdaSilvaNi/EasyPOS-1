@@ -83,9 +83,13 @@ namespace EasyPOS.Controllers
                                ApprovedBy = d.ApprovedBy,
                                IsLocked = d.IsLocked,
                                EntryUserId = d.EntryUserId,
+                               EntryUserName = d.MstUser3.FullName,
                                EntryDateTime = d.EntryDateTime.ToShortDateString(),
+                               EntryTime = d.EntryDateTime.ToShortTimeString(),
                                UpdateUserId = d.UpdateUserId,
-                               UpdateDateTime = d.UpdateDateTime.ToShortDateString()
+                               UpdateUserName = d.MstUser4.FullName,
+                               UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
+                               UpdateTime = d.UpdateDateTime.ToShortTimeString()
                            };
 
             return stockOut.FirstOrDefault();
@@ -153,7 +157,7 @@ namespace EasyPOS.Controllers
                 }
 
                 String stockOutNumber = "0000000001";
-                var lastStockOut = from d in db.TrnStockOuts.OrderByDescending(d => d.Id) select d;
+                var lastStockOut = from d in db.TrnStockOuts.OrderByDescending(d => d.Id) where d.StockOutNumber.Contains("-") == false select d; 
                 if (lastStockOut.Any())
                 {
                     Int32 newStockOutNumber = Convert.ToInt32(lastStockOut.FirstOrDefault().StockOutNumber) + 1;

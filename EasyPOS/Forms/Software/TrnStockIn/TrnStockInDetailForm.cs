@@ -45,6 +45,16 @@ namespace EasyPOS.Forms.Software.TrnStockIn
                 GetSupplierList();
             }
 
+            var id = trnStockInEntity.Id;
+
+            Controllers.TrnStockInController trnStockIn = new Controllers.TrnStockInController();
+            var detail = trnStockIn.DetailStockIn(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdateUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
+
             //if (Modules.SysCurrentModule.GetCurrentSettings().HideStockInPriceAndCost == true)
             //{
             //    ColumnStockInLineListCost.Visible = false;

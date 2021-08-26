@@ -37,6 +37,15 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
                 comboBoxTerminal.Focus();
             }
 
+            var id = trnDisbursementEntity.Id;
+
+            Controllers.TrnDisbursementController newDIsbursmeent = new Controllers.TrnDisbursementController();
+            var detail = newDIsbursmeent.DetailDisbursement(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUsername, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdateUserUsername, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
         }
 
         public void GetTerminals()

@@ -98,10 +98,14 @@ namespace EasyPOS.Controllers
                                IsLocked = d.IsLocked,
                                EntryUserId = d.EntryUserId,
                                EntryUserName = d.MstUser.UserName,
+                               EntryUserUserName = d.MstUser.FullName,
                                EntryDateTime = d.EntryDateTime.ToShortDateString(),
+                               EntryTime = d.EntryDateTime.ToShortTimeString(),
                                UpdateUserId = d.UpdateUserId,
                                UpdatedUserName = d.MstUser1.UserName,
-                               UpdateDateTime = d.UpdateDateTime.ToShortDateString()
+                               UpdatedUserUserName = d.MstUser1.FullName,
+                               UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
+                               UpdateTime = d.UpdateDateTime.ToShortTimeString()
                            };
 
             return discount.FirstOrDefault();

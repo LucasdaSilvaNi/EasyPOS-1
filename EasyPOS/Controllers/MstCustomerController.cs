@@ -47,7 +47,7 @@ namespace EasyPOS.Controllers
                                 DefaultPriceDescription = d.DefaultPriceDescription,
                                 CustomerCode = d.CustomerCode,
                                 BusinessStyle = d.BusinessStyle,
-                                LoadAmount = (decimal)d.LoadAmount
+                                LoadAmount = d.LoadAmount
                             };
 
             return customers.OrderByDescending(d => d.Id).ToList();
@@ -76,9 +76,13 @@ namespace EasyPOS.Controllers
                                AvailableReward = d.AvailableReward,
                                AccountId = d.AccountId,
                                EntryUserId = d.EntryUserId,
+                               EntryUserUserName = d.MstUser.FullName,
                                EntryDateTime = d.EntryDateTime.ToShortDateString(),
+                               EntryTime = d.EntryDateTime.ToShortTimeString(),
                                UpdateUserId = d.UpdateUserId,
+                               UpdatedUserUserName = d.MstUser1.FullName,
                                UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
+                               UpdateTime = d.UpdateDateTime.ToShortTimeString(),
                                IsLocked = d.IsLocked,
                                DefaultPriceDescription = d.DefaultPriceDescription,
                                CustomerCode = d.CustomerCode,
@@ -181,9 +185,9 @@ namespace EasyPOS.Controllers
                     AvailableReward = 0,
                     AccountId = account.FirstOrDefault().Id,
                     EntryUserId = currentUserLogin.FirstOrDefault().Id,
-                    EntryDateTime = DateTime.Today,
+                    EntryDateTime = DateTime.Now,
                     UpdateUserId = currentUserLogin.FirstOrDefault().Id,
-                    UpdateDateTime = DateTime.Today,
+                    UpdateDateTime = DateTime.Now,
                     IsLocked = false,
                     DefaultPriceDescription = null,
                     CustomerCode = null,

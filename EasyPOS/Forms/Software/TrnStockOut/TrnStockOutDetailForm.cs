@@ -45,6 +45,15 @@ namespace EasyPOS.Forms.Software.TrnStockOut
 
                 GetAccountList();
             }
+            var id = trnStockOutEntity.Id;
+
+            Controllers.TrnStockOutController trnStockOut = new Controllers.TrnStockOutController();
+            var detail = trnStockOut.DetailStockOut(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdateUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
 
         }
 

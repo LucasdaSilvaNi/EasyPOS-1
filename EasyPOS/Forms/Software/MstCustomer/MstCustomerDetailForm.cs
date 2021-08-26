@@ -46,6 +46,15 @@ namespace EasyPOS.Forms.Software.MstCustomer
                 textBoxCustomerCode.Focus();
                 GetTermList();
             }
+            var id = mstCustomerEntity.Id;
+
+            Controllers.MstCustomerController customerController = new Controllers.MstCustomerController();
+            var detail = customerController.DetailCustomer(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
         }
 
         public void GetTermList()

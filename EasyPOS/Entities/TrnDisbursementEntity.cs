@@ -30,9 +30,15 @@ namespace EasyPOS.Entities
         public Int32 ApprovedBy { get; set; }
         public Boolean IsLocked { get; set; }
         public Int32 EntryUserId { get; set; }
+        public String EntryUsername { get; set; }
+        public String EntryUserUsername { get; set; }
         public String EntryDateTime { get; set; }
+        public String EntryTime { get; set; }
         public Int32 UpdateUserId { get; set; }
+        public String UpdateUserUsername { get; set; }
+        public String UpdateUsername { get; set; }
         public String UpdateDateTime { get; set; }
+        public String UpdateTime { get; set; }
         public Decimal? Amount1000 { get; set; }
         public Decimal? Amount500 { get; set; }
         public Decimal? Amount200 { get; set; }

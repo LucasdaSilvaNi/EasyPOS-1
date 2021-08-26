@@ -340,7 +340,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         {
             if (e.RowIndex > -1)
             {
-                CurrentSelectedCell(e.RowIndex);
+                CurrentSelectedCell(e.RowIndex);                              
             }
 
             if (e.RowIndex > -1 && dataGridViewSalesList.CurrentCell.ColumnIndex == dataGridViewSalesList.Columns["ColumnEdit"].Index)
@@ -410,6 +410,14 @@ namespace EasyPOS.Forms.Software.TrnPOS
         {
             dataGridViewSalesLineItemDisplay.Rows.Clear();
             dataGridViewSalesLineItemDisplay.Refresh();
+
+            Controllers.TrnSalesController newSales = new Controllers.TrnSalesController();
+            var detail = newSales.DetailSales(rowIndex);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
 
             if (rowIndex == -1)
             {
@@ -896,6 +904,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private void comboBoxLockOption_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSalesListGridDataSource();
-        }
+        }      
     }
 }

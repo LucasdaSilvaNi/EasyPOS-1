@@ -50,6 +50,15 @@ namespace EasyPOS.Forms.Software.MstItem
                 GetItemList();
                 textBoxBarcode.Focus();
             }
+            var id = mstItemEntity.Id;
+
+            Controllers.MstItemController itemController = new Controllers.MstItemController();
+            var detail = itemController.DetailItem(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
         }
 
         public void GetUnitList()

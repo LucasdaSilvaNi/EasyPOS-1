@@ -54,16 +54,33 @@ namespace EasyPOS.Controllers
                             Password = d.Password,
                             FullName = d.FullName,
                             UserCardNumber = d.UserCardNumber,
-                            EntryUserId = d.EntryUserId,
-                            EntryUserName = d.UserName,
+                            EntryUserId =d.EntryUserId,
+                            EntryUserName = GetUser(d.EntryUserId),
+                            EntryUserUserName = d.UserName,
                             EntryDateTime = d.EntryDateTime.ToShortDateString(),
+                            EntryTime = d.EntryDateTime.ToShortTimeString(),
                             UpdateUserId = d.UpdateUserId,
-                            UpdatedUserName = d.UserName,
+                            UpdatedUserName = GetUser(d.UpdateUserId),
+                            UpdatedUserUserName = d.UserName,
                             UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
+                            UpdateTime = d.UpdateDateTime.ToShortTimeString(),
                             IsLocked = d.IsLocked
                         };
 
             return users.FirstOrDefault();
+        }
+
+        public String GetUser(Int32 UserId)
+        {
+            var userName = "";
+            var currentUser = from d in db.MstUsers
+                              where d.Id == UserId
+                              select d;
+            if (currentUser.Any())
+            {
+                userName = currentUser.FirstOrDefault().UserName;
+            }
+            return userName;
         }
 
         // ========
@@ -86,9 +103,9 @@ namespace EasyPOS.Controllers
                     FullName = "NA",
                     UserCardNumber = "NA",
                     EntryUserId = currentUserLogin.FirstOrDefault().Id,
-                    EntryDateTime = DateTime.Today,
+                    EntryDateTime = DateTime.Now,
                     UpdateUserId = currentUserLogin.FirstOrDefault().Id,
-                    UpdateDateTime = DateTime.Today,
+                    UpdateDateTime = DateTime.Now,
                     IsLocked = false
                 };
 
@@ -153,7 +170,7 @@ namespace EasyPOS.Controllers
                     lockUser.FullName = objUser.FullName;
                     lockUser.UserCardNumber = objUser.UserCardNumber;
                     lockUser.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
-                    lockUser.UpdateDateTime = DateTime.Today;
+                    lockUser.UpdateDateTime = DateTime.Now;
                     lockUser.IsLocked = true;
                     db.SubmitChanges();
 

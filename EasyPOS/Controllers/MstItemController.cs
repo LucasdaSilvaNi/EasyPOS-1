@@ -303,9 +303,13 @@ namespace EasyPOS.Controllers
                            LotNumber = d.LotNumber,
                            Remarks = d.Remarks,
                            EntryUserId = d.EntryUserId,
+                           EntryUserUserName = d.MstUser.FullName,
                            EntryDateTime = d.EntryDateTime.ToShortDateString(),
+                           EntryTime = d.EntryDateTime.ToShortTimeString(),
                            UpdateUserId = d.UpdateUserId,
+                           UpdatedUserUserName = d.MstUser1.FullName,
                            UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
+                           UpdateTime = d.UpdateDateTime.ToShortTimeString(),
                            IsLocked = d.IsLocked,
                            DefaultKitchenReport = d.DefaultKitchenReport,
                            IsPackage = d.IsPackage,
@@ -547,9 +551,9 @@ namespace EasyPOS.Controllers
                     LotNumber = "NA",
                     Remarks = "NA",
                     EntryUserId = currentUserLogin.FirstOrDefault().Id,
-                    EntryDateTime = DateTime.Today,
+                    EntryDateTime = DateTime.Now,
                     UpdateUserId = currentUserLogin.FirstOrDefault().Id,
-                    UpdateDateTime = DateTime.Today,
+                    UpdateDateTime = DateTime.Now,
                     IsLocked = false,
                     DefaultKitchenReport = "",
                     IsPackage = false,
@@ -623,7 +627,7 @@ namespace EasyPOS.Controllers
                     lockItem.LotNumber = objItem.LotNumber;
                     lockItem.Remarks = objItem.Remarks;
                     lockItem.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
-                    lockItem.UpdateDateTime = DateTime.Today;
+                    lockItem.UpdateDateTime = DateTime.Now;
                     lockItem.IsLocked = true;
                     lockItem.cValue = objItem.cValue;
                     lockItem.ChildItemId = objItem.ChildItemId;

@@ -36,6 +36,15 @@ namespace EasyPOS.Forms.Software.MstDiscounting
                 GetDiscountDetail();
                 textBoxDiscount.Focus();
             }
+            var id = mstDiscountEntity.Id;
+
+            Controllers.MstDiscountController mstDiscount = new Controllers.MstDiscountController();
+            var detail = mstDiscount.DetailDiscount(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
         }
 
 

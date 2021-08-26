@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SysSoftwareForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelUpdatedDate = new System.Windows.Forms.Label();
+            this.labelUpdatedByUser = new System.Windows.Forms.Label();
+            this.labelCreatedDate = new System.Windows.Forms.Label();
+            this.labelCreatedByUser = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.labelSupport = new System.Windows.Forms.Label();
@@ -89,6 +97,14 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(116)))), ((int)(((byte)(116)))));
+            this.panel1.Controls.Add(this.labelUpdatedDate);
+            this.panel1.Controls.Add(this.labelUpdatedByUser);
+            this.panel1.Controls.Add(this.labelCreatedDate);
+            this.panel1.Controls.Add(this.labelCreatedByUser);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.labelVersion);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.labelSupport);
@@ -98,6 +114,87 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1096, 46);
             this.panel1.TabIndex = 9;
+            // 
+            // labelUpdatedDate
+            // 
+            this.labelUpdatedDate.AutoSize = true;
+            this.labelUpdatedDate.Location = new System.Drawing.Point(820, 23);
+            this.labelUpdatedDate.Name = "labelUpdatedDate";
+            this.labelUpdatedDate.Size = new System.Drawing.Size(10, 13);
+            this.labelUpdatedDate.TabIndex = 15;
+            this.labelUpdatedDate.Text = ".";
+            // 
+            // labelUpdatedByUser
+            // 
+            this.labelUpdatedByUser.AutoSize = true;
+            this.labelUpdatedByUser.Location = new System.Drawing.Point(808, 6);
+            this.labelUpdatedByUser.Name = "labelUpdatedByUser";
+            this.labelUpdatedByUser.Size = new System.Drawing.Size(10, 13);
+            this.labelUpdatedByUser.TabIndex = 14;
+            this.labelUpdatedByUser.Text = ".";
+            // 
+            // labelCreatedDate
+            // 
+            this.labelCreatedDate.AutoSize = true;
+            this.labelCreatedDate.Location = new System.Drawing.Point(521, 22);
+            this.labelCreatedDate.Name = "labelCreatedDate";
+            this.labelCreatedDate.Size = new System.Drawing.Size(10, 13);
+            this.labelCreatedDate.TabIndex = 13;
+            this.labelCreatedDate.Text = ".";
+            // 
+            // labelCreatedByUser
+            // 
+            this.labelCreatedByUser.AutoSize = true;
+            this.labelCreatedByUser.ForeColor = System.Drawing.Color.Black;
+            this.labelCreatedByUser.Location = new System.Drawing.Point(509, 6);
+            this.labelCreatedByUser.Name = "labelCreatedByUser";
+            this.labelCreatedByUser.Size = new System.Drawing.Size(10, 13);
+            this.labelCreatedByUser.TabIndex = 12;
+            this.labelCreatedByUser.Text = ".";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(734, 21);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(90, 15);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Updated Date: ";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(734, 4);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 15);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Updated by: ";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(437, 21);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 15);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Created Date: ";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(437, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(73, 15);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Created by: ";
             // 
             // labelVersion
             // 
@@ -337,7 +434,7 @@
             // 
             this.toolStripMenuItemTabeGroup.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemTabeGroup.Image")));
             this.toolStripMenuItemTabeGroup.Name = "toolStripMenuItemTabeGroup";
-            this.toolStripMenuItemTabeGroup.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItemTabeGroup.Size = new System.Drawing.Size(178, 24);
             this.toolStripMenuItemTabeGroup.Text = "Table Group";
             this.toolStripMenuItemTabeGroup.Click += new System.EventHandler(this.toolStripMenuItemTabeGroup_Click);
             // 
@@ -345,20 +442,20 @@
             // 
             this.toolStripMenuItemItemGroup.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItemItemGroup.Image")));
             this.toolStripMenuItemItemGroup.Name = "toolStripMenuItemItemGroup";
-            this.toolStripMenuItemItemGroup.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItemItemGroup.Size = new System.Drawing.Size(178, 24);
             this.toolStripMenuItemItemGroup.Text = "Item Group";
             this.toolStripMenuItemItemGroup.Click += new System.EventHandler(this.toolStripMenuItemItemGroup_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(175, 6);
             // 
             // toolStripMenuItemKitchenDisplay
             // 
             this.toolStripMenuItemKitchenDisplay.Image = global::EasyPOS.Properties.Resources.Kitchen;
             this.toolStripMenuItemKitchenDisplay.Name = "toolStripMenuItemKitchenDisplay";
-            this.toolStripMenuItemKitchenDisplay.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItemKitchenDisplay.Size = new System.Drawing.Size(178, 24);
             this.toolStripMenuItemKitchenDisplay.Text = "Kitchen Display";
             this.toolStripMenuItemKitchenDisplay.Click += new System.EventHandler(this.toolStripMenuItemKitchenDisplay_Click);
             // 
@@ -366,7 +463,7 @@
             // 
             this.toolStripMenuItemDispatchStation.Image = global::EasyPOS.Properties.Resources.Dispatch;
             this.toolStripMenuItemDispatchStation.Name = "toolStripMenuItemDispatchStation";
-            this.toolStripMenuItemDispatchStation.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItemDispatchStation.Size = new System.Drawing.Size(178, 24);
             this.toolStripMenuItemDispatchStation.Text = "Dispatch Station";
             this.toolStripMenuItemDispatchStation.Click += new System.EventHandler(this.toolStripMenuItemDispatchStation_Click);
             // 
@@ -398,7 +495,7 @@
             this.pOSTouchToolStripMenuItem});
             this.pOSToolStripMenuItem.Image = global::EasyPOS.Properties.Resources.POS;
             this.pOSToolStripMenuItem.Name = "pOSToolStripMenuItem";
-            this.pOSToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.pOSToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.pOSToolStripMenuItem.Text = "Sales";
             // 
             // pOSToolStripMenuItem1
@@ -421,20 +518,20 @@
             // 
             this.remittanceToolStripMenuItem.Image = global::EasyPOS.Properties.Resources.Disbursement;
             this.remittanceToolStripMenuItem.Name = "remittanceToolStripMenuItem";
-            this.remittanceToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.remittanceToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.remittanceToolStripMenuItem.Text = "Remittance";
             this.remittanceToolStripMenuItem.Click += new System.EventHandler(this.remittanceToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(170, 6);
             // 
             // stockInToolStripMenuItem
             // 
             this.stockInToolStripMenuItem.Image = global::EasyPOS.Properties.Resources.Stock_In;
             this.stockInToolStripMenuItem.Name = "stockInToolStripMenuItem";
-            this.stockInToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.stockInToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.stockInToolStripMenuItem.Text = "Stock In";
             this.stockInToolStripMenuItem.Click += new System.EventHandler(this.stockInToolStripMenuItem_Click);
             // 
@@ -442,7 +539,7 @@
             // 
             this.stockOutToolStripMenuItem.Image = global::EasyPOS.Properties.Resources.Stock_Out;
             this.stockOutToolStripMenuItem.Name = "stockOutToolStripMenuItem";
-            this.stockOutToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.stockOutToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.stockOutToolStripMenuItem.Text = "Stock Out";
             this.stockOutToolStripMenuItem.Click += new System.EventHandler(this.stockOutToolStripMenuItem_Click);
             // 
@@ -450,20 +547,20 @@
             // 
             this.stockCountToolStripMenuItem.Image = global::EasyPOS.Properties.Resources.Stock_Count;
             this.stockCountToolStripMenuItem.Name = "stockCountToolStripMenuItem";
-            this.stockCountToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.stockCountToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.stockCountToolStripMenuItem.Text = "Stock Count";
             this.stockCountToolStripMenuItem.Click += new System.EventHandler(this.stockCountToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(181, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(170, 6);
             // 
             // purchaseOrderToolStripMenuItem
             // 
             this.purchaseOrderToolStripMenuItem.Image = global::EasyPOS.Properties.Resources.PurchaseOrder;
             this.purchaseOrderToolStripMenuItem.Name = "purchaseOrderToolStripMenuItem";
-            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.purchaseOrderToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.purchaseOrderToolStripMenuItem.Text = "Purchase Order";
             this.purchaseOrderToolStripMenuItem.Click += new System.EventHandler(this.purchaseOrderToolStripMenuItem_Click);
             // 
@@ -471,7 +568,7 @@
             // 
             this.collectionToolStripMenuItem.Image = global::EasyPOS.Properties.Resources.PurchaseOrder;
             this.collectionToolStripMenuItem.Name = "collectionToolStripMenuItem";
-            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.collectionToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.collectionToolStripMenuItem.Text = "Collection";
             this.collectionToolStripMenuItem.Click += new System.EventHandler(this.collectionToolStripMenuItem_Click);
             // 
@@ -645,5 +742,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem purchaseOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem collectionToolStripMenuItem;
+        private System.Windows.Forms.Label labelUpdatedDate;
+        private System.Windows.Forms.Label labelUpdatedByUser;
+        private System.Windows.Forms.Label labelCreatedDate;
+        private System.Windows.Forms.Label labelCreatedByUser;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

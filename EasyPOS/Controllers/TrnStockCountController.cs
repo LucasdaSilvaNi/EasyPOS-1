@@ -76,9 +76,13 @@ namespace EasyPOS.Controllers
                                  ApprovedBy = d.ApprovedBy,
                                  IsLocked = d.IsLocked,
                                  EntryUserId = d.EntryUserId,
+                                 EntryUserUserName = d.MstUser3.FullName,
                                  EntryDateTime = d.EntryDateTime.ToShortDateString(),
+                                 EntryTime = d.EntryDateTime.ToShortTimeString(),
                                  UpdateUserId = d.UpdateUserId,
-                                 UpdateDateTime = d.UpdateDateTime.ToShortDateString()
+                                 UpdateUserUserName = d.MstUser4.FullName,
+                                 UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
+                                 UpdateTime = d.UpdateDateTime.ToShortTimeString()
                              };
 
             return stockCount.FirstOrDefault();

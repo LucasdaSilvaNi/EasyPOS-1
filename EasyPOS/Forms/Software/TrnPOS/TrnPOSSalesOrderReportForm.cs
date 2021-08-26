@@ -322,17 +322,17 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                         String totalSalesLabel = "Total Amount";
                         String totalSalesAmount = totalAmount.ToString("#,##0.00");
-                        graphics.DrawString(totalSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                        graphics.DrawString(totalSalesAmount, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                        y += graphics.MeasureString(totalSalesAmount, fontArial7Regular).Height;
+                        graphics.DrawString(totalSalesLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        graphics.DrawString(totalSalesAmount, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                        y += graphics.MeasureString(totalSalesAmount, fontArial8Bold).Height;
                     }
                     else
                     {
                         String totalSalesLabel = "\nTotal Amount";
                         String totalSalesAmount = "\n" + totalAmount.ToString("#,##0.00");
-                        graphics.DrawString(totalSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                        graphics.DrawString(totalSalesAmount, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                        y += graphics.MeasureString(totalSalesAmount, fontArial7Regular).Height;
+                        graphics.DrawString(totalSalesLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        graphics.DrawString(totalSalesAmount, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                        y += graphics.MeasureString(totalSalesAmount, fontArial8Bold).Height;
                     }
 
                     String totalNumberOfItemsLabel = "Total No. of Item(s)";
@@ -348,7 +348,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point thirdLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, thirdLineFirstPoint, thirdLineSecondPoint);
 
-                    String remarks = "\nRemarks: \n\n " + salesLines.FirstOrDefault().Preparation;
+                    String remarks = "\nRemarks: " + sales.FirstOrDefault().Remarks;
                     graphics.DrawString(remarks, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     y += graphics.MeasureString(remarks, fontArial7Regular).Height;
 
@@ -518,17 +518,17 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                         String totalSalesLabel = "Total Amount";
                         String totalSalesAmount = totalAmount.ToString("#,##0.00");
-                        graphics.DrawString(totalSalesLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                        graphics.DrawString(totalSalesAmount, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                        y += graphics.MeasureString(totalSalesAmount, fontArial8Regular).Height;
+                        graphics.DrawString(totalSalesLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        graphics.DrawString(totalSalesAmount, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                        y += graphics.MeasureString(totalSalesAmount, fontArial8Bold).Height;
                     }
                     else
                     {
                         String totalSalesLabel = "\nTotal Amount";
                         String totalSalesAmount = "\n" + totalAmount.ToString("#,##0.00");
-                        graphics.DrawString(totalSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                        graphics.DrawString(totalSalesAmount, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                        y += graphics.MeasureString(totalSalesAmount, fontArial7Regular).Height;
+                        graphics.DrawString(totalSalesLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        graphics.DrawString(totalSalesAmount, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                        y += graphics.MeasureString(totalSalesAmount, fontArial8Bold).Height;
                     }
 
                     String totalNumberOfItemsLabel = "Total No. of Item(s)";
@@ -544,7 +544,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point thirdLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, thirdLineFirstPoint, thirdLineSecondPoint);
 
-                    String remarks = "\nRemarks: " + salesLines.FirstOrDefault().Preparation;
+                    String remarks = "\nRemarks: " + sales.FirstOrDefault().Remarks;
                     graphics.DrawString(remarks, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     y += graphics.MeasureString(remarks, fontArial8Regular).Height;
 

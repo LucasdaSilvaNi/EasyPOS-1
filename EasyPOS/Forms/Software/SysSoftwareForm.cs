@@ -45,7 +45,7 @@ namespace EasyPOS.Forms.Software
             labelVersion.Text = "EasyPOS Version: " + Modules.SysCurrentModule.GetCurrentSettings().CurrentVersion;
             labelSupport.Text = "Support: Easyfis Corporation " + Modules.SysCurrentModule.GetCurrentSettings().CurrentSupport;
         }
-       
+
         public TabPage tabPageItemList = new TabPage { Name = "tabPageItemList", Text = "Setup - Item List" };
         public TabPage tabPageItemDetail = new TabPage { Name = "tabPageItemDetail", Text = "Setup - Item Detail" };
         public TabPage tabPageCustomerList = new TabPage { Name = "tabPageCustomerList", Text = "Setup - Customer List" };
@@ -83,9 +83,6 @@ namespace EasyPOS.Forms.Software
         public TabPage tabPagePurchaseOrderDetail = new TabPage { Name = "tabPagePurchaseOrderDetail", Text = "Purchase Order Detail" };
         public TabPage tabPageCollectionList = new TabPage { Name = "tabPageCollectionList", Text = "Collection List" };
         public TabPage tabPageCollectionDetail = new TabPage { Name = "tabPageCollectionDetail", Text = "Collection Detail" };
-
-
-
 
         public MstItem.MstItemListForm mstItemListForm = null;
         public MstItem.MstItemDetailForm mstItemDetailForm = null;
@@ -136,6 +133,14 @@ namespace EasyPOS.Forms.Software
             };
 
             tabPageSysMenu.Controls.Add(sysMenuForm);
+        }
+
+        public void displayTimeStamp(String createdBy, String createdDate, String updatedBy, String updatedDate)
+        {
+            labelCreatedByUser.Text = createdBy;
+            labelCreatedDate.Text = createdDate;
+            labelUpdatedByUser.Text = updatedBy;
+            labelUpdatedDate.Text = updatedDate;
         }
 
         public void AddTabPageRemittanceReports()
@@ -697,7 +702,7 @@ namespace EasyPOS.Forms.Software
         {
             tabPageSystemUtilities.Controls.Remove(sysUtilitiesListForm);
 
-            sysUtilitiesListForm = new SysUtilities.SysUtilitiesForm(this,null)
+            sysUtilitiesListForm = new SysUtilities.SysUtilitiesForm(this, null)
             {
                 TopLevel = false,
                 Visible = true,

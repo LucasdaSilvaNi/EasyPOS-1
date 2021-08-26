@@ -198,6 +198,15 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 GetSalesDetail();
                 GetSalesLineList();
             }
+            var id = trnSalesEntity.Id;
+
+            Controllers.TrnSalesController newSales = new Controllers.TrnSalesController();
+            var detail = newSales.DetailSales(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
 
             Controllers.TrnSalesController trnSalesController = new Controllers.TrnSalesController();
             listItemGroups = trnSalesController.ListItemGroup();
