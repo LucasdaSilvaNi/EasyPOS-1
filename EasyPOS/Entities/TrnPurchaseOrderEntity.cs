@@ -23,10 +23,14 @@ namespace EasyPOS.Entities
         public Boolean IsLocked { get; set; }
         public Int32 EntryUserId { get; set; }
         public String EntryUser { get; set; }
+        public String EntryUserName { get; set; }
         public String EntryDateTime { get; set; }
+        public String EntryTime { get; set; }
         public Int32 UpdateUserId { get; set; }
         public String UpdateUser { get; set; }
+        public String UpdateUserName { get; set; }
         public String UpdateDateTime { get; set; }
+        public String UpdateTime { get; set; }
         public Int32? RequestedBy { get; set; }
         public String Status { get; set; }
     }

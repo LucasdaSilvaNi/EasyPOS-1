@@ -246,6 +246,7 @@
     <Compile Include="Controllers\SysLoginController.cs" />
     <Compile Include="Controllers\IntCloudSettingsController.cs" />
     <Compile Include="Controllers\SysCurrentController.cs" />
+    <Compile Include="Controllers\SysKitchenPrinterController.cs" />
     <Compile Include="Controllers\SysSoftwareController.cs" />
     <Compile Include="Controllers\TrnCollectionController.cs" />
     <Compile Include="Controllers\TrnCollectionLineController.cs" />
@@ -314,6 +315,7 @@
     <Compile Include="Entities\DgvMstItemComponentListEntity.cs" />
     <Compile Include="Entities\DgvSalesSummaryRewardReportEntity.cs" />
     <Compile Include="Entities\DgvSysDispatchStationSalesListEntity.cs" />
+    <Compile Include="Entities\DgvSysKitchenPrinterEntity.cs" />
     <Compile Include="Entities\DgvSysUtilitiesItemUpload.cs" />
     <Compile Include="Entities\DgvTrnCollectionLineListEntity.cs" />
     <Compile Include="Entities\DgvTrnCollectionListEntity.cs" />
@@ -361,6 +363,7 @@
     <Compile Include="Entities\DgvMstUserListEntity.cs" />
     <Compile Include="Entities\DgvSysUtilitiesBarcodePrintingItemList.cs" />
     <Compile Include="Entities\DgvRepUnsoldItemEntity.cs" />
+    <Compile Include="Entities\SysKitchenPrinterEntity.cs" />
     <Compile Include="Entities\EspCardDetailsEntity.cs" />
     <Compile Include="Entities\EspTokenEntity.cs" />
     <Compile Include="Entities\MobTrnSalesOrderEntity.cs" />
@@ -594,6 +597,12 @@
     </Compile>
     <Compile Include="Forms\Software\RepInventoryReport\RepInventoryItemListReportForm.Designer.cs">
       <DependentUpon>RepInventoryItemListReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Software\RepInventoryReport\RepStockCardPDFForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\RepInventoryReport\RepStockCardPDFForm.Designer.cs">
+      <DependentUpon>RepStockCardPDFForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Software\RepInventoryReport\RepItemExpiryReportForm.cs">
       <SubType>Form</SubType>
@@ -1403,6 +1412,9 @@
     <EmbeddedResource Include="Forms\Software\RepInventoryReport\RepInventoryItemListReportForm.resx">
       <DependentUpon>RepInventoryItemListReportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\RepInventoryReport\RepStockCardPDFForm.resx">
+      <DependentUpon>RepStockCardPDFForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\RepInventoryReport\RepItemExpiryReportForm.resx">
       <DependentUpon>RepItemExpiryReportForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1567,6 +1579,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\SysSettings\SysSettingsForm.resx">
       <DependentUpon>SysSettingsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\SysSystemTables\SysTerminalDetailForm.resx">
       <DependentUpon>SysTerminalDetailForm.cs</DependentUpon>

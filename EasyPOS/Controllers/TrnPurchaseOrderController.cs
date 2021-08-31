@@ -82,9 +82,13 @@ namespace EasyPOS.Controllers
                                     ApprovedBy = d.ApprovedBy,
                                     IsLocked = d.IsLocked,
                                     EntryUser = d.MstUser.FullName,
+                                    EntryUserName = d.MstUser3.FullName,
                                     EntryDateTime = d.EntryDateTime.ToShortDateString(),
+                                    EntryTime = d.EntryDateTime.ToShortTimeString(),
                                     UpdateUser = d.MstUser1.FullName,
+                                    UpdateUserName = d.MstUser4.FullName,
                                     UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
+                                    UpdateTime = d.UpdateDateTime.ToShortTimeString(),
                                     RequestedBy = d.RequestedBy,
                                     Status = d.Status
                                 };

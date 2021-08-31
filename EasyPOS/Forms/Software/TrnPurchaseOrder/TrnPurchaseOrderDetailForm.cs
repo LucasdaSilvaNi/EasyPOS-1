@@ -41,6 +41,16 @@ namespace EasyPOS.Forms.Software.TrnPurchaseOrder
                 GetStatus();
             }
 
+            var id = trnPurchaseOrderEntity.Id;
+
+            Controllers.TrnPurchaseOrderController trnPurchaseOrder = new Controllers.TrnPurchaseOrderController();
+            var detail = trnPurchaseOrder.DetailPurchaseOrder(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdateUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
+
         }
         public void GetStatus()
         {

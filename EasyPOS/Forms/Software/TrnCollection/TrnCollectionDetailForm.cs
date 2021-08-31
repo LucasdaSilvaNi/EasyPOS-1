@@ -40,6 +40,16 @@ namespace EasyPOS.Forms.Software.TrnCollection
 
                 GetTerminal();
             }
+
+            var id = trnCollectionEntity.Id;
+
+            Controllers.TrnCollectionController trnCollection = new Controllers.TrnCollectionController();
+            var detail = trnCollection.DetailCollection(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
         }
 
         public void GetTerminal()
