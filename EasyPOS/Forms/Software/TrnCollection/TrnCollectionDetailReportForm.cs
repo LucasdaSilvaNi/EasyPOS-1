@@ -30,6 +30,8 @@ namespace EasyPOS.Forms.Software.TrnCollection
             {
                 Data.easyposdbDataContext db = new Data.easyposdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
 
+                iTextSharp.text.Font fontTimesNewRoman9 = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 9);
+                iTextSharp.text.Font fontTimesNewRoman9Bold = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 9, iTextSharp.text.Font.BOLD);
                 iTextSharp.text.Font fontTimesNewRoman10 = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 10);
                 iTextSharp.text.Font fontTimesNewRoman10Italic = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 10, iTextSharp.text.Font.ITALIC);
                 iTextSharp.text.Font fontTimesNewRoman11 = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 11);
@@ -43,7 +45,7 @@ namespace EasyPOS.Forms.Software.TrnCollection
 
                 var systemCurrent = Modules.SysCurrentModule.GetCurrentSettings();
 
-                Document document = new Document(PageSize.LETTER);
+                Document document = new Document(PageSize.LETTER.Rotate());
                 document.SetMargins(30f, 30f, 127f, 30f);
 
                 PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(fileName, FileMode.Create));
@@ -56,28 +58,28 @@ namespace EasyPOS.Forms.Software.TrnCollection
                                       select d;
                 if (collectionLines.Any())
                 {
-                    PdfPTable tableItem = new PdfPTable(14);
-                    tableItem.SetWidths(new float[] { 50f, 20f, 50f, 30f, 30f, 30f, 50f, 50f, 50f, 30f, 30f, 30f, 40f });
+                    PdfPTable tableItem = new PdfPTable(13);
+                    tableItem.SetWidths(new float[] { 40f, 50, 50f, 40f, 30f, 30f, 50f, 50f, 50f, 30f, 30f, 30f, 30f });
                     tableItem.WidthPercentage = 100;
 
                     foreach (var CollectionLines in collectionLines)
                     {
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.MstPayType.PayType, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.Amount.ToString("#,##0.00"), fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 8f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 2 });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CheckNumber, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 8f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CheckDate.ToString(), fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 2 });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CheckBank, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 2 });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.GiftCertificateNumber, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.OtherInformation, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 8f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 2 });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardNumber, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 8f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardHolderName, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 2 });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardReferenceNumber, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardType, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 8f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 2 });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardExpiry, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 8f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardVerificationCode, fontTimesNewRoman11)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f, HorizontalAlignment = 2 });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.MstPayType.PayType, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.Amount.ToString("#,##0.00"), fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 8f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CheckNumber, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 8f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CheckDate.ToString(), fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CheckBank, fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.GiftCertificateNumber, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.OtherInformation, fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 8f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardNumber, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 8f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardHolderName, fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardReferenceNumber, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardType, fontTimesNewRoman10)) { HorizontalAlignment = 2,  Border = 0, PaddingLeft = 3f, PaddingRight = 8f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardExpiry, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 8f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = -25f });
+                        tableItem.AddCell(new PdfPCell(new Phrase(CollectionLines.CreditCardVerificationCode, fontTimesNewRoman9)) { HorizontalAlignment = 2 , Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 50f, PaddingBottom = 10f });
 
                     }
-                    tableItem.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 5 });
+                    tableItem.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 30f, PaddingBottom = 5f, Colspan = 13 });
 
                     document.Add(tableItem);
 
@@ -118,6 +120,8 @@ namespace EasyPOS.Forms.Software.TrnCollection
 
             public override void OnEndPage(PdfWriter writer, Document document)
             {
+                iTextSharp.text.Font fontTimesNewRoman9 = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 9);
+                iTextSharp.text.Font fontTimesNewRoman9Bold = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 9, iTextSharp.text.Font.BOLD);
                 iTextSharp.text.Font fontTimesNewRoman10 = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 10);
                 iTextSharp.text.Font fontTimesNewRoman10Bold = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 10, iTextSharp.text.Font.BOLD);
                 iTextSharp.text.Font fontTimesNewRoman10Italic = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 10, iTextSharp.text.Font.ITALIC);
@@ -138,13 +142,13 @@ namespace EasyPOS.Forms.Software.TrnCollection
                 String documentTitle = "Collection Report";
 
                 String collectionNumber = collection.FirstOrDefault().CollectionNumber;
-                String collectionDate = collection.FirstOrDefault().CollectionDate.ToShortDateString();
+                String collectionDate = collection.FirstOrDefault().CollectionDate.ToLongDateString();
                 String manualORNumber = collection.FirstOrDefault().ManualORNumber;
                 String terminal = collection.FirstOrDefault().MstTerminal.Terminal;
                 String customer = collection.FirstOrDefault().MstCustomer.Customer;
-                String salesNumber = collection.FirstOrDefault().MstCustomer.Customer;
-                String salesBalance = collection.FirstOrDefault().MstCustomer.Customer;
-                String remarks = collection.FirstOrDefault().MstCustomer.Customer;
+                String salesNumber = collection.FirstOrDefault().TrnSale.SalesNumber;
+                String salesBalance = collection.FirstOrDefault().SalesBalanceAmount.ToString();
+                String remarks = collection.FirstOrDefault().Remarks;
 
 
                 PdfPTable tableHeader = new PdfPTable(4);
@@ -174,23 +178,23 @@ namespace EasyPOS.Forms.Software.TrnCollection
                 tableHeader.AddCell(new PdfPCell(new Phrase("Remarks: ", fontTimesNewRoman11Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
                 tableHeader.AddCell(new PdfPCell(new Phrase(remarks, fontTimesNewRoman11)) { Colspan = 3, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
 
-                PdfPTable tableItem = new PdfPTable(14);
-                tableItem.SetWidths(new float[] { 90f, 20f, 20f, 30f, 30f });
+                PdfPTable tableItem = new PdfPTable(13);
+                tableItem.SetWidths(new float[] { 40f, 50, 50f, 40f, 30f, 30f, 50f, 50f, 50f, 30f, 30f, 30f, 30f });
                 tableItem.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
-                tableItem.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman11Bold)) { Border = 0, Colspan = 14, PaddingTop = -8f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Pay Type", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Amount", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Check Number", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Check Date", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Check Bank", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Gift Certificate Number", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Other Information", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Number", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Holder", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Reference Number", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Type", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Expiry", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Verification Code", fontTimesNewRoman11Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman9Bold)) { Border = 0, Colspan = 13, PaddingTop = -8f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Pay Type", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Amount", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Check Number", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Check Date", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Check Bank", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("GC Number", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Other Info", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Number", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Holder", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Reference Number", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Type", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Expiry", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableItem.AddCell(new PdfPCell(new Phrase("Credit Card Verification Code", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
 
                 tableHeader.AddCell(new PdfPCell(tableItem) { Border = 0, Colspan = 4, PaddingBottom = -5f, PaddingLeft = 0f, PaddingRight = 0f });
                 tableHeader.WriteSelectedRows(0, -1, document.LeftMargin, writer.PageSize.GetTop(document.TopMargin) + 97f, writer.DirectContent);

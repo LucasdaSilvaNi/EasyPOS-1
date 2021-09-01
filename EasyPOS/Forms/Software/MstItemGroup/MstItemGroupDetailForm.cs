@@ -69,6 +69,16 @@ namespace EasyPOS.Forms.Software.MstItemGroup
                 GetItemGroupDetail();
                 textBoxItemGroup.Focus();
             }
+
+            var id = mstItemGroupEntity.Id;
+
+            Controllers.MstItemGroupController mstItemGroup = new Controllers.MstItemGroupController();
+            var detail = mstItemGroup.DetailItemGroup(id);
+
+            if (detail != null)
+            {
+                sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
+            }
         }
 
         public void GetItemGroupDetail()

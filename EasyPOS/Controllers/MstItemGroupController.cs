@@ -69,11 +69,15 @@ namespace EasyPOS.Controllers
                                 KitchenReport = d.KitchenReport,
                                 EntryUserId = d.EntryUserId,
                                 EntryUserName = d.MstUser.UserName,
+                                EntryUserUserName = d.MstUser.FullName,
                                 EntryDateTime = d.EntryDateTime.ToShortDateString(),
+                                EntryTime = d.EntryDateTime.ToShortTimeString(),
                                 UpdateUserId = d.UpdateUserId,
                                 UpdatedUserName = d.MstUser1.UserName,
+                                UpdatedUserUserName = d.MstUser1.FullName,
                                 UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
-                                IsLocked = d.IsLocked,
+                                UpdateTime = d.UpdateDateTime.ToShortTimeString(),
+                                IsLocked = d.IsLocked
                             };
 
             return itemGroup.FirstOrDefault();
