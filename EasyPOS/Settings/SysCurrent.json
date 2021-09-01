@@ -56,9 +56,9 @@
   "HideSalesItemListItemCode": false,
   "LockAutoSales": false,
   "ShowCustomerInfo": false,
-  "ChoosePrinter": false,
+  "ChoosePrinter": true,
   "IsTriggeredQuantity": false,
   "EnableEditPrice": false,
-  "SalesOrderPrinterType": "Default Printer",
+  "SalesOrderPrinterType": "Letter Printer",
   "DisableSalesCustomerSelection": false
 }

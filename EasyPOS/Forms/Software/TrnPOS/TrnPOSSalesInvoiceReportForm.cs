@@ -30,21 +30,21 @@ namespace EasyPOS.Forms.Software.TrnPOS
             }
             else
             {
-                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Letter Printer")
+                if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Letter Printer")
                 {
-                    printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 800, 1000);
+                    printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 850, 1100);
                     printDocumentSalesInvoiceReport.Print();
                 }
-                else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
-                {
-                    printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
-                    printDocumentSalesInvoiceReport.Print();
-                }
-                else
-                {
-                    printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                    printDocumentSalesInvoiceReport.Print();
-                }
+                //else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+                //{
+                //    printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
+                //    printDocumentSalesInvoiceReport.Print();
+                //}
+                //else
+                //{
+                //    printDocumentSalesInvoiceReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
+                //    printDocumentSalesInvoiceReport.Print();
+                //}
             }
         }
 
@@ -58,8 +58,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
             // =============
             // Font Settings
             // =============
-            Font fontArial20Bold = new Font("Arial", 20, FontStyle.Bold);
-            Font fontArial20Regular = new Font("Arial", 20, FontStyle.Regular);
+            Font fontArial20Bold = new Font("Leelawadee UI", 18, FontStyle.Bold);
+            Font fontArial20Regular = new Font("Arial", 18, FontStyle.Regular);
             Font fontArial12Bold = new Font("Arial", 12, FontStyle.Bold);
             Font fontArial12Regular = new Font("Arial", 12, FontStyle.Regular);
             Font fontArial11Bold = new Font("Arial", 11, FontStyle.Bold);
@@ -78,7 +78,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             float x, y;
             float width, height;
-            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+            if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Letter Printer")
             {
                 x = 5; y = 5;
                 width = 850; height = 0F;
