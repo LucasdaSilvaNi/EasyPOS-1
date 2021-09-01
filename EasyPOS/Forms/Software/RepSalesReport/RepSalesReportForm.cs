@@ -778,8 +778,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             {
                                 if (sysUserRights.GetUserRights().CanPrint == true)
                                 {
-                                    _80mmReport.RepCollectionDetailReport80mmForm repCollectionDetailReport80MmForm = new _80mmReport.RepCollectionDetailReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue));
-                                    repCollectionDetailReport80MmForm.ShowDialog();
+                                    new Rep80mmCollectionDetailReportPDFForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue));
                                 }
                                 else
                                 {
