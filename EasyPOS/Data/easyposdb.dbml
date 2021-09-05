@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="easypos" Class="easyposdbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=easypos;Persist Security Info=True;User ID=sa" SettingsObjectName="EasyPOS.Properties.Settings" SettingsPropertyName="easyposConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="easypos_julypharmacy_cabreros" Class="easyposdbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=easypos_julypharmacy_cabreros;Persist Security Info=True;User ID=sa" SettingsObjectName="EasyPOS.Properties.Settings" SettingsPropertyName="easypos_julypharmacy_cabrerosConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.IntCloudSettings" Member="IntCloudSettings">
     <Type Name="IntCloudSetting">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -15,22 +15,6 @@
       <Association Name="MstUser_IntCloudSetting" Member="MstUser" ThisKey="PostUserId" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TrnStockOutLine" Member="TrnStockOutLines">
-    <Type Name="TrnStockOutLine">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="StockOutId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UnitId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
-      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
-      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
-      <Column Name="AssetAccountId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="MstAccount_TrnStockOutLine" Member="MstAccount" ThisKey="AssetAccountId" OtherKey="Id" Type="MstAccount" IsForeignKey="true" />
-      <Association Name="MstItem_TrnStockOutLine" Member="MstItem" ThisKey="ItemId" OtherKey="Id" Type="MstItem" IsForeignKey="true" />
-      <Association Name="MstUnit_TrnStockOutLine" Member="MstUnit" ThisKey="UnitId" OtherKey="Id" Type="MstUnit" IsForeignKey="true" />
-      <Association Name="TrnStockOut_TrnStockOutLine" Member="TrnStockOut" ThisKey="StockOutId" OtherKey="Id" Type="TrnStockOut" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.MstAccount" Member="MstAccounts">
     <Type Name="MstAccount">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -38,7 +22,6 @@
       <Column Name="Account" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="AccountType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="MstAccount_TrnStockOutLine" Member="TrnStockOutLines" ThisKey="Id" OtherKey="AssetAccountId" Type="TrnStockOutLine" />
       <Association Name="MstAccount_MstCustomer" Member="MstCustomers" ThisKey="Id" OtherKey="AccountId" Type="MstCustomer" />
       <Association Name="MstAccount_MstItem" Member="MstItems" ThisKey="Id" OtherKey="CostAccountId" Type="MstItem" />
       <Association Name="MstAccount_MstItem1" Member="MstItems1" ThisKey="Id" OtherKey="SalesAccountId" Type="MstItem" />
@@ -56,6 +39,7 @@
       <Association Name="MstAccount_TrnSalesLine3" Member="TrnSalesLines3" ThisKey="Id" OtherKey="TaxAccountId" Type="TrnSalesLine" />
       <Association Name="MstAccount_TrnStockInLine" Member="TrnStockInLines" ThisKey="Id" OtherKey="AssetAccountId" Type="TrnStockInLine" />
       <Association Name="MstAccount_TrnStockOut" Member="TrnStockOuts" ThisKey="Id" OtherKey="AccountId" Type="TrnStockOut" />
+      <Association Name="MstAccount_TrnStockOutLine" Member="TrnStockOutLines" ThisKey="Id" OtherKey="AssetAccountId" Type="TrnStockOutLine" />
     </Type>
   </Table>
   <Table Name="dbo.MstCustomer" Member="MstCustomers">
@@ -180,7 +164,6 @@
       <Column Name="IsPackage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="cValue" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
       <Column Name="ChildItemId" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="MstItem_TrnStockOutLine" Member="TrnStockOutLines" ThisKey="Id" OtherKey="ItemId" Type="TrnStockOutLine" />
       <Association Name="MstItem_MstDiscountItem" Member="MstDiscountItems" ThisKey="Id" OtherKey="ItemId" Type="MstDiscountItem" />
       <Association Name="MstItem_MstItemComponent" Member="MstItemComponents" ThisKey="Id" OtherKey="ItemId" Type="MstItemComponent" />
       <Association Name="MstItem_MstItemComponent1" Member="MstItemComponents1" ThisKey="Id" OtherKey="ComponentItemId" Type="MstItemComponent" />
@@ -194,6 +177,7 @@
       <Association Name="MstItem_TrnSalesLine" Member="TrnSalesLines" ThisKey="Id" OtherKey="ItemId" Type="TrnSalesLine" />
       <Association Name="MstItem_TrnStockCountLine" Member="TrnStockCountLines" ThisKey="Id" OtherKey="ItemId" Type="TrnStockCountLine" />
       <Association Name="MstItem_TrnStockInLine" Member="TrnStockInLines" ThisKey="Id" OtherKey="ItemId" Type="TrnStockInLine" />
+      <Association Name="MstItem_TrnStockOutLine" Member="TrnStockOutLines" ThisKey="Id" OtherKey="ItemId" Type="TrnStockOutLine" />
       <Association Name="MstAccount_MstItem" Member="MstAccount" ThisKey="CostAccountId" OtherKey="Id" Type="MstAccount" IsForeignKey="true" />
       <Association Name="MstAccount_MstItem1" Member="MstAccount1" ThisKey="SalesAccountId" OtherKey="Id" Type="MstAccount" IsForeignKey="true" />
       <Association Name="MstAccount_MstItem2" Member="MstAccount2" ThisKey="AssetAccountId" OtherKey="Id" Type="MstAccount" IsForeignKey="true" />
@@ -391,7 +375,6 @@
     <Type Name="MstUnit">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Unit" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="MstUnit_TrnStockOutLine" Member="TrnStockOutLines" ThisKey="Id" OtherKey="UnitId" Type="TrnStockOutLine" />
       <Association Name="MstUnit_MstItem" Member="MstItems" ThisKey="Id" OtherKey="UnitId" Type="MstItem" />
       <Association Name="MstUnit_MstItemComponent" Member="MstItemComponents" ThisKey="Id" OtherKey="UnitId" Type="MstItemComponent" />
       <Association Name="MstUnit_MstItemPackage" Member="MstItemPackages" ThisKey="Id" OtherKey="UnitId" Type="MstItemPackage" />
@@ -399,6 +382,7 @@
       <Association Name="MstUnit_TrnSalesLine" Member="TrnSalesLines" ThisKey="Id" OtherKey="UnitId" Type="TrnSalesLine" />
       <Association Name="MstUnit_TrnStockCountLine" Member="TrnStockCountLines" ThisKey="Id" OtherKey="UnitId" Type="TrnStockCountLine" />
       <Association Name="MstUnit_TrnStockInLine" Member="TrnStockInLines" ThisKey="Id" OtherKey="UnitId" Type="TrnStockInLine" />
+      <Association Name="MstUnit_TrnStockOutLine" Member="TrnStockOutLines" ThisKey="Id" OtherKey="UnitId" Type="TrnStockOutLine" />
     </Type>
   </Table>
   <Table Name="dbo.MstUser" Member="MstUsers">
@@ -510,8 +494,8 @@
   <Table Name="dbo.SysDeclareRate" Member="SysDeclareRates">
     <Type Name="SysDeclareRate">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="DeclareRate" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="DeclareRate" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.SysForm" Member="SysForms">
@@ -525,8 +509,11 @@
   <Table Name="dbo.SysKitchenPrinter" Member="SysKitchenPrinters">
     <Type Name="SysKitchenPrinter">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Kitchen" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Printer" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Kitchen" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PrinterName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Alias" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultWidth" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultHeight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.SysSalesLocked" Member="SysSalesLockeds">
@@ -929,7 +916,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="PeriodId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StockInDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="StockInNumber" Type="System.String" DbType="NVarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="StockInNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="ManualStockInNumber" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
       <Column Name="SupplierId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Remarks" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
@@ -996,8 +983,8 @@
       <Column Name="EntryDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UpdateUserId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UpdateDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="TrnStockOut_TrnStockOutLine" Member="TrnStockOutLines" ThisKey="Id" OtherKey="StockOutId" Type="TrnStockOutLine" />
       <Association Name="TrnStockOut_TrnJournal" Member="TrnJournals" ThisKey="Id" OtherKey="StockOutId" Type="TrnJournal" />
+      <Association Name="TrnStockOut_TrnStockOutLine" Member="TrnStockOutLines" ThisKey="Id" OtherKey="StockOutId" Type="TrnStockOutLine" />
       <Association Name="MstAccount_TrnStockOut" Member="MstAccount" ThisKey="AccountId" OtherKey="Id" Type="MstAccount" IsForeignKey="true" />
       <Association Name="MstPeriod_TrnStockOut" Member="MstPeriod" ThisKey="PeriodId" OtherKey="Id" Type="MstPeriod" IsForeignKey="true" />
       <Association Name="MstUser_TrnStockOut" Member="MstUser" ThisKey="PreparedBy" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
@@ -1005,6 +992,22 @@
       <Association Name="MstUser_TrnStockOut2" Member="MstUser2" ThisKey="ApprovedBy" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
       <Association Name="MstUser_TrnStockOut3" Member="MstUser3" ThisKey="EntryUserId" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
       <Association Name="MstUser_TrnStockOut4" Member="MstUser4" ThisKey="UpdateUserId" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TrnStockOutLine" Member="TrnStockOutLines">
+    <Type Name="TrnStockOutLine">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StockOutId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ItemId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UnitId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
+      <Column Name="Cost" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
+      <Column Name="AssetAccountId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="MstAccount_TrnStockOutLine" Member="MstAccount" ThisKey="AssetAccountId" OtherKey="Id" Type="MstAccount" IsForeignKey="true" />
+      <Association Name="MstItem_TrnStockOutLine" Member="MstItem" ThisKey="ItemId" OtherKey="Id" Type="MstItem" IsForeignKey="true" />
+      <Association Name="MstUnit_TrnStockOutLine" Member="MstUnit" ThisKey="UnitId" OtherKey="Id" Type="MstUnit" IsForeignKey="true" />
+      <Association Name="TrnStockOut_TrnStockOutLine" Member="TrnStockOut" ThisKey="StockOutId" OtherKey="Id" Type="TrnStockOut" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SysSettingsForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonUnlock = new System.Windows.Forms.Button();
@@ -114,7 +116,6 @@
             this.textBoxEasypayDefaultPassword = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnStopIntegration = new System.Windows.Forms.Button();
             this.txtLogs = new System.Windows.Forms.TextBox();
             this.btnStartIntegration = new System.Windows.Forms.Button();
@@ -129,6 +130,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtBranchCode = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
             this.checkBoxEnableEasyShopIntegration = new System.Windows.Forms.CheckBox();
@@ -164,11 +166,23 @@
             this.label64 = new System.Windows.Forms.Label();
             this.textBoxCustomerDisplayPort = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.dataGridViewPrinterSetup = new System.Windows.Forms.DataGridView();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.dataGridViewKitchen = new System.Windows.Forms.DataGridView();
+            this.textBoxKitchenFilter = new System.Windows.Forms.TextBox();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.buttonKitchenPageListFirst = new System.Windows.Forms.Button();
+            this.buttonKitchenPageListPrevious = new System.Windows.Forms.Button();
+            this.buttonKitchenPageListNext = new System.Windows.Forms.Button();
+            this.buttonKitchenPageListLast = new System.Windows.Forms.Button();
+            this.textBoxKitchenPageNumber = new System.Windows.Forms.TextBox();
             this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
-            this.ColumnSysPrinterId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSysPrinterKitchen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSysPrinterPrinter = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ColumnKitchenButtonEdit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnKitchenId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnKitchenNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPrinterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAlias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDefaultWidth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDefaultHeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -182,8 +196,8 @@
             this.tabPage5.SuspendLayout();
             this.panel8.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage6.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -191,7 +205,9 @@
             this.tabControl10.SuspendLayout();
             this.panel10.SuspendLayout();
             this.tabPage8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrinterSetup)).BeginInit();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKitchen)).BeginInit();
+            this.panel15.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -1230,11 +1246,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.pictureBox2);
             this.tabPage2.Controls.Add(this.btnStopIntegration);
             this.tabPage2.Controls.Add(this.txtLogs);
             this.tabPage2.Controls.Add(this.btnStartIntegration);
             this.tabPage2.Controls.Add(this.panel3);
+            this.tabPage2.Controls.Add(this.pictureBox2);
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
@@ -1255,17 +1271,6 @@
             this.label2.Size = new System.Drawing.Size(144, 21);
             this.label2.TabIndex = 0;
             this.label2.Text = "Easyfis Integration";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::EasyPOS.Properties.Resources.easyfis_logo;
-            this.pictureBox2.Location = new System.Drawing.Point(5, 5);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(44, 30);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 30;
-            this.pictureBox2.TabStop = false;
             // 
             // btnStopIntegration
             // 
@@ -1443,6 +1448,17 @@
             this.label8.Size = new System.Drawing.Size(41, 19);
             this.label8.TabIndex = 17;
             this.label8.Text = "Date:";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::EasyPOS.Properties.Resources.easyfis_logo;
+            this.pictureBox2.Location = new System.Drawing.Point(5, 5);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(44, 30);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 30;
+            this.pictureBox2.TabStop = false;
             // 
             // tabPage6
             // 
@@ -1842,7 +1858,7 @@
             // 
             // tabPage8
             // 
-            this.tabPage8.Controls.Add(this.dataGridViewPrinterSetup);
+            this.tabPage8.Controls.Add(this.panel11);
             this.tabPage8.Location = new System.Drawing.Point(4, 28);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
@@ -1851,21 +1867,149 @@
             this.tabPage8.Text = "Printer Setup";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewPrinterSetup
+            // panel11
             // 
-            this.dataGridViewPrinterSetup.AllowUserToAddRows = false;
-            this.dataGridViewPrinterSetup.AllowUserToDeleteRows = false;
-            this.dataGridViewPrinterSetup.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPrinterSetup.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnSysPrinterId,
-            this.ColumnSysPrinterKitchen,
-            this.ColumnSysPrinterPrinter});
-            this.dataGridViewPrinterSetup.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewPrinterSetup.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewPrinterSetup.Name = "dataGridViewPrinterSetup";
-            this.dataGridViewPrinterSetup.ReadOnly = true;
-            this.dataGridViewPrinterSetup.Size = new System.Drawing.Size(1095, 472);
-            this.dataGridViewPrinterSetup.TabIndex = 0;
+            this.panel11.BackColor = System.Drawing.SystemColors.Control;
+            this.panel11.Controls.Add(this.dataGridViewKitchen);
+            this.panel11.Controls.Add(this.textBoxKitchenFilter);
+            this.panel11.Controls.Add(this.panel15);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel11.Location = new System.Drawing.Point(3, 3);
+            this.panel11.Margin = new System.Windows.Forms.Padding(2);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(1095, 472);
+            this.panel11.TabIndex = 2;
+            // 
+            // dataGridViewKitchen
+            // 
+            this.dataGridViewKitchen.AllowUserToAddRows = false;
+            this.dataGridViewKitchen.AllowUserToDeleteRows = false;
+            this.dataGridViewKitchen.AllowUserToResizeRows = false;
+            this.dataGridViewKitchen.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewKitchen.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewKitchen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewKitchen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnKitchenButtonEdit,
+            this.ColumnKitchenId,
+            this.ColumnKitchenNumber,
+            this.ColumnPrinterName,
+            this.ColumnAlias,
+            this.ColumnDefaultWidth,
+            this.ColumnDefaultHeight});
+            this.dataGridViewKitchen.Location = new System.Drawing.Point(4, 31);
+            this.dataGridViewKitchen.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewKitchen.MultiSelect = false;
+            this.dataGridViewKitchen.Name = "dataGridViewKitchen";
+            this.dataGridViewKitchen.ReadOnly = true;
+            this.dataGridViewKitchen.RowTemplate.Height = 24;
+            this.dataGridViewKitchen.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewKitchen.Size = new System.Drawing.Size(1087, 394);
+            this.dataGridViewKitchen.TabIndex = 24;
+            this.dataGridViewKitchen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewKitchen_CellClick);
+            // 
+            // textBoxKitchenFilter
+            // 
+            this.textBoxKitchenFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxKitchenFilter.Location = new System.Drawing.Point(4, 2);
+            this.textBoxKitchenFilter.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxKitchenFilter.Name = "textBoxKitchenFilter";
+            this.textBoxKitchenFilter.Size = new System.Drawing.Size(1088, 26);
+            this.textBoxKitchenFilter.TabIndex = 23;
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.Controls.Add(this.buttonKitchenPageListFirst);
+            this.panel15.Controls.Add(this.buttonKitchenPageListPrevious);
+            this.panel15.Controls.Add(this.buttonKitchenPageListNext);
+            this.panel15.Controls.Add(this.buttonKitchenPageListLast);
+            this.panel15.Controls.Add(this.textBoxKitchenPageNumber);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel15.Location = new System.Drawing.Point(0, 430);
+            this.panel15.Margin = new System.Windows.Forms.Padding(2);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(1095, 42);
+            this.panel15.TabIndex = 22;
+            // 
+            // buttonKitchenPageListFirst
+            // 
+            this.buttonKitchenPageListFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonKitchenPageListFirst.Enabled = false;
+            this.buttonKitchenPageListFirst.FlatAppearance.BorderSize = 0;
+            this.buttonKitchenPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonKitchenPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonKitchenPageListFirst.Location = new System.Drawing.Point(10, 9);
+            this.buttonKitchenPageListFirst.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonKitchenPageListFirst.Name = "buttonKitchenPageListFirst";
+            this.buttonKitchenPageListFirst.Size = new System.Drawing.Size(66, 26);
+            this.buttonKitchenPageListFirst.TabIndex = 13;
+            this.buttonKitchenPageListFirst.TabStop = false;
+            this.buttonKitchenPageListFirst.Text = "First";
+            this.buttonKitchenPageListFirst.UseVisualStyleBackColor = false;
+            // 
+            // buttonKitchenPageListPrevious
+            // 
+            this.buttonKitchenPageListPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonKitchenPageListPrevious.Enabled = false;
+            this.buttonKitchenPageListPrevious.FlatAppearance.BorderSize = 0;
+            this.buttonKitchenPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonKitchenPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonKitchenPageListPrevious.Location = new System.Drawing.Point(80, 9);
+            this.buttonKitchenPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonKitchenPageListPrevious.Name = "buttonKitchenPageListPrevious";
+            this.buttonKitchenPageListPrevious.Size = new System.Drawing.Size(66, 26);
+            this.buttonKitchenPageListPrevious.TabIndex = 14;
+            this.buttonKitchenPageListPrevious.TabStop = false;
+            this.buttonKitchenPageListPrevious.Text = "Previous";
+            this.buttonKitchenPageListPrevious.UseVisualStyleBackColor = false;
+            // 
+            // buttonKitchenPageListNext
+            // 
+            this.buttonKitchenPageListNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonKitchenPageListNext.FlatAppearance.BorderSize = 0;
+            this.buttonKitchenPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonKitchenPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonKitchenPageListNext.Location = new System.Drawing.Point(210, 9);
+            this.buttonKitchenPageListNext.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonKitchenPageListNext.Name = "buttonKitchenPageListNext";
+            this.buttonKitchenPageListNext.Size = new System.Drawing.Size(66, 26);
+            this.buttonKitchenPageListNext.TabIndex = 15;
+            this.buttonKitchenPageListNext.TabStop = false;
+            this.buttonKitchenPageListNext.Text = "Next";
+            this.buttonKitchenPageListNext.UseVisualStyleBackColor = false;
+            // 
+            // buttonKitchenPageListLast
+            // 
+            this.buttonKitchenPageListLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonKitchenPageListLast.FlatAppearance.BorderSize = 0;
+            this.buttonKitchenPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonKitchenPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonKitchenPageListLast.Location = new System.Drawing.Point(278, 9);
+            this.buttonKitchenPageListLast.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonKitchenPageListLast.Name = "buttonKitchenPageListLast";
+            this.buttonKitchenPageListLast.Size = new System.Drawing.Size(66, 26);
+            this.buttonKitchenPageListLast.TabIndex = 16;
+            this.buttonKitchenPageListLast.TabStop = false;
+            this.buttonKitchenPageListLast.Text = "Last";
+            this.buttonKitchenPageListLast.UseVisualStyleBackColor = false;
+            // 
+            // textBoxKitchenPageNumber
+            // 
+            this.textBoxKitchenPageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxKitchenPageNumber.BackColor = System.Drawing.Color.White;
+            this.textBoxKitchenPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxKitchenPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxKitchenPageNumber.Location = new System.Drawing.Point(150, 13);
+            this.textBoxKitchenPageNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxKitchenPageNumber.Name = "textBoxKitchenPageNumber";
+            this.textBoxKitchenPageNumber.ReadOnly = true;
+            this.textBoxKitchenPageNumber.Size = new System.Drawing.Size(55, 16);
+            this.textBoxKitchenPageNumber.TabIndex = 17;
+            this.textBoxKitchenPageNumber.TabStop = false;
+            this.textBoxKitchenPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // backgroundWorkerEasyfisIntegration
             // 
@@ -1873,31 +2017,63 @@
             this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
             this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
             // 
-            // ColumnSysPrinterId
+            // ColumnKitchenButtonEdit
             // 
-            this.ColumnSysPrinterId.DataPropertyName = "ColumnSysPrinterId";
-            this.ColumnSysPrinterId.HeaderText = "";
-            this.ColumnSysPrinterId.Name = "ColumnSysPrinterId";
-            this.ColumnSysPrinterId.ReadOnly = true;
-            this.ColumnSysPrinterId.Visible = false;
-            this.ColumnSysPrinterId.Width = 20;
+            this.ColumnKitchenButtonEdit.DataPropertyName = "ColumnKitchenButtonEdit";
+            this.ColumnKitchenButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColumnKitchenButtonEdit.HeaderText = "";
+            this.ColumnKitchenButtonEdit.Name = "ColumnKitchenButtonEdit";
+            this.ColumnKitchenButtonEdit.ReadOnly = true;
+            this.ColumnKitchenButtonEdit.Width = 70;
             // 
-            // ColumnSysPrinterKitchen
+            // ColumnKitchenId
             // 
-            this.ColumnSysPrinterKitchen.DataPropertyName = "ColumnSysPrinterKitchen";
-            this.ColumnSysPrinterKitchen.HeaderText = "Kitchen";
-            this.ColumnSysPrinterKitchen.Name = "ColumnSysPrinterKitchen";
-            this.ColumnSysPrinterKitchen.ReadOnly = true;
-            this.ColumnSysPrinterKitchen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnSysPrinterKitchen.Width = 80;
+            this.ColumnKitchenId.DataPropertyName = "ColumnKitchenId";
+            this.ColumnKitchenId.HeaderText = "Id";
+            this.ColumnKitchenId.Name = "ColumnKitchenId";
+            this.ColumnKitchenId.ReadOnly = true;
+            this.ColumnKitchenId.Visible = false;
             // 
-            // ColumnSysPrinterPrinter
+            // ColumnKitchenNumber
             // 
-            this.ColumnSysPrinterPrinter.DataPropertyName = "ColumnSysPrinterPrinter";
-            this.ColumnSysPrinterPrinter.HeaderText = "Printer";
-            this.ColumnSysPrinterPrinter.Name = "ColumnSysPrinterPrinter";
-            this.ColumnSysPrinterPrinter.ReadOnly = true;
-            this.ColumnSysPrinterPrinter.Width = 350;
+            this.ColumnKitchenNumber.DataPropertyName = "ColumnKitchenNumber";
+            this.ColumnKitchenNumber.HeaderText = "Kitchen";
+            this.ColumnKitchenNumber.Name = "ColumnKitchenNumber";
+            this.ColumnKitchenNumber.ReadOnly = true;
+            this.ColumnKitchenNumber.Width = 150;
+            // 
+            // ColumnPrinterName
+            // 
+            this.ColumnPrinterName.DataPropertyName = "ColumnPrinterName";
+            this.ColumnPrinterName.HeaderText = "Printer Name";
+            this.ColumnPrinterName.Name = "ColumnPrinterName";
+            this.ColumnPrinterName.ReadOnly = true;
+            this.ColumnPrinterName.Width = 250;
+            // 
+            // ColumnAlias
+            // 
+            this.ColumnAlias.DataPropertyName = "ColumnAlias";
+            this.ColumnAlias.HeaderText = "Alias";
+            this.ColumnAlias.Name = "ColumnAlias";
+            this.ColumnAlias.ReadOnly = true;
+            // 
+            // ColumnDefaultWidth
+            // 
+            this.ColumnDefaultWidth.DataPropertyName = "ColumnDefaultWidth";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnDefaultWidth.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColumnDefaultWidth.HeaderText = "Default Width";
+            this.ColumnDefaultWidth.Name = "ColumnDefaultWidth";
+            this.ColumnDefaultWidth.ReadOnly = true;
+            // 
+            // ColumnDefaultHeight
+            // 
+            this.ColumnDefaultHeight.DataPropertyName = "ColumnDefaultHeight";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnDefaultHeight.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnDefaultHeight.HeaderText = "Default Height";
+            this.ColumnDefaultHeight.Name = "ColumnDefaultHeight";
+            this.ColumnDefaultHeight.ReadOnly = true;
             // 
             // SysSettingsForm
             // 
@@ -1931,9 +2107,9 @@
             this.panel8.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -1944,7 +2120,11 @@
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.tabPage8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrinterSetup)).EndInit();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewKitchen)).EndInit();
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2086,10 +2266,22 @@
         private System.Windows.Forms.ComboBox comboBoxSalesOrderPrinterType;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.DataGridView dataGridViewPrinterSetup;
         private System.Windows.Forms.CheckBox checkBoxDisableSalesCustomerSelection;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSysPrinterId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSysPrinterKitchen;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ColumnSysPrinterPrinter;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.DataGridView dataGridViewKitchen;
+        private System.Windows.Forms.TextBox textBoxKitchenFilter;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Button buttonKitchenPageListFirst;
+        private System.Windows.Forms.Button buttonKitchenPageListPrevious;
+        private System.Windows.Forms.Button buttonKitchenPageListNext;
+        private System.Windows.Forms.Button buttonKitchenPageListLast;
+        private System.Windows.Forms.TextBox textBoxKitchenPageNumber;
+        private System.Windows.Forms.DataGridViewButtonColumn ColumnKitchenButtonEdit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnKitchenId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnKitchenNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPrinterName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAlias;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDefaultWidth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDefaultHeight;
     }
 }

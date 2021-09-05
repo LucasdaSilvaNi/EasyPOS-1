@@ -29,6 +29,7 @@ namespace EasyPOS.Controllers
                                  SalesId = d.SalesId,
                                  ItemId = d.ItemId,
                                  ItemDescription = d.MstItem.ItemDescription,
+                                 ItemKitchen = d.MstItem.DefaultKitchenReport,
                                  UnitId = d.UnitId,
                                  Unit = d.MstUnit.Unit,
                                  Price = d.Price,

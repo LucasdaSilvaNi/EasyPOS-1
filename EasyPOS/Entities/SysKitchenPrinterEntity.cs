@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace EasyPOS.Entities
 {
-    class SysKitchenPrinterEntity
+    public class SysKitchenPrinterEntity
     {
         public Int32 Id { get; set; }
-        public Int32 Kitchen { get; set; }
-        public String Printer { get; set; }
-       
+        public String Kitchen { get; set; }
+        public String PrinterName { get; set; }
+        public String Alias { get; set; }
+        public Int32 DefaultWidth { get; set; }
+        public Int32 DefaultHeight { get; set; }
     }
 }

@@ -38,6 +38,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private int selectedTableGroup = 1;
         Button[] tableButtons;
 
+        public Boolean isTerminalSelected = false;
+
         public TrnPOSTouchForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
@@ -311,7 +313,14 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         private void comboBoxTerminal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            UpdateSalesListGridDataSource();
+            if (isTerminalSelected == true)
+            {
+                UpdateSalesListGridDataSource();
+            }
+            else
+            {
+                isTerminalSelected = true;
+            }
         }
 
         private void textBoxSalesListFilter_KeyDown(object sender, KeyEventArgs e)

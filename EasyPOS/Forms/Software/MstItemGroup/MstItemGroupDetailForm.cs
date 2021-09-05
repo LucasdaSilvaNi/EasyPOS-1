@@ -59,9 +59,16 @@ namespace EasyPOS.Forms.Software.MstItemGroup
 
                 kitchens = new List<String>
                 {
-                    "Main Course Kitchen",
-                    "Beverages",
-                    "Barbecue Station"
+                    "Kitchen 1",
+                    "Kitchen 2",
+                    "Kitchen 3",
+                    "Kitchen 4",
+                    "Kitchen 5",
+                    "Kitchen 6",
+                    "Kitchen 7",
+                    "Kitchen 8",
+                    "Kitchen 9",
+                    "Kitchen 10",
                 };
 
                 comboBoxItemGroupKitchens.DataSource = kitchens;

@@ -15,6 +15,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
     public partial class TrnPOSSalesOrderReportForm : Form
     {
         public Int32 trnSalesId = 0;
+        public String kitchenReport = "";
 
         public TrnPOSSalesOrderReportForm(Int32 salesId, String printerName)
         {
@@ -29,20 +30,50 @@ namespace EasyPOS.Forms.Software.TrnPOS
             }
             else
             {
-                if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+                Controllers.TrnSalesLineController trnSalesLineController = new Controllers.TrnSalesLineController();
+                var salesLineList = trnSalesLineController.ListSalesLine(salesId);
+
+                if (salesLineList.Any())
                 {
-                    printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
-                    printDocumentReturnReport.Print();
-                }
-                else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
-                {
-                    printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
-                    printDocumentReturnReport.Print();
-                }
-                else
-                {
-                    printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
-                    printDocumentReturnReport.Print();
+                    var groupKitchenReports = from d in salesLineList
+                                              group d by d.ItemKitchen into g
+                                              select g;
+
+                    if (groupKitchenReports.ToList().Any())
+                    {
+                        foreach (var groupKitchenReport in groupKitchenReports.ToList())
+                        {
+                            kitchenReport = groupKitchenReport.Key;
+
+                            Controllers.SysKitchenPrinterController sysKitchenPrinterController = new Controllers.SysKitchenPrinterController();
+                            var kitchenPrinters = sysKitchenPrinterController.KitchenPerKitchenNumber(kitchenReport);
+
+                            if (kitchenPrinters.Any())
+                            {
+                                printDocumentReturnReport.PrinterSettings.PrinterName = kitchenPrinters.FirstOrDefault().PrinterName;
+                                printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize(kitchenPrinters.FirstOrDefault().Alias, kitchenPrinters.FirstOrDefault().DefaultWidth, kitchenPrinters.FirstOrDefault().DefaultHeight);
+                                printDocumentReturnReport.Print();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+                        {
+                            printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
+                            printDocumentReturnReport.Print();
+                        }
+                        else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+                        {
+                            printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
+                            printDocumentReturnReport.Print();
+                        }
+                        else
+                        {
+                            printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
+                            printDocumentReturnReport.Print();
+                        }
+                    }
                 }
             }
         }
@@ -222,7 +253,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Decimal totalServiceCharge = 0;
                     Boolean hasServiceCharge = false;
 
-                    var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId select d;
+                    var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId && d.MstItem.DefaultKitchenReport == kitchenReport select d;
                     if (salesLines.Any())
                     {
                         var salesLineGroupbyItem = from s in salesLines
@@ -409,7 +440,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Decimal totalServiceCharge = 0;
                     Boolean hasServiceCharge = false;
 
-                    var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId select d;
+                    var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId && d.MstItem.DefaultKitchenReport == kitchenReport select d;
                     if (salesLines.Any())
                     {
                         var salesLineGroupbyItem = from s in salesLines
@@ -588,7 +619,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     graphics.DrawString(salesInvoiceFooter, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                     y += graphics.MeasureString(salesInvoiceFooter, fontArial8Regular).Height;
                 }
-
             }
 
             //if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
