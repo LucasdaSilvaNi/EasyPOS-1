@@ -369,8 +369,8 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         {
                             if (sysUserRights.GetUserRights().CanPrint == true)
                             {
-                                _80mm_Report.RepInventoryReport80mmForm repInventoryReportInventoryReport = new _80mm_Report.RepInventoryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToString(comboBoxCategory.SelectedValue), Convert.ToInt32(comboBoxItem.SelectedValue));
-                                repInventoryReportInventoryReport.ShowDialog();
+                                _80mm_Report.RepInventoryReport80mmForm repInventoryReport80mm = new _80mm_Report.RepInventoryReport80mmForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToString(comboBoxCategory.SelectedValue), Convert.ToInt32(comboBoxItem.SelectedValue));
+                                repInventoryReport80mm.ShowDialog();
                             }
                             else
                             {

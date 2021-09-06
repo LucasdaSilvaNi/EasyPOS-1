@@ -587,7 +587,7 @@ namespace EasyPOS.Forms.Software.TrnCollection
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-            new TrnCollectionDetailReportForm(trnCollectionEntity.Id);
+            new TrnPOS.TrnPOSOfficialReceiptReportForm(Convert.ToInt32(trnCollectionEntity.SalesId), trnCollectionEntity.Id, false, "Dot Matrix");
         }
 
         private void comboBoxCustomer_KeyDown(object sender, KeyEventArgs e)
