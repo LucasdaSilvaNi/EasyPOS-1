@@ -29,8 +29,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         public Boolean continueCancel = false;
 
         public List<String> lockOption;
-
-
+        public Boolean isTerminalSelected = false;
 
         public TrnPOSBarcodeForm(SysSoftwareForm softwareForm)
         {
@@ -102,7 +101,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                 GetTerminalList();
                 timerRefreshSalesListGrid.Start();
-                
+
             }
 
             Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
@@ -182,7 +181,15 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private void comboBoxTerminal_SelectedIndexChanged(object sender, EventArgs e)
         {
             pageNumber = 1;
-            UpdateSalesListGridDataSource();
+
+            if (isTerminalSelected == true)
+            {
+                UpdateSalesListGridDataSource();
+            }
+            else
+            {
+                isTerminalSelected = true;
+            }
         }
 
         private void textBoxSalesListFilter_KeyDown(object sender, KeyEventArgs e)
@@ -204,7 +211,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
             textBoxLastChange.Text = trnPOSSalesController.GetLastChange(Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().TerminalId)).ToString("#,##0.00");
-            
+
         }
 
         public async void GetSalesListDataAsync(DateTime salesDate, Int32 terminalId, String filter, String isLocked)
@@ -340,7 +347,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         {
             if (e.RowIndex > -1)
             {
-                CurrentSelectedCell(e.RowIndex);                              
+                CurrentSelectedCell(e.RowIndex);
             }
 
             if (e.RowIndex > -1 && dataGridViewSalesList.CurrentCell.ColumnIndex == dataGridViewSalesList.Columns["ColumnEdit"].Index)
@@ -898,12 +905,12 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         private void dataGridViewSalesList_SelectionChanged(object sender, EventArgs e)
         {
-            CurrentSelectedCell(dataGridViewSalesList.CurrentCell.RowIndex);
+            //CurrentSelectedCell(dataGridViewSalesList.CurrentCell.RowIndex);
         }
 
         private void comboBoxLockOption_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateSalesListGridDataSource();
-        }      
+        }
     }
 }

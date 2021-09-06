@@ -12,6 +12,7 @@ namespace EasyPOS.Entities
         public Int32 SalesId { get; set; }
         public Int32 ItemId { get; set; }
         public String ItemDescription { get; set; }
+        public String ItemKitchen { get; set; }
         public Int32 UnitId { get; set; }
         public String Unit { get; set; }
         public Decimal Price { get; set; }

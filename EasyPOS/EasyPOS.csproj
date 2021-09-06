@@ -247,7 +247,6 @@
     <Compile Include="Controllers\SysLoginController.cs" />
     <Compile Include="Controllers\IntCloudSettingsController.cs" />
     <Compile Include="Controllers\SysCurrentController.cs" />
-    <Compile Include="Controllers\SysKitchenPrinterController.cs" />
     <Compile Include="Controllers\SysSoftwareController.cs" />
     <Compile Include="Controllers\TrnCollectionController.cs" />
     <Compile Include="Controllers\TrnCollectionLineController.cs" />
@@ -316,7 +315,7 @@
     <Compile Include="Entities\DgvMstItemComponentListEntity.cs" />
     <Compile Include="Entities\DgvSalesSummaryRewardReportEntity.cs" />
     <Compile Include="Entities\DgvSysDispatchStationSalesListEntity.cs" />
-    <Compile Include="Entities\DgvSysKitchenPrinterEntity.cs" />
+    <Compile Include="Entities\DgvSysSettingsKitchenEntity.cs" />
     <Compile Include="Entities\DgvSysUtilitiesItemUpload.cs" />
     <Compile Include="Entities\DgvTrnCollectionLineListEntity.cs" />
     <Compile Include="Entities\DgvTrnCollectionListEntity.cs" />
@@ -839,6 +838,12 @@
     </Compile>
     <Compile Include="Forms\Software\SysKitchenDisplay\SysKitchenDisplayForm.Designer.cs">
       <DependentUpon>SysKitchenDisplayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Software\SysSettings\SysKitchenPrinterDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\SysSettings\SysKitchenPrinterDetailForm.Designer.cs">
+      <DependentUpon>SysKitchenPrinterDetailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Software\TrnCollection\TrnCollectionDetailForm.cs">
       <SubType>Form</SubType>
@@ -1561,6 +1566,9 @@
     <EmbeddedResource Include="Forms\Software\SysKitchenDisplay\SysKitchenDisplayForm.resx">
       <DependentUpon>SysKitchenDisplayForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\SysSettings\SysKitchenPrinterDetailForm.resx">
+      <DependentUpon>SysKitchenPrinterDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnCollection\TrnCollectionDetailForm.resx">
       <DependentUpon>TrnCollectionDetailForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1816,6 +1824,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSBarcodeForm.resx">
       <DependentUpon>TrnPOSBarcodeForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="IndexForm.resx">
       <DependentUpon>IndexForm.cs</DependentUpon>

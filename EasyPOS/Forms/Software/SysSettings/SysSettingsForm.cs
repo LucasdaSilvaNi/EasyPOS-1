@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,6 +25,13 @@ namespace EasyPOS.Forms.Software.SysSettings
 
         public String logLocation = "";
 
+        public static Int32 pageSize = 50;
+
+        public static List<Entities.DgvSysSettingsKitchenEntity> kitchenData = new List<Entities.DgvSysSettingsKitchenEntity>();
+        public PagedList<Entities.DgvSysSettingsKitchenEntity> kitchenPageList = new PagedList<Entities.DgvSysSettingsKitchenEntity>(kitchenData, kitchenPageNumber, pageSize);
+        public BindingSource kitchenDataSource = new BindingSource();
+        public static Int32 kitchenPageNumber = 1;
+
         public SysSettingsForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
@@ -37,7 +45,7 @@ namespace EasyPOS.Forms.Software.SysSettings
             {
                 getSettings();
                 GetComboBoxDropDownList();
-                getKitchenPrinter();
+                CreateKitchenDataGridView();
             }
 
         }
@@ -659,7 +667,6 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxIsTriggeredQuantity.Enabled = false;
                 checkBoxEnableEditPrice.Enabled = false;
                 comboBoxSalesOrderPrinterType.Enabled = false;
-                dataGridViewPrinterSetup.Enabled = false;
                 checkBoxDisableSalesCustomerSelection.Enabled = false;
             }
             else
@@ -703,8 +710,6 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxIsTenderPrint.Enabled = true;
                 checkBoxIsBarcodeQuantityAlwaysOne.Enabled = true;
                 checkBoxWithCustomerDisplay.Enabled = true;
-                dataGridViewPrinterSetup.Enabled = true;
-
 
                 if (checkBoxWithCustomerDisplay.Checked == true)
                 {
@@ -787,14 +792,211 @@ namespace EasyPOS.Forms.Software.SysSettings
 
         }
 
-        public void getKitchenPrinter()
+        public void UpdateKitchenDataSource()
         {
-            Controllers.SysKitchenPrinterController sysPrinterController = new Controllers.SysKitchenPrinterController();
-            var listKitchen = sysPrinterController.ListKitchen();
-            if (listKitchen != null)
-            {
-              
+            SetKitchenDataSourceAsync();
+        }
 
+        public async void SetKitchenDataSourceAsync()
+        {
+            List<Entities.DgvSysSettingsKitchenEntity> getKitchenData = await GetKitchenDataTask();
+            if (getKitchenData.Any())
+            {
+                kitchenData = getKitchenData;
+                kitchenPageList = new PagedList<Entities.DgvSysSettingsKitchenEntity>(kitchenData, kitchenPageNumber, pageSize);
+
+                if (kitchenPageList.PageCount == 1)
+                {
+                    buttonKitchenPageListFirst.Enabled = false;
+                    buttonKitchenPageListPrevious.Enabled = false;
+                    buttonKitchenPageListNext.Enabled = false;
+                    buttonKitchenPageListLast.Enabled = false;
+                }
+                else if (kitchenPageNumber == 1)
+                {
+                    buttonKitchenPageListFirst.Enabled = false;
+                    buttonKitchenPageListPrevious.Enabled = false;
+                    buttonKitchenPageListNext.Enabled = true;
+                    buttonKitchenPageListLast.Enabled = true;
+                }
+                else if (kitchenPageNumber == kitchenPageList.PageCount)
+                {
+                    buttonKitchenPageListFirst.Enabled = true;
+                    buttonKitchenPageListPrevious.Enabled = true;
+                    buttonKitchenPageListNext.Enabled = false;
+                    buttonKitchenPageListLast.Enabled = false;
+                }
+                else
+                {
+                    buttonKitchenPageListFirst.Enabled = true;
+                    buttonKitchenPageListPrevious.Enabled = true;
+                    buttonKitchenPageListNext.Enabled = true;
+                    buttonKitchenPageListLast.Enabled = true;
+                }
+
+                textBoxKitchenPageNumber.Text = kitchenPageNumber + " / " + kitchenPageList.PageCount;
+                kitchenDataSource.DataSource = kitchenPageList;
+            }
+            else
+            {
+                buttonKitchenPageListFirst.Enabled = false;
+                buttonKitchenPageListPrevious.Enabled = false;
+                buttonKitchenPageListNext.Enabled = false;
+                buttonKitchenPageListLast.Enabled = false;
+
+                kitchenPageNumber = 1;
+
+                kitchenData = new List<Entities.DgvSysSettingsKitchenEntity>();
+                kitchenDataSource.Clear();
+                textBoxKitchenPageNumber.Text = "1 / 1";
+            }
+        }
+
+        public Task<List<Entities.DgvSysSettingsKitchenEntity>> GetKitchenDataTask()
+        {
+            String filter = textBoxKitchenFilter.Text;
+            Controllers.SysKitchenPrinterController sysKichenPrinterController = new Controllers.SysKitchenPrinterController();
+
+            List<Entities.SysKitchenPrinterEntity> listKitchen = sysKichenPrinterController.ListKitchen(filter);
+            if (listKitchen.Any())
+            {
+                var accounts = from d in listKitchen
+                               select new Entities.DgvSysSettingsKitchenEntity
+                               {
+                                   ColumnKitchenButtonEdit = "Edit",
+                                   ColumnKitchenId = d.Id,
+                                   ColumnKitchenNumber = d.Kitchen,
+                                   ColumnPrinterName = d.PrinterName,
+                                   ColumnAlias = d.Alias,
+                                   ColumnDefaultWidth = d.DefaultWidth,
+                                   ColumnDefaultHeight = d.DefaultHeight
+                               };
+
+                return Task.FromResult(accounts.ToList());
+            }
+            else
+            {
+                return Task.FromResult(new List<Entities.DgvSysSettingsKitchenEntity>());
+            }
+        }
+
+        public void CreateKitchenDataGridView()
+        {
+            UpdateKitchenDataSource();
+
+            dataGridViewKitchen.Columns[0].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#01A6F0");
+            dataGridViewKitchen.Columns[0].DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#01A6F0");
+            dataGridViewKitchen.Columns[0].DefaultCellStyle.ForeColor = Color.White;
+
+            dataGridViewKitchen.Columns[1].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#F34F1C");
+            dataGridViewKitchen.Columns[1].DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#F34F1C");
+            dataGridViewKitchen.Columns[1].DefaultCellStyle.ForeColor = Color.White;
+
+            dataGridViewKitchen.DataSource = kitchenDataSource;
+        }
+
+        public void GetKitchenCurrentSelectedCell(Int32 rowIndex)
+        {
+
+        }
+
+        private void buttonKitchenPageListFirst_Click(object sender, EventArgs e)
+        {
+            kitchenPageList = new PagedList<Entities.DgvSysSettingsKitchenEntity>(kitchenData, 1, pageSize);
+            kitchenDataSource.DataSource = kitchenPageList;
+
+            buttonKitchenPageListFirst.Enabled = false;
+            buttonKitchenPageListPrevious.Enabled = false;
+            buttonKitchenPageListNext.Enabled = true;
+            buttonKitchenPageListLast.Enabled = true;
+
+            kitchenPageNumber = 1;
+            textBoxKitchenPageNumber.Text = kitchenPageNumber + " / " + kitchenPageList.PageCount;
+        }
+
+        private void buttonKitchenPageListPrevious_Click(object sender, EventArgs e)
+        {
+            if (kitchenPageList.HasPreviousPage == true)
+            {
+                kitchenPageList = new PagedList<Entities.DgvSysSettingsKitchenEntity>(kitchenData, --kitchenPageNumber, pageSize);
+                kitchenDataSource.DataSource = kitchenPageList;
+            }
+
+            buttonKitchenPageListNext.Enabled = true;
+            buttonKitchenPageListLast.Enabled = true;
+
+            if (kitchenPageNumber == 1)
+            {
+                buttonKitchenPageListFirst.Enabled = false;
+                buttonKitchenPageListPrevious.Enabled = false;
+            }
+
+            textBoxKitchenPageNumber.Text = kitchenPageNumber + " / " + kitchenPageList.PageCount;
+        }
+
+        private void buttonKitchenPageListNext_Click(object sender, EventArgs e)
+        {
+            if (kitchenPageList.HasNextPage == true)
+            {
+                kitchenPageList = new PagedList<Entities.DgvSysSettingsKitchenEntity>(kitchenData, ++kitchenPageNumber, pageSize);
+                kitchenDataSource.DataSource = kitchenPageList;
+            }
+
+            buttonKitchenPageListFirst.Enabled = true;
+            buttonKitchenPageListPrevious.Enabled = true;
+
+            if (kitchenPageNumber == kitchenPageList.PageCount)
+            {
+                buttonKitchenPageListNext.Enabled = false;
+                buttonKitchenPageListLast.Enabled = false;
+            }
+
+            textBoxKitchenPageNumber.Text = kitchenPageNumber + " / " + kitchenPageList.PageCount;
+        }
+
+        private void buttonKitchenPageListLast_Click(object sender, EventArgs e)
+        {
+            kitchenPageList = new PagedList<Entities.DgvSysSettingsKitchenEntity>(kitchenData, kitchenPageList.PageCount, pageSize);
+            kitchenDataSource.DataSource = kitchenPageList;
+
+            buttonKitchenPageListFirst.Enabled = true;
+            buttonKitchenPageListPrevious.Enabled = true;
+            buttonKitchenPageListNext.Enabled = false;
+            buttonKitchenPageListLast.Enabled = false;
+
+            kitchenPageNumber = kitchenPageList.PageCount;
+            textBoxKitchenPageNumber.Text = kitchenPageNumber + " / " + kitchenPageList.PageCount;
+        }
+
+        private void dataGridViewKitchen_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                GetKitchenCurrentSelectedCell(e.RowIndex);
+            }
+
+            if (e.RowIndex > -1 && dataGridViewKitchen.CurrentCell.ColumnIndex == dataGridViewKitchen.Columns["ColumnKitchenButtonEdit"].Index)
+            {
+                Entities.SysKitchenPrinterEntity kitchenPrinter = new Entities.SysKitchenPrinterEntity
+                {
+                    Id = Convert.ToInt32(dataGridViewKitchen.Rows[e.RowIndex].Cells[1].Value),
+                    Kitchen = dataGridViewKitchen.Rows[e.RowIndex].Cells[2].Value.ToString(),
+                    PrinterName = dataGridViewKitchen.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    Alias = dataGridViewKitchen.Rows[e.RowIndex].Cells[4].Value.ToString(),
+                    DefaultWidth = Convert.ToInt32(dataGridViewKitchen.Rows[e.RowIndex].Cells[5].Value.ToString()),
+                    DefaultHeight = Convert.ToInt32(dataGridViewKitchen.Rows[e.RowIndex].Cells[6].Value.ToString())
+                };
+
+                SysSettings.SysKitchenPrinterDetailForm sysKitchenPrinterDetailForm = new SysKitchenPrinterDetailForm(this, kitchenPrinter);
+                sysKitchenPrinterDetailForm.ShowDialog();
+            }
+        }
+
+        private void textBoxKitchenFilter_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                UpdateKitchenDataSource();
             }
         }
     }
