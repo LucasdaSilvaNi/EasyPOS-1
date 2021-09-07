@@ -118,7 +118,7 @@
             // labelUpdatedDate
             // 
             this.labelUpdatedDate.AutoSize = true;
-            this.labelUpdatedDate.Location = new System.Drawing.Point(820, 23);
+            this.labelUpdatedDate.Location = new System.Drawing.Point(820, 27);
             this.labelUpdatedDate.Name = "labelUpdatedDate";
             this.labelUpdatedDate.Size = new System.Drawing.Size(10, 13);
             this.labelUpdatedDate.TabIndex = 15;
@@ -127,7 +127,7 @@
             // labelUpdatedByUser
             // 
             this.labelUpdatedByUser.AutoSize = true;
-            this.labelUpdatedByUser.Location = new System.Drawing.Point(808, 6);
+            this.labelUpdatedByUser.Location = new System.Drawing.Point(808, 10);
             this.labelUpdatedByUser.Name = "labelUpdatedByUser";
             this.labelUpdatedByUser.Size = new System.Drawing.Size(10, 13);
             this.labelUpdatedByUser.TabIndex = 14;
@@ -136,7 +136,7 @@
             // labelCreatedDate
             // 
             this.labelCreatedDate.AutoSize = true;
-            this.labelCreatedDate.Location = new System.Drawing.Point(521, 22);
+            this.labelCreatedDate.Location = new System.Drawing.Point(521, 26);
             this.labelCreatedDate.Name = "labelCreatedDate";
             this.labelCreatedDate.Size = new System.Drawing.Size(10, 13);
             this.labelCreatedDate.TabIndex = 13;
@@ -146,7 +146,7 @@
             // 
             this.labelCreatedByUser.AutoSize = true;
             this.labelCreatedByUser.ForeColor = System.Drawing.Color.Black;
-            this.labelCreatedByUser.Location = new System.Drawing.Point(509, 6);
+            this.labelCreatedByUser.Location = new System.Drawing.Point(509, 10);
             this.labelCreatedByUser.Name = "labelCreatedByUser";
             this.labelCreatedByUser.Size = new System.Drawing.Size(10, 13);
             this.labelCreatedByUser.TabIndex = 12;
@@ -156,7 +156,7 @@
             // 
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(734, 21);
+            this.label3.Location = new System.Drawing.Point(734, 25);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 15);
@@ -167,7 +167,7 @@
             // 
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(734, 4);
+            this.label4.Location = new System.Drawing.Point(734, 8);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 15);
@@ -178,7 +178,7 @@
             // 
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(437, 21);
+            this.label2.Location = new System.Drawing.Point(437, 25);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 15);
@@ -189,7 +189,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(437, 4);
+            this.label1.Location = new System.Drawing.Point(437, 8);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 15);

@@ -2978,6 +2978,187 @@ namespace EasyPOS.Controllers
 
             return sale.FirstOrDefault();
         }
+
+        // ===========
+        // Split Sales
+        // ===========
+        public String[] SplitSales(Entities.TrnSalesEntity objSales, List<Entities.MstTableEntity> groupTableCodes)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var current_sales = from d in db.TrnSales
+                                    where d.Id == objSales.Id
+                                    select d;
+
+                if (current_sales.Any())
+                {
+                    String oldObjectCancelSales = Modules.SysAuditTrailModule.GetObjectString(current_sales.FirstOrDefault());
+
+                    var cancelSales = current_sales.FirstOrDefault();
+                    cancelSales.IsCancelled = true;
+                    cancelSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                    cancelSales.UpdateDateTime = DateTime.Now;
+                    db.SubmitChanges();
+
+                    String newObjectCancelSales = Modules.SysAuditTrailModule.GetObjectString(current_sales.FirstOrDefault());
+
+                    Entities.SysAuditTrailEntity newAuditTrailCancelSales = new Entities.SysAuditTrailEntity()
+                    {
+                        UserId = currentUserLogin.FirstOrDefault().Id,
+                        AuditDate = DateTime.Now,
+                        TableInformation = "TrnSales",
+                        RecordInformation = oldObjectCancelSales,
+                        FormInformation = newObjectCancelSales,
+                        ActionInformation = "CancelSales"
+                    };
+                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrailCancelSales);
+
+                    Modules.TrnInventoryModule trnInventoryModuleCancelSales = new Modules.TrnInventoryModule();
+                    trnInventoryModuleCancelSales.UpdateSalesInventory(current_sales.FirstOrDefault().Id);
+
+                    if (groupTableCodes.Any())
+                    {
+                        foreach (var groupTableCode in groupTableCodes)
+                        {
+                            Int32? tableId = null;
+
+                            if (groupTableCode.TableCode != "")
+                            {
+                                var table = from d in db.MstTables
+                                            where d.TableCode == groupTableCode.TableCode
+                                            select d;
+
+                                if (table.Any() == false)
+                                {
+                                    return new String[] { "Table not found.", "0" };
+                                }
+
+                                tableId = table.FirstOrDefault().Id;
+                            }
+
+                            String salesNumber = "0000000001";
+
+                            while (true)
+                            {
+                                var lastSales = from d in db.TrnSales.OrderByDescending(d => d.Id) select d;
+                                if (lastSales.Any())
+                                {
+                                    Int32 newSalesNumber = Convert.ToInt32(lastSales.FirstOrDefault().SalesNumber) + 1;
+                                    salesNumber = FillLeadingZeroes(newSalesNumber, 10);
+                                }
+
+                                var existingSales = from d in db.TrnSales
+                                                    where d.SalesNumber == salesNumber
+                                                    select d;
+
+                                if (existingSales.Any() == false)
+                                {
+                                    break;
+                                }
+                            }
+
+                            Data.TrnSale newSales = new Data.TrnSale()
+                            {
+                                PeriodId = objSales.PeriodId,
+                                SalesDate = Convert.ToDateTime(objSales.SalesDate),
+                                SalesNumber = salesNumber,
+                                ManualInvoiceNumber = objSales.Terminal + "-" + salesNumber,
+                                CollectionNumber = null,
+                                Amount = 0,
+                                TableId = tableId,
+                                TableStatus = 0,
+                                CustomerId = objSales.CustomerId,
+                                AccountId = objSales.AccountId,
+                                TermId = objSales.TermId,
+                                DiscountId = objSales.DiscountId,
+                                SeniorCitizenId = objSales.SeniorCitizenId,
+                                SeniorCitizenName = objSales.SeniorCitizenName,
+                                SeniorCitizenAge = objSales.SeniorCitizenAge,
+                                Remarks = objSales.Remarks,
+                                SalesAgent = objSales.SalesAgent,
+                                TerminalId = objSales.TerminalId,
+                                DeliveryId = objSales.DeliveryId,
+                                DeliveryDriver = objSales.DeliveryDriver,
+                                PreparedBy = currentUserLogin.FirstOrDefault().Id,
+                                CheckedBy = currentUserLogin.FirstOrDefault().Id,
+                                ApprovedBy = currentUserLogin.FirstOrDefault().Id,
+                                IsLocked = false,
+                                IsTendered = false,
+                                IsCancelled = false,
+                                IsDispatched = false,
+                                IsReturned = false,
+                                ReturnApplication = "",
+                                PaidAmount = 0,
+                                CreditAmount = 0,
+                                DebitAmount = 0,
+                                BalanceAmount = 0,
+                                EntryUserId = currentUserLogin.FirstOrDefault().Id,
+                                EntryDateTime = DateTime.Now,
+                                UpdateUserId = currentUserLogin.FirstOrDefault().Id,
+                                UpdateDateTime = DateTime.Now,
+                                Pax = null,
+                                PostCode = null
+                            };
+
+                            db.TrnSales.InsertOnSubmit(newSales);
+                            db.SubmitChanges();
+
+                            Int32 salesId = newSales.Id;
+
+
+
+
+                            String newObjectNewSales = Modules.SysAuditTrailModule.GetObjectString(newSales);
+
+                            Entities.SysAuditTrailEntity newAuditTrailNewSales = new Entities.SysAuditTrailEntity()
+                            {
+                                UserId = currentUserLogin.FirstOrDefault().Id,
+                                AuditDate = DateTime.Now,
+                                TableInformation = "TrnSale",
+                                RecordInformation = "",
+                                FormInformation = newObjectNewSales,
+                                ActionInformation = "AddSales"
+                            };
+                            Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrailNewSales);
+
+                            var sales = from d in db.TrnSales
+                                        where d.Id == salesId
+                                        select d;
+
+                            if (sales.Any())
+                            {
+                                var lockSales = sales.FirstOrDefault();
+                                lockSales.CustomerId = objSales.CustomerId;
+                                lockSales.TermId = objSales.TermId;
+                                lockSales.Remarks = objSales.Remarks;
+                                lockSales.SalesAgent = objSales.SalesAgent;
+                                lockSales.IsLocked = true;
+                                lockSales.BalanceAmount = objSales.Amount;
+                                lockSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                                lockSales.UpdateDateTime = DateTime.Now;
+                                db.SubmitChanges();
+
+                                Modules.TrnInventoryModule trnInventoryModuleNewSales = new Modules.TrnInventoryModule();
+                                trnInventoryModuleNewSales.UpdateSalesInventory(salesId);
+                            }
+                        }
+                    }
+                }
+
+                return new String[] { "", "1" };
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
+
     }
 }
 

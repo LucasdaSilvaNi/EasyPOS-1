@@ -362,5 +362,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 }
             }
         }
+
+        private void buttonSplitMergeBill_Click(object sender, EventArgs e)
+        {
+            TrnPOSTouchActivitySplitMergeForm trnPOSTouchActivitySplitMergeForm = new TrnPOSTouchActivitySplitMergeForm(sysSoftwareForm, trnPOSTouchForm, this, trnSalesEntity);
+            trnPOSTouchActivitySplitMergeForm.ShowDialog();
+        }
     }
 }

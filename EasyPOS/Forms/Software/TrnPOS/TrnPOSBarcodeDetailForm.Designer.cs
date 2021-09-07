@@ -851,12 +851,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxChange.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxChange.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxChange.Location = new System.Drawing.Point(1011, 5);
+            this.textBoxChange.Location = new System.Drawing.Point(902, 5);
             this.textBoxChange.Name = "textBoxChange";
             this.textBoxChange.ReadOnly = true;
-            this.textBoxChange.Size = new System.Drawing.Size(75, 33);
+            this.textBoxChange.Size = new System.Drawing.Size(184, 33);
             this.textBoxChange.TabIndex = 2;
             this.textBoxChange.TabStop = false;
+            this.textBoxChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label5
             // 
@@ -864,7 +865,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(881, 8);
+            this.label5.Location = new System.Drawing.Point(772, 8);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(124, 25);
             this.label5.TabIndex = 2;
