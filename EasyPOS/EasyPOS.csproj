@@ -1073,6 +1073,12 @@
     <Compile Include="Forms\Software\TrnPOS\TrnPOSReturn.Designer.cs">
       <DependentUpon>TrnPOSReturn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchChangeTableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchChangeTableForm.Designer.cs">
+      <DependentUpon>TrnPOSTouchChangeTableForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchActivityForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1668,6 +1674,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSReturn.resx">
       <DependentUpon>TrnPOSReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTouchChangeTableForm.resx">
+      <DependentUpon>TrnPOSTouchChangeTableForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTouchActivityForm.resx">
       <DependentUpon>TrnPOSTouchActivityForm.cs</DependentUpon>
