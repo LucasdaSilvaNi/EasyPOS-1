@@ -876,7 +876,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         }
                         else if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Letter Printer")
                         {
-                            new TrnPOSSalesInvoiceReportForm(trnSalesEntity.Id, printDialogSalesInvoice.PrinterSettings.PrinterName);
+                            new TrnPOSSalesInvoicePDFReportForm(trnSalesEntity.Id);
                         }
                         else
                         {
