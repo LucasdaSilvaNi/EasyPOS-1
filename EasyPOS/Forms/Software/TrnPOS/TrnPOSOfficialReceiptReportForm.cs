@@ -211,6 +211,17 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     y += graphics.MeasureString("REPRINTED", fontArial8Regular).Height;
                 }
 
+                var sales = from d in db.TrnSales
+                            where d.Id == trnSalesId
+                            select d;
+
+                if(sales.FirstOrDefault().TableId != null)
+                {
+                    String tableNo = "Table: " + sales.FirstOrDefault().MstTable.TableCode;
+                    graphics.DrawString(tableNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                    y += graphics.MeasureString(tableNo, fontArial8Regular).Height;
+                }
+
                 // ========
                 // 1st Line
                 // ========

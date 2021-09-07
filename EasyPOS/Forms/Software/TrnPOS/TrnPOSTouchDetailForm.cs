@@ -126,11 +126,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 {
                     if (trnSalesEntity.IsLocked == true)
                     {
-                        buttonPrint.Enabled = true;
+                        buttonPrint.Enabled = false;
                     }
                     else
                     {
-                        buttonPrint.Enabled = false;
+                        buttonPrint.Enabled = true;
                     }
                 }
                 else
@@ -433,6 +433,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             labelCustomerCode.Text = trnSalesEntity.CustomerCode;
             labelCustomer.Text = trnSalesEntity.Customer;
             labelRemarks.Text = trnSalesEntity.Remarks;
+            labelTableNumber.Text = trnSalesEntity.Table;
         }
 
         private void buttonSearchItem_Click(object sender, EventArgs e)
@@ -825,7 +826,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         {
             buttonSearchItem.Enabled = !isLocked;
             buttonDownload.Enabled = !isLocked;
-            buttonPrint.Enabled = isLocked;
+            buttonPrint.Enabled = !isLocked;
             buttonLock.Enabled = !isLocked;
             buttonUnlock.Enabled = isLocked;
             buttonReturn.Enabled = !isLocked;
@@ -1035,7 +1036,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Label Printer")
                         {
                             new TrnPOSSalesOrderReportFormLabelPrinter(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
-                        }
+                        }                        
                         else
                         {
                             new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
@@ -1048,6 +1049,10 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 if (trnSalesEntity.IsReturned == true)
                 {
                     new TrnPOSReturnReportForm(trnSalesEntity.Id);
+                }
+                else if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Kitchen Printer")
+                {
+                    new TrnPOSTouchOrderReportFormKitchenPrinter(trnSalesEntity.Id, "");
                 }
                 else
                 {
