@@ -1237,5 +1237,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 panelItems.Visible = true;
             }
         }
+
+        private void buttonChangeTable_Click(object sender, EventArgs e)
+        {
+            TrnPOSTouchChangeTableForm trnPOSTouchChangeTableForm = new TrnPOSTouchChangeTableForm(sysSoftwareForm, trnPOSTouchForm, this, trnSalesEntity, Convert.ToDateTime(trnSalesEntity.SalesDate));
+            trnPOSTouchChangeTableForm.ShowDialog();
+        }
     }
 }

@@ -1774,6 +1774,52 @@ namespace EasyPOS.Controllers
         }
 
         // ============
+        // Change Table
+        // ============
+        public String[] ChangeTableSales(Int32 salesId, String tableCode)
+        {
+            try
+            {
+                var sales = from d in db.TrnSales
+                            where d.Id == salesId
+                            select d;
+
+                if (sales.Any())
+                {
+                    Int32? tableId = null;
+
+                    var table = from d in db.MstTables
+                                where d.TableCode == tableCode
+                                select d;
+
+                    if (table.Any() == true)
+                    {
+                        tableId = table.FirstOrDefault().Id;
+                    }
+
+                    var updateSales = sales.FirstOrDefault();
+                    updateSales.TableId = tableId;
+                    updateSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                    updateSales.UpdateDateTime = DateTime.Now;
+                    db.SubmitChanges();
+
+                    Modules.TrnInventoryModule trnInventoryModule = new Modules.TrnInventoryModule();
+                    trnInventoryModule.UpdateSalesInventory(salesId);
+
+                    return new String[] { "", "1" };
+                }
+                else
+                {
+                    return new String[] { "Sales not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
+
+        // ============
         // Table Groups
         // ============
         public List<Entities.MstTableGroupEntity> ListTableGroup()
@@ -1833,6 +1879,7 @@ namespace EasyPOS.Controllers
                     var sales = from d in db.TrnSales
                                 where d.SalesDate == salesDate
                                 && d.TableId == tableId
+                                && d.IsTendered == false
                                 select d;
 
                     if (sales.Any())

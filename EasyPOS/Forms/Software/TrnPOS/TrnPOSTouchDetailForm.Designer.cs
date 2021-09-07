@@ -30,6 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrnPOSTouchDetailForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -70,7 +79,7 @@
             this.panelItems = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.imageListPOSTouchDetail = new System.Windows.Forms.ImageList(this.components);
-            this.buttonWalkIn = new System.Windows.Forms.Button();
+            this.buttonChangeTable = new System.Windows.Forms.Button();
             this.buttonItemGroupItem28 = new System.Windows.Forms.Button();
             this.buttonItemGroupItem29 = new System.Windows.Forms.Button();
             this.buttonItemGroupItem30 = new System.Windows.Forms.Button();
@@ -603,7 +612,7 @@
             // 
             this.panelItems.BackColor = System.Drawing.Color.White;
             this.panelItems.Controls.Add(this.button4);
-            this.panelItems.Controls.Add(this.buttonWalkIn);
+            this.panelItems.Controls.Add(this.buttonChangeTable);
             this.panelItems.Controls.Add(this.buttonItemGroupItem28);
             this.panelItems.Controls.Add(this.buttonItemGroupItem29);
             this.panelItems.Controls.Add(this.buttonItemGroupItem30);
@@ -680,26 +689,27 @@
             this.imageListPOSTouchDetail.Images.SetKeyName(0, "changeTable.png");
             this.imageListPOSTouchDetail.Images.SetKeyName(1, "scanQRCode.png");
             // 
-            // buttonWalkIn
+            // buttonChangeTable
             // 
-            this.buttonWalkIn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.buttonChangeTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonWalkIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(188)))), ((int)(((byte)(0)))));
-            this.buttonWalkIn.FlatAppearance.BorderSize = 0;
-            this.buttonWalkIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonWalkIn.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
-            this.buttonWalkIn.ForeColor = System.Drawing.Color.White;
-            this.buttonWalkIn.ImageKey = "changeTable.png";
-            this.buttonWalkIn.ImageList = this.imageListPOSTouchDetail;
-            this.buttonWalkIn.Location = new System.Drawing.Point(6, 393);
-            this.buttonWalkIn.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonWalkIn.Name = "buttonWalkIn";
-            this.buttonWalkIn.Size = new System.Drawing.Size(323, 54);
-            this.buttonWalkIn.TabIndex = 50;
-            this.buttonWalkIn.Text = "\r\nChange Table";
-            this.buttonWalkIn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonWalkIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.buttonWalkIn.UseVisualStyleBackColor = false;
+            this.buttonChangeTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(188)))), ((int)(((byte)(0)))));
+            this.buttonChangeTable.FlatAppearance.BorderSize = 0;
+            this.buttonChangeTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonChangeTable.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.buttonChangeTable.ForeColor = System.Drawing.Color.White;
+            this.buttonChangeTable.ImageKey = "changeTable.png";
+            this.buttonChangeTable.ImageList = this.imageListPOSTouchDetail;
+            this.buttonChangeTable.Location = new System.Drawing.Point(6, 393);
+            this.buttonChangeTable.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonChangeTable.Name = "buttonChangeTable";
+            this.buttonChangeTable.Size = new System.Drawing.Size(323, 54);
+            this.buttonChangeTable.TabIndex = 50;
+            this.buttonChangeTable.Text = "\r\nChange Table";
+            this.buttonChangeTable.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonChangeTable.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.buttonChangeTable.UseVisualStyleBackColor = false;
+            this.buttonChangeTable.Click += new System.EventHandler(this.buttonChangeTable_Click);
             // 
             // buttonItemGroupItem28
             // 
@@ -1284,6 +1294,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewSalesLineList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewSalesLineList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.2F);
@@ -1387,6 +1405,8 @@
             // 
             // ColumnSalesLineQuantity
             // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnSalesLineQuantity.DefaultCellStyle = dataGridViewCellStyle11;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.ColumnSalesLineQuantity.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnSalesLineQuantity.HeaderText = "Quantity";
@@ -1408,6 +1428,8 @@
             // 
             // ColumnSalesLinePrice
             // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnSalesLinePrice.DefaultCellStyle = dataGridViewCellStyle12;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.ColumnSalesLinePrice.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColumnSalesLinePrice.HeaderText = "Price";
@@ -1430,6 +1452,8 @@
             // 
             // ColumnSalesLineDiscountRate
             // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnSalesLineDiscountRate.DefaultCellStyle = dataGridViewCellStyle13;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.ColumnSalesLineDiscountRate.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColumnSalesLineDiscountRate.HeaderText = "Discount %";
@@ -1439,6 +1463,8 @@
             // 
             // ColumnSalesLineDiscountAmount
             // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnSalesLineDiscountAmount.DefaultCellStyle = dataGridViewCellStyle14;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.ColumnSalesLineDiscountAmount.DefaultCellStyle = dataGridViewCellStyle5;
             this.ColumnSalesLineDiscountAmount.HeaderText = "Discount";
@@ -1447,6 +1473,8 @@
             // 
             // ColumnSalesLineNetPrice
             // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnSalesLineNetPrice.DefaultCellStyle = dataGridViewCellStyle15;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.ColumnSalesLineNetPrice.DefaultCellStyle = dataGridViewCellStyle6;
             this.ColumnSalesLineNetPrice.HeaderText = "Net Price";
@@ -1455,6 +1483,8 @@
             // 
             // ColumnSalesLineAmount
             // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnSalesLineAmount.DefaultCellStyle = dataGridViewCellStyle16;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.ColumnSalesLineAmount.DefaultCellStyle = dataGridViewCellStyle7;
             this.ColumnSalesLineAmount.HeaderText = "Amount";
@@ -1477,6 +1507,8 @@
             // 
             // ColumnSalesLineTaxRate
             // 
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnSalesLineTaxRate.DefaultCellStyle = dataGridViewCellStyle17;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.ColumnSalesLineTaxRate.DefaultCellStyle = dataGridViewCellStyle8;
             this.ColumnSalesLineTaxRate.HeaderText = "Tax %";
@@ -1485,6 +1517,8 @@
             // 
             // ColumnSalesLineTaxAmount
             // 
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnSalesLineTaxAmount.DefaultCellStyle = dataGridViewCellStyle18;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.ColumnSalesLineTaxAmount.DefaultCellStyle = dataGridViewCellStyle9;
             this.ColumnSalesLineTaxAmount.HeaderText = "Tax";
@@ -1788,7 +1822,7 @@
         private System.Windows.Forms.Button buttonItemGroupItem27;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ImageList imageListPOSTouchDetail;
-        private System.Windows.Forms.Button buttonWalkIn;
+        private System.Windows.Forms.Button buttonChangeTable;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button buttonDownload;
         private System.Windows.Forms.Label label7;
