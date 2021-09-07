@@ -453,6 +453,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 "Default Printer",
                 "Label Printer",
                 "Letter Printer",
+                "Kitchen Printer"
             };
 
             comboBoxSalesOrderPrinterType.DataSource = salesOrderPrinterType;

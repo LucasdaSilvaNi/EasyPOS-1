@@ -141,14 +141,25 @@ namespace EasyPOS.Forms.Software.TrnPOS
             // ======================
             // Official Receipt Title
             // ======================
-            String officialReceiptTitle = systemCurrent.ORPrintTitle;
+            String officialReceiptTitle = "B I L L  O U T";
             graphics.DrawString(officialReceiptTitle, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
             y += graphics.MeasureString(officialReceiptTitle, fontArial8Regular).Height;
 
-                // ========
-                // 1st Line
-                // ========
-                Point firstLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
+            // ============
+            // Table Number
+            // ============
+            var sales = from d in db.TrnSales
+                        where d.Id == trnSalesId
+                        select d;
+
+            String tableNo = "Table: " + sales.FirstOrDefault().MstTable.TableCode;
+            graphics.DrawString(tableNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += graphics.MeasureString(tableNo, fontArial8Regular).Height;
+
+            // ========
+            // 1st Line
+            // ========
+            Point firstLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point firstLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                 graphics.DrawLine(blackPen, firstLineFirstPoint, firstLineSecondPoint);
 
@@ -311,21 +322,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Point thirdLineFirstPoint = new Point(0, Convert.ToInt32(y) +5);
                 Point thirdLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                 graphics.DrawLine(blackPen, thirdLineFirstPoint, thirdLineSecondPoint);
-
-
-                String receiptFooter = "\n" + systemCurrent.ReceiptFooter;
-                graphics.DrawString(receiptFooter, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                y += graphics.MeasureString(receiptFooter, fontArial8Regular).Height;
-            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
-            {
-                String space = "\n\n\n\n\n\n\n\n\n\n.";
-                graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            }
-            else
-            {
-                String space = "\n\n\n.";
-                graphics.DrawString(space, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            }
         }
     }
 }
