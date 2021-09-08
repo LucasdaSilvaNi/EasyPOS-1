@@ -35,24 +35,24 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.imageListPOSTouchOthers = new System.Windows.Forms.ImageList(this.components);
             this.buttonReprint = new System.Windows.Forms.Button();
             this.imageListPOSTouchBIllOut = new System.Windows.Forms.ImageList(this.components);
             this.buttonDeliver = new System.Windows.Forms.Button();
-            this.imageListPOSTouchOthers = new System.Windows.Forms.ImageList(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelInvoiceNumber = new System.Windows.Forms.Label();
             this.buttonTender = new System.Windows.Forms.Button();
             this.buttonBillOut = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.imageListPOSTouchCancel = new System.Windows.Forms.ImageList(this.components);
             this.buttonSplitMergeBill = new System.Windows.Forms.Button();
             this.buttonPrintPartialBill = new System.Windows.Forms.Button();
             this.buttonEditOrder = new System.Windows.Forms.Button();
             this.imageListPOSTouchEditOrder = new System.Windows.Forms.ImageList(this.components);
             this.printDialogReprintOR = new System.Windows.Forms.PrintDialog();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.imageListPOSTouchCancel = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -133,6 +133,37 @@
             this.panel2.Size = new System.Drawing.Size(803, 378);
             this.panel2.TabIndex = 6;
             // 
+            // buttonCancel
+            // 
+            this.buttonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonCancel.FlatAppearance.BorderSize = 0;
+            this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.buttonCancel.ForeColor = System.Drawing.Color.White;
+            this.buttonCancel.ImageIndex = 0;
+            this.buttonCancel.ImageList = this.imageListPOSTouchOthers;
+            this.buttonCancel.Location = new System.Drawing.Point(665, 155);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Padding = new System.Windows.Forms.Padding(8);
+            this.buttonCancel.Size = new System.Drawing.Size(127, 105);
+            this.buttonCancel.TabIndex = 11;
+            this.buttonCancel.Text = "\r\nF7 - Cancel";
+            this.buttonCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.buttonCancel.UseVisualStyleBackColor = false;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // imageListPOSTouchOthers
+            // 
+            this.imageListPOSTouchOthers.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListPOSTouchOthers.ImageStream")));
+            this.imageListPOSTouchOthers.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListPOSTouchOthers.Images.SetKeyName(0, "cancel.png");
+            this.imageListPOSTouchOthers.Images.SetKeyName(1, "print.png");
+            this.imageListPOSTouchOthers.Images.SetKeyName(2, "splitMergeBill.png");
+            this.imageListPOSTouchOthers.Images.SetKeyName(3, "tender.png");
+            this.imageListPOSTouchOthers.Images.SetKeyName(4, "DeliveryMan.png");
+            // 
             // buttonReprint
             // 
             this.buttonReprint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
@@ -143,7 +174,7 @@
             this.buttonReprint.ForeColor = System.Drawing.Color.White;
             this.buttonReprint.ImageIndex = 0;
             this.buttonReprint.ImageList = this.imageListPOSTouchBIllOut;
-            this.buttonReprint.Location = new System.Drawing.Point(271, 155);
+            this.buttonReprint.Location = new System.Drawing.Point(272, 155);
             this.buttonReprint.Margin = new System.Windows.Forms.Padding(2);
             this.buttonReprint.Name = "buttonReprint";
             this.buttonReprint.Padding = new System.Windows.Forms.Padding(8);
@@ -181,16 +212,6 @@
             this.buttonDeliver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.buttonDeliver.UseVisualStyleBackColor = false;
             this.buttonDeliver.Click += new System.EventHandler(this.buttonDeliver_Click);
-            // 
-            // imageListPOSTouchOthers
-            // 
-            this.imageListPOSTouchOthers.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListPOSTouchOthers.ImageStream")));
-            this.imageListPOSTouchOthers.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListPOSTouchOthers.Images.SetKeyName(0, "cancel.png");
-            this.imageListPOSTouchOthers.Images.SetKeyName(1, "print.png");
-            this.imageListPOSTouchOthers.Images.SetKeyName(2, "splitMergeBill.png");
-            this.imageListPOSTouchOthers.Images.SetKeyName(3, "tender.png");
-            this.imageListPOSTouchOthers.Images.SetKeyName(4, "DeliveryMan.png");
             // 
             // panel3
             // 
@@ -265,18 +286,27 @@
             this.buttonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonDelete.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.buttonDelete.ForeColor = System.Drawing.Color.White;
-            this.buttonDelete.ImageIndex = 1;
+            this.buttonDelete.ImageIndex = 3;
             this.buttonDelete.ImageList = this.imageListPOSTouchCancel;
             this.buttonDelete.Location = new System.Drawing.Point(534, 155);
             this.buttonDelete.Margin = new System.Windows.Forms.Padding(2);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Padding = new System.Windows.Forms.Padding(8);
-            this.buttonDelete.Size = new System.Drawing.Size(258, 68);
+            this.buttonDelete.Size = new System.Drawing.Size(127, 105);
             this.buttonDelete.TabIndex = 4;
             this.buttonDelete.Text = "\r\nF6 - Delete";
             this.buttonDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.buttonDelete.UseVisualStyleBackColor = false;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // imageListPOSTouchCancel
+            // 
+            this.imageListPOSTouchCancel.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListPOSTouchCancel.ImageStream")));
+            this.imageListPOSTouchCancel.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListPOSTouchCancel.Images.SetKeyName(0, "cancel.png");
+            this.imageListPOSTouchCancel.Images.SetKeyName(1, "delete.png");
+            this.imageListPOSTouchCancel.Images.SetKeyName(2, "splitMergeBill.png");
+            this.imageListPOSTouchCancel.Images.SetKeyName(3, "delete.png");
             // 
             // buttonSplitMergeBill
             // 
@@ -287,16 +317,17 @@
             this.buttonSplitMergeBill.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.buttonSplitMergeBill.ForeColor = System.Drawing.Color.White;
             this.buttonSplitMergeBill.ImageIndex = 2;
-            this.buttonSplitMergeBill.ImageList = this.imageListPOSTouchCancel;
-            this.buttonSplitMergeBill.Location = new System.Drawing.Point(534, 301);
+            this.buttonSplitMergeBill.ImageList = this.imageListPOSTouchOthers;
+            this.buttonSplitMergeBill.Location = new System.Drawing.Point(534, 264);
             this.buttonSplitMergeBill.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSplitMergeBill.Name = "buttonSplitMergeBill";
             this.buttonSplitMergeBill.Padding = new System.Windows.Forms.Padding(8);
-            this.buttonSplitMergeBill.Size = new System.Drawing.Size(258, 68);
+            this.buttonSplitMergeBill.Size = new System.Drawing.Size(258, 105);
             this.buttonSplitMergeBill.TabIndex = 3;
             this.buttonSplitMergeBill.Text = "\r\nF10 - Split/Merge Bill";
             this.buttonSplitMergeBill.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.buttonSplitMergeBill.UseVisualStyleBackColor = false;
+            this.buttonSplitMergeBill.Click += new System.EventHandler(this.buttonSplitMergeBill_Click);
             // 
             // buttonPrintPartialBill
             // 
@@ -359,40 +390,11 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
-            // imageListPOSTouchCancel
-            // 
-            this.imageListPOSTouchCancel.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListPOSTouchCancel.ImageStream")));
-            this.imageListPOSTouchCancel.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageListPOSTouchCancel.Images.SetKeyName(0, "cancel.png");
-            this.imageListPOSTouchCancel.Images.SetKeyName(1, "delete.png");
-            this.imageListPOSTouchCancel.Images.SetKeyName(2, "splitMergeBill.png");
-            // 
             // imageList1
             // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonCancel.FlatAppearance.BorderSize = 0;
-            this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.buttonCancel.ForeColor = System.Drawing.Color.White;
-            this.buttonCancel.ImageIndex = 0;
-            this.buttonCancel.ImageList = this.imageListPOSTouchCancel;
-            this.buttonCancel.Location = new System.Drawing.Point(534, 228);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Padding = new System.Windows.Forms.Padding(8);
-            this.buttonCancel.Size = new System.Drawing.Size(258, 68);
-            this.buttonCancel.TabIndex = 11;
-            this.buttonCancel.Text = "\r\nF7 - Cancel";
-            this.buttonCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.buttonCancel.UseVisualStyleBackColor = false;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // TrnPOSTouchActivityForm
             // 

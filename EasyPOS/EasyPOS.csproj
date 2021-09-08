@@ -295,6 +295,7 @@
     <Compile Include="EasyFISIntegration\Entities\EasyPOSTrnStockOutItem.cs" />
     <Compile Include="EasyFISIntegration\Entities\EasyPOSTrnStockTransfer.cs" />
     <Compile Include="EasyFISIntegration\Entities\EasyPOSTrnStockTransferItem.cs" />
+    <Compile Include="Entities\DgvTrnSalesItemSplitEntity.cs" />
     <Compile Include="Entities\DgvItemExpiryEntity.cs" />
     <Compile Include="Entities\DgvMstDiscountingListEntity.cs" />
     <Compile Include="Entities\DgvMstItemGroupItemListEntity.cs" />
@@ -917,6 +918,12 @@
     <Compile Include="Forms\Software\TrnPOS\TrnPOSReturnReportForm.Designer.cs">
       <DependentUpon>TrnPOSReturnReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchActivitySplitMergeTableCodeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchActivitySplitMergeTableCodeForm.Designer.cs">
+      <DependentUpon>TrnPOSTouchActivitySplitMergeTableCodeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Software\TrnPOS\TrnPOSTenderLoadInformation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1084,6 +1091,12 @@
     </Compile>
     <Compile Include="Forms\Software\TrnPOS\TrnPOSReturn.Designer.cs">
       <DependentUpon>TrnPOSReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchActivitySplitMergeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchActivitySplitMergeForm.Designer.cs">
+      <DependentUpon>TrnPOSTouchActivitySplitMergeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchChangeTableForm.cs">
       <SubType>Form</SubType>
@@ -1614,6 +1627,9 @@
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSReturnReportForm.resx">
       <DependentUpon>TrnPOSReturnReportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTouchActivitySplitMergeTableCodeForm.resx">
+      <DependentUpon>TrnPOSTouchActivitySplitMergeTableCodeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTenderLoadInformation.resx">
       <DependentUpon>TrnPOSTenderLoadInformation.cs</DependentUpon>
     </EmbeddedResource>
@@ -1692,6 +1708,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSReturn.resx">
       <DependentUpon>TrnPOSReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTouchActivitySplitMergeForm.resx">
+      <DependentUpon>TrnPOSTouchActivitySplitMergeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTouchChangeTableForm.resx">
       <DependentUpon>TrnPOSTouchChangeTableForm.cs</DependentUpon>
@@ -1928,6 +1947,7 @@
     <Content Include="Resources\Images\Others\color theme.jpg" />
     <Content Include="Resources\Images\POSTouchIcons\cancel.png" />
     <Content Include="Resources\Images\POSTouchIcons\changeTable.png" />
+    <None Include="Resources\Images\POSTouchIcons\delete.png" />
     <Content Include="Resources\Images\POSTouchIcons\delivery.png" />
     <Content Include="Resources\Images\POSTouchIcons\editOrder.png" />
     <None Include="Resources\Images\POSTouchIcons\itemGroup.png" />
