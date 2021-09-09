@@ -156,6 +156,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         {
                             tableButtons[i].BackColor = Color.Brown;
                             tableButtons[i].ForeColor = Color.White;
+                            tableButtons[i].Enabled = false;
                         }
                         else
                         {

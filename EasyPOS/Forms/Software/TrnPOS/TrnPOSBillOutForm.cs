@@ -154,7 +154,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             String tableNo = "Table: " + sales.FirstOrDefault().MstTable.TableCode;
             graphics.DrawString(tableNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(tableNo, fontArial8Regular).Height;
+            String billDateText = "\n" + sales.FirstOrDefault().SalesDate.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+            graphics.DrawString(billDateText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+            String billTimeText = "\n" + DateTime.Now.ToString("hh:mm:ss:tt", CultureInfo.InvariantCulture);
+            graphics.DrawString(billTimeText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+            y += graphics.MeasureString(billTimeText, fontArial8Regular).Height;
 
             // ========
             // 1st Line
