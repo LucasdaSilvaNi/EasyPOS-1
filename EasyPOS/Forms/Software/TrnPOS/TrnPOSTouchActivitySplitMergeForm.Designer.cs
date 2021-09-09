@@ -28,20 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrnPOSTouchActivitySplitMergeForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrnPOSTouchActivitySplitMergeForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControlSystemTable = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.dataGridViewSalesItemSplitItems = new System.Windows.Forms.DataGridView();
+            this.buttonSplit = new System.Windows.Forms.Button();
             this.panel15 = new System.Windows.Forms.Panel();
             this.buttonSalesItemSplitPageListFirst = new System.Windows.Forms.Button();
             this.buttonSalesItemSplitPageListPrevious = new System.Windows.Forms.Button();
@@ -56,9 +59,6 @@
             this.buttonPayTypeListPageListNext = new System.Windows.Forms.Button();
             this.buttonPayTypeListPageListLast = new System.Windows.Forms.Button();
             this.textBoxPayTypeListPageNumber = new System.Windows.Forms.TextBox();
-            this.buttonSplit = new System.Windows.Forms.Button();
-            this.dataGridViewSalesItemSplitItems = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ColumnSplitSalesItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSplitSalesItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesItemUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,17 +66,18 @@
             this.ColumnSalesItemButtonPickTable = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ColumnSplitSalesTableId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesItemTableCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSalesLineId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.tabControlSystemTable.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalesItemSplitItems)).BeginInit();
             this.panel15.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalesItemSplitItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -91,6 +92,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(909, 50);
             this.panel1.TabIndex = 5;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(38, 32);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -169,6 +181,73 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(897, 348);
             this.panel9.TabIndex = 1;
+            // 
+            // dataGridViewSalesItemSplitItems
+            // 
+            this.dataGridViewSalesItemSplitItems.AllowUserToAddRows = false;
+            this.dataGridViewSalesItemSplitItems.AllowUserToDeleteRows = false;
+            this.dataGridViewSalesItemSplitItems.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridViewSalesItemSplitItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewSalesItemSplitItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewSalesItemSplitItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewSalesItemSplitItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewSalesItemSplitItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSalesItemSplitItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnSplitSalesItemId,
+            this.ColumnSplitSalesItemDescription,
+            this.ColumnSalesItemUnit,
+            this.ColumnSalesItemQuantity,
+            this.ColumnSalesItemButtonPickTable,
+            this.ColumnSplitSalesTableId,
+            this.ColumnSalesItemTableCode,
+            this.ColumnSalesLineId});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewSalesItemSplitItems.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewSalesItemSplitItems.Location = new System.Drawing.Point(2, 40);
+            this.dataGridViewSalesItemSplitItems.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewSalesItemSplitItems.MultiSelect = false;
+            this.dataGridViewSalesItemSplitItems.Name = "dataGridViewSalesItemSplitItems";
+            this.dataGridViewSalesItemSplitItems.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridViewSalesItemSplitItems.RowTemplate.Height = 24;
+            this.dataGridViewSalesItemSplitItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewSalesItemSplitItems.Size = new System.Drawing.Size(890, 262);
+            this.dataGridViewSalesItemSplitItems.TabIndex = 26;
+            this.dataGridViewSalesItemSplitItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSalesItemSplit_CellClick);
+            // 
+            // buttonSplit
+            // 
+            this.buttonSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSplit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonSplit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonSplit.FlatAppearance.BorderSize = 0;
+            this.buttonSplit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSplit.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSplit.ForeColor = System.Drawing.Color.White;
+            this.buttonSplit.Location = new System.Drawing.Point(5, 4);
+            this.buttonSplit.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSplit.Name = "buttonSplit";
+            this.buttonSplit.Size = new System.Drawing.Size(112, 32);
+            this.buttonSplit.TabIndex = 23;
+            this.buttonSplit.TabStop = false;
+            this.buttonSplit.Text = "F2 - Split";
+            this.buttonSplit.UseVisualStyleBackColor = false;
+            this.buttonSplit.Click += new System.EventHandler(this.buttonSplit_Click);
             // 
             // panel15
             // 
@@ -381,83 +460,6 @@
             this.textBoxPayTypeListPageNumber.TabStop = false;
             this.textBoxPayTypeListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // buttonSplit
-            // 
-            this.buttonSplit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSplit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonSplit.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonSplit.FlatAppearance.BorderSize = 0;
-            this.buttonSplit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSplit.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSplit.ForeColor = System.Drawing.Color.White;
-            this.buttonSplit.Location = new System.Drawing.Point(5, 4);
-            this.buttonSplit.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSplit.Name = "buttonSplit";
-            this.buttonSplit.Size = new System.Drawing.Size(112, 32);
-            this.buttonSplit.TabIndex = 23;
-            this.buttonSplit.TabStop = false;
-            this.buttonSplit.Text = "F2 - Split";
-            this.buttonSplit.UseVisualStyleBackColor = false;
-            this.buttonSplit.Click += new System.EventHandler(this.buttonSplit_Click);
-            // 
-            // dataGridViewSalesItemSplitItems
-            // 
-            this.dataGridViewSalesItemSplitItems.AllowUserToAddRows = false;
-            this.dataGridViewSalesItemSplitItems.AllowUserToDeleteRows = false;
-            this.dataGridViewSalesItemSplitItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewSalesItemSplitItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewSalesItemSplitItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewSalesItemSplitItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewSalesItemSplitItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewSalesItemSplitItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSalesItemSplitItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnSplitSalesItemId,
-            this.ColumnSplitSalesItemDescription,
-            this.ColumnSalesItemUnit,
-            this.ColumnSalesItemQuantity,
-            this.ColumnSalesItemButtonPickTable,
-            this.ColumnSplitSalesTableId,
-            this.ColumnSalesItemTableCode});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewSalesItemSplitItems.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewSalesItemSplitItems.Location = new System.Drawing.Point(2, 40);
-            this.dataGridViewSalesItemSplitItems.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridViewSalesItemSplitItems.MultiSelect = false;
-            this.dataGridViewSalesItemSplitItems.Name = "dataGridViewSalesItemSplitItems";
-            this.dataGridViewSalesItemSplitItems.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridViewSalesItemSplitItems.RowTemplate.Height = 24;
-            this.dataGridViewSalesItemSplitItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSalesItemSplitItems.Size = new System.Drawing.Size(890, 262);
-            this.dataGridViewSalesItemSplitItems.TabIndex = 26;
-            this.dataGridViewSalesItemSplitItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSalesItemSplit_CellClick);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(38, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // ColumnSplitSalesItemId
             // 
             this.ColumnSplitSalesItemId.DataPropertyName = "ColumnSplitSalesItemId";
@@ -517,6 +519,13 @@
             this.ColumnSalesItemTableCode.ReadOnly = true;
             this.ColumnSalesItemTableCode.Width = 150;
             // 
+            // ColumnSalesLineId
+            // 
+            this.ColumnSalesLineId.DataPropertyName = "ColumnSalesLineId";
+            this.ColumnSalesLineId.HeaderText = "Sales Line Id";
+            this.ColumnSalesLineId.Name = "ColumnSalesLineId";
+            this.ColumnSalesLineId.Visible = false;
+            // 
             // TrnPOSTouchActivitySplitMergeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -533,18 +542,18 @@
             this.Text = "POS Touch Acitivty Split Merge";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.tabControlSystemTable.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalesItemSplitItems)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalesItemSplitItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -582,5 +591,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn ColumnSalesItemButtonPickTable;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSplitSalesTableId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesItemTableCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesLineId;
     }
 }

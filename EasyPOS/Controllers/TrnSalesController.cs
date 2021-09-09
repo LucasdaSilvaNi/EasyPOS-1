@@ -2982,7 +2982,7 @@ namespace EasyPOS.Controllers
         // ===========
         // Split Sales
         // ===========
-        public String[] SplitSales(Entities.TrnSalesEntity objSales, List<Entities.MstTableEntity> groupTableCodes)
+        public String[] SplitSales(Entities.TrnSalesEntity objSales, List<Entities.DgvTrnSalesItemSplitEntity> objSalesLines)
         {
             try
             {
@@ -2992,55 +2992,38 @@ namespace EasyPOS.Controllers
                     return new String[] { "Current login user not found.", "0" };
                 }
 
-                var current_sales = from d in db.TrnSales
-                                    where d.Id == objSales.Id
-                                    select d;
+                var currentSales = from d in db.TrnSales
+                                   where d.Id == objSales.Id
+                                   select d;
 
-                if (current_sales.Any())
+                if (currentSales.Any())
                 {
-                    String oldObjectCancelSales = Modules.SysAuditTrailModule.GetObjectString(current_sales.FirstOrDefault());
+                    var groupedTables = from d in objSalesLines
+                                        where d.ColumnSplitSalesTableId != objSales.TableId
+                                        && d.ColumnSplitSalesTableId != 0
+                                        group d by new
+                                        {
+                                            tableId = d.ColumnSplitSalesTableId,
+                                            tableCode = d.ColumnSalesItemTableCode
+                                        } into g
+                                        select g;
 
-                    var cancelSales = current_sales.FirstOrDefault();
-                    cancelSales.IsCancelled = true;
-                    cancelSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
-                    cancelSales.UpdateDateTime = DateTime.Now;
-                    db.SubmitChanges();
-
-                    String newObjectCancelSales = Modules.SysAuditTrailModule.GetObjectString(current_sales.FirstOrDefault());
-
-                    Entities.SysAuditTrailEntity newAuditTrailCancelSales = new Entities.SysAuditTrailEntity()
+                    if (groupedTables.ToList().Any())
                     {
-                        UserId = currentUserLogin.FirstOrDefault().Id,
-                        AuditDate = DateTime.Now,
-                        TableInformation = "TrnSales",
-                        RecordInformation = oldObjectCancelSales,
-                        FormInformation = newObjectCancelSales,
-                        ActionInformation = "CancelSales"
-                    };
-                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrailCancelSales);
-
-                    Modules.TrnInventoryModule trnInventoryModuleCancelSales = new Modules.TrnInventoryModule();
-                    trnInventoryModuleCancelSales.UpdateSalesInventory(current_sales.FirstOrDefault().Id);
-
-                    if (groupTableCodes.Any())
-                    {
-                        foreach (var groupTableCode in groupTableCodes)
+                        foreach (var groupTableCode in groupedTables.ToList())
                         {
                             Int32? tableId = null;
 
-                            if (groupTableCode.TableCode != "")
+                            var table = from d in db.MstTables
+                                        where d.Id == groupTableCode.Key.tableId
+                                        select d;
+
+                            if (table.Any() == false)
                             {
-                                var table = from d in db.MstTables
-                                            where d.TableCode == groupTableCode.TableCode
-                                            select d;
-
-                                if (table.Any() == false)
-                                {
-                                    return new String[] { "Table not found.", "0" };
-                                }
-
-                                tableId = table.FirstOrDefault().Id;
+                                return new String[] { "Table not found.", "0" };
                             }
+
+                            tableId = table.FirstOrDefault().Id;
 
                             String salesNumber = "0000000001";
 
@@ -3111,9 +3094,6 @@ namespace EasyPOS.Controllers
 
                             Int32 salesId = newSales.Id;
 
-
-
-
                             String newObjectNewSales = Modules.SysAuditTrailModule.GetObjectString(newSales);
 
                             Entities.SysAuditTrailEntity newAuditTrailNewSales = new Entities.SysAuditTrailEntity()
@@ -3125,28 +3105,192 @@ namespace EasyPOS.Controllers
                                 FormInformation = newObjectNewSales,
                                 ActionInformation = "AddSales"
                             };
+
                             Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrailNewSales);
 
-                            var sales = from d in db.TrnSales
-                                        where d.Id == salesId
-                                        select d;
+                            var salesLinesPerTable = from d in objSalesLines
+                                                     where d.ColumnSplitSalesTableId == tableId
+                                                     select d;
 
-                            if (sales.Any())
+                            if (salesLinesPerTable.Any())
                             {
-                                var lockSales = sales.FirstOrDefault();
-                                lockSales.CustomerId = objSales.CustomerId;
-                                lockSales.TermId = objSales.TermId;
-                                lockSales.Remarks = objSales.Remarks;
-                                lockSales.SalesAgent = objSales.SalesAgent;
-                                lockSales.IsLocked = true;
-                                lockSales.BalanceAmount = objSales.Amount;
-                                lockSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
-                                lockSales.UpdateDateTime = DateTime.Now;
+                                Decimal totalAmount = 0;
+                                List<Data.TrnSalesLine> newSalesLines = new List<Data.TrnSalesLine>();
+
+                                foreach (var objSalesLine in salesLinesPerTable)
+                                {
+                                    var currentSalesLine = from d in db.TrnSalesLines
+                                                           where d.Id == objSalesLine.ColumnSalesLineId
+                                                           select d;
+
+                                    if (currentSalesLine.Any())
+                                    {
+                                        var salesLine = currentSalesLine.FirstOrDefault();
+
+                                        Decimal amount = salesLine.NetPrice * Convert.ToDecimal(objSalesLine.ColumnSalesItemQuantity);
+                                        Decimal taxRate = salesLine.TaxRate;
+                                        Decimal taxAmount = 0;
+
+                                        if (salesLine.TaxRate > 0)
+                                        {
+                                            taxAmount = amount / (1 + (taxRate / 100)) * (taxRate / 100);
+                                        }
+
+                                        newSalesLines.Add(new Data.TrnSalesLine
+                                        {
+                                            SalesId = salesId,
+                                            ItemId = salesLine.ItemId,
+                                            UnitId = salesLine.UnitId,
+                                            Price = salesLine.Price,
+                                            DiscountId = salesLine.DiscountId,
+                                            DiscountRate = salesLine.DiscountRate,
+                                            DiscountAmount = salesLine.DiscountAmount,
+                                            NetPrice = salesLine.NetPrice,
+                                            Quantity = Convert.ToDecimal(objSalesLine.ColumnSalesItemQuantity),
+                                            Amount = amount,
+                                            TaxId = salesLine.TaxId,
+                                            TaxRate = taxRate,
+                                            TaxAmount = taxAmount,
+                                            SalesAccountId = 159,
+                                            AssetAccountId = 255,
+                                            CostAccountId = 238,
+                                            TaxAccountId = 87,
+                                            SalesLineTimeStamp = DateTime.Now,
+                                            UserId = currentUserLogin.FirstOrDefault().Id,
+                                            Preparation = "NA",
+                                            IsPrepared = false,
+                                            Price1 = 0,
+                                            Price2 = 0,
+                                            Price2LessTax = 0,
+                                            PriceSplitPercentage = 0,
+                                        });
+
+                                        totalAmount += amount;
+                                    }
+                                }
+
+                                db.TrnSalesLines.InsertAllOnSubmit(newSalesLines);
                                 db.SubmitChanges();
 
-                                Modules.TrnInventoryModule trnInventoryModuleNewSales = new Modules.TrnInventoryModule();
-                                trnInventoryModuleNewSales.UpdateSalesInventory(salesId);
+                                String newObjectSalesLine = Modules.SysAuditTrailModule.GetObjectString(newSalesLines);
+
+                                Entities.SysAuditTrailEntity newAuditTrailSalesLine = new Entities.SysAuditTrailEntity()
+                                {
+                                    UserId = currentUserLogin.FirstOrDefault().Id,
+                                    AuditDate = DateTime.Now,
+                                    TableInformation = "TrnSalesLine",
+                                    RecordInformation = "",
+                                    FormInformation = newObjectSalesLine,
+                                    ActionInformation = "AddSalesItems"
+                                };
+
+                                Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrailSalesLine);
+
+                                var sales = from d in db.TrnSales
+                                            where d.Id == salesId
+                                            select d;
+
+                                if (sales.Any())
+                                {
+                                    var lockSales = sales.FirstOrDefault();
+                                    lockSales.CustomerId = objSales.CustomerId;
+                                    lockSales.TermId = objSales.TermId;
+                                    lockSales.Remarks = objSales.Remarks;
+                                    lockSales.SalesAgent = objSales.SalesAgent;
+                                    lockSales.IsLocked = true;
+                                    lockSales.Amount = totalAmount;
+                                    lockSales.BalanceAmount = totalAmount;
+                                    lockSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                                    lockSales.UpdateDateTime = DateTime.Now;
+                                    db.SubmitChanges();
+
+                                    Modules.TrnInventoryModule trnInventoryModuleNewSales = new Modules.TrnInventoryModule();
+                                    trnInventoryModuleNewSales.UpdateSalesInventory(salesId);
+                                }
                             }
+                        }
+                    }
+
+                    var salesLines = from d in objSalesLines
+                                     where d.ColumnSplitSalesTableId != objSales.TableId
+                                     && d.ColumnSplitSalesTableId != 0
+                                     select d;
+
+                    if (salesLines.Any())
+                    {
+                        foreach (var objSalesLine in salesLines)
+                        {
+                            var currentSalesLine = from d in db.TrnSalesLines
+                                                   where d.Id == objSalesLine.ColumnSalesLineId
+                                                   select d;
+
+                            if (currentSalesLine.Any())
+                            {
+                                var salesLine = currentSalesLine.FirstOrDefault();
+
+                                if (salesLine.Quantity <= Convert.ToDecimal(objSalesLine.ColumnSalesItemQuantity))
+                                {
+                                    db.TrnSalesLines.DeleteOnSubmit(salesLine);
+                                    db.SubmitChanges();
+                                }
+                                else
+                                {
+                                    Decimal quantity = salesLine.Quantity - Convert.ToDecimal(objSalesLine.ColumnSalesItemQuantity);
+                                    Decimal amount = salesLine.NetPrice * quantity;
+                                    Decimal taxRate = salesLine.TaxRate;
+                                    Decimal taxAmount = 0;
+
+                                    if (salesLine.TaxRate > 0)
+                                    {
+                                        taxAmount = amount / (1 + (taxRate / 100)) * (taxRate / 100);
+                                    }
+
+                                    salesLine.Quantity = quantity;
+                                    salesLine.Amount = amount;
+                                    salesLine.TaxAmount = taxAmount;
+                                    db.SubmitChanges();
+                                }
+                            }
+                        }
+                    }
+
+                    Decimal totalOldSalesLineAmount = 0;
+
+                    var salesLinePerSales = from d in db.TrnSalesLines
+                                            where d.SalesId == objSales.Id
+                                            select d;
+
+                    if (salesLinePerSales.Any())
+                    {
+                        totalOldSalesLineAmount = salesLinePerSales.Sum(d => d.Amount);
+
+                        var oldSales = from d in db.TrnSales
+                                       where d.Id == objSales.Id
+                                       select d;
+
+                        if (oldSales.Any())
+                        {
+                            var updateSales = oldSales.FirstOrDefault();
+                            updateSales.Amount = totalOldSalesLineAmount;
+                            updateSales.BalanceAmount = totalOldSalesLineAmount;
+                            updateSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                            updateSales.UpdateDateTime = DateTime.Now;
+                            db.SubmitChanges();
+
+                            Modules.TrnInventoryModule trnInventoryModuleNewSales = new Modules.TrnInventoryModule();
+                            trnInventoryModuleNewSales.UpdateSalesInventory(objSales.Id);
+                        }
+                    }
+                    else
+                    {
+                        var oldSales = from d in db.TrnSales
+                                       where d.Id == objSales.Id
+                                       select d;
+
+                        if (oldSales.Any())
+                        {
+                            db.TrnSales.DeleteOnSubmit(oldSales.FirstOrDefault());
+                            db.SubmitChanges();
                         }
                     }
                 }

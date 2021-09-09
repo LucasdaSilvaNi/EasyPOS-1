@@ -39,5 +39,7 @@ namespace EasyPOS.Entities
         public Decimal Price2 { get; set; }
         public Decimal Price2LessTax { get; set; }
         public Decimal PriceSplitPercentage { get; set; }
+        public Int32? TableId { get; set; }
+        public String TableCode { get; set; }
     }
 }

@@ -122,8 +122,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                        ColumnSalesItemUnit = d.Unit,
                                        ColumnSalesItemQuantity = d.Quantity.ToString("#,##0.00"),
                                        ColumnSalesItemButtonPickTable = "Pick Table",
-                                       ColumnSplitSalesTableId = 0,
-                                       ColumnSalesItemTableCode = "",
+                                       ColumnSplitSalesTableId = d.TableId != null ? Convert.ToInt32(d.TableId) : 0,
+                                       ColumnSalesItemTableCode = d.TableCode,
+                                       ColumnSalesLineId = d.Id
                                    };
 
                 return Task.FromResult(returnItemss.ToList());
@@ -271,11 +272,24 @@ namespace EasyPOS.Forms.Software.TrnPOS
                             ColumnSalesItemQuantity = dataGridViewSalesItemSplitItems.Rows[i].Cells[dataGridViewSalesItemSplitItems.Columns["ColumnSalesItemQuantity"].Index].Value.ToString(),
                             ColumnSalesItemButtonPickTable = dataGridViewSalesItemSplitItems.Rows[i].Cells[dataGridViewSalesItemSplitItems.Columns["ColumnSalesItemButtonPickTable"].Index].Value.ToString(),
                             ColumnSplitSalesTableId = Convert.ToInt32(dataGridViewSalesItemSplitItems.Rows[i].Cells[dataGridViewSalesItemSplitItems.Columns["ColumnSplitSalesTableId"].Index].Value),
-                            ColumnSalesItemTableCode = dataGridViewSalesItemSplitItems.Rows[i].Cells[dataGridViewSalesItemSplitItems.Columns["ColumnSalesItemTableCode"].Index].Value.ToString()
+                            ColumnSalesItemTableCode = dataGridViewSalesItemSplitItems.Rows[i].Cells[dataGridViewSalesItemSplitItems.Columns["ColumnSalesItemTableCode"].Index].Value.ToString(),
+                            ColumnSalesLineId = Convert.ToInt32(dataGridViewSalesItemSplitItems.Rows[i].Cells[dataGridViewSalesItemSplitItems.Columns["ColumnSalesLineId"].Index].Value)
                         });
                     }
 
+                    Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
+                    String[] splitSales = trnPOSSalesController.SplitSales(trnSalesEntity, listSplitMergeItems);
+                    if (splitSales[1].Equals("0") == false)
+                    {
+                        MessageBox.Show("Split successful.", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                        trnPOSTouchForm.UpdateSalesListGridDataSource();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(splitSales[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

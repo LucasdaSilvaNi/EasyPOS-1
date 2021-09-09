@@ -16,6 +16,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
         public DataGridView mstDataGridViewSalesItemSplitMerge;
         public Entities.TrnSalesEntity trnSalesEntity;
         public Boolean isTableGroupSelected = false;
+        public Decimal originalQuantity = 0;
 
         public TrnPOSTouchActivitySplitMergeTableCodeForm(TrnPOSTouchActivitySplitMergeForm POSTouchActivitySplitMergeForm, DataGridView dataGridViewSalesItemSplitMerge, Entities.TrnSalesEntity SalesEntity, Decimal quantity)
         {
@@ -24,6 +25,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             trnPOSTouchActivitySplitMergeForm = POSTouchActivitySplitMergeForm;
             mstDataGridViewSalesItemSplitMerge = dataGridViewSalesItemSplitMerge;
             trnSalesEntity = SalesEntity;
+            originalQuantity = quantity;
 
             textBoxQuantity.Text = quantity.ToString("#,##0.00");
 
@@ -60,7 +62,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Controllers.TrnSalesController trnSalesController = new Controllers.TrnSalesController();
                 if (trnSalesController.ListTable(tableGroupId, salesDate).Any())
                 {
-                    comboBoxTableCode.DataSource = trnSalesController.ListTable(tableGroupId, salesDate).Where(d => d.HasSales == false).ToList();
+                    comboBoxTableCode.DataSource = trnSalesController.ListTable(tableGroupId, salesDate).Where(d => d.Id == trnSalesEntity.TableId || d.HasSales == false).ToList();
                     comboBoxTableCode.ValueMember = "Id";
                     comboBoxTableCode.DisplayMember = "TableCode";
                 }
@@ -78,7 +80,14 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            SetTable();
+            if (Convert.ToDecimal(textBoxQuantity.Text) > originalQuantity)
+            {
+                MessageBox.Show("The provided quantity must not be higher than the original quantity.", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                SetTable();
+            }
         }
 
         public void SetTable()

@@ -15,5 +15,6 @@ namespace EasyPOS.Entities
         public String ColumnSalesItemButtonPickTable { get; set; }
         public Int32 ColumnSplitSalesTableId { get; set; }
         public String ColumnSalesItemTableCode { get; set; }
+        public Int32 ColumnSalesLineId { get; set; }
     }
 }
