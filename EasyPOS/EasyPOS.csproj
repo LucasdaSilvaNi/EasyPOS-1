@@ -295,6 +295,7 @@
     <Compile Include="EasyFISIntegration\Entities\EasyPOSTrnStockOutItem.cs" />
     <Compile Include="EasyFISIntegration\Entities\EasyPOSTrnStockTransfer.cs" />
     <Compile Include="EasyFISIntegration\Entities\EasyPOSTrnStockTransferItem.cs" />
+    <Compile Include="Entities\DgvTrnSalesMergeEntity.cs" />
     <Compile Include="Entities\DgvTrnSalesItemSplitEntity.cs" />
     <Compile Include="Entities\DgvItemExpiryEntity.cs" />
     <Compile Include="Entities\DgvMstDiscountingListEntity.cs" />

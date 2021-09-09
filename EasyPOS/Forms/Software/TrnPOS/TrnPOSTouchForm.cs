@@ -406,7 +406,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 {
                     buttonTenderAll.Enabled = true;
 
-                    var openSales = from d in salesList where d.ColumnIsLocked == false select d;
+                    var openSales = from d in salesList where d.ColumnIsLocked == false && d.ColumnIsCancelled == false select d;
                     if (openSales.Any())
                     {
                         dataOpenSalesListSource.DataSource = openSales;
@@ -423,7 +423,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 {
                     buttonTenderAll.Enabled = true;
 
-                    var billedOutSales = from d in salesList where d.ColumnIsLocked == true && d.ColumnIsTendered == false select d;
+                    var billedOutSales = from d in salesList where d.ColumnIsLocked == true && d.ColumnIsTendered == false && d.ColumnIsCancelled == false select d;
                     if (billedOutSales.Any())
                     {
                         dataBilledOutSalesListSource.DataSource = billedOutSales;
@@ -440,7 +440,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 {
                     buttonTenderAll.Enabled = false;
 
-                    var collectedSales = from d in salesList where d.ColumnIsTendered == true select d;
+                    var collectedSales = from d in salesList where d.ColumnIsTendered == true && d.ColumnIsCancelled == false select d;
                     if (collectedSales.Any())
                     {
                         dataCollectedSalesListSource.DataSource = collectedSales;
