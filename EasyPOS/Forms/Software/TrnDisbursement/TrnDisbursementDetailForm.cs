@@ -280,7 +280,66 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            sysSoftwareForm.RemoveTabPage();
+            if (textBoxAmount.Enabled == false)
+            {
+                sysSoftwareForm.RemoveTabPage();
+            }
+            else
+            {
+                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    Controllers.TrnDisbursementController trnDisbursementController = new Controllers.TrnDisbursementController();
+
+                    Entities.TrnDisbursementEntity newDisbursementEntity = new Entities.TrnDisbursementEntity()
+                    {
+                        PeriodId = 1,
+                        DisbursementDate = dateTimePickerRemittanceDate.Value.Date.ToShortDateString(),
+                        DisbursementType = comboBoxRemittanceType.Text,
+                        AccountId = Convert.ToInt32(comboBoxAccount.SelectedValue),
+                        Amount = Convert.ToDecimal(textBoxAmount.Text),
+                        PayTypeId = Convert.ToInt32(comboBoxPayType.SelectedValue),
+                        TerminalId = Convert.ToInt32(comboBoxTerminal.SelectedValue),
+                        Remarks = textBoxRemarks.Text,
+                        IsRefund = checkBoxRefund.Checked,
+                        RefundSalesId = 0,
+                        RefundSalesNumber = textBoxSalesReturnNumber.Text,
+                        StockInId = null,
+                        CheckedBy = Convert.ToInt32(comboBoxCheckedBy.SelectedValue),
+                        ApprovedBy = Convert.ToInt32(comboBoxApprovedBy.SelectedValue),
+                        Amount1000 = Convert.ToDecimal(textBoxAmountDenominationXP1000.Text),
+                        Amount500 = Convert.ToDecimal(textBoxAmountDenominationXP500.Text),
+                        Amount200 = Convert.ToDecimal(textBoxAmountDenominationXP200.Text),
+                        Amount100 = Convert.ToDecimal(textBoxAmountDenominationXP100.Text),
+                        Amount50 = Convert.ToDecimal(textBoxAmountDenominationXP50.Text),
+                        Amount20 = Convert.ToDecimal(textBoxAmountDenominationXP20.Text),
+                        Amount10 = Convert.ToDecimal(textBoxAmountDenominationXP10.Text),
+                        Amount5 = Convert.ToDecimal(textBoxAmountDenominationXP5.Text),
+                        Amount1 = Convert.ToDecimal(textBoxAmountDenominationXP1.Text),
+                        Amount025 = Convert.ToDecimal(textBoxAmountDenominationXC25.Text),
+                        Amount010 = Convert.ToDecimal(textBoxAmountDenominationXC10.Text),
+                        Amount005 = Convert.ToDecimal(textBoxAmountDenominationXC5.Text),
+                        Amount001 = Convert.ToDecimal(textBoxAmountDenominationXC1.Text),
+                        Payee = textBoxPayee.Text
+                    };
+                    sysSoftwareForm.RemoveTabPage();
+
+                    String[] lockDisbursement = trnDisbursementController.LockDisbursement(trnDisbursementEntity.Id, newDisbursementEntity);
+                    if (lockDisbursement[1].Equals("0") == false)
+                    {
+                        EnableDisableControls(true);
+                        trnDisbursementListForm.UpdateDisbursementListDataSource();
+                    }
+                    else
+                    {
+                        MessageBox.Show(lockDisbursement[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    sysSoftwareForm.RemoveTabPage();
+                }
+            }
         }
 
         private void checkBoxReturn_CheckedChanged(object sender, EventArgs e)

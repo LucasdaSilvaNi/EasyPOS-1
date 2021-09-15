@@ -221,7 +221,46 @@ namespace EasyPOS.Forms.Software.TrnStockIn
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            sysSoftwareForm.RemoveTabPage();
+            if (textBoxRemarks.Enabled == false)
+            {
+                sysSoftwareForm.RemoveTabPage();
+            }
+            else
+            {
+                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    Controllers.TrnStockInController trnStockInController = new Controllers.TrnStockInController();
+
+                    Entities.TrnStockInEntity newStockInEntity = new Entities.TrnStockInEntity()
+                    {
+                        ManualStockInNumber = textBoxManualStockInNumber.Text,
+                        StockInDate = dateTimePickerStockInDate.Value.Date.ToShortDateString(),
+                        SupplierId = Convert.ToInt32(comboBoxSupplier.SelectedValue),
+                        Remarks = textBoxRemarks.Text,
+                        CheckedBy = Convert.ToInt32(comboBoxCheckedBy.SelectedValue),
+                        ApprovedBy = Convert.ToInt32(comboBoxApprovedBy.SelectedValue)
+                    };
+                    sysSoftwareForm.RemoveTabPage();
+
+                    String[] lockStockIn = trnStockInController.LockStockIn(trnStockInEntity.Id, newStockInEntity);
+                    if (lockStockIn[1].Equals("0") == false)
+                    {
+                        UpdateComponents(true);
+                        trnStockInListForm.UpdateStockInListDataSource();
+                    }
+                    else
+                    {
+                        MessageBox.Show(lockStockIn[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+                else
+                {
+                    sysSoftwareForm.RemoveTabPage();
+                }
+            }
+           
         }
         private void buttonExport_Click(object sender, EventArgs e)
         {

@@ -327,7 +327,7 @@ namespace EasyPOS.Forms.Software.MstItem
                     MessageBox.Show(lockItem[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -356,7 +356,65 @@ namespace EasyPOS.Forms.Software.MstItem
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            sysSoftwareForm.RemoveTabPage();
+            if (textBoxAlias.Enabled == false)
+            {
+                sysSoftwareForm.RemoveTabPage();
+            }
+            else
+            {
+                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    Controllers.MstItemController mstItemController = new Controllers.MstItemController();
+
+                    Entities.MstItemEntity newItemEntity = new Entities.MstItemEntity()
+                    {
+                        ItemCode = textBoxItemCode.Text,
+                        BarCode = textBoxBarcode.Text,
+                        ItemDescription = textBoxDescription.Text,
+                        Alias = textBoxAlias.Text,
+                        GenericName = textBoxGenericName.Text,
+                        Category = comboBoxCategory.Text,
+                        OutTaxId = Convert.ToInt32(comboBoxSalesVAT.SelectedValue),
+                        UnitId = Convert.ToInt32(comboBoxUnit.SelectedValue),
+                        DefaultSupplierId = Convert.ToInt32(comboBoxDefaultSupplier.SelectedValue),
+                        Cost = Convert.ToDecimal(textBoxCost.Text),
+                        MarkUp = Convert.ToDecimal(textBoxMarkUp.Text),
+                        Price = Convert.ToDecimal(textBoxPrice.Text),
+                        ReorderQuantity = Convert.ToDecimal(textBoxStockLevelQuantity.Text),
+                        OnhandQuantity = Convert.ToDecimal(textBoxOnHandQuantity.Text),
+                        IsInventory = checkBoxIsInventory.Checked,
+                        IsPackage = checkBoxIsPackage.Checked,
+                        ExpiryDate = Convert.ToDateTime(dateTimePickerExpiryDate.Value).ToShortDateString(),
+                        LotNumber = textBoxLotNumber.Text,
+                        Remarks = textBoxRemarks.Text,
+                        ChildItemId = Convert.ToInt32(comboBoxChildItem.SelectedValue),
+                        cValue = Convert.ToDecimal(textBoxConversionValue.Text)
+                    };
+                    sysSoftwareForm.RemoveTabPage();
+
+                    String[] lockItem = mstItemController.LockItem(mstItemEntity.Id, newItemEntity);
+                    if (lockItem[1].Equals("0") == false)
+                    {
+                        mstItemEntity.IsLocked = true;
+
+                        UpdateComponents(true);
+                        mstItemListForm.UpdateItemListDataSource();
+                    }
+                    else
+                    {
+                        mstItemEntity.IsLocked = false;
+
+                        UpdateComponents(false);
+                        MessageBox.Show(lockItem[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    sysSoftwareForm.RemoveTabPage();
+                }
+            }
+            
         }
 
         private void textBoxCost_KeyPress(object sender, KeyPressEventArgs e)

@@ -71,7 +71,44 @@ namespace EasyPOS.Forms.Software.MstUser
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            sysSoftwareForm.RemoveTabPage();
+            if (textBoxUserName.Enabled == false)
+            {
+                sysSoftwareForm.RemoveTabPage();
+            }
+            else
+            {
+                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    Controllers.MstUserController mstUserController = new Controllers.MstUserController();
+
+                    Entities.MstUserEntity newUserEntity = new Entities.MstUserEntity()
+                    {
+                        UserName = textBoxUserName.Text,
+                        Password = textBoxPassword.Text,
+                        FullName = textBoxFullName.Text,
+                        UserCardNumber = textBoxUserCardNumber.Text,
+                    };
+                    sysSoftwareForm.RemoveTabPage();
+
+                    String[] lockUser = mstUserController.LockUser(mstUserEntity.Id, newUserEntity);
+                    if (lockUser[1].Equals("0") == false)
+                    {
+                        UpdateComponents(true);
+                        mstUserListForm.UpdateUserListDataSource();
+                    }
+                    else
+                    {
+                        UpdateComponents(false);
+                        MessageBox.Show(lockUser[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    sysSoftwareForm.RemoveTabPage();
+                }
+            }
+            
         }
 
         public void GetUserDetail()

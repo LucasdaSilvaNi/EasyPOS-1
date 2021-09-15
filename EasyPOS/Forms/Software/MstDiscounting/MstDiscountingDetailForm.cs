@@ -239,7 +239,57 @@ namespace EasyPOS.Forms.Software.MstDiscounting
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            sysSoftwareForm.RemoveTabPage();
+            if (textBoxDiscount.Enabled == false)
+            {
+                sysSoftwareForm.RemoveTabPage();
+            }
+            else
+            {
+                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    Controllers.MstDiscountController mstDiscountController = new Controllers.MstDiscountController();
+
+                    Entities.MstDiscountEntity newDiscountEntity = new Entities.MstDiscountEntity()
+                    {
+                        Discount = textBoxDiscount.Text,
+                        DiscountRate = Convert.ToDecimal(textBoxDiscountRate.Text),
+                        IsVatExempt = checkBoxVATExempt.Checked,
+                        IsDateScheduled = checkBoxDateScheduled.Checked,
+                        DateStart = checkBoxDateScheduled.Checked == true ? Convert.ToDateTime(dateTimePickerDateStart.Value).ToShortDateString() : "",
+                        DateEnd = checkBoxDateScheduled.Checked == true ? Convert.ToDateTime(dateTimePickerDateEnd.Value).ToShortDateString() : "",
+                        IsTimeScheduled = checkBoxTimeScheduled.Checked,
+                        TimeStart = checkBoxTimeScheduled.Checked == true ? Convert.ToDateTime(dateTimePickerTimeStart.Value).ToShortTimeString() : "",
+                        TimeEnd = checkBoxTimeScheduled.Checked == true ? Convert.ToDateTime(dateTimePickerTimeEnd.Value).ToShortTimeString() : "",
+                        IsDayScheduled = checkBoxDaySchedule.Checked,
+                        DayMon = checkBoxDaySchedule.Checked == true ? checkBoxMon.Checked : false,
+                        DayTue = checkBoxDaySchedule.Checked == true ? checkBoxTue.Checked : false,
+                        DayWed = checkBoxDaySchedule.Checked == true ? checkBoxWed.Checked : false,
+                        DayThu = checkBoxDaySchedule.Checked == true ? checkBoxThu.Checked : false,
+                        DayFri = checkBoxDaySchedule.Checked == true ? checkBoxFri.Checked : false,
+                        DaySat = checkBoxDaySchedule.Checked == true ? checkBoxSat.Checked : false,
+                        DaySun = checkBoxDaySchedule.Checked == true ? checkBoxSun.Checked : false
+                    };
+                    sysSoftwareForm.RemoveTabPage();
+
+                    String[] lockDiscount = mstDiscountController.LockDiscount(mstDiscountEntity.Id, newDiscountEntity);
+
+                    if (lockDiscount[1].Equals("0") == false)
+                    {
+                        UpdateComponents(true);
+                        mstDiscountListForm.UpdateDiscountListDataSource();
+                    }
+                    else
+                    {
+                        UpdateComponents(false);
+                        MessageBox.Show(lockDiscount[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    sysSoftwareForm.RemoveTabPage();
+                }
+            }
         }
 
         private void textBoxDiscountRate_KeyPress(object sender, KeyPressEventArgs e)

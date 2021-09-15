@@ -191,7 +191,53 @@ namespace EasyPOS.Forms.Software.MstCustomer
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            sysSoftwareForm.RemoveTabPage();
+            if (textBoxCustomer.Enabled == false)
+            {
+                sysSoftwareForm.RemoveTabPage();
+            }
+            else
+            {
+                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    Controllers.MstCustomerController mstCustomerController = new Controllers.MstCustomerController();
+
+                    Entities.MstCustomerEntity newCustomerEntity = new Entities.MstCustomerEntity()
+                    {
+                        CustomerCode = textBoxCustomerCode.Text,
+                        Customer = textBoxCustomer.Text,
+                        Address = textBoxAddress.Text,
+                        ContactPerson = textBoxContactPerson.Text,
+                        ContactNumber = textBoxContactNumber.Text,
+                        CreditLimit = Convert.ToDecimal(textBoxCreditLimit.Text),
+                        TermId = Convert.ToInt32(comboBoxTerm.SelectedValue),
+                        TIN = textBoxTIN.Text,
+                        WithReward = checkBoxWithReward.Checked,
+                        RewardNumber = textBoxRewardNumber.Text,
+                        RewardConversion = Convert.ToDecimal(textBoxRewardConversion.Text),
+                        AvailableReward = Convert.ToDecimal(textBoxAvailableReward.Text),
+                        DefaultPriceDescription = textBoxDefaultPrice.Text,
+                        BusinessStyle = textBoxBusinessStyle.Text
+                    };
+                    sysSoftwareForm.RemoveTabPage();
+
+                    String[] lockCustomer = mstCustomerController.LockCustomer(mstCustomerEntity.Id, newCustomerEntity);
+                    if (lockCustomer[1].Equals("0") == false)
+                    {
+                        UpdateComponents(true);
+                        mstCustomerListForm.UpdateCustomerListDataSource();
+                    }
+                    else
+                    {
+                        UpdateComponents(false);
+                        MessageBox.Show(lockCustomer[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    sysSoftwareForm.RemoveTabPage();
+                }
+            }
         }
 
         private void textBoxCreditLimit_KeyPress(object sender, KeyPressEventArgs e)

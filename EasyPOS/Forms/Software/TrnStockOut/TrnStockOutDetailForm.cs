@@ -211,7 +211,44 @@ namespace EasyPOS.Forms.Software.TrnStockOut
 
         private void buttonClose_Click(object sender, EventArgs e)
         {
-            sysSoftwareForm.RemoveTabPage();
+            if (textBoxBarcode.Enabled == false)
+            {
+                sysSoftwareForm.RemoveTabPage();
+            }
+            else
+            {
+                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (closeDialogResult == DialogResult.Yes)
+                {
+                    Controllers.TrnStockOutController trnStockOutController = new Controllers.TrnStockOutController();
+
+                    Entities.TrnStockOutEntity newStockOutEntity = new Entities.TrnStockOutEntity()
+                    {
+                        ManualStockOutNumber = textBoxManualStockOutNumber.Text,
+                        StockOutDate = dateTimePickerStockOutDate.Value.Date.ToShortDateString(),
+                        AccountId = Convert.ToInt32(comboBoxAccount.SelectedValue),
+                        Remarks = textBoxRemarks.Text,
+                        CheckedBy = Convert.ToInt32(comboBoxCheckedBy.SelectedValue),
+                        ApprovedBy = Convert.ToInt32(comboBoxApprovedBy.SelectedValue)
+                    };
+                    sysSoftwareForm.RemoveTabPage();
+
+                    String[] lockStockOut = trnStockOutController.LockStockOut(trnStockOutEntity.Id, newStockOutEntity);
+                    if (lockStockOut[1].Equals("0") == false)
+                    {
+                        UpdateComponents(true);
+                        trnStockOutListForm.UpdateStockOutListDataSource();
+                    }
+                    else
+                    {
+                        MessageBox.Show(lockStockOut[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    sysSoftwareForm.RemoveTabPage();
+                }
+            }
         }
 
         public void UpdateStockOutLineListDataSource()
