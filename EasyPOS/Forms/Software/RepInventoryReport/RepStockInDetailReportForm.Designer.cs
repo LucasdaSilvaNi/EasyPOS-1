@@ -49,7 +49,6 @@
             this.buttonPageListPrevious = new System.Windows.Forms.Button();
             this.textBoxPageNumber = new System.Windows.Forms.TextBox();
             this.dataGridViewStockInDetailReport = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.ColumnItemListCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnItemListBarcode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnStockInDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +64,8 @@
             this.ColumnExpiryDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnLotNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonPrint = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -315,20 +316,6 @@
             this.dataGridViewStockInDetailReport.Size = new System.Drawing.Size(1092, 396);
             this.dataGridViewStockInDetailReport.TabIndex = 0;
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.buttonGenerateCSV);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.buttonClose);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1096, 50);
-            this.panel1.TabIndex = 18;
-            // 
             // ColumnItemListCode
             // 
             this.ColumnItemListCode.DataPropertyName = "ColumnItemListCode";
@@ -454,6 +441,40 @@
             this.ColumnSellingPrice.ReadOnly = true;
             this.ColumnSellingPrice.Width = 120;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.buttonPrint);
+            this.panel1.Controls.Add(this.buttonGenerateCSV);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.buttonClose);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1096, 50);
+            this.panel1.TabIndex = 18;
+            // 
+            // buttonPrint
+            // 
+            this.buttonPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonPrint.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonPrint.FlatAppearance.BorderSize = 0;
+            this.buttonPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonPrint.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonPrint.ForeColor = System.Drawing.Color.White;
+            this.buttonPrint.Location = new System.Drawing.Point(865, 9);
+            this.buttonPrint.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonPrint.Name = "buttonPrint";
+            this.buttonPrint.Size = new System.Drawing.Size(70, 32);
+            this.buttonPrint.TabIndex = 28;
+            this.buttonPrint.TabStop = false;
+            this.buttonPrint.Text = "Print";
+            this.buttonPrint.UseVisualStyleBackColor = false;
+            this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
+            // 
             // RepStockInDetailReportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -513,5 +534,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnExpiryDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLotNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSellingPrice;
+        private System.Windows.Forms.Button buttonPrint;
     }
 }

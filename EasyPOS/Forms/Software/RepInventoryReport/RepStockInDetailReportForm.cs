@@ -304,5 +304,10 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                 GetStockInDetailDataSource();
             }
         }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            new RepStockInDetailReportPDFForm(startDate, endDate, textBoxFilter.Text);
+        }
     }
 }

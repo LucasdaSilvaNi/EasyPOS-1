@@ -1767,7 +1767,7 @@ namespace EasyPOS.Forms.Software._80mm_Report
                         String unitLabel = "\nUNIT";
                         String balanceLabel = "\nBalance";
                         graphics.DrawString(itemLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                        graphics.DrawString(unitLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                        graphics.DrawString(unitLabel, fontArial8Bold, drawBrush, new RectangleF(46, y, width, height), drawFormatCenter);
                         graphics.DrawString(balanceLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                         y += graphics.MeasureString(itemLabel, fontArial8Regular).Height + 3.0F;
 
@@ -1800,17 +1800,17 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 {
                                     adjustStringName = 16;
                                 }
-                                String itemData = inventoryList.ItemDescription + inventoryList.Unit + inventoryList.EndingQuantity.ToString("#,##0.00");
+                                String itemData = (inventoryList.ItemDescription + inventoryList.Unit + inventoryList.EndingQuantity.ToString("#,##0.00"));
                                 RectangleF itemDataRectangle = new RectangleF
                                 {
                                     X = x,
                                     Y = y,
-                                    Size = new Size(240, ((int)graphics.MeasureString(itemData, fontArial6Regular, 240, StringFormat.GenericDefault).Height))
+                                    Size = new Size(300, ((int)graphics.MeasureString(itemData, fontArial6Regular, 300, StringFormat.GenericDefault).Height))
                                 };
-                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial6Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
-                                graphics.DrawString(inventoryList.Unit + "\n", fontArial6Regular, drawBrush, new RectangleF(x: 60, y, width, height), drawFormatCenter);
-                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                                y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
+                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
+                                graphics.DrawString(inventoryList.Unit + "\n", fontArial7Regular, drawBrush, new RectangleF(46, y, width, height), drawFormatCenter);
+                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                                y += itemDataRectangle.Size.Height + adjustStringName + 10F;
                             }
                         }
                     }
@@ -2113,7 +2113,7 @@ namespace EasyPOS.Forms.Software._80mm_Report
                         String unitLabel = "\nUNIT";
                         String balanceLabel = "\nBalance";
                         graphics.DrawString(itemLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                        graphics.DrawString(unitLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                        graphics.DrawString(unitLabel, fontArial8Bold, drawBrush, new RectangleF(46, y, width, height), drawFormatCenter);
                         graphics.DrawString(balanceLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                         y += graphics.MeasureString(itemLabel, fontArial8Regular).Height + 3.0F;
 
@@ -2123,6 +2123,7 @@ namespace EasyPOS.Forms.Software._80mm_Report
                         Point secondLineFirstPoint = new Point(0, Convert.ToInt32(y) + 3);
                         Point secondLineSecondPoint = new Point(500, Convert.ToInt32(y) + 3);
                         graphics.DrawLine(blackPen, secondLineFirstPoint, secondLineSecondPoint);
+
 
                         if (category != null)
                         {
@@ -2146,17 +2147,17 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 {
                                     adjustStringName = 16;
                                 }
-                                String itemData = inventoryList.ItemDescription + inventoryList.Unit + inventoryList.EndingQuantity.ToString("#,##0.00");
+                                String itemData = (inventoryList.ItemDescription + inventoryList.Unit + inventoryList.EndingQuantity.ToString("#,##0.00"));
                                 RectangleF itemDataRectangle = new RectangleF
                                 {
                                     X = x,
                                     Y = y,
-                                    Size = new Size(240, ((int)graphics.MeasureString(itemData, fontArial8Regular, 240, StringFormat.GenericDefault).Height))
+                                    Size = new Size(300, ((int)graphics.MeasureString(itemData, fontArial6Regular, 300, StringFormat.GenericDefault).Height))
                                 };
-                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
-                                graphics.DrawString(inventoryList.Unit + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                                y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
+                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
+                                graphics.DrawString(inventoryList.Unit + "\n", fontArial7Regular, drawBrush, new RectangleF(46, y, width, height), drawFormatCenter);
+                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                                y += itemDataRectangle.Size.Height + adjustStringName + 10F;
                             }
                         }
                     }
@@ -2451,7 +2452,7 @@ namespace EasyPOS.Forms.Software._80mm_Report
                         String unitLabel = "\nUNIT";
                         String balanceLabel = "\nBalance";
                         graphics.DrawString(itemLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                        graphics.DrawString(unitLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                        graphics.DrawString(unitLabel, fontArial8Bold, drawBrush, new RectangleF(46, y, width, height), drawFormatCenter);
                         graphics.DrawString(balanceLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                         y += graphics.MeasureString(itemLabel, fontArial8Regular).Height + 3.0F;
 
@@ -2484,17 +2485,17 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 {
                                     adjustStringName = 16;
                                 }
-                                String itemData = inventoryList.ItemDescription + inventoryList.Unit + inventoryList.EndingQuantity.ToString("#,##0.00");
+                                String itemData = (inventoryList.ItemDescription + inventoryList.Unit + inventoryList.EndingQuantity.ToString("#,##0.00"));
                                 RectangleF itemDataRectangle = new RectangleF
                                 {
                                     X = x,
                                     Y = y,
-                                    Size = new Size(240, ((int)graphics.MeasureString(itemData, fontArial8Regular, 240, StringFormat.GenericDefault).Height))
+                                    Size = new Size(300, ((int)graphics.MeasureString(itemData, fontArial6Regular, 300, StringFormat.GenericDefault).Height))
                                 };
-                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
-                                graphics.DrawString(inventoryList.Unit + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                                y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
+                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
+                                graphics.DrawString(inventoryList.Unit + "\n", fontArial7Regular, drawBrush, new RectangleF(46, y, width, height), drawFormatCenter);
+                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                                y += itemDataRectangle.Size.Height + adjustStringName + 10F;
                             }
                         }
                     }
@@ -2788,7 +2789,7 @@ namespace EasyPOS.Forms.Software._80mm_Report
                         String unitLabel = "\nUNIT";
                         String balanceLabel = "\nBalance";
                         graphics.DrawString(itemLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                        graphics.DrawString(unitLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                        graphics.DrawString(unitLabel, fontArial8Bold, drawBrush, new RectangleF(46, y, width, height), drawFormatCenter);
                         graphics.DrawString(balanceLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                         y += graphics.MeasureString(itemLabel, fontArial8Regular).Height + 3.0F;
 
@@ -2821,17 +2822,17 @@ namespace EasyPOS.Forms.Software._80mm_Report
                                 {
                                     adjustStringName = 16;
                                 }
-                                String itemData = inventoryList.ItemDescription + inventoryList.Unit + inventoryList.EndingQuantity.ToString("#,##0.00");
+                                String itemData = (inventoryList.ItemDescription + inventoryList.Unit + inventoryList.EndingQuantity.ToString("#,##0.00"));
                                 RectangleF itemDataRectangle = new RectangleF
                                 {
                                     X = x,
                                     Y = y,
-                                    Size = new Size(240, ((int)graphics.MeasureString(itemData, fontArial8Regular, 240, StringFormat.GenericDefault).Height))
+                                    Size = new Size(300, ((int)graphics.MeasureString(itemData, fontArial6Regular, 300, StringFormat.GenericDefault).Height))
                                 };
-                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
-                                graphics.DrawString(inventoryList.Unit + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                                y += itemDataRectangle.Size.Height + adjustStringName + 3.0F;
+                                graphics.DrawString(inventoryList.ItemDescription + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, 120, height), drawFormatLeft);
+                                graphics.DrawString(inventoryList.Unit + "\n", fontArial7Regular, drawBrush, new RectangleF(46, y, width, height), drawFormatCenter);
+                                graphics.DrawString(inventoryList.EndingQuantity.ToString("#,##0.00") + "\n", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                                y += itemDataRectangle.Size.Height + adjustStringName + 10F;
                             }
                         }
                     }

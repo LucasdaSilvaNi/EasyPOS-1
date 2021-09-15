@@ -250,5 +250,10 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                 MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            new RepStockOutDetailReportPDFForm(startDate, endDate);
+        }
     }
 }

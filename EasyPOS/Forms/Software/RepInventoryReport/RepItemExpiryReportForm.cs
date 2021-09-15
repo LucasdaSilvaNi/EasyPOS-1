@@ -251,5 +251,10 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                 }
             }
         }
+
+        private void buttonPrint_Click(object sender, EventArgs e)
+        {
+            new RepItemExpiryReportPDFForm(dateStart, dateEnd);
+        }
     }
 }
