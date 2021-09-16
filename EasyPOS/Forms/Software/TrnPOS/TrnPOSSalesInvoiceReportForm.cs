@@ -114,14 +114,15 @@ namespace EasyPOS.Forms.Software.TrnPOS
             // Company Name
             // ============
             String companyName = systemCurrent.CompanyName;
-            float adjustStringName = 1;
-            if (companyName.Length > 43)
+            RectangleF companyNameRectangle = new RectangleF
             {
-                adjustStringName = 3;
-            }
+                X = x,
+                Y = y,
+                Size = new Size(245, ((int)graphics.MeasureString(companyName, fontArial8Bold, 245, StringFormat.GenericDefault).Height))
+            };
 
-            graphics.DrawString(companyName, fontArial12Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += graphics.MeasureString(companyName, fontArial12Bold).Height * adjustStringName;
+            graphics.DrawString(companyName, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += companyNameRectangle.Size.Height + 1.0F;
 
             // ===============
             // Company Address
