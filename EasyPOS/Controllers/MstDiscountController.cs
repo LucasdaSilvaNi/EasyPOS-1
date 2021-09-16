@@ -384,6 +384,103 @@ namespace EasyPOS.Controllers
             {
                 return new String[] { e.Message, "0" };
             }
+        } 
+        // =============
+        // Save Discount
+        // =============
+        public String[] SaveDiscount(Int32 id, Entities.MstDiscountEntity objDiscount)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var discount = from d in db.MstDiscounts
+                               where d.Id == id
+                               select d;
+
+                if (discount.Any())
+                {
+                    if (discount.FirstOrDefault().IsLocked)
+                    {
+                        return new String[] { "Already locked.", "0" };
+                    }
+
+                    DateTime? dateStart = null;
+                    if (String.IsNullOrEmpty(objDiscount.DateStart) == false)
+                    {
+                        dateStart = Convert.ToDateTime(objDiscount.DateStart);
+                    }
+
+                    DateTime? dateEnd = null;
+                    if (String.IsNullOrEmpty(objDiscount.DateEnd) == false)
+                    {
+                        dateEnd = Convert.ToDateTime(objDiscount.DateEnd);
+                    }
+
+                    DateTime? timeStart = null;
+                    if (String.IsNullOrEmpty(objDiscount.TimeStart) == false)
+                    {
+                        timeStart = Convert.ToDateTime(objDiscount.TimeStart);
+                    }
+
+                    DateTime? timeEnd = null;
+                    if (String.IsNullOrEmpty(objDiscount.TimeEnd) == false)
+                    {
+                        timeEnd = Convert.ToDateTime(objDiscount.TimeEnd);
+                    }
+
+                    String oldObject = Modules.SysAuditTrailModule.GetObjectString(discount.FirstOrDefault());
+
+                    var saveDiscount = discount.FirstOrDefault();
+                    saveDiscount.Discount = objDiscount.Discount;
+                    saveDiscount.DiscountRate = objDiscount.DiscountRate;
+                    saveDiscount.IsVatExempt = objDiscount.IsVatExempt;
+                    saveDiscount.IsDateScheduled = objDiscount.IsDateScheduled;
+                    saveDiscount.DateStart = dateStart;
+                    saveDiscount.DateEnd = dateEnd;
+                    saveDiscount.IsTimeScheduled = objDiscount.IsTimeScheduled;
+                    saveDiscount.TimeStart = timeStart;
+                    saveDiscount.TimeEnd = timeEnd;
+                    saveDiscount.IsDayScheduled = objDiscount.IsDayScheduled;
+                    saveDiscount.DayMon = objDiscount.DayMon;
+                    saveDiscount.DayTue = objDiscount.DayTue;
+                    saveDiscount.DayWed = objDiscount.DayWed;
+                    saveDiscount.DayThu = objDiscount.DayThu;
+                    saveDiscount.DayFri = objDiscount.DayFri;
+                    saveDiscount.DaySat = objDiscount.DaySat;
+                    saveDiscount.DaySun = objDiscount.DaySun;
+                    saveDiscount.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
+                    saveDiscount.UpdateDateTime = DateTime.Now;
+                    db.SubmitChanges();
+
+                    String newObject = Modules.SysAuditTrailModule.GetObjectString(discount.FirstOrDefault());
+
+                    Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
+                    {
+                        UserId = currentUserLogin.FirstOrDefault().Id,
+                        AuditDate = DateTime.Now,
+                        TableInformation = "MstDiscount",
+                        RecordInformation = oldObject,
+                        FormInformation = newObject,
+                        ActionInformation = "SaveDiscount"
+                    };
+                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
+
+                    return new String[] { "", "1" };
+                }
+                else
+                {
+                    return new String[] { "Discount not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
         }
     }
 }

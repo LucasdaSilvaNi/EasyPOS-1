@@ -245,7 +245,7 @@ namespace EasyPOS.Forms.Software.MstDiscounting
             }
             else
             {
-                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult closeDialogResult = MessageBox.Show("Save Changes?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (closeDialogResult == DialogResult.Yes)
                 {
                     Controllers.MstDiscountController mstDiscountController = new Controllers.MstDiscountController();
@@ -270,18 +270,16 @@ namespace EasyPOS.Forms.Software.MstDiscounting
                         DaySat = checkBoxDaySchedule.Checked == true ? checkBoxSat.Checked : false,
                         DaySun = checkBoxDaySchedule.Checked == true ? checkBoxSun.Checked : false
                     };
-                    sysSoftwareForm.RemoveTabPage();
 
-                    String[] lockDiscount = mstDiscountController.LockDiscount(mstDiscountEntity.Id, newDiscountEntity);
+                    String[] lockDiscount = mstDiscountController.SaveDiscount(mstDiscountEntity.Id, newDiscountEntity);
 
                     if (lockDiscount[1].Equals("0") == false)
                     {
-                        UpdateComponents(true);
+                        sysSoftwareForm.RemoveTabPage();
                         mstDiscountListForm.UpdateDiscountListDataSource();
                     }
                     else
                     {
-                        UpdateComponents(false);
                         MessageBox.Show(lockDiscount[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

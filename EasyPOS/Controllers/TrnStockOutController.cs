@@ -454,5 +454,136 @@ namespace EasyPOS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
+        // ==============
+        // Lock Stock-Out
+        // ==============
+        public String[] SaveStockOut(Int32 id, Entities.TrnStockOutEntity objStockOut)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var account = from d in db.MstAccounts
+                              where d.Id == objStockOut.AccountId
+                              && d.IsLocked == true
+                              select d;
+
+                if (account.Any() == false)
+                {
+                    return new String[] { "Account not found.", "0" };
+                }
+
+                var checkedByUser = from d in db.MstUsers
+                                    where d.Id == objStockOut.CheckedBy
+                                    && d.IsLocked == true
+                                    select d;
+
+                if (checkedByUser.Any() == false)
+                {
+                    return new String[] { "Checked by user not found.", "0" };
+                }
+
+                var approvedByUser = from d in db.MstUsers
+                                     where d.Id == objStockOut.ApprovedBy
+                                     && d.IsLocked == true
+                                     select d;
+
+                if (approvedByUser.Any() == false)
+                {
+                    return new String[] { "Approved by user not found.", "0" };
+                }
+
+                var stockOut = from d in db.TrnStockOuts
+                               where d.Id == id
+                               select d;
+
+                if (stockOut.Any())
+                {
+                    if (stockOut.FirstOrDefault().IsLocked == true)
+                    {
+                        return new String[] { "Already locked.", "0" };
+                    }
+
+                    if (Modules.SysCurrentModule.GetCurrentSettings().AllowNegativeInventory == false)
+                    {
+                        Boolean isNegativeInventory = false;
+                        String negativeInventoryItem = "";
+
+                        if (stockOut.FirstOrDefault().TrnStockOutLines.Where(d => d.MstItem.IsInventory == true).Any())
+                        {
+                            var groupedStockOutLines = from d in stockOut.FirstOrDefault().TrnStockOutLines.Where(d => d.MstItem.IsInventory == true)
+                                                       group d by d.MstItem into g
+                                                       select g;
+
+                            foreach (var stockOutLine in groupedStockOutLines.ToList())
+                            {
+                                negativeInventoryItem = stockOutLine.Key.ItemDescription;
+
+                                if (stockOutLine.Key.OnhandQuantity <= 0)
+                                {
+                                    isNegativeInventory = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    if (stockOutLine.Key.OnhandQuantity < stockOutLine.Sum(d => d.Quantity))
+                                    {
+                                        isNegativeInventory = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (isNegativeInventory == true)
+                        {
+                            return new String[] { "Negative inventory item found. " + negativeInventoryItem, "0" };
+                        }
+                    }
+
+                    String oldObject = Modules.SysAuditTrailModule.GetObjectString(stockOut.FirstOrDefault());
+
+                    var saveStockOut = stockOut.FirstOrDefault();
+                    saveStockOut.ManualStockOutNumber = objStockOut.ManualStockOutNumber;
+                    saveStockOut.AccountId = objStockOut.AccountId;
+                    saveStockOut.Remarks = objStockOut.Remarks;
+                    saveStockOut.CheckedBy = objStockOut.CheckedBy;
+                    saveStockOut.ApprovedBy = objStockOut.ApprovedBy;
+                    saveStockOut.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
+                    saveStockOut.UpdateDateTime = DateTime.Today;
+                    db.SubmitChanges();
+
+                    Modules.TrnInventoryModule trnInventoryModule = new Modules.TrnInventoryModule();
+                    trnInventoryModule.UpdateStockOutInventory(stockOut.FirstOrDefault().Id);
+
+                    String newObject = Modules.SysAuditTrailModule.GetObjectString(stockOut.FirstOrDefault());
+
+                    Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
+                    {
+                        UserId = currentUserLogin.FirstOrDefault().Id,
+                        AuditDate = DateTime.Now,
+                        TableInformation = "TrnStockOut",
+                        RecordInformation = oldObject,
+                        FormInformation = newObject,
+                        ActionInformation = "SaveStockOut"
+                    };
+                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
+
+                    return new String[] { "", "1" };
+                }
+                else
+                {
+                    return new String[] { "Stock-Out not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
     }
 }

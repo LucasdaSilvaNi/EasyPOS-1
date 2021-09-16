@@ -197,7 +197,7 @@ namespace EasyPOS.Forms.Software.MstCustomer
             }
             else
             {
-                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult closeDialogResult = MessageBox.Show("Save Changes?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (closeDialogResult == DialogResult.Yes)
                 {
                     Controllers.MstCustomerController mstCustomerController = new Controllers.MstCustomerController();
@@ -219,17 +219,15 @@ namespace EasyPOS.Forms.Software.MstCustomer
                         DefaultPriceDescription = textBoxDefaultPrice.Text,
                         BusinessStyle = textBoxBusinessStyle.Text
                     };
-                    sysSoftwareForm.RemoveTabPage();
 
-                    String[] lockCustomer = mstCustomerController.LockCustomer(mstCustomerEntity.Id, newCustomerEntity);
+                    String[] lockCustomer = mstCustomerController.SaveCustomer(mstCustomerEntity.Id, newCustomerEntity);
                     if (lockCustomer[1].Equals("0") == false)
                     {
-                        UpdateComponents(true);
+                        sysSoftwareForm.RemoveTabPage();
                         mstCustomerListForm.UpdateCustomerListDataSource();
                     }
                     else
                     {
-                        UpdateComponents(false);
                         MessageBox.Show(lockCustomer[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

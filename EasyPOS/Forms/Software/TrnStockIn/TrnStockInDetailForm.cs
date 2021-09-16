@@ -227,7 +227,7 @@ namespace EasyPOS.Forms.Software.TrnStockIn
             }
             else
             {
-                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult closeDialogResult = MessageBox.Show("Save Changes?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (closeDialogResult == DialogResult.Yes)
                 {
                     Controllers.TrnStockInController trnStockInController = new Controllers.TrnStockInController();
@@ -241,12 +241,11 @@ namespace EasyPOS.Forms.Software.TrnStockIn
                         CheckedBy = Convert.ToInt32(comboBoxCheckedBy.SelectedValue),
                         ApprovedBy = Convert.ToInt32(comboBoxApprovedBy.SelectedValue)
                     };
-                    sysSoftwareForm.RemoveTabPage();
 
-                    String[] lockStockIn = trnStockInController.LockStockIn(trnStockInEntity.Id, newStockInEntity);
+                    String[] lockStockIn = trnStockInController.SaveStockIn(trnStockInEntity.Id, newStockInEntity);
                     if (lockStockIn[1].Equals("0") == false)
                     {
-                        UpdateComponents(true);
+                        sysSoftwareForm.RemoveTabPage();
                         trnStockInListForm.UpdateStockInListDataSource();
                     }
                     else

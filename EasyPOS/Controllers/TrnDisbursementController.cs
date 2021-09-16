@@ -768,6 +768,148 @@ namespace EasyPOS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
+        // =================
+        // Save Disbursement
+        // =================
+        public String[] SaveDisbursement(Int32 id, Entities.TrnDisbursementEntity objDisbursement)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var payType = from d in db.MstPayTypes where d.Id == objDisbursement.PayTypeId select d;
+                if (payType.Any() == false)
+                {
+                    return new String[] { "Paytype not found.", "0" };
+                }
+
+                Int32? stockInId = null;
+
+                if (objDisbursement.StockInId != null)
+                {
+                    var stockIn = from d in db.TrnStockIns
+                                  where d.Id == objDisbursement.StockInId
+                                  select d;
+
+                    if (stockIn.Any())
+                    {
+                        stockInId = stockIn.FirstOrDefault().Id;
+                    }
+                }
+
+                var checkedByUser = from d in db.MstUsers
+                                    where d.Id == objDisbursement.CheckedBy
+                                    && d.IsLocked == true
+                                    select d;
+
+                if (checkedByUser.Any() == false)
+                {
+                    return new String[] { "Checked by user not found.", "0" };
+                }
+
+                var approvedByUser = from d in db.MstUsers
+                                     where d.Id == objDisbursement.ApprovedBy
+                                     && d.IsLocked == true
+                                     select d;
+
+                if (approvedByUser.Any() == false)
+                {
+                    return new String[] { "Approved by user not found.", "0" };
+                }
+
+                var disbursement = from d in db.TrnDisbursements
+                                   where d.Id == id
+                                   select d;
+
+                if (disbursement.Any())
+                {
+                    if (disbursement.FirstOrDefault().IsLocked)
+                    {
+                        return new String[] { "Already locked.", "0" };
+                    }
+
+                    Int32? refundSalesId = null;
+                    if (objDisbursement.IsRefund == true)
+                    {
+                        var sales = from d in db.TrnSales
+                                    where d.SalesNumber == objDisbursement.RefundSalesNumber
+                                    && d.IsLocked == true
+                                    && d.IsReturned == true
+                                    && d.ReturnApplication == "Return"
+                                    select d;
+
+                        if (sales.Any() == false)
+                        {
+                            return new String[] { "Sales not found.", "0" };
+                        }
+
+                        refundSalesId = sales.FirstOrDefault().Id;
+
+                        var updateSales = sales.FirstOrDefault();
+                        updateSales.ReturnApplication = "Refund";
+                        updateSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                        updateSales.UpdateDateTime = DateTime.Now;
+                        db.SubmitChanges();
+                    }
+
+                    String oldObject = Modules.SysAuditTrailModule.GetObjectString(disbursement.FirstOrDefault());
+
+                    var saveDisbursement = disbursement.FirstOrDefault();
+                    saveDisbursement.DisbursementType = objDisbursement.DisbursementType;
+                    saveDisbursement.PayTypeId = payType.FirstOrDefault().Id;
+                    saveDisbursement.Remarks = objDisbursement.Remarks;
+                    saveDisbursement.Amount = objDisbursement.Amount;
+                    saveDisbursement.IsRefund = objDisbursement.IsRefund;
+                    saveDisbursement.RefundSalesId = refundSalesId;
+                    saveDisbursement.CheckedBy = objDisbursement.CheckedBy;
+                    saveDisbursement.ApprovedBy = objDisbursement.ApprovedBy;
+                    saveDisbursement.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
+                    saveDisbursement.UpdateDateTime = DateTime.Now;
+                    saveDisbursement.Amount1000 = objDisbursement.Amount1000;
+                    saveDisbursement.Amount500 = objDisbursement.Amount500;
+                    saveDisbursement.Amount200 = objDisbursement.Amount200;
+                    saveDisbursement.Amount100 = objDisbursement.Amount100;
+                    saveDisbursement.Amount50 = objDisbursement.Amount50;
+                    saveDisbursement.Amount20 = objDisbursement.Amount20;
+                    saveDisbursement.Amount10 = objDisbursement.Amount10;
+                    saveDisbursement.Amount5 = objDisbursement.Amount5;
+                    saveDisbursement.Amount1 = objDisbursement.Amount1;
+                    saveDisbursement.Amount025 = objDisbursement.Amount025;
+                    saveDisbursement.Amount010 = objDisbursement.Amount010;
+                    saveDisbursement.Amount005 = objDisbursement.Amount005;
+                    saveDisbursement.Amount001 = objDisbursement.Amount001;
+                    saveDisbursement.Payee = objDisbursement.Payee;
+                    db.SubmitChanges();
+
+                    String newObject = Modules.SysAuditTrailModule.GetObjectString(disbursement.FirstOrDefault());
+
+                    Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
+                    {
+                        UserId = currentUserLogin.FirstOrDefault().Id,
+                        AuditDate = DateTime.Now,
+                        TableInformation = "TrnDisbursement",
+                        RecordInformation = oldObject,
+                        FormInformation = newObject,
+                        ActionInformation = "SaveDisbursement"
+                    };
+                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
+
+                    return new String[] { "", "1" };
+                }
+                else
+                {
+                    return new String[] { "Disbursement not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
 
     }
 }

@@ -286,7 +286,7 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
             }
             else
             {
-                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult closeDialogResult = MessageBox.Show("Save Changes?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (closeDialogResult == DialogResult.Yes)
                 {
                     Controllers.TrnDisbursementController trnDisbursementController = new Controllers.TrnDisbursementController();
@@ -322,12 +322,11 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
                         Amount001 = Convert.ToDecimal(textBoxAmountDenominationXC1.Text),
                         Payee = textBoxPayee.Text
                     };
-                    sysSoftwareForm.RemoveTabPage();
 
-                    String[] lockDisbursement = trnDisbursementController.LockDisbursement(trnDisbursementEntity.Id, newDisbursementEntity);
+                    String[] lockDisbursement = trnDisbursementController.SaveDisbursement(trnDisbursementEntity.Id, newDisbursementEntity);
                     if (lockDisbursement[1].Equals("0") == false)
                     {
-                        EnableDisableControls(true);
+                        sysSoftwareForm.RemoveTabPage();
                         trnDisbursementListForm.UpdateDisbursementListDataSource();
                     }
                     else

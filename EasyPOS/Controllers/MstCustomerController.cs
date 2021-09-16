@@ -490,6 +490,92 @@ namespace EasyPOS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
+        // =============
+        // Save Customer
+        // =============
+        public String[] SaveCustomer(Int32 id, Entities.MstCustomerEntity objCustomer)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var customerCode = from d in db.MstCustomers
+                                   where d.CustomerCode == objCustomer.CustomerCode
+                                   && d.IsLocked == true
+                                   select d;
+
+                if (customerCode.Any())
+                {
+                    return new String[] { "Customer Code already exist.", "0" };
+                }
+
+                var customerName = from d in db.MstCustomers
+                                   where d.Customer == objCustomer.Customer
+                                   && d.IsLocked == true
+                                   select d;
+
+                if (customerName.Any())
+                {
+                    return new String[] { "Customer already exist.", "0" };
+                }
+
+                var customer = from d in db.MstCustomers
+                               where d.Id == id
+                               select d;
+
+                if (customer.Any())
+                {
+                    String oldObject = Modules.SysAuditTrailModule.GetObjectString(customer.FirstOrDefault());
+
+                    var saveCustomer = customer.FirstOrDefault();
+                    saveCustomer.Customer = objCustomer.Customer;
+                    saveCustomer.Address = objCustomer.Address;
+                    saveCustomer.ContactPerson = objCustomer.ContactPerson;
+                    saveCustomer.ContactNumber = objCustomer.ContactNumber;
+                    saveCustomer.CreditLimit = Convert.ToDecimal(objCustomer.CreditLimit);
+                    saveCustomer.TermId = objCustomer.TermId;
+                    saveCustomer.TIN = objCustomer.TIN;
+                    saveCustomer.WithReward = objCustomer.WithReward;
+                    saveCustomer.RewardNumber = objCustomer.RewardNumber;
+                    saveCustomer.RewardConversion = objCustomer.RewardConversion;
+                    saveCustomer.AvailableReward = objCustomer.AvailableReward;
+                    saveCustomer.AccountId = 64;
+                    saveCustomer.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
+                    saveCustomer.UpdateDateTime = DateTime.Now;
+                    saveCustomer.DefaultPriceDescription = objCustomer.DefaultPriceDescription;
+                    saveCustomer.CustomerCode = objCustomer.CustomerCode;
+                    saveCustomer.BusinessStyle = objCustomer.BusinessStyle;
+                    db.SubmitChanges();
+
+                    String newObject = Modules.SysAuditTrailModule.GetObjectString(customer.FirstOrDefault());
+
+                    Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
+                    {
+                        UserId = currentUserLogin.FirstOrDefault().Id,
+                        AuditDate = DateTime.Now,
+                        TableInformation = "MstCustomer",
+                        RecordInformation = oldObject,
+                        FormInformation = newObject,
+                        ActionInformation = "SaveCustomer"
+                    };
+                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
+
+                    return new String[] { "", "" };
+                }
+                else
+                {
+                    return new String[] { "Customer not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
 
     }
 }

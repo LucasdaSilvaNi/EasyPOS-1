@@ -77,7 +77,7 @@ namespace EasyPOS.Forms.Software.MstUser
             }
             else
             {
-                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult closeDialogResult = MessageBox.Show("Save Changes?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (closeDialogResult == DialogResult.Yes)
                 {
                     Controllers.MstUserController mstUserController = new Controllers.MstUserController();
@@ -89,17 +89,15 @@ namespace EasyPOS.Forms.Software.MstUser
                         FullName = textBoxFullName.Text,
                         UserCardNumber = textBoxUserCardNumber.Text,
                     };
-                    sysSoftwareForm.RemoveTabPage();
 
-                    String[] lockUser = mstUserController.LockUser(mstUserEntity.Id, newUserEntity);
+                    String[] lockUser = mstUserController.SaveUser(mstUserEntity.Id, newUserEntity);
                     if (lockUser[1].Equals("0") == false)
                     {
-                        UpdateComponents(true);
+                        sysSoftwareForm.RemoveTabPage();
                         mstUserListForm.UpdateUserListDataSource();
                     }
                     else
                     {
-                        UpdateComponents(false);
                         MessageBox.Show(lockUser[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

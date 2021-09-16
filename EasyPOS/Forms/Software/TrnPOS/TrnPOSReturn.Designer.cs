@@ -347,6 +347,7 @@
             this.ColumnReturnItemDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColumnReturnItemDescription.DataPropertyName = "ColumnReturnItemDescription";
             this.ColumnReturnItemDescription.HeaderText = "Item Description";
+            this.ColumnReturnItemDescription.MinimumWidth = 180;
             this.ColumnReturnItemDescription.Name = "ColumnReturnItemDescription";
             this.ColumnReturnItemDescription.ReadOnly = true;
             // 

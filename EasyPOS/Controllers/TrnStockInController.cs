@@ -490,5 +490,98 @@ namespace EasyPOS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
+        // =============
+        // Lock Stock-In
+        // =============
+        public String[] SaveStockIn(Int32 id, Entities.TrnStockInEntity objStockIn)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var supplier = from d in db.MstSuppliers
+                               where d.Id == objStockIn.SupplierId
+                               && d.IsLocked == true
+                               select d;
+
+                if (supplier.Any() == false)
+                {
+                    return new String[] { "Supplier not found.", "0" };
+                }
+
+                var checkedByUser = from d in db.MstUsers
+                                    where d.Id == objStockIn.CheckedBy
+                                    && d.IsLocked == true
+                                    select d;
+
+                if (checkedByUser.Any() == false)
+                {
+                    return new String[] { "Checked by user not found.", "0" };
+                }
+
+                var approvedByUser = from d in db.MstUsers
+                                     where d.Id == objStockIn.ApprovedBy
+                                     && d.IsLocked == true
+                                     select d;
+
+                if (approvedByUser.Any() == false)
+                {
+                    return new String[] { "Approved by user not found.", "0" };
+                }
+
+                var stockIn = from d in db.TrnStockIns
+                              where d.Id == id
+                              select d;
+
+                if (stockIn.Any())
+                {
+                    if (stockIn.FirstOrDefault().IsLocked)
+                    {
+                        return new String[] { "Already locked.", "0" };
+                    }
+
+                    String oldObject = Modules.SysAuditTrailModule.GetObjectString(stockIn.FirstOrDefault());
+
+                    var saveStockIn = stockIn.FirstOrDefault();
+                    saveStockIn.ManualStockInNumber = objStockIn.ManualStockInNumber;
+                    saveStockIn.StockInDate = Convert.ToDateTime(objStockIn.StockInDate);
+                    saveStockIn.SupplierId = objStockIn.SupplierId;
+                    saveStockIn.Remarks = objStockIn.Remarks;
+                    saveStockIn.IsReturn = objStockIn.IsReturn;
+                    saveStockIn.CheckedBy = objStockIn.CheckedBy;
+                    saveStockIn.ApprovedBy = objStockIn.ApprovedBy;
+                    saveStockIn.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
+                    saveStockIn.UpdateDateTime = DateTime.Now;
+                    db.SubmitChanges();
+
+                    String newObject = Modules.SysAuditTrailModule.GetObjectString(stockIn.FirstOrDefault());
+
+                    Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
+                    {
+                        UserId = currentUserLogin.FirstOrDefault().Id,
+                        AuditDate = DateTime.Now,
+                        TableInformation = "TrnStockIn",
+                        RecordInformation = oldObject,
+                        FormInformation = newObject,
+                        ActionInformation = "SaveStockIn"
+                    };
+                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
+
+                    return new String[] { "", "1" };
+                }
+                else
+                {
+                    return new String[] { "Stock-In not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
     }
 }

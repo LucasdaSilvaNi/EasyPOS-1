@@ -217,7 +217,7 @@ namespace EasyPOS.Forms.Software.TrnStockOut
             }
             else
             {
-                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult closeDialogResult = MessageBox.Show("Save Changes?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (closeDialogResult == DialogResult.Yes)
                 {
                     Controllers.TrnStockOutController trnStockOutController = new Controllers.TrnStockOutController();
@@ -231,12 +231,11 @@ namespace EasyPOS.Forms.Software.TrnStockOut
                         CheckedBy = Convert.ToInt32(comboBoxCheckedBy.SelectedValue),
                         ApprovedBy = Convert.ToInt32(comboBoxApprovedBy.SelectedValue)
                     };
-                    sysSoftwareForm.RemoveTabPage();
 
-                    String[] lockStockOut = trnStockOutController.LockStockOut(trnStockOutEntity.Id, newStockOutEntity);
+                    String[] lockStockOut = trnStockOutController.SaveStockOut(trnStockOutEntity.Id, newStockOutEntity);
                     if (lockStockOut[1].Equals("0") == false)
                     {
-                        UpdateComponents(true);
+                        sysSoftwareForm.RemoveTabPage();
                         trnStockOutListForm.UpdateStockOutListDataSource();
                     }
                     else

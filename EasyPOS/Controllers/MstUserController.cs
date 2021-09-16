@@ -300,5 +300,70 @@ namespace EasyPOS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
+        // =========
+        // Save User
+        // =========
+        public String[] SaveUser(Int32 id, Entities.MstUserEntity objUser)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var existingUser = from d in db.MstUsers
+                                   where d.UserName == objUser.UserName
+                                   && d.IsLocked == true
+                                   select d;
+
+                if (existingUser.Any())
+                {
+                    return new String[] { "Username is already taken.", "0" };
+                }
+
+                var user = from d in db.MstUsers
+                           where d.Id == id
+                           select d;
+
+                if (user.Any())
+                {
+                    String oldObject = Modules.SysAuditTrailModule.GetObjectString(user.FirstOrDefault());
+
+                    var saveUser = user.FirstOrDefault();
+                    saveUser.UserName = objUser.UserName;
+                    saveUser.Password = objUser.Password;
+                    saveUser.FullName = objUser.FullName;
+                    saveUser.UserCardNumber = objUser.UserCardNumber;
+                    saveUser.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
+                    saveUser.UpdateDateTime = DateTime.Now;
+                    db.SubmitChanges();
+
+                    String newObject = Modules.SysAuditTrailModule.GetObjectString(user.FirstOrDefault());
+
+                    Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
+                    {
+                        UserId = currentUserLogin.FirstOrDefault().Id,
+                        AuditDate = DateTime.Now,
+                        TableInformation = "MstUser",
+                        RecordInformation = oldObject,
+                        FormInformation = newObject,
+                        ActionInformation = "SaveUser"
+                    };
+                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
+
+                    return new String[] { "", "" };
+                }
+                else
+                {
+                    return new String[] { "User not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
+        }
     }
 }

@@ -362,7 +362,7 @@ namespace EasyPOS.Forms.Software.MstItem
             }
             else
             {
-                DialogResult closeDialogResult = MessageBox.Show("Close and Lock?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult closeDialogResult = MessageBox.Show("Save Changes?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (closeDialogResult == DialogResult.Yes)
                 {
                     Controllers.MstItemController mstItemController = new Controllers.MstItemController();
@@ -391,21 +391,15 @@ namespace EasyPOS.Forms.Software.MstItem
                         ChildItemId = Convert.ToInt32(comboBoxChildItem.SelectedValue),
                         cValue = Convert.ToDecimal(textBoxConversionValue.Text)
                     };
-                    sysSoftwareForm.RemoveTabPage();
 
-                    String[] lockItem = mstItemController.LockItem(mstItemEntity.Id, newItemEntity);
+                    String[] lockItem = mstItemController.SaveItem(mstItemEntity.Id, newItemEntity);
                     if (lockItem[1].Equals("0") == false)
                     {
-                        mstItemEntity.IsLocked = true;
-
-                        UpdateComponents(true);
+                        sysSoftwareForm.RemoveTabPage();
                         mstItemListForm.UpdateItemListDataSource();
                     }
                     else
                     {
-                        mstItemEntity.IsLocked = false;
-
-                        UpdateComponents(false);
                         MessageBox.Show(lockItem[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

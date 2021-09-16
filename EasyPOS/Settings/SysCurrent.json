@@ -15,7 +15,7 @@
   "TenantOf": "",
   "CurrentUserId": 1,
   "CurrentUserName": "admin",
-  "CurrentVersion": "Version 1.202109151752NOR",
+  "CurrentVersion": "Version 1.202109161838NOR",
   "CurrentDeveloper": "Easyfis Corporation",
   "CurrentSupport": "(032) 234-0787",
   "CurrentPeriodId": 1,
@@ -41,7 +41,7 @@
   "EasypayMotherCardNumber": "0000000001",
   "ActivateAuditTrail": true,
   "FacepayImagePath": "D:\\Facepay",
-  "POSType": "POS Touch",
+  "POSType": "POS Barcode",
   "AllowNegativeInventory": true,
   "IsLoginDate": true,
   "EnableEasyShopIntegration": false,
@@ -59,6 +59,6 @@
   "ChoosePrinter": false,
   "IsTriggeredQuantity": false,
   "EnableEditPrice": false,
-  "SalesOrderPrinterType": "Kitchen Printer",
+  "SalesOrderPrinterType": "Default Printer",
   "DisableSalesCustomerSelection": false
 }

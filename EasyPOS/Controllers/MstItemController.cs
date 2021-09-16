@@ -938,6 +938,78 @@ namespace EasyPOS.Controllers
             {
                 return new String[] { e.Message, "0" };
             }
+        }       
+        // =========
+        // Save Item
+        // =========
+        public String[] SaveItem(Int32 id, Entities.MstItemEntity objItem)
+        {
+            try
+            {
+                var currentUserLogin = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
+                if (currentUserLogin.Any() == false)
+                {
+                    return new String[] { "Current login user not found.", "0" };
+                }
+
+                var item = from d in db.MstItems
+                           where d.Id == id
+                           select d;
+
+                if (item.Any())
+                {
+                    String oldObject = Modules.SysAuditTrailModule.GetObjectString(item.FirstOrDefault());
+
+                    var saveItem = item.FirstOrDefault();
+                    saveItem.ItemCode = objItem.ItemCode;
+                    saveItem.BarCode = objItem.BarCode;
+                    saveItem.ItemDescription = objItem.ItemDescription;
+                    saveItem.Alias = objItem.Alias;
+                    saveItem.GenericName = objItem.GenericName;
+                    saveItem.Category = objItem.Category;
+                    saveItem.OutTaxId = objItem.OutTaxId;
+                    saveItem.UnitId = objItem.UnitId;
+                    saveItem.DefaultSupplierId = objItem.DefaultSupplierId;
+                    saveItem.Cost = objItem.Cost;
+                    saveItem.MarkUp = objItem.MarkUp;
+                    saveItem.Price = objItem.Price;
+                    saveItem.ReorderQuantity = objItem.ReorderQuantity;
+                    saveItem.OnhandQuantity = objItem.OnhandQuantity;
+                    saveItem.IsInventory = objItem.IsInventory;
+                    saveItem.IsPackage = objItem.IsPackage;
+                    saveItem.ExpiryDate = Convert.ToDateTime(objItem.ExpiryDate);
+                    saveItem.LotNumber = objItem.LotNumber;
+                    saveItem.Remarks = objItem.Remarks;
+                    saveItem.UpdateUserId = currentUserLogin.FirstOrDefault().Id;
+                    saveItem.UpdateDateTime = DateTime.Now;
+                    saveItem.cValue = objItem.cValue;
+                    saveItem.ChildItemId = objItem.ChildItemId;
+                    db.SubmitChanges();
+
+                    String newObject = Modules.SysAuditTrailModule.GetObjectString(item.FirstOrDefault());
+
+                    Entities.SysAuditTrailEntity newAuditTrail = new Entities.SysAuditTrailEntity()
+                    {
+                        UserId = currentUserLogin.FirstOrDefault().Id,
+                        AuditDate = DateTime.Now,
+                        TableInformation = "MstItem",
+                        RecordInformation = oldObject,
+                        FormInformation = newObject,
+                        ActionInformation = "SaveItem"
+                    };
+                    Modules.SysAuditTrailModule.InsertAuditTrail(newAuditTrail);
+
+                    return new String[] { "", "" };
+                }
+                else
+                {
+                    return new String[] { "Item not found.", "0" };
+                }
+            }
+            catch (Exception e)
+            {
+                return new String[] { e.Message, "0" };
+            }
         }
     }
 }
