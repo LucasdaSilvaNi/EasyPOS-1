@@ -493,16 +493,22 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point sixthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, sixthLineFirstPoint, sixthLineSecondPoint);
 
-                    // =======
-                    // Cashier
-                    // =======
+                    // ================
+                    // Cashier & Server
+                    // ================
                     String cashier = collections.FirstOrDefault().MstUser3.UserName;
+                    String server = sales.FirstOrDefault().MstUser5.UserName;
 
                     String cashierLabel = "\nCashier";
                     String cashierUserData = "\n" + cashier;
+                    String serverLabel = "Server";
+                    String serverUserData = server;
                     graphics.DrawString(cashierLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     graphics.DrawString(cashierUserData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                     y += graphics.MeasureString(cashierUserData, fontArial7Regular).Height;
+                    graphics.DrawString(serverLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                    graphics.DrawString(serverUserData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                    y += graphics.MeasureString(serverUserData, fontArial7Regular).Height;
 
                     // ========
                     // 7th Line
@@ -867,16 +873,22 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point sixthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, sixthLineFirstPoint, sixthLineSecondPoint);
 
-                    // =======
-                    // Cashier
-                    // =======
+                    // ================
+                    // Cashier & Server
+                    // ================
                     String cashier = collections.FirstOrDefault().MstUser3.UserName;
+                    String server = sales.FirstOrDefault().MstUser5.UserName;
 
                     String cashierLabel = "\nCashier";
                     String cashierUserData = "\n" + cashier;
+                    String serverLabel = "Server";
+                    String serverUserData = server;
                     graphics.DrawString(cashierLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     graphics.DrawString(cashierUserData, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                     y += graphics.MeasureString(cashierUserData, fontArial8Regular).Height;
+                    graphics.DrawString(serverLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                    graphics.DrawString(serverUserData, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                    y += graphics.MeasureString(serverUserData, fontArial8Regular).Height;
 
                     // ========
                     // 7th Line

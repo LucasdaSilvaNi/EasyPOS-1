@@ -29,12 +29,12 @@ namespace EasyPOS.Forms.Software.TrnPOS
             {
                 Data.easyposdbDataContext db = new Data.easyposdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
 
-                iTextSharp.text.Font fontTimesNewRoman9 = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 9);
-                iTextSharp.text.Font fontTimesNewRoman9Bold = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 9, iTextSharp.text.Font.BOLD);
-                iTextSharp.text.Font fontTimesNewRoman10 = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 10);
-                iTextSharp.text.Font fontTimesNewRoman10Italic = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 10, iTextSharp.text.Font.ITALIC);
-                iTextSharp.text.Font fontTimesNewRoman10Bold = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 10, iTextSharp.text.Font.BOLD);
-                iTextSharp.text.Font fontTimesNewRoman14Bold = FontFactory.GetFont(BaseFont.TIMES_ROMAN, 14, iTextSharp.text.Font.BOLD);
+                iTextSharp.text.Font fontHelvetica9 = FontFactory.GetFont(BaseFont.HELVETICA, 9);
+                iTextSharp.text.Font fontHelvetica9Bold = FontFactory.GetFont(BaseFont.HELVETICA, 9, iTextSharp.text.Font.BOLD);
+                iTextSharp.text.Font fontHelvetica10 = FontFactory.GetFont(BaseFont.HELVETICA, 10);
+                iTextSharp.text.Font fontHelvetica10Italic = FontFactory.GetFont(BaseFont.HELVETICA, 10, iTextSharp.text.Font.ITALIC);
+                iTextSharp.text.Font fontHelvetica10Bold = FontFactory.GetFont(BaseFont.HELVETICA, 10, iTextSharp.text.Font.BOLD);
+                iTextSharp.text.Font fontHelvetica14Bold = FontFactory.GetFont(BaseFont.HELVETICA, 14, iTextSharp.text.Font.BOLD);
 
                 Paragraph line = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.5F, 100.0F, BaseColor.DARK_GRAY, Element.ALIGN_MIDDLE, 10F)));
 
@@ -69,37 +69,37 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 PdfPTable tableHeader = new PdfPTable(4);
                 tableHeader.SetWidths(new float[] { 20f, 30f, 20f, 50f });
                 tableHeader.WidthPercentage = 100;
-                tableHeader.AddCell(new PdfPCell(new Phrase(companyName, fontTimesNewRoman14Bold)) { Colspan = 2, Border = 0, Padding = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase(documentTitle, fontTimesNewRoman14Bold)) { HorizontalAlignment = 2, Colspan = 2, Border = 0, Padding = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase(address + "\n", fontTimesNewRoman10)) { Colspan = 4, Border = PdfPCell.BOTTOM_BORDER, Padding = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("Invoice Date: ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase(invoiceDate, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("Customer: ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase(customer, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("Address: ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase(customerAdd, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("Contact No.: ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase(contactNumber, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("Sales No.: ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase(salesNumber, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("Term: ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase(terms, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("Remarks: ", fontTimesNewRoman10Bold)) { Colspan = 1, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase(remarks, fontTimesNewRoman10)) { Colspan = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("\n", fontTimesNewRoman10)) { Colspan = 7, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(companyName, fontHelvetica14Bold)) { Colspan = 2, Border = 0, Padding = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(documentTitle, fontHelvetica14Bold)) { HorizontalAlignment = 2, Colspan = 2, Border = 0, Padding = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(address + "\n", fontHelvetica10)) { Colspan = 4, Border = PdfPCell.BOTTOM_BORDER, Padding = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("Invoice Date: ", fontHelvetica10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(invoiceDate, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("Customer: ", fontHelvetica10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(customer, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("Address: ", fontHelvetica10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(customerAdd, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("Contact No.: ", fontHelvetica10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(contactNumber, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("Sales No.: ", fontHelvetica10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(salesNumber, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("Term: ", fontHelvetica10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(terms, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("Remarks: ", fontHelvetica10Bold)) { Colspan = 1, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(remarks, fontHelvetica10)) { Colspan = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("\n", fontHelvetica10)) { Colspan = 7, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 3f });
                 document.Add(tableHeader);
 
                 PdfPTable tableLines = new PdfPTable(7);
                 tableLines.SetWidths(new float[] { 30f, 30f, 100f, 50f, 50f, 50f, 50f });
                 tableLines.WidthPercentage = 100;
                 tableLines.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
-                tableLines.AddCell(new PdfPCell(new Phrase("Qty", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableLines.AddCell(new PdfPCell(new Phrase("Unit", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableLines.AddCell(new PdfPCell(new Phrase("Item", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableLines.AddCell(new PdfPCell(new Phrase("Price", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableLines.AddCell(new PdfPCell(new Phrase("Discount", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableLines.AddCell(new PdfPCell(new Phrase("Net Price", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableLines.AddCell(new PdfPCell(new Phrase("Amount", fontTimesNewRoman9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableLines.AddCell(new PdfPCell(new Phrase("Qty", fontHelvetica9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableLines.AddCell(new PdfPCell(new Phrase("Unit", fontHelvetica9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableLines.AddCell(new PdfPCell(new Phrase("Item", fontHelvetica9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableLines.AddCell(new PdfPCell(new Phrase("Price", fontHelvetica9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableLines.AddCell(new PdfPCell(new Phrase("Discount", fontHelvetica9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableLines.AddCell(new PdfPCell(new Phrase("Net Price", fontHelvetica9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableLines.AddCell(new PdfPCell(new Phrase("Amount", fontHelvetica9Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
               
                 var sales = from d in db.TrnSales
                             where d.Id == trnSalesId
@@ -173,32 +173,32 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                 totalItemAmount = itemSubTotal - salesLine.DiscountAmount;
 
                                 //Item Data
-                                tableLines.AddCell(new PdfPCell(new Phrase(salesLine.Quantity.ToString("#,##0.00"), fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.Unit, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.ItemDescription, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.Price.ToString("#,##0.00"), fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.DiscountAmount.ToString("#,##0.00"), fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.NetPrice.ToString("#,##0.00"), fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                    tableLines.AddCell(new PdfPCell(new Phrase((totalItemAmount).ToString("#,##0.00"), fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(salesLine.Quantity.ToString("#,##0.00"), fontHelvetica10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.Unit, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.ItemDescription, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.Price.ToString("#,##0.00"), fontHelvetica10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.DiscountAmount.ToString("#,##0.00"), fontHelvetica10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                    tableLines.AddCell(new PdfPCell(new Phrase(salesLine.NetPrice.ToString("#,##0.00"), fontHelvetica10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                    tableLines.AddCell(new PdfPCell(new Phrase((totalItemAmount).ToString("#,##0.00"), fontHelvetica10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                                
                             }
                             
                             tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, Colspan = 7 });
-                            tableLines.AddCell(new PdfPCell(new Phrase(totalNumberOfItems.ToString("#,##0.00"), fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 2 });
-                            tableLines.AddCell(new PdfPCell(new Phrase("Total: ", fontTimesNewRoman14Bold)) { Colspan = 5, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 2 });
-                            tableLines.AddCell(new PdfPCell(new Phrase(totalAmount.ToString("#,##0.00"), fontTimesNewRoman14Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 2 });
+                            tableLines.AddCell(new PdfPCell(new Phrase(totalNumberOfItems.ToString("#,##0.00"), fontHelvetica10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 2 });
+                            tableLines.AddCell(new PdfPCell(new Phrase("Total: ", fontHelvetica14Bold)) { Colspan = 5, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 2 });
+                            tableLines.AddCell(new PdfPCell(new Phrase(totalAmount.ToString("#,##0.00"), fontHelvetica14Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 5f, HorizontalAlignment = 2 });
                             document.Add(tableLines);
 
                             PdfPTable tableUsers = new PdfPTable(2);
                             tableUsers.SetWidths(new float[] { 100f, 100f });
                             tableUsers.WidthPercentage = 100;
-                            tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman14Bold)) { Colspan = 8, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 50f });
-                            tableUsers.AddCell(new PdfPCell(new Phrase("Prepared by", fontTimesNewRoman10Bold)) { PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
-                            tableUsers.AddCell(new PdfPCell(new Phrase("Received by", fontTimesNewRoman10Bold)) { PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
-                            tableUsers.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
+                            tableLines.AddCell(new PdfPCell(new Phrase(" ", fontHelvetica14Bold)) { Colspan = 8, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 50f });
+                            tableUsers.AddCell(new PdfPCell(new Phrase("Prepared by: ", fontHelvetica10Bold)) { PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
+                            tableUsers.AddCell(new PdfPCell(new Phrase("Received by: ", fontHelvetica10Bold)) { PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
+                            tableUsers.AddCell(new PdfPCell(new Phrase(" ", fontHelvetica10Bold)) { PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
                             tableUsers.AddCell(new PdfPCell(new Phrase(" ")) { PaddingBottom = 5f });
-                            tableUsers.AddCell(new PdfPCell(new Phrase(salesLines.FirstOrDefault().MstUser.FullName, fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
-                            tableUsers.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
+                            tableUsers.AddCell(new PdfPCell(new Phrase(salesLines.FirstOrDefault().MstUser.FullName, fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
+                            tableUsers.AddCell(new PdfPCell(new Phrase(" ", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 5f, PaddingBottom = 9f, PaddingLeft = 5f, PaddingRight = 5f });
                             document.Add(tableUsers);
                             document.Close();
 

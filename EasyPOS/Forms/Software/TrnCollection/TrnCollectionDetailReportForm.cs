@@ -147,7 +147,7 @@ namespace EasyPOS.Forms.Software.TrnCollection
                 String terminal = collection.FirstOrDefault().MstTerminal.Terminal;
                 String customer = collection.FirstOrDefault().MstCustomer.Customer;
                 String salesNumber = collection.FirstOrDefault().TrnSale.SalesNumber;
-                String salesBalance = collection.FirstOrDefault().SalesBalanceAmount.ToString();
+                String salesBalance = collection.FirstOrDefault().SalesBalanceAmount.ToString("#,##0.00");
                 String remarks = collection.FirstOrDefault().Remarks;
 
 
