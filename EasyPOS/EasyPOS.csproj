@@ -244,6 +244,7 @@
     <Compile Include="Controllers\SysAuditTrailController.cs" />
     <Compile Include="Controllers\SysKitchenController.cs" />
     <Compile Include="Controllers\SysKitchenPrinterController.cs" />
+    <Compile Include="Controllers\SysLanguageController.cs" />
     <Compile Include="Controllers\SysLoginController.cs" />
     <Compile Include="Controllers\IntCloudSettingsController.cs" />
     <Compile Include="Controllers\SysCurrentController.cs" />
@@ -365,6 +366,7 @@
     <Compile Include="Entities\DgvMstUserListEntity.cs" />
     <Compile Include="Entities\DgvSysUtilitiesBarcodePrintingItemList.cs" />
     <Compile Include="Entities\DgvRepUnsoldItemEntity.cs" />
+    <Compile Include="Entities\DgvMstSystemTablesLanguageListEntity.cs" />
     <Compile Include="Entities\SysKitchenPrinterEntity.cs" />
     <Compile Include="Entities\EspCardDetailsEntity.cs" />
     <Compile Include="Entities\EspTokenEntity.cs" />
@@ -418,6 +420,7 @@
     <Compile Include="Entities\SysFormEntity.cs" />
     <Compile Include="Entities\SysKitchenItemEntity.cs" />
     <Compile Include="Entities\SysKitchenPrinterEntity.cs" />
+    <Compile Include="Entities\SysLanguageEntity.cs" />
     <Compile Include="Entities\SysUserRightsEntity.cs" />
     <Compile Include="Entities\TrnCollectionEntity.cs" />
     <Compile Include="Entities\TrnCollectionLineEntity.cs" />
@@ -870,6 +873,12 @@
     </Compile>
     <Compile Include="Forms\Software\SysSettings\SysKitchenPrinterDetailForm.Designer.cs">
       <DependentUpon>SysKitchenPrinterDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Software\SysSystemTables\SysLanguageDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\SysSystemTables\SysLanguageDetailForm.Designer.cs">
+      <DependentUpon>SysLanguageDetailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Software\TrnCollection\TrnCollectionDetailForm.cs">
       <SubType>Form</SubType>
@@ -1630,6 +1639,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\SysSettings\SysKitchenPrinterDetailForm.resx">
       <DependentUpon>SysKitchenPrinterDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\SysSystemTables\SysLanguageDetailForm.resx">
+      <DependentUpon>SysLanguageDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnCollection\TrnCollectionDetailForm.resx">
       <DependentUpon>TrnCollectionDetailForm.cs</DependentUpon>

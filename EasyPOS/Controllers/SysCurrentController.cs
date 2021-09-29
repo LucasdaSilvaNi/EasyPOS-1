@@ -88,6 +88,23 @@ namespace EasyPOS.Controllers
             return suppliers.OrderByDescending(d => d.Id).ToList();
         }
 
+        // ===============
+        // Language - List
+        // ===============
+        public List<Entities.SysLanguageEntity> DropDownLanguageList()
+        {
+            var language = from d in db.SysLabels
+                            select new Entities.SysLanguageEntity
+                            {
+                                Id = d.Id,
+                                Label = d.Label,
+                                DisplayedLabel = d.DisplayedLabel,
+                                Language = d.Language
+                            };
+
+            return language.OrderByDescending(d => d.Id).ToList();
+        }
+
         // ===================
         // SysCurrent - Update
         // ===================

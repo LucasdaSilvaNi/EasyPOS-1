@@ -53,6 +53,11 @@ namespace EasyPOS.Forms.Software.SysSystemTables
         public BindingSource supplierListDataSource = new BindingSource();
         public static Int32 supplierListPageNumber = 1;
 
+        public static List<Entities.DgvMstSystemTablesLanguageListEntity> languageListData = new List<Entities.DgvMstSystemTablesLanguageListEntity>();
+        public PagedList<Entities.DgvMstSystemTablesLanguageListEntity> languageListPageList = new PagedList<Entities.DgvMstSystemTablesLanguageListEntity>(languageListData, languageListPageNumber, pageSize);
+        public BindingSource languageListDataSource = new BindingSource();
+        public static Int32 languageListPageNumber = 1;
+
         public SysSystemTablesForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
@@ -79,6 +84,7 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                     dataGridViewPeriodList.Columns[0].Visible = false;
                     dataGridViewTerminalList.Columns[0].Visible = false;
                     dataGridViewSupplierList.Columns[0].Visible = false;
+                    dataGridViewLanguageList.Columns[0].Visible = false;
                 }
 
                 if (sysUserRights.GetUserRights().CanDelete == false)
@@ -90,6 +96,7 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                     dataGridViewPeriodList.Columns[1].Visible = false;
                     dataGridViewTerminalList.Columns[1].Visible = false;
                     dataGridViewSupplierList.Columns[1].Visible = false;
+                    dataGridViewLanguageList.Columns[1].Visible = false;
                 }
 
                 CreateAccountListDataGridView();
@@ -99,6 +106,7 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 CreatePeriodListDataGridView();
                 CreateTerminalListDataGridView();
                 CreateSupplierListDataGridView();
+                CreateLanguageListDataGridView();
             }
         }
 
@@ -1765,9 +1773,238 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                         MessageBox.Show(newSupplier[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
+                case "Label":
+                    SysLanguageDetailForm sysLanguageDetailForm = new SysLanguageDetailForm(this, null);
+                    sysLanguageDetailForm.ShowDialog();
+                    break;
+            }
+        }
+        // =====
+        // Label
+        // =====
+        public void UpdateLanguageListDataSource()
+        {
+            SetLanguageListDataSourceAsync();
+        }
+
+        public async void SetLanguageListDataSourceAsync()
+        {
+            List<Entities.DgvMstSystemTablesLanguageListEntity> getLanguagetListData = await GetLanguageListDataTask();
+            if (getLanguagetListData.Any())
+            {
+                languageListData = getLanguagetListData;
+                languageListPageList = new PagedList<Entities.DgvMstSystemTablesLanguageListEntity>(languageListData, languageListPageNumber, pageSize);
+
+                if (languageListPageList.PageCount == 1)
+                {
+                    buttonLanguageListPageListFirst.Enabled = false;
+                    buttonLanguageListPageListPrevious.Enabled = false;
+                    buttonLanguageListPageListNext.Enabled = false;
+                    buttonLanguageListPageListLast.Enabled = false;
+                }
+                else if (languageListPageNumber == 1)
+                {
+                    buttonLanguageListPageListFirst.Enabled = false;
+                    buttonLanguageListPageListPrevious.Enabled = false;
+                    buttonLanguageListPageListNext.Enabled = true;
+                    buttonLanguageListPageListLast.Enabled = true;
+                }
+                else if (languageListPageNumber == languageListPageList.PageCount)
+                {
+                    buttonLanguageListPageListFirst.Enabled = true;
+                    buttonLanguageListPageListPrevious.Enabled = true;
+                    buttonLanguageListPageListNext.Enabled = false;
+                    buttonLanguageListPageListLast.Enabled = false;
+                }
+                else
+                {
+                    buttonLanguageListPageListFirst.Enabled = true;
+                    buttonLanguageListPageListPrevious.Enabled = true;
+                    buttonLanguageListPageListNext.Enabled = true;
+                    buttonLanguageListPageListLast.Enabled = true;
+                }
+
+                textBoxLanguageListPageNumber.Text = languageListPageNumber + " / " + languageListPageList.PageCount;
+                languageListDataSource.DataSource = languageListPageList;
+            }
+            else
+            {
+                buttonLanguageListPageListFirst.Enabled = false;
+                buttonLanguageListPageListPrevious.Enabled = false;
+                buttonLanguageListPageListNext.Enabled = false;
+                buttonLanguageListPageListLast.Enabled = false;
+
+                languageListPageNumber = 1;
+
+                languageListData = new List<Entities.DgvMstSystemTablesLanguageListEntity>();
+                languageListDataSource.Clear();
+                textBoxLanguageListPageNumber.Text = "1 / 1";
             }
         }
 
-      
+        public Task<List<Entities.DgvMstSystemTablesLanguageListEntity>> GetLanguageListDataTask()
+        {
+            String filter = textBoxLanguageListFilter.Text;
+            Controllers.SysLanguageController sysLanguageController = new Controllers.SysLanguageController();
+
+            List<Entities.SysLanguageEntity> listLanguage = sysLanguageController.ListLanguage(filter);
+            if (listLanguage.Any())
+            {
+                var language = from d in listLanguage
+                               select new Entities.DgvMstSystemTablesLanguageListEntity
+                               {
+                                   ColumnLanguageListButtonEdit = "Edit",
+                                   ColumnLanguageListButtonDelete = "Delete",
+                                   ColumnLanguageListId = d.Id,
+                                   ColumnLanguageListLabel = d.Label,
+                                   ColumnLanguageListDisplayLabel = d.DisplayedLabel,
+
+                               };
+
+                return Task.FromResult(language.ToList());
+            }
+            else
+            {
+                return Task.FromResult(new List<Entities.DgvMstSystemTablesLanguageListEntity>());
+            }
+        }
+
+        public void CreateLanguageListDataGridView()
+        {
+            UpdateLanguageListDataSource();
+
+            dataGridViewLanguageList.Columns[0].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#01A6F0");
+            dataGridViewLanguageList.Columns[0].DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#01A6F0");
+            dataGridViewLanguageList.Columns[0].DefaultCellStyle.ForeColor = Color.White;
+
+            dataGridViewLanguageList.Columns[1].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#F34F1C");
+            dataGridViewLanguageList.Columns[1].DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml("#F34F1C");
+            dataGridViewLanguageList.Columns[1].DefaultCellStyle.ForeColor = Color.White;
+
+            dataGridViewLanguageList.DataSource = languageListDataSource;
+        }
+
+        private void textBoxLanguageListFilter_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                UpdateLanguageListDataSource();
+            }
+        }
+
+        private void dataGridViewLanguageList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                GetLanguageListCurrentSelectedCell(e.RowIndex);
+            }
+
+            if (e.RowIndex > -1 && dataGridViewLanguageList.CurrentCell.ColumnIndex == dataGridViewLanguageList.Columns["ColumnLanguageListButtonEdit"].Index)
+            {
+                Entities.SysLanguageEntity selectedLanguage = new Entities.SysLanguageEntity()
+                {
+                    Id = Convert.ToInt32(dataGridViewLanguageList.Rows[e.RowIndex].Cells[2].Value),
+                    Label = dataGridViewLanguageList.Rows[e.RowIndex].Cells[3].Value.ToString(),
+                    DisplayedLabel = dataGridViewLanguageList.Rows[e.RowIndex].Cells[4].Value.ToString()
+                };
+                SysLanguageDetailForm sysSystemTablesLanguageDetailForm = new SysLanguageDetailForm(this, selectedLanguage);
+                sysSystemTablesLanguageDetailForm.ShowDialog();
+            }
+
+            if (e.RowIndex > -1 && dataGridViewLanguageList.CurrentCell.ColumnIndex == dataGridViewLanguageList.Columns["ColumnLanguageListButtonDelete"].Index)
+            {
+                DialogResult deleteDialogResult = MessageBox.Show("Delete Label?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (deleteDialogResult == DialogResult.Yes)
+                {
+                    Controllers.SysLanguageController sysLanguageController = new Controllers.SysLanguageController();
+
+                    String[] deleteLanguage = sysLanguageController.DeleteLanguage(Convert.ToInt32(dataGridViewLanguageList.Rows[e.RowIndex].Cells[2].Value));
+                    if (deleteLanguage[1].Equals("0") == false)
+                    {
+                        Int32 currentPageNumber = languageListPageNumber;
+
+                        languageListPageNumber = 1;
+                        UpdateLanguageListDataSource();
+                    }
+                    else
+                    {
+                        MessageBox.Show(deleteLanguage[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        public void GetLanguageListCurrentSelectedCell(Int32 rowIndex)
+        {
+
+        }
+
+        private void buttonLanguageListPageListFirst_Click(object sender, EventArgs e)
+        {
+            languageListPageList = new PagedList<Entities.DgvMstSystemTablesLanguageListEntity>(languageListData, 1, pageSize);
+            languageListDataSource.DataSource = languageListPageList;
+
+            buttonLanguageListPageListFirst.Enabled = false;
+            buttonLanguageListPageListPrevious.Enabled = false;
+            buttonLanguageListPageListNext.Enabled = true;
+            buttonLanguageListPageListLast.Enabled = true;
+
+            languageListPageNumber = 1;
+            textBoxLanguageListPageNumber.Text = languageListPageNumber + " / " + languageListPageList.PageCount;
+        }
+
+        private void buttonLanguageListPageListPrevious_Click(object sender, EventArgs e)
+        {
+            if (languageListPageList.HasPreviousPage == true)
+            {
+                languageListPageList = new PagedList<Entities.DgvMstSystemTablesLanguageListEntity>(languageListData, --languageListPageNumber, pageSize);
+                languageListDataSource.DataSource = languageListPageList;
+            }
+
+            buttonLanguageListPageListNext.Enabled = true;
+            buttonLanguageListPageListLast.Enabled = true;
+
+            if (languageListPageNumber == 1)
+            {
+                buttonLanguageListPageListFirst.Enabled = false;
+                buttonLanguageListPageListPrevious.Enabled = false;
+            }
+
+            textBoxLanguageListPageNumber.Text = languageListPageNumber + " / " + languageListPageList.PageCount;
+        }
+
+        private void buttonLanguageListPageListNext_Click(object sender, EventArgs e)
+        {
+            if (languageListPageList.HasNextPage == true)
+            {
+                languageListPageList = new PagedList<Entities.DgvMstSystemTablesLanguageListEntity>(languageListData, ++languageListPageNumber, pageSize);
+                languageListDataSource.DataSource = languageListPageList;
+            }
+
+            buttonLanguageListPageListFirst.Enabled = true;
+            buttonLanguageListPageListPrevious.Enabled = true;
+
+            if (languageListPageNumber == languageListPageList.PageCount)
+            {
+                buttonLanguageListPageListNext.Enabled = false;
+                buttonLanguageListPageListLast.Enabled = false;
+            }
+
+            textBoxLanguageListPageNumber.Text = languageListPageNumber + " / " + languageListPageList.PageCount;
+        }
+
+        private void buttonLanguageListPageListLast_Click(object sender, EventArgs e)
+        {
+            languageListPageList = new PagedList<Entities.DgvMstSystemTablesLanguageListEntity>(languageListData, languageListPageList.PageCount, pageSize);
+            languageListDataSource.DataSource = languageListPageList;
+
+            buttonLanguageListPageListFirst.Enabled = true;
+            buttonLanguageListPageListPrevious.Enabled = true;
+            buttonLanguageListPageListNext.Enabled = false;
+            buttonLanguageListPageListLast.Enabled = false;
+
+            languageListPageNumber = languageListPageList.PageCount;
+            textBoxLanguageListPageNumber.Text = languageListPageNumber + " / " + languageListPageList.PageCount;
+        }
     }
+
 }

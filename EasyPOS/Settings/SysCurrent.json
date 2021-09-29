@@ -60,5 +60,6 @@
   "IsTriggeredQuantity": false,
   "EnableEditPrice": false,
   "SalesOrderPrinterType": "Default Printer",
-  "DisableSalesCustomerSelection": false
+  "DisableSalesCustomerSelection": false,
+  "Language":  "English"
 }

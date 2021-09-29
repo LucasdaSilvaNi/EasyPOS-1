@@ -15,10 +15,9 @@ namespace EasyPOS.Forms.Software.MstItem
     {
         public SysSoftwareForm sysSoftwareForm;
         private Modules.SysUserRightsModule sysUserRights;
-
+        public static Int32 pageSize = 15;
         public static List<Entities.DgvMstItemListEntity> itemListData = new List<Entities.DgvMstItemListEntity>();
         public static Int32 pageNumber = 1;
-        public static Int32 pageSize = 17;
         public PagedList<Entities.DgvMstItemListEntity> itemListPageList = new PagedList<Entities.DgvMstItemListEntity>(itemListData, pageNumber, pageSize);
         public BindingSource itemListDataSource = new BindingSource();
         public List<String> inventoryOption;
@@ -249,7 +248,7 @@ namespace EasyPOS.Forms.Software.MstItem
 
             if (e.RowIndex > -1 && dataGridViewItemList.CurrentCell.ColumnIndex == dataGridViewItemList.Columns["ColumnItemListButtonDelete"].Index)
             {
-                Boolean isLocked = Convert.ToBoolean(dataGridViewItemList.Rows[e.RowIndex].Cells[11].Value);
+                Boolean isLocked = Convert.ToBoolean(dataGridViewItemList.Rows[e.RowIndex].Cells[12].Value);
 
                 if (isLocked == true)
                 {
@@ -274,7 +273,7 @@ namespace EasyPOS.Forms.Software.MstItem
                             {
                                 if (itemListData.Count() % pageSize == 1)
                                 {
-                                    pageNumber = currentPageNumber - 1;
+                                    pageNumber = currentPageNumber;
                                 }
                                 else if (itemListData.Count() < 1)
                                 {

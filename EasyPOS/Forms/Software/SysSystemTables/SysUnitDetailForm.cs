@@ -16,7 +16,6 @@ namespace EasyPOS.Forms.Software.SysSystemTables
         private Modules.SysUserRightsModule sysUserRights;
 
         Entities.MstUnitEntity mstUnitEntity;
-
         public SysUnitDetailForm(SysSystemTablesForm systemTablesForm, Entities.MstUnitEntity unitEntity)
         {
             InitializeComponent();

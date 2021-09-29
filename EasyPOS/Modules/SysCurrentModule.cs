@@ -104,7 +104,8 @@ namespace EasyPOS.Modules
                 IsTriggeredQuantity = currentSettings.IsTriggeredQuantity,
                 EnableEditPrice = currentSettings.EnableEditPrice,
                 SalesOrderPrinterType = currentSettings.SalesOrderPrinterType,
-                DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection
+                DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection,
+                Language = currentSettings.Language
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);
@@ -182,7 +183,8 @@ namespace EasyPOS.Modules
                 IsTriggeredQuantity = objSysCurrentEntity.IsTriggeredQuantity,
                 EnableEditPrice = objSysCurrentEntity.EnableEditPrice,
                 SalesOrderPrinterType = objSysCurrentEntity.SalesOrderPrinterType,
-                DisableSalesCustomerSelection = objSysCurrentEntity.DisableSalesCustomerSelection
+                DisableSalesCustomerSelection = objSysCurrentEntity.DisableSalesCustomerSelection,
+                Language = objSysCurrentEntity.Language
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newSysCurrentEntities);
@@ -261,7 +263,8 @@ namespace EasyPOS.Modules
                 IsTriggeredQuantity = currentSettings.IsTriggeredQuantity,
                 EnableEditPrice = currentSettings.EnableEditPrice,
                 SalesOrderPrinterType = currentSettings.SalesOrderPrinterType,
-                DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection
+                DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection,
+                Language = currentSettings.Language
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);

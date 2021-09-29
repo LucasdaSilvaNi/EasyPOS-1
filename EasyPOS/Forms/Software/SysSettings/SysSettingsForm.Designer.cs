@@ -49,6 +49,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.checkBoxDisableSalesCustomerSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxEnableEditPrice = new System.Windows.Forms.CheckBox();
             this.checkBoxIsTriggeredQuantity = new System.Windows.Forms.CheckBox();
@@ -168,6 +170,13 @@
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.panel11 = new System.Windows.Forms.Panel();
             this.dataGridViewKitchen = new System.Windows.Forms.DataGridView();
+            this.ColumnKitchenButtonEdit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnKitchenId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnKitchenNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPrinterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAlias = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDefaultWidth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDefaultHeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxKitchenFilter = new System.Windows.Forms.TextBox();
             this.panel15 = new System.Windows.Forms.Panel();
             this.buttonKitchenPageListFirst = new System.Windows.Forms.Button();
@@ -176,13 +185,6 @@
             this.buttonKitchenPageListLast = new System.Windows.Forms.Button();
             this.textBoxKitchenPageNumber = new System.Windows.Forms.TextBox();
             this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
-            this.ColumnKitchenButtonEdit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnKitchenId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnKitchenNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPrinterName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAlias = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDefaultWidth = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDefaultHeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -441,6 +443,8 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel5.Controls.Add(this.comboBoxLanguage);
+            this.panel5.Controls.Add(this.label16);
             this.panel5.Controls.Add(this.checkBoxDisableSalesCustomerSelection);
             this.panel5.Controls.Add(this.checkBoxEnableEditPrice);
             this.panel5.Controls.Add(this.checkBoxIsTriggeredQuantity);
@@ -489,6 +493,28 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1095, 472);
             this.panel5.TabIndex = 34;
+            // 
+            // comboBoxLanguage
+            // 
+            this.comboBoxLanguage.Enabled = false;
+            this.comboBoxLanguage.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.comboBoxLanguage.FormattingEnabled = true;
+            this.comboBoxLanguage.Location = new System.Drawing.Point(138, 368);
+            this.comboBoxLanguage.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxLanguage.Name = "comboBoxLanguage";
+            this.comboBoxLanguage.Size = new System.Drawing.Size(199, 27);
+            this.comboBoxLanguage.TabIndex = 96;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(62, 370);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(72, 19);
+            this.label16.TabIndex = 95;
+            this.label16.Text = "Language:";
             // 
             // checkBoxDisableSalesCustomerSelection
             // 
@@ -1909,6 +1935,64 @@
             this.dataGridViewKitchen.TabIndex = 24;
             this.dataGridViewKitchen.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewKitchen_CellClick);
             // 
+            // ColumnKitchenButtonEdit
+            // 
+            this.ColumnKitchenButtonEdit.DataPropertyName = "ColumnKitchenButtonEdit";
+            this.ColumnKitchenButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColumnKitchenButtonEdit.HeaderText = "";
+            this.ColumnKitchenButtonEdit.Name = "ColumnKitchenButtonEdit";
+            this.ColumnKitchenButtonEdit.ReadOnly = true;
+            this.ColumnKitchenButtonEdit.Width = 70;
+            // 
+            // ColumnKitchenId
+            // 
+            this.ColumnKitchenId.DataPropertyName = "ColumnKitchenId";
+            this.ColumnKitchenId.HeaderText = "Id";
+            this.ColumnKitchenId.Name = "ColumnKitchenId";
+            this.ColumnKitchenId.ReadOnly = true;
+            this.ColumnKitchenId.Visible = false;
+            // 
+            // ColumnKitchenNumber
+            // 
+            this.ColumnKitchenNumber.DataPropertyName = "ColumnKitchenNumber";
+            this.ColumnKitchenNumber.HeaderText = "Kitchen";
+            this.ColumnKitchenNumber.Name = "ColumnKitchenNumber";
+            this.ColumnKitchenNumber.ReadOnly = true;
+            this.ColumnKitchenNumber.Width = 150;
+            // 
+            // ColumnPrinterName
+            // 
+            this.ColumnPrinterName.DataPropertyName = "ColumnPrinterName";
+            this.ColumnPrinterName.HeaderText = "Printer Name";
+            this.ColumnPrinterName.Name = "ColumnPrinterName";
+            this.ColumnPrinterName.ReadOnly = true;
+            this.ColumnPrinterName.Width = 250;
+            // 
+            // ColumnAlias
+            // 
+            this.ColumnAlias.DataPropertyName = "ColumnAlias";
+            this.ColumnAlias.HeaderText = "Alias";
+            this.ColumnAlias.Name = "ColumnAlias";
+            this.ColumnAlias.ReadOnly = true;
+            // 
+            // ColumnDefaultWidth
+            // 
+            this.ColumnDefaultWidth.DataPropertyName = "ColumnDefaultWidth";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnDefaultWidth.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColumnDefaultWidth.HeaderText = "Default Width";
+            this.ColumnDefaultWidth.Name = "ColumnDefaultWidth";
+            this.ColumnDefaultWidth.ReadOnly = true;
+            // 
+            // ColumnDefaultHeight
+            // 
+            this.ColumnDefaultHeight.DataPropertyName = "ColumnDefaultHeight";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnDefaultHeight.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnDefaultHeight.HeaderText = "Default Height";
+            this.ColumnDefaultHeight.Name = "ColumnDefaultHeight";
+            this.ColumnDefaultHeight.ReadOnly = true;
+            // 
             // textBoxKitchenFilter
             // 
             this.textBoxKitchenFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -2016,64 +2100,6 @@
             this.backgroundWorkerEasyfisIntegration.WorkerReportsProgress = true;
             this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
             this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
-            // 
-            // ColumnKitchenButtonEdit
-            // 
-            this.ColumnKitchenButtonEdit.DataPropertyName = "ColumnKitchenButtonEdit";
-            this.ColumnKitchenButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ColumnKitchenButtonEdit.HeaderText = "";
-            this.ColumnKitchenButtonEdit.Name = "ColumnKitchenButtonEdit";
-            this.ColumnKitchenButtonEdit.ReadOnly = true;
-            this.ColumnKitchenButtonEdit.Width = 70;
-            // 
-            // ColumnKitchenId
-            // 
-            this.ColumnKitchenId.DataPropertyName = "ColumnKitchenId";
-            this.ColumnKitchenId.HeaderText = "Id";
-            this.ColumnKitchenId.Name = "ColumnKitchenId";
-            this.ColumnKitchenId.ReadOnly = true;
-            this.ColumnKitchenId.Visible = false;
-            // 
-            // ColumnKitchenNumber
-            // 
-            this.ColumnKitchenNumber.DataPropertyName = "ColumnKitchenNumber";
-            this.ColumnKitchenNumber.HeaderText = "Kitchen";
-            this.ColumnKitchenNumber.Name = "ColumnKitchenNumber";
-            this.ColumnKitchenNumber.ReadOnly = true;
-            this.ColumnKitchenNumber.Width = 150;
-            // 
-            // ColumnPrinterName
-            // 
-            this.ColumnPrinterName.DataPropertyName = "ColumnPrinterName";
-            this.ColumnPrinterName.HeaderText = "Printer Name";
-            this.ColumnPrinterName.Name = "ColumnPrinterName";
-            this.ColumnPrinterName.ReadOnly = true;
-            this.ColumnPrinterName.Width = 250;
-            // 
-            // ColumnAlias
-            // 
-            this.ColumnAlias.DataPropertyName = "ColumnAlias";
-            this.ColumnAlias.HeaderText = "Alias";
-            this.ColumnAlias.Name = "ColumnAlias";
-            this.ColumnAlias.ReadOnly = true;
-            // 
-            // ColumnDefaultWidth
-            // 
-            this.ColumnDefaultWidth.DataPropertyName = "ColumnDefaultWidth";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnDefaultWidth.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ColumnDefaultWidth.HeaderText = "Default Width";
-            this.ColumnDefaultWidth.Name = "ColumnDefaultWidth";
-            this.ColumnDefaultWidth.ReadOnly = true;
-            // 
-            // ColumnDefaultHeight
-            // 
-            this.ColumnDefaultHeight.DataPropertyName = "ColumnDefaultHeight";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnDefaultHeight.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnDefaultHeight.HeaderText = "Default Height";
-            this.ColumnDefaultHeight.Name = "ColumnDefaultHeight";
-            this.ColumnDefaultHeight.ReadOnly = true;
             // 
             // SysSettingsForm
             // 
@@ -2283,5 +2309,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAlias;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDefaultWidth;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDefaultHeight;
+        private System.Windows.Forms.ComboBox comboBoxLanguage;
+        private System.Windows.Forms.Label label16;
     }
 }

@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
@@ -423,6 +424,22 @@ namespace EasyPOS.Forms.Software.SysSettings
                 comboBoxReturnSupplier.DisplayMember = "Supplier";
             }
 
+            //var language = sysSettingsController.DropDownLanguageList();
+            //if (language.Any())
+            //{
+            //    comboBoxLanguage.DataSource = language;
+            //    comboBoxLanguage.ValueMember = "Id";
+            //    comboBoxLanguage.DisplayMember = "Language";
+            //}
+
+            List<String> language = new List<String>
+            {
+                "English",
+                "Chinese"
+            };
+
+            comboBoxLanguage.DataSource = language;
+
             List<String> collectionReports = new List<String>
             {
                 "Official Receipt",
@@ -525,6 +542,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxEnableEditPrice.Checked = Convert.ToBoolean(sysCurrent.EnableEditPrice);
                 comboBoxSalesOrderPrinterType.Text = sysCurrent.SalesOrderPrinterType;
                 checkBoxDisableSalesCustomerSelection.Checked = Convert.ToBoolean(sysCurrent.DisableSalesCustomerSelection);
+                comboBoxLanguage.Text = sysCurrent.Language;
             }
         }
 
@@ -606,7 +624,8 @@ namespace EasyPOS.Forms.Software.SysSettings
                 IsTriggeredQuantity = checkBoxIsTriggeredQuantity.Checked,
                 EnableEditPrice = checkBoxEnableEditPrice.Checked,
                 SalesOrderPrinterType = comboBoxSalesOrderPrinterType.Text,
-                DisableSalesCustomerSelection = checkBoxDisableSalesCustomerSelection.Checked
+                DisableSalesCustomerSelection = checkBoxDisableSalesCustomerSelection.Checked,
+                Language = comboBoxLanguage.Text
             };
 
             String[] saveSysCurrent = sysSettingsController.UpdateSysCurrent(sysCurrentEntity);
@@ -669,6 +688,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxEnableEditPrice.Enabled = false;
                 comboBoxSalesOrderPrinterType.Enabled = false;
                 checkBoxDisableSalesCustomerSelection.Enabled = false;
+                comboBoxLanguage.Enabled = false;
             }
             else
             {
@@ -756,6 +776,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxEnableEditPrice.Enabled = true;
                 comboBoxSalesOrderPrinterType.Enabled = true;
                 checkBoxDisableSalesCustomerSelection.Enabled = true;
+                comboBoxLanguage.Enabled = true;
             }
         }
 
