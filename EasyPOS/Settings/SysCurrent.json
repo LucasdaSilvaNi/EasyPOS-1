@@ -15,7 +15,7 @@
   "TenantOf": "",
   "CurrentUserId": 1,
   "CurrentUserName": "admin",
-  "CurrentVersion": "Version 1.202109291537NOR",
+  "CurrentVersion": "Version 1.202109301710NOR",
   "CurrentDeveloper": "Easyfis Corporation",
   "CurrentSupport": "(032) 234-0787",
   "CurrentPeriodId": 1,
@@ -61,5 +61,5 @@
   "EnableEditPrice": false,
   "SalesOrderPrinterType": "Default Printer",
   "DisableSalesCustomerSelection": false,
-  "Language":  "English"
+  "Language": "English"
 }

@@ -53,7 +53,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 //float h = tableHeader.TotalHeight + tableLines.TotalHeight;
                 var pgSize = new iTextSharp.text.Rectangle(270, 13999);
                 Document document = new Document(pgSize);
-                document.SetMargins(5f, 5f, 5f, 5f);
+                document.SetMargins(1f, 5f, 5f, 5f);
 
                 PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(fileName, FileMode.Create));
 
@@ -74,7 +74,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 document.Add(tableHeader);
 
                 PdfPTable tableLines = new PdfPTable(3);
-                tableLines.SetWidths(new float[] { 100f, 70f, 50f });
+                tableLines.SetWidths(new float[] { 100f, 70f, 70f });
                 tableLines.TotalWidth = 250f;
                 tableLines.SplitLate = false;
                 tableLines.SplitRows = true;
@@ -363,7 +363,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         if (category != null)
                         {
 
-                            tableLines.AddCell(new PdfPCell(new Phrase(category, fontHelvetica10Bold)) { Colspan = 3, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                            tableLines.AddCell(new PdfPCell(new Phrase(category, fontHelvetica10Bold)) { Colspan = 5, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
 
                         }
 
@@ -371,9 +371,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         {
                             foreach (var inventoryList in inventories.ToList())
                             {
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.ItemDescription, fontHelvetica10)) { Colspan = 0, HorizontalAlignment = 1, Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.Unit, fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.EndingQuantity.ToString("#,##0.00"), fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.ItemDescription, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.Unit, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.EndingQuantity.ToString("#,##0.00"), fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                             }
                         }
                     }
@@ -653,42 +653,42 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                               Amount = g.Key.Cost * g.Sum(s => (s.BeginningQuantity + s.InQuantity) - s.OutQuantity),
                                           };
 
-                        // ==================
-                        // Date Range Header
-                        // ==================
-                        tableHeader.AddCell(new PdfPCell(new Phrase("\nFrom : " + startDate.ToShortDateString() + " To: " + endDate.ToShortDateString() + "\n", fontHelvetica10)) { Colspan = 1, Border = 0, Padding = 3f, PaddingBottom = 5f, PaddingLeft = 40f });
+                        //// ==================
+                        //// Date Range Header
+                        //// ==================
+                        //tableHeader.AddCell(new PdfPCell(new Phrase("\nFrom : " + startDate.ToShortDateString() + " To: " + endDate.ToShortDateString() + "\n", fontHelvetica10)) { Colspan = 1, Border = 0, Padding = 3f, PaddingBottom = 5f, PaddingLeft = 40f });
 
-                        // ========
-                        // 1st Line
-                        // ========
-                        tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
+                        //// ========
+                        //// 1st Line
+                        //// ========
+                        //tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
 
 
-                        // ===============
-                        // Stock-in Line
-                        // ===============
-                        tableLines.AddCell(new PdfPCell(new Phrase("Item", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                        tableLines.AddCell(new PdfPCell(new Phrase("Unit", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                        tableLines.AddCell(new PdfPCell(new Phrase("Balance", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                        //// ===============
+                        //// Stock-in Line
+                        //// ===============
+                        //tableLines.AddCell(new PdfPCell(new Phrase("Item", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                        //tableLines.AddCell(new PdfPCell(new Phrase("Unit", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                        //tableLines.AddCell(new PdfPCell(new Phrase("Balance", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
 
-                        // ========
-                        // 2nd Line
-                        // ========
-                        tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
+                        //// ========
+                        //// 2nd Line
+                        //// ========
+                        //tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
 
 
                         if (category != null)
                         {
-                            tableLines.AddCell(new PdfPCell(new Phrase(category, fontHelvetica10Bold)) { Colspan = 3, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                            tableLines.AddCell(new PdfPCell(new Phrase(category, fontHelvetica10Bold)) { Colspan = 5, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                         }
 
                         if (inventories.Any())
                         {
                             foreach (var inventoryList in inventories.ToList())
                             {
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.ItemDescription, fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.Unit, fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.EndingQuantity.ToString("#,##0.00"), fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.ItemDescription, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.Unit, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.EndingQuantity.ToString("#,##0.00"), fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                             }
                         }
                     }
@@ -960,42 +960,42 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                               Amount = g.Key.Cost * g.Sum(s => (s.BeginningQuantity + s.InQuantity) - s.OutQuantity),
                                           };
 
-                        // ==================
-                        // Date Range Header
-                        // ==================
-                        tableHeader.AddCell(new PdfPCell(new Phrase("\nFrom : " + startDate.ToShortDateString() + " To: " + endDate.ToShortDateString() + "\n", fontHelvetica10)) { Colspan = 1, Border = 0, Padding = 3f, PaddingBottom = 5f, PaddingLeft = 40f });
+                        //// ==================
+                        //// Date Range Header
+                        //// ==================
+                        //tableHeader.AddCell(new PdfPCell(new Phrase("\nFrom : " + startDate.ToShortDateString() + " To: " + endDate.ToShortDateString() + "\n", fontHelvetica10)) { Colspan = 1, Border = 0, Padding = 3f, PaddingBottom = 5f, PaddingLeft = 40f });
 
-                        // ========
-                        // 1st Line
-                        // ========
-                        tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
+                        //// ========
+                        //// 1st Line
+                        //// ========
+                        //tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
 
 
-                        // ===============
-                        // Stock-in Line
-                        // ===============
-                        tableLines.AddCell(new PdfPCell(new Phrase("Item", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                        tableLines.AddCell(new PdfPCell(new Phrase("Unit", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                        tableLines.AddCell(new PdfPCell(new Phrase("Balance", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                        //// ===============
+                        //// Stock-in Line
+                        //// ===============
+                        //tableLines.AddCell(new PdfPCell(new Phrase("Item", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                        //tableLines.AddCell(new PdfPCell(new Phrase("Unit", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                        //tableLines.AddCell(new PdfPCell(new Phrase("Balance", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
 
-                        // ========
-                        // 2nd Line
-                        // ========
-                        tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
+                        //// ========
+                        //// 2nd Line
+                        //// ========
+                        //tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
 
 
                         if (category != null)
                         {
-                            tableLines.AddCell(new PdfPCell(new Phrase(category, fontHelvetica10Bold)) { Colspan = 3, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                            tableLines.AddCell(new PdfPCell(new Phrase(category, fontHelvetica10Bold)) { Colspan = 5, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                         }
 
                         if (inventories.Any())
                         {
                             foreach (var inventoryList in inventories.ToList())
                             {
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.ItemDescription, fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.Unit, fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.EndingQuantity.ToString("#,##0.00"), fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.ItemDescription, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.Unit, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.EndingQuantity.ToString("#,##0.00"), fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                             }
                         }
                     }
@@ -1266,42 +1266,42 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                               Cost = g.Key.Cost,
                                               Amount = g.Key.Cost * g.Sum(s => (s.BeginningQuantity + s.InQuantity) - s.OutQuantity),
                                           };
-                        // ==================
-                        // Date Range Header
-                        // ==================
-                        tableHeader.AddCell(new PdfPCell(new Phrase("\nFrom : " + startDate.ToShortDateString() + " To: " + endDate.ToShortDateString() + "\n", fontHelvetica10)) { Colspan = 1, Border = 0, Padding = 3f, PaddingBottom = 5f, PaddingLeft = 40f });
+                        //// ==================
+                        //// Date Range Header
+                        //// ==================
+                        //tableHeader.AddCell(new PdfPCell(new Phrase("\nFrom : " + startDate.ToShortDateString() + " To: " + endDate.ToShortDateString() + "\n", fontHelvetica10)) { Colspan = 1, Border = 0, Padding = 3f, PaddingBottom = 5f, PaddingLeft = 40f });
 
-                        // ========
-                        // 1st Line
-                        // ========
-                        tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
+                        //// ========
+                        //// 1st Line
+                        //// ========
+                        //tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
 
 
-                        // ===============
-                        // Stock-in Line
-                        // ===============
-                        tableLines.AddCell(new PdfPCell(new Phrase("Item", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                        tableLines.AddCell(new PdfPCell(new Phrase("Unit", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                        tableLines.AddCell(new PdfPCell(new Phrase("Balance", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                        //// ======
+                        //// Header
+                        //// ======
+                        //tableLines.AddCell(new PdfPCell(new Phrase("Item", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                        //tableLines.AddCell(new PdfPCell(new Phrase("Unit", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                        //tableLines.AddCell(new PdfPCell(new Phrase("Balance", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
 
-                        // ========
-                        // 2nd Line
-                        // ========
-                        tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
+                        //// ========
+                        //// 2nd Line
+                        //// ========
+                        //tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 4 });
 
 
                         if (category != null)
                         {
-                            tableLines.AddCell(new PdfPCell(new Phrase(category, fontHelvetica10Bold)) { Colspan = 3, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                            tableLines.AddCell(new PdfPCell(new Phrase(category, fontHelvetica10Bold)) { Colspan = 5, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                         }
 
                         if (inventories.Any())
                         {
                             foreach (var inventoryList in inventories.ToList())
                             {
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.ItemDescription, fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.Unit, fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.EndingQuantity.ToString("#,##0.00"), fontHelvetica10)) { Border = 0, PaddingLeft = 50f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.ItemDescription, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.Unit, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                                tableLines.AddCell(new PdfPCell(new Phrase(inventoryList.EndingQuantity.ToString("#,##0.00"), fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                             }
                         }
                     }
