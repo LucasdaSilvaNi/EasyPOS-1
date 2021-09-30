@@ -189,6 +189,10 @@ namespace EasyPOS.Forms.Software.TrnPOS
             var collections = from d in db.TrnCollections where d.Id == trnCollectionId select d;
             if (collections.Any())
             {
+                String terminalText = "Terminal: " + collections.FirstOrDefault().MstTerminal.Terminal;
+                graphics.DrawString(terminalText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                y += graphics.MeasureString(terminalText, fontArial8Regular).Height;
+
                 String collectionNumberText = collections.FirstOrDefault().CollectionNumber;
                 graphics.DrawString(collectionNumberText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                 y += graphics.MeasureString(collectionNumberText, fontArial8Regular).Height;
