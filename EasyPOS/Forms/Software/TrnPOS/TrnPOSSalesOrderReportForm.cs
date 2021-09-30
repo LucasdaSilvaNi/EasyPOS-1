@@ -37,7 +37,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 }
                 else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
                 {
-                    printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
+                    printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 280, 38500);
                     printDocumentReturnReport.Print();
                 }
                 else
@@ -79,12 +79,12 @@ namespace EasyPOS.Forms.Software.TrnPOS
             if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
             {
                 x = 5; y = 5;
-                width = 250.0F; height = 0F;
+                width = 245.0F; height = 0F;
             }
             else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
             {
                 x = 5; y = 5;
-                width = 260.0F; height = 0F;
+                width = 270.0F; height = 0F;
             }
             else
             {

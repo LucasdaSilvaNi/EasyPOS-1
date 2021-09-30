@@ -501,7 +501,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                     String cashierLabel = "\nCashier";
                     String cashierUserData = "\n" + cashier;
-                    String serverLabel = "Server";
+                    String serverLabel = "Teller";
                     String serverUserData = server;
                     graphics.DrawString(cashierLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     graphics.DrawString(cashierUserData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
@@ -881,7 +881,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                     String cashierLabel = "\nCashier";
                     String cashierUserData = "\n" + cashier;
-                    String serverLabel = "Server";
+                    String serverLabel = "Teller";
                     String serverUserData = server;
                     graphics.DrawString(cashierLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                     graphics.DrawString(cashierUserData, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
