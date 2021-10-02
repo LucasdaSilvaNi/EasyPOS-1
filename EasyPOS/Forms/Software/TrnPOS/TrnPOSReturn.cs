@@ -23,15 +23,61 @@ namespace EasyPOS.Forms.Software.TrnPOS
         public static List<Entities.DgvTrnSalesReturnEntity> returnData = new List<Entities.DgvTrnSalesReturnEntity>();
         public PagedList<Entities.DgvTrnSalesReturnEntity> returnPageList = new PagedList<Entities.DgvTrnSalesReturnEntity>(returnData, pageNumber, pageSize);
         public BindingSource returnDataSource = new BindingSource();
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
         public TrnPOSReturn(TrnPOSBarcodeDetailForm POSBarcodeDetailForm, TrnPOSTouchDetailForm POSTouchDetailForm)
         {
             InitializeComponent();
 
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonReturn.Text = SetLabel(buttonReturn.Text);
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    dataGridViewReturnItems.Columns[1].HeaderText = SetLabel(dataGridViewReturnItems.Columns[1].HeaderText);
+                    dataGridViewReturnItems.Columns[2].HeaderText = SetLabel(dataGridViewReturnItems.Columns[2].HeaderText);
+                    dataGridViewReturnItems.Columns[3].HeaderText = SetLabel(dataGridViewReturnItems.Columns[3].HeaderText);
+                    dataGridViewReturnItems.Columns[4].HeaderText = SetLabel(dataGridViewReturnItems.Columns[4].HeaderText);
+                    dataGridViewReturnItems.Columns[5].HeaderText = SetLabel(dataGridViewReturnItems.Columns[5].HeaderText);
+                    dataGridViewReturnItems.Columns[6].HeaderText = SetLabel(dataGridViewReturnItems.Columns[6].HeaderText);
+                    dataGridViewReturnItems.Columns[7].HeaderText = SetLabel(dataGridViewReturnItems.Columns[7].HeaderText);
+                    dataGridViewReturnItems.Columns[8].HeaderText = SetLabel(dataGridViewReturnItems.Columns[8].HeaderText);
+                    dataGridViewReturnItems.Columns[10].HeaderText = SetLabel(dataGridViewReturnItems.Columns[10].HeaderText);
+                    dataGridViewReturnItems.Columns[11].HeaderText = SetLabel(dataGridViewReturnItems.Columns[11].HeaderText);
+                    buttonReturnPageListFirst.Text = SetLabel(buttonReturnPageListFirst.Text);
+                    buttonReturnPageListPrevious.Text = SetLabel(buttonReturnPageListPrevious.Text);
+                    buttonReturnPageListNext.Text = SetLabel(buttonReturnPageListNext.Text);
+                    buttonReturnPageListLast.Text = SetLabel(buttonReturnPageListLast.Text);
+
+                }
+            }
+
             trnPOSBarcodeDetailForm = POSBarcodeDetailForm;
             trnPOSTouchDetailForm = POSTouchDetailForm;
 
             LoadReturnItems();
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void LoadReturnItems()

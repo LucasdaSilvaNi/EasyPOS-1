@@ -14,15 +14,49 @@ namespace EasyPOS.Forms.Software.MstItem
     {
         MstItemDetailForm mstItemDetailForm;
         Entities.MstItemComponentEntity mstItemComponentEntity;
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
         public MstItemComponentDetailForm(MstItemDetailForm itemDetailForm, Entities.MstItemComponentEntity itemComponentEntity)
         {
             InitializeComponent();
 
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonSave.Text = SetLabel(buttonSave.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+                    label8.Text = SetLabel(label8.Text);
+                }
+            }
+
             mstItemDetailForm = itemDetailForm;
             mstItemComponentEntity = itemComponentEntity;
 
             GetItemComponentList();
+        }
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetItemComponentList()

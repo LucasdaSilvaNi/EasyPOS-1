@@ -14,15 +14,48 @@ namespace EasyPOS.Forms.Software.MstItem
     {
         MstItemDetailForm mstItemDetailForm;
         Entities.MstItemPriceEntity mstItemPriceEntity;
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
 
         public MstItemPriceDetailForm(MstItemDetailForm itemDetailForm, Entities.MstItemPriceEntity itemPriceEntity)
         {
             InitializeComponent();
 
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonSave.Text = SetLabel(buttonSave.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+
+                }
+            }
+
             mstItemDetailForm = itemDetailForm;
             mstItemPriceEntity = itemPriceEntity;
 
             LoadItemPrice();
+        }
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void LoadItemPrice()

@@ -27,10 +27,34 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public Entities.TrnSalesEntity trnSalesEntity;
         public String collectionNumber = "";
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
         public TrnPOSTenderForm(SysSoftwareForm softwareForm, TrnPOSBarcodeForm POSBarcodeForm, TrnPOSBarcodeDetailForm POSBarcodeDetailForm, TrnPOSTouchForm POSTouchForm, TrnPOSTouchDetailForm POSTouchDetailForm, Entities.TrnSalesEntity salesEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonSales.Text = SetLabel(buttonSales.Text);
+                    buttonTender.Text = SetLabel(buttonTender.Text);
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+                    label5.Text = SetLabel(label5.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+                    label9.Text = SetLabel(label9.Text);
+                    dataGridViewTenderPayType.Columns[2].HeaderText = SetLabel(dataGridViewTenderPayType.Columns[2].HeaderText);
+                    dataGridViewTenderPayType.Columns[4].HeaderText = SetLabel(dataGridViewTenderPayType.Columns[4].HeaderText);
+                }
+            }
 
             sysSoftwareForm = softwareForm;
 
@@ -43,6 +67,21 @@ namespace EasyPOS.Forms.Software.TrnPOS
             trnSalesEntity = salesEntity;
 
             GetSalesDetail();
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetSalesDetail()

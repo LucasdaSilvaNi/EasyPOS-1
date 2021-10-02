@@ -16,10 +16,34 @@ namespace EasyPOS.Forms.Software.TrnPOS
         public TrnPOSTouchDetailForm trnPOSTouchDetailForm;
         public Decimal salesAmount = 0;
         List<Entities.TrnSalesLineEntity> listSalesLines = new List<Entities.TrnSalesLineEntity>();
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
         public TrnPOSDiscountForm(TrnPOSBarcodeDetailForm salesDetailForm, TrnPOSTouchDetailForm POSTouchDetailForm, Decimal amount, List<Entities.TrnSalesLineEntity> salesLines)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonSave.Text = SetLabel(buttonSave.Text);
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+                    label5.Text = SetLabel(label5.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+                    label8.Text = SetLabel(label8.Text);
+                    label9.Text = SetLabel(label9.Text);
+                    label10.Text = SetLabel(label10.Text);
+                    label11.Text = SetLabel(label11.Text);
+                }
+            }
 
             trnPOSBarcodeDetailForm = salesDetailForm;
             trnPOSTouchDetailForm = POSTouchDetailForm;
@@ -34,6 +58,21 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
 
             GetSalesLine();
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetSalesLine()

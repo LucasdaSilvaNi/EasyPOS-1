@@ -24,9 +24,34 @@ namespace EasyPOS.Forms.Software.TrnPOS
         public Int32 pageNumber = 1;
         public Int32 pageSize = 50;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public TrnPOSSearchItemForm(TrnPOSBarcodeDetailForm salesDetailForm, TrnPOSTouchDetailForm POSTouchDetailForm, Entities.TrnSalesEntity salesEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    dataGridViewSearchItemList.Columns[1].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[1].HeaderText);
+                    dataGridViewSearchItemList.Columns[2].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[2].HeaderText);
+                    dataGridViewSearchItemList.Columns[9].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[9].HeaderText);
+                    dataGridViewSearchItemList.Columns[10].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[10].HeaderText);
+                    dataGridViewSearchItemList.Columns[11].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[11].HeaderText);
+                    dataGridViewSearchItemList.Columns[12].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[12].HeaderText);
+                    buttonPageListFirst.Text = SetLabel(buttonPageListFirst.Text);
+                    buttonPageListPrevious.Text = SetLabel(buttonPageListPrevious.Text);
+                    buttonPageListNext.Text = SetLabel(buttonPageListNext.Text);
+                    buttonPageListLast.Text = SetLabel(buttonPageListLast.Text);
+                }
+            }
 
             trnSalesDetailForm = salesDetailForm;
             trnPOSTouchDetailForm = POSTouchDetailForm;
@@ -47,6 +72,21 @@ namespace EasyPOS.Forms.Software.TrnPOS
             GetListSearchItemDataSource("");
             GetDataGridViewListSearchItemSource();
             
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
         public void resetCursor()
         {

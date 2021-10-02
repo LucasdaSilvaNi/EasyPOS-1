@@ -14,12 +14,45 @@ namespace EasyPOS.Forms.Software.TrnPOS
     {
         public TrnPOSReturn trnPOSReturn;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public TrnPOSReturnPickQuantity(TrnPOSReturn POSReturn, Decimal defaultQuantity)
         {
             InitializeComponent();
 
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonOK.Text = SetLabel(buttonOK.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label13.Text = SetLabel(label13.Text);
+
+                }
+            }
+
             textBoxReturnQuantity.Text = defaultQuantity.ToString("#,##0.00");
             trnPOSReturn = POSReturn;
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

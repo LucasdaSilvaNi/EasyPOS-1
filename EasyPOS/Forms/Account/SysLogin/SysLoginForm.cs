@@ -18,9 +18,29 @@ namespace EasyPOS.Forms.Account.SysLogin
         public TrnPOSTouchForm _trnPOSTouchForm;
         public TrnPOSTouchDetailForm _trnPOSTouchDetailForm;
         public Boolean _isOverride = false;
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public SysLoginForm(TrnPOSBarcodeForm trnPOSBarcodeForm, TrnPOSBarcodeDetailForm trnPOSBarcodeDetailForm, TrnPOSTouchForm trnPOSTouchForm, TrnPOSTouchDetailForm trnPOSTouchDetailForm, Boolean isOverride)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonLogin.Text = SetLabel(buttonLogin.Text);
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    radioButtonLoginDate.Text = SetLabel(radioButtonLoginDate.Text);
+                    radioButtonSystemDate.Text = SetLabel(radioButtonSystemDate.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+                    label8.Text = SetLabel(label8.Text);
+                }
+            }
 
             _isOverride = isOverride;
 
@@ -50,6 +70,21 @@ namespace EasyPOS.Forms.Account.SysLogin
             _trnPOSBarcodeDetailForm = trnPOSBarcodeDetailForm;
             _trnPOSTouchForm = trnPOSTouchForm;
             _trnPOSTouchDetailForm = trnPOSTouchDetailForm;
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
         private void buttonClose_Click(object sender, EventArgs e)
         {

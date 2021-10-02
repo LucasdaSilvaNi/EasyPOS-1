@@ -14,10 +14,29 @@ namespace EasyPOS.Forms.Software.TrnPOS
     {
         public TrnPOSTenderForm trnPOSTenderForm;
         public DataGridView mstDataGridViewTenderPayType;
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
         public TrnPOSTenderCheckInformation(TrnPOSTenderForm POSTenderForm, DataGridView dataGridViewTenderPayType, Decimal totalSalesAmount)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonOK.Text = SetLabel(buttonOK.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label5.Text = SetLabel(label5.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+
+                }
+            }
 
             trnPOSTenderForm = POSTenderForm;
             mstDataGridViewTenderPayType = dataGridViewTenderPayType;
@@ -25,6 +44,20 @@ namespace EasyPOS.Forms.Software.TrnPOS
             textBoxAmount.Text = totalSalesAmount.ToString("#,##0.00");
         }
 
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
+        }
         private void buttonClose_Click(object sender, EventArgs e)
         {
             Close();

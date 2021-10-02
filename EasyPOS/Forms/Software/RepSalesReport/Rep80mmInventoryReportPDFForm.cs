@@ -53,7 +53,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 //float h = tableHeader.TotalHeight + tableLines.TotalHeight;
                 var pgSize = new iTextSharp.text.Rectangle(270, 13999);
                 Document document = new Document(pgSize);
-                document.SetMargins(1f, 5f, 5f, 5f);
+                document.SetMargins(-10f, 5f, 5f, 5f);
 
                 PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(fileName, FileMode.Create));
 
@@ -66,11 +66,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                 PdfPTable tableHeader = new PdfPTable(1);
                 tableHeader.SetWidths(new float[] { 70f });
-                tableHeader.TotalWidth = 250f;
+                tableHeader.TotalWidth = 260f;
                 tableHeader.SplitLate = false;
                 tableHeader.SplitRows = true;
-                tableHeader.AddCell(new PdfPCell(new Phrase(documentTitle, fontHelvetica14Bold)) { Border = 0, Padding = 3f, PaddingBottom = 1f, PaddingLeft = 55f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("\nFrom : " + startDate.ToShortDateString() + " To: " + endDate.ToShortDateString() + "\n", fontHelvetica10)) { Colspan = 1, Border = 0, Padding = 3f, PaddingBottom = 5f, PaddingLeft = 40f });
+                tableHeader.AddCell(new PdfPCell(new Phrase(documentTitle, fontHelvetica14Bold)) { Colspan = 2, Border = 0, Padding = 3f, PaddingBottom = 1f, PaddingLeft = 5f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("\nFrom : " + startDate.ToShortDateString() + " To: " + endDate.ToShortDateString() + "\n", fontHelvetica10)) { Colspan = 2, Border = 0, Padding = 3f, PaddingBottom = 5f, PaddingLeft = 3f });
                 document.Add(tableHeader);
 
                 PdfPTable tableLines = new PdfPTable(3);

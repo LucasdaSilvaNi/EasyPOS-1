@@ -25,9 +25,49 @@ namespace EasyPOS.Forms.Software.MstUser
         public PagedList<Entities.DgvMstUserFormListEntity> userFormPageList = new PagedList<Entities.DgvMstUserFormListEntity>(userFormData, userFormPageNumber, userFormPageSize);
         public BindingSource userFormDataSource = new BindingSource();
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public MstUserDetailForm(SysSoftwareForm softwareForm, MstUserListForm userListForm, Entities.MstUserEntity userEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonLock.Text = SetLabel(buttonLock.Text);
+                    buttonUnlock.Text = SetLabel(buttonUnlock.Text);
+                    buttonAddUserForm.Text = SetLabel(buttonAddUserForm.Text);
+                    buttonCopyUseRights.Text = SetLabel(buttonCopyUseRights.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+                    label5.Text = SetLabel(label5.Text);
+                    dataGridViewUserFormList.Columns[4].HeaderText = SetLabel(dataGridViewUserFormList.Columns[4].HeaderText);
+                    dataGridViewUserFormList.Columns[6].HeaderText = SetLabel(dataGridViewUserFormList.Columns[6].HeaderText);
+                    dataGridViewUserFormList.Columns[7].HeaderText = SetLabel(dataGridViewUserFormList.Columns[7].HeaderText);
+                    dataGridViewUserFormList.Columns[8].HeaderText = SetLabel(dataGridViewUserFormList.Columns[8].HeaderText);
+                    dataGridViewUserFormList.Columns[9].HeaderText = SetLabel(dataGridViewUserFormList.Columns[9].HeaderText);
+                    dataGridViewUserFormList.Columns[10].HeaderText = SetLabel(dataGridViewUserFormList.Columns[10].HeaderText);
+                    dataGridViewUserFormList.Columns[11].HeaderText = SetLabel(dataGridViewUserFormList.Columns[11].HeaderText);
+                    dataGridViewUserFormList.Columns[12].HeaderText = SetLabel(dataGridViewUserFormList.Columns[12].HeaderText);
+                    dataGridViewUserFormList.Columns[13].HeaderText = SetLabel(dataGridViewUserFormList.Columns[13].HeaderText);
+                    dataGridViewUserFormList.Columns[14].HeaderText = SetLabel(dataGridViewUserFormList.Columns[14].HeaderText);
+                    dataGridViewUserFormList.Columns[15].HeaderText = SetLabel(dataGridViewUserFormList.Columns[15].HeaderText);
+                    dataGridViewUserFormList.Columns[16].HeaderText = SetLabel(dataGridViewUserFormList.Columns[16].HeaderText);
+                    dataGridViewUserFormList.Columns[17].HeaderText = SetLabel(dataGridViewUserFormList.Columns[17].HeaderText);
+                    dataGridViewUserFormList.Columns[18].HeaderText = SetLabel(dataGridViewUserFormList.Columns[18].HeaderText);
+                    buttonUserFormListPageListFirst.Text = SetLabel(buttonUserFormListPageListFirst.Text);
+                    buttonUserFormListPageListLast.Text = SetLabel(buttonUserFormListPageListLast.Text);
+                    buttonUserFormListPageListNext.Text = SetLabel(buttonUserFormListPageListNext.Text);
+                    buttonUserFormListPageListPrevious.Text = SetLabel(buttonUserFormListPageListPrevious.Text);
+                }
+            }
 
             sysSoftwareForm = softwareForm;
             mstUserListForm = userListForm;
@@ -69,6 +109,20 @@ namespace EasyPOS.Forms.Software.MstUser
 
         }
 
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
+        }
         private void buttonClose_Click(object sender, EventArgs e)
         {
             if (textBoxUserName.Enabled == false)

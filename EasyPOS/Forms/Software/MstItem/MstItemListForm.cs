@@ -24,9 +24,39 @@ namespace EasyPOS.Forms.Software.MstItem
         public List<String> lockOption;
         public List<String> supplierOption;
         public Entities.MstItemEntity mstItemEntity;
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public MstItemListForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonAdd.Text = SetLabel(buttonAdd.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    dataGridViewItemList.Columns[3].HeaderText = SetLabel(dataGridViewItemList.Columns[3].HeaderText);
+                    dataGridViewItemList.Columns[4].HeaderText = SetLabel(dataGridViewItemList.Columns[4].HeaderText);
+                    dataGridViewItemList.Columns[5].HeaderText = SetLabel(dataGridViewItemList.Columns[5].HeaderText);
+                    dataGridViewItemList.Columns[6].HeaderText = SetLabel(dataGridViewItemList.Columns[6].HeaderText);
+                    dataGridViewItemList.Columns[7].HeaderText = SetLabel(dataGridViewItemList.Columns[7].HeaderText);
+                    dataGridViewItemList.Columns[8].HeaderText = SetLabel(dataGridViewItemList.Columns[8].HeaderText);
+                    dataGridViewItemList.Columns[9].HeaderText = SetLabel(dataGridViewItemList.Columns[9].HeaderText);
+                    dataGridViewItemList.Columns[11].HeaderText = SetLabel(dataGridViewItemList.Columns[11].HeaderText);
+                    dataGridViewItemList.Columns[12].HeaderText = SetLabel(dataGridViewItemList.Columns[12].HeaderText);
+                    dataGridViewItemList.Columns[13].HeaderText = SetLabel(dataGridViewItemList.Columns[13].HeaderText);
+                    buttonItemListPageListFirst.Text = SetLabel(buttonItemListPageListFirst.Text);
+                    buttonItemListPageListLast.Text = SetLabel(buttonItemListPageListLast.Text);
+                    buttonItemListPageListNext.Text = SetLabel(buttonItemListPageListNext.Text);
+                    buttonItemListPageListPrevious.Text = SetLabel(buttonItemListPageListPrevious.Text);
+                }
+            }
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("MstItem");
@@ -85,6 +115,20 @@ namespace EasyPOS.Forms.Software.MstItem
                 CreateItemListDataGridView();
 
             }
+        }
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void UpdateItemListDataSource()

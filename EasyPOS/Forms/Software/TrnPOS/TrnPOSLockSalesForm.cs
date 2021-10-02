@@ -19,16 +19,50 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public String customerCode = "";
         public String customerName = "";
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
         public TrnPOSLockSalesForm(TrnPOSBarcodeDetailForm POSBarcodeDetailForm, TrnPOSTouchDetailForm POSTouchDetailForm, Entities.TrnSalesEntity salesEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+                    label5.Text = SetLabel(label5.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+                    buttonSave.Text = SetLabel(buttonSave.Text);
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                }
+            }
 
             trnPOSBarcodeDetailForm = POSBarcodeDetailForm;
             trnPOSTouchDetailForm = POSTouchDetailForm;
             trnSalesEntity = salesEntity;
 
             GetTermList();
+        }
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

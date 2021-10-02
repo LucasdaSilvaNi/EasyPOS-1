@@ -437,19 +437,19 @@
             // 
             this.ColumnItemListIsInventory.DataPropertyName = "ColumnItemListIsInventory";
             this.ColumnItemListIsInventory.HeaderText = "I";
-            this.ColumnItemListIsInventory.MinimumWidth = 20;
+            this.ColumnItemListIsInventory.MinimumWidth = 25;
             this.ColumnItemListIsInventory.Name = "ColumnItemListIsInventory";
             this.ColumnItemListIsInventory.ReadOnly = true;
-            this.ColumnItemListIsInventory.Width = 20;
+            this.ColumnItemListIsInventory.Width = 25;
             // 
             // ColumnItemListIsLocked
             // 
             this.ColumnItemListIsLocked.DataPropertyName = "ColumnItemListIsLocked";
             this.ColumnItemListIsLocked.HeaderText = "L";
-            this.ColumnItemListIsLocked.MinimumWidth = 20;
+            this.ColumnItemListIsLocked.MinimumWidth = 25;
             this.ColumnItemListIsLocked.Name = "ColumnItemListIsLocked";
             this.ColumnItemListIsLocked.ReadOnly = true;
-            this.ColumnItemListIsLocked.Width = 20;
+            this.ColumnItemListIsLocked.Width = 25;
             // 
             // MstItemListForm
             // 

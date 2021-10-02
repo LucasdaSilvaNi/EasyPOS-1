@@ -19,10 +19,54 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public TrnPOSBarcodeForm trnSalesListForm;
         public Entities.TrnSalesEntity trnSalesEntity;
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
         public TrnPOSBarcodeDetailForm(SysSoftwareForm softwareForm, TrnPOSBarcodeForm salesListForm, Entities.TrnSalesEntity salesEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonTender.Text = SetLabel(buttonTender.Text);
+                    buttonPrint.Text = SetLabel(buttonPrint.Text);
+                    buttonLock.Text = SetLabel(buttonLock.Text);
+                    buttonUnlock.Text = SetLabel(buttonUnlock.Text);
+                    buttonReturn.Text = SetLabel(buttonReturn.Text);
+                    buttonDiscount.Text = SetLabel(buttonDiscount.Text);
+                    buttonDiscount.Text = SetLabel(buttonDiscount.Text);
+                    buttonTender.Text = SetLabel(buttonTender.Text);
+                    buttonOverRide.Text = SetLabel(buttonOverRide.Text);
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonBarcode.Text = SetLabel(buttonBarcode.Text);
+                    buttonSearchItem.Text = SetLabel(buttonSearchItem.Text);
+                    buttonDownload.Text = SetLabel(buttonDownload.Text);
+                    dataGridViewSalesLineList.Columns[5].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[5].HeaderText);
+                    dataGridViewSalesLineList.Columns[6].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[6].HeaderText);
+                    dataGridViewSalesLineList.Columns[7].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[7].HeaderText);
+                    dataGridViewSalesLineList.Columns[8].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[8].HeaderText);
+                    dataGridViewSalesLineList.Columns[9].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[9].HeaderText);
+                    dataGridViewSalesLineList.Columns[15].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[15].HeaderText);
+                    dataGridViewSalesLineList.Columns[11].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[11].HeaderText);
+                    dataGridViewSalesLineList.Columns[12].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[12].HeaderText);
+                    dataGridViewSalesLineList.Columns[13].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[13].HeaderText);
+                    dataGridViewSalesLineList.Columns[14].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[14].HeaderText);
+                    dataGridViewSalesLineList.Columns[17].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[17].HeaderText);
+                    dataGridViewSalesLineList.Columns[18].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[18].HeaderText);
+                    dataGridViewSalesLineList.Columns[19].HeaderText = SetLabel(dataGridViewSalesLineList.Columns[19].HeaderText);
+                    label5.Text = SetLabel(label5.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label1.Text = SetLabel(label1.Text);
+                }
+            }
 
             sysSoftwareForm = softwareForm;
             trnSalesListForm = salesListForm;
@@ -195,6 +239,21 @@ namespace EasyPOS.Forms.Software.TrnPOS
             {
                 sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
         private void buttonOverRide_Click(object sender, EventArgs e)
         {
@@ -874,7 +933,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         {
                             new TrnPOSSalesOrderReportFormLabelPrinter(trnSalesEntity.Id, printDialogSalesOrder.PrinterSettings.PrinterName);
                         }
-                        
+
                         else
                         {
                             new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSalesOrder.PrinterSettings.PrinterName);

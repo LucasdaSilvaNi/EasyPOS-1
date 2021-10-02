@@ -24,9 +24,31 @@ namespace EasyPOS.Forms.Software.TrnPOS
         public String customerCode = "";
         public String customerName = "";
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public TrnPOSTenderSalesForm(TrnPOSBarcodeForm POSBarcodeForm, TrnPOSBarcodeDetailForm POSBarcodeDetailForm, TrnPOSTouchForm POSTouchForm, TrnPOSTouchDetailForm POSTouchDetailForm, TrnPOSTenderForm salesDetailTenderForm, Entities.TrnSalesEntity salesEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonSave.Text = SetLabel(buttonSave.Text);
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+                    label5.Text = SetLabel(label5.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+                }
+            }
 
             trnPOSBarcodeForm = POSBarcodeForm;
             trnPOSBarcodeDetailForm = POSBarcodeDetailForm;
@@ -38,6 +60,21 @@ namespace EasyPOS.Forms.Software.TrnPOS
             trnSalesEntity = salesEntity;
 
             GetTermList();
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

@@ -21,10 +21,32 @@ namespace EasyPOS.Forms.Software.MstUser
         public static Int32 pageSize = 50;
         public PagedList<Entities.DgvMstUserListEntity> userListPageList = new PagedList<Entities.DgvMstUserListEntity>(userListData, pageNumber, pageSize);
         public BindingSource userListDataSource = new BindingSource();
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
         public MstUserListForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonAdd.Text = SetLabel(buttonAdd.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    dataGridViewUserList.Columns[3].HeaderText = SetLabel(dataGridViewUserList.Columns[3].HeaderText);
+                    dataGridViewUserList.Columns[4].HeaderText = SetLabel(dataGridViewUserList.Columns[4].HeaderText);
+                    dataGridViewUserList.Columns[5].HeaderText = SetLabel(dataGridViewUserList.Columns[5].HeaderText);
+                    buttonUserListPageListFirst.Text = SetLabel(buttonUserListPageListFirst.Text);
+                    buttonUserListPageListLast.Text = SetLabel(buttonUserListPageListLast.Text);
+                    buttonUserListPageListNext.Text = SetLabel(buttonUserListPageListNext.Text);
+                    buttonUserListPageListPrevious.Text = SetLabel(buttonUserListPageListPrevious.Text);
+                }
+            }
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("MstUser");
@@ -51,6 +73,20 @@ namespace EasyPOS.Forms.Software.MstUser
 
                 CreateUserListDataGridView();
             }
+        }
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void UpdateUserListDataSource()
