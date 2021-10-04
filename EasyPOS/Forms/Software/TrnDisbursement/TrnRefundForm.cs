@@ -15,10 +15,46 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
         public TrnDisbursementListForm trnDisbursementListForm;
         public Int32 salesId = 0;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public TrnRefundForm(TrnDisbursementListForm disbursementListForm)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonOK.Text = SetLabel(buttonOK.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label9.Text = SetLabel(label9.Text);
+
+                }
+            }
+
             trnDisbursementListForm = disbursementListForm;
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

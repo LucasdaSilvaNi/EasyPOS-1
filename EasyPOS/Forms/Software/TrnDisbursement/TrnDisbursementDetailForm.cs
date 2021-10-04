@@ -18,9 +18,46 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
         public TrnDisbursementListForm trnDisbursementListForm;
         public Entities.TrnDisbursementEntity trnDisbursementEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public TrnDisbursementDetailForm(SysSoftwareForm softwareForm, TrnDisbursementListForm disbursementListForm, Entities.TrnDisbursementEntity disbursementEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonLock.Text = SetLabel(buttonLock.Text);
+                    buttonUnlock.Text = SetLabel(buttonUnlock.Text);
+                    buttonPrint.Text = SetLabel(buttonPrint.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+                    label5.Text = SetLabel(label5.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+                    label8.Text = SetLabel(label8.Text);
+                    label9.Text = SetLabel(label9.Text);
+                    label10.Text = SetLabel(label10.Text);
+                    label15.Text = SetLabel(label15.Text);
+                    label16.Text = SetLabel(label16.Text);
+                    label17.Text = SetLabel(label17.Text);
+                    label11.Text = SetLabel(label11.Text);
+                    label12.Text = SetLabel(label12.Text);
+                    label14.Text = SetLabel(label14.Text);
+                    label13.Text = SetLabel(label13.Text);
+                    label18.Text = SetLabel(label18.Text);
+                    label19.Text = SetLabel(label19.Text);
+                    checkBoxRefund.Text = SetLabel(checkBoxRefund.Text);
+                }
+            }
 
             sysSoftwareForm = softwareForm;
             trnDisbursementListForm = disbursementListForm;
@@ -46,6 +83,21 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
             {
                 sysSoftwareForm.displayTimeStamp(detail.EntryUserUsername, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdateUserUsername, detail.UpdateDateTime + " " + detail.UpdateTime);
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetTerminals()

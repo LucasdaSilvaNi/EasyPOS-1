@@ -17,9 +17,40 @@ namespace EasyPOS.Forms.Software.MstUser
 
         public Entities.MstUserFormEntity mtUserFormEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public MstUserFormDetailForm(MstUserDetailForm userDetailForm, Entities.MstUserFormEntity userFormEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonSave.Text = SetLabel(buttonSave.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    checkBoxCanAdd.Text = SetLabel(checkBoxCanAdd.Text);
+                    checkBoxCanDelete.Text = SetLabel(checkBoxCanDelete.Text);
+                    checkBoxCanLock.Text = SetLabel(checkBoxCanLock.Text);
+                    checkBoxCanUnlock.Text = SetLabel(checkBoxCanUnlock.Text);
+                    checkBoxCanPrint.Text = SetLabel(checkBoxCanPrint.Text);
+                    checkBoxCanPreview.Text = SetLabel(checkBoxCanPreview.Text);
+                    checkBoxCanEdit.Text = SetLabel(checkBoxCanEdit.Text);
+                    checkBoxCanTender.Text = SetLabel(checkBoxCanTender.Text);
+                    checkBoxCanDiscount.Text = SetLabel(checkBoxCanDiscount.Text);
+                    checkBoxCanView.Text = SetLabel(checkBoxCanView.Text);
+                    checkBoxCanSplit.Text = SetLabel(checkBoxCanSplit.Text);
+                    checkBoxCanCancel.Text = SetLabel(checkBoxCanCancel.Text);
+                    checkBoxCanReturn.Text = SetLabel(checkBoxCanReturn.Text);
+
+                }
+            }
 
             mstUserDetailForm = userDetailForm;
             mtUserFormEntity = userFormEntity;
@@ -41,6 +72,21 @@ namespace EasyPOS.Forms.Software.MstUser
             }
 
             
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetFormList()

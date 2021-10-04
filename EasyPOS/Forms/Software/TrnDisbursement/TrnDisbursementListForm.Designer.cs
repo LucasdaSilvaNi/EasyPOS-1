@@ -297,10 +297,10 @@
             this.buttonRefund.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRefund.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRefund.ForeColor = System.Drawing.Color.White;
-            this.buttonRefund.Location = new System.Drawing.Point(867, 10);
+            this.buttonRefund.Location = new System.Drawing.Point(865, 10);
             this.buttonRefund.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRefund.Name = "buttonRefund";
-            this.buttonRefund.Size = new System.Drawing.Size(70, 32);
+            this.buttonRefund.Size = new System.Drawing.Size(72, 32);
             this.buttonRefund.TabIndex = 25;
             this.buttonRefund.TabStop = false;
             this.buttonRefund.Text = "Refund";
@@ -359,6 +359,7 @@
             this.ColumnDisbursementListDisbursementNumber.HeaderText = "Cash In/Out No.";
             this.ColumnDisbursementListDisbursementNumber.Name = "ColumnDisbursementListDisbursementNumber";
             this.ColumnDisbursementListDisbursementNumber.ReadOnly = true;
+            this.ColumnDisbursementListDisbursementNumber.Width = 170;
             // 
             // ColumnDisbursementListDisbursementType
             // 

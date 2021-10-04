@@ -22,9 +22,38 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
         public PagedList<Entities.DgvTrnDisbursementListEntity> itemListPageList = new PagedList<Entities.DgvTrnDisbursementListEntity>(itemListData, pageNumber, pageSize);
         public BindingSource itemListDataSource = new BindingSource();
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public TrnDisbursementListForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonAdd.Text = SetLabel(buttonAdd.Text);
+                    buttonRefund.Text = SetLabel(buttonRefund.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    dataGridViewDisbursementList.Columns[4].HeaderText = SetLabel(dataGridViewDisbursementList.Columns[4].HeaderText);
+                    dataGridViewDisbursementList.Columns[5].HeaderText = SetLabel(dataGridViewDisbursementList.Columns[5].HeaderText);
+                    dataGridViewDisbursementList.Columns[6].HeaderText = SetLabel(dataGridViewDisbursementList.Columns[6].HeaderText);
+                    dataGridViewDisbursementList.Columns[7].HeaderText = SetLabel(dataGridViewDisbursementList.Columns[7].HeaderText);
+                    dataGridViewDisbursementList.Columns[8].HeaderText = SetLabel(dataGridViewDisbursementList.Columns[8].HeaderText);
+                    dataGridViewDisbursementList.Columns[9].HeaderText = SetLabel(dataGridViewDisbursementList.Columns[9].HeaderText);
+                    dataGridViewDisbursementList.Columns[10].HeaderText = SetLabel(dataGridViewDisbursementList.Columns[10].HeaderText);
+                    buttonDisbursementListPageListFirst.Text = SetLabel(buttonDisbursementListPageListFirst.Text);
+                    buttonDisbursementListPageListLast.Text = SetLabel(buttonDisbursementListPageListLast.Text);
+                    buttonDisbursementListPageListNext.Text = SetLabel(buttonDisbursementListPageListNext.Text);
+                    buttonDisbursementListPageListPrevious.Text = SetLabel(buttonDisbursementListPageListPrevious.Text);
+                }
+            }
+
             sysSoftwareForm = softwareForm;
 
             String currentDate = DateTime.Today.ToShortDateString() + "\t\t";
@@ -60,6 +89,21 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
                 }
                 CreateDisbursementListDataGridView();
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void UpdateDisbursementListDataSource()
