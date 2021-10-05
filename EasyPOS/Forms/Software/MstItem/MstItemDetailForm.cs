@@ -62,7 +62,7 @@ namespace EasyPOS.Forms.Software.MstItem
             label17.Text = SetLabel(label17.Text);
             label18.Text = SetLabel(label18.Text);
             label19.Text = SetLabel(label19.Text);
-            label20.Text = SetLabel(label10.Text);
+            label20.Text = SetLabel(label20.Text);
             label21.Text = SetLabel(label21.Text);
             label22.Text = SetLabel(label22.Text);
             dataGridViewItemPriceList.Columns[4].HeaderText = SetLabel(dataGridViewItemPriceList.Columns[4].HeaderText);
