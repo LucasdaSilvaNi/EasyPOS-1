@@ -22,12 +22,54 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
         public Int32 pageNumber = 1;
         public Int32 pageSize = 50;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public RepInventoryItemListReportForm()
         {
             InitializeComponent();
+
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            label1.Text = SetLabel(label1.Text);
+
             GetInventoryListDataSource();
             GetItemListDataGridSource();
         }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
+        }
+
         public List<Entities.DgvMstItemListEntity> GetInventoryListReport()
         {
             List<Entities.DgvMstItemListEntity> rowList = new List<Entities.DgvMstItemListEntity>();

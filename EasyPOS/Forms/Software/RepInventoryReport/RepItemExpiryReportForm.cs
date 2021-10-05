@@ -24,13 +24,55 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
 
         public DateTime dateStart;
         public DateTime dateEnd;
+
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public RepItemExpiryReportForm(DateTime startDate, DateTime endDate)
         {
             dateStart = startDate;
             dateEnd = endDate;
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonPrint.Text = SetLabel(buttonPrint.Text);
+
             GetInventoryListDataSource();
             GetItemExpiryDataGridSource();
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
         public List<Entities.DgvItemExpiryEntity> GetInventoryListReport(DateTime startDate, DateTime endDate)
         {

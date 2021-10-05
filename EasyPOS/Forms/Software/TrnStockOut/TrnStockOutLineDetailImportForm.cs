@@ -14,10 +14,53 @@ namespace EasyPOS.Forms.Software.TrnStockOut
     public partial class TrnStockOutLineDetailImportForm : Form
     {
         TrnStockOutDetailForm _trnStockOutDetailForm = null;
+
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public TrnStockOutLineDetailImportForm(TrnStockOutDetailForm stockOutDetailForm)
         {
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            buttonImport.Text = SetLabel(buttonImport.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonOpenFile.Text = SetLabel(buttonOpenFile.Text);
+
             _trnStockOutDetailForm = stockOutDetailForm;
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
         public List<Entities.TrnStockOutLineEntity> stockOutItemList = new List<Entities.TrnStockOutLineEntity>();
         private void buttonOpenFile_Click(object sender, EventArgs e)

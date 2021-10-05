@@ -247,7 +247,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label3.Location = new System.Drawing.Point(11, 99);
+            this.label3.Location = new System.Drawing.Point(11, 97);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(167, 19);
@@ -258,7 +258,7 @@
             // 
             this.textBoxManualStockInNumber.Enabled = false;
             this.textBoxManualStockInNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxManualStockInNumber.Location = new System.Drawing.Point(181, 97);
+            this.textBoxManualStockInNumber.Location = new System.Drawing.Point(186, 97);
             this.textBoxManualStockInNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxManualStockInNumber.Name = "textBoxManualStockInNumber";
             this.textBoxManualStockInNumber.Size = new System.Drawing.Size(239, 26);
@@ -267,7 +267,7 @@
             // textBoxRemarks
             // 
             this.textBoxRemarks.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxRemarks.Location = new System.Drawing.Point(181, 127);
+            this.textBoxRemarks.Location = new System.Drawing.Point(186, 127);
             this.textBoxRemarks.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxRemarks.Multiline = true;
             this.textBoxRemarks.Name = "textBoxRemarks";
@@ -278,7 +278,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label13.Location = new System.Drawing.Point(477, 69);
+            this.label13.Location = new System.Drawing.Point(454, 70);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(91, 19);
@@ -289,7 +289,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label12.Location = new System.Drawing.Point(484, 40);
+            this.label12.Location = new System.Drawing.Point(454, 43);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(83, 19);
@@ -300,7 +300,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label11.Location = new System.Drawing.Point(481, 10);
+            this.label11.Location = new System.Drawing.Point(454, 16);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(86, 19);
@@ -342,7 +342,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label7.Location = new System.Drawing.Point(114, 130);
+            this.label7.Location = new System.Drawing.Point(12, 130);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 19);
@@ -353,7 +353,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label5.Location = new System.Drawing.Point(117, 69);
+            this.label5.Location = new System.Drawing.Point(10, 69);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 19);
@@ -364,7 +364,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label4.Location = new System.Drawing.Point(82, 40);
+            this.label4.Location = new System.Drawing.Point(11, 40);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 19);
@@ -375,7 +375,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label2.Location = new System.Drawing.Point(61, 11);
+            this.label2.Location = new System.Drawing.Point(10, 16);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 19);
@@ -386,7 +386,7 @@
             // 
             this.dateTimePickerStockInDate.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.dateTimePickerStockInDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerStockInDate.Location = new System.Drawing.Point(181, 37);
+            this.dateTimePickerStockInDate.Location = new System.Drawing.Point(186, 37);
             this.dateTimePickerStockInDate.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePickerStockInDate.Name = "dateTimePickerStockInDate";
             this.dateTimePickerStockInDate.Size = new System.Drawing.Size(158, 26);
@@ -396,7 +396,7 @@
             // 
             this.textBoxStockInNumber.Enabled = false;
             this.textBoxStockInNumber.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxStockInNumber.Location = new System.Drawing.Point(181, 9);
+            this.textBoxStockInNumber.Location = new System.Drawing.Point(186, 9);
             this.textBoxStockInNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxStockInNumber.Name = "textBoxStockInNumber";
             this.textBoxStockInNumber.Size = new System.Drawing.Size(158, 26);
@@ -409,7 +409,7 @@
             this.comboBoxSupplier.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxSupplier.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.comboBoxSupplier.FormattingEnabled = true;
-            this.comboBoxSupplier.Location = new System.Drawing.Point(181, 66);
+            this.comboBoxSupplier.Location = new System.Drawing.Point(186, 66);
             this.comboBoxSupplier.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxSupplier.Name = "comboBoxSupplier";
             this.comboBoxSupplier.Size = new System.Drawing.Size(239, 27);

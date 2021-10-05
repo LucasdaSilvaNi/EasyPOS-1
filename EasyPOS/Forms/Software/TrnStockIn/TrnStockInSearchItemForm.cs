@@ -22,9 +22,24 @@ namespace EasyPOS.Forms.Software.TrnStockIn
         public PagedList<Entities.DgvTrnStockInSearchItemListEntity> searchItemListPageList = new PagedList<Entities.DgvTrnStockInSearchItemListEntity>(searchItemListData, pageNumber, pageSize);
         public BindingSource searchItemListDataSource = new BindingSource();
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public TrnStockInSearchItemForm(TrnStockInDetailForm stockInDetailForm, Entities.TrnStockInEntity stockInEntity)
         {
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonSearchItemListPageListFirst.Text = SetLabel(buttonSearchItemListPageListFirst.Text);
+            buttonSearchItemListPageListPrevious.Text = SetLabel(buttonSearchItemListPageListPrevious.Text);
+            buttonSearchItemListPageListNext.Text = SetLabel(buttonSearchItemListPageListNext.Text);
+            buttonSearchItemListPageListLast.Text = SetLabel(buttonSearchItemListPageListLast.Text);
+            dataGridViewSearchItemList.Columns[1].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[2].HeaderText);
+            dataGridViewSearchItemList.Columns[2].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[2].HeaderText);
+            dataGridViewSearchItemList.Columns[3].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[3].HeaderText);
+            dataGridViewSearchItemList.Columns[4].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[4].HeaderText);
+            dataGridViewSearchItemList.Columns[11].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[11].HeaderText);
+            dataGridViewSearchItemList.Columns[12].HeaderText = SetLabel(dataGridViewSearchItemList.Columns[12].HeaderText);
 
             trnStockInDetailForm = stockInDetailForm;
             trnStockInEntity = stockInEntity;
@@ -39,6 +54,40 @@ namespace EasyPOS.Forms.Software.TrnStockIn
 
             CreateSearchItemListDataGridView();
             textBoxSearchItemListFilter.Focus();
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void UpdateSearchItemListDataSource()
@@ -124,7 +173,7 @@ namespace EasyPOS.Forms.Software.TrnStockIn
                                 ColumnSearchItemListUnit = d.Unit,
                                 ColumnSearchItemListPrice = d.Price.ToString("#,##0.00"),
                                 ColumnSearchItemListOnhandQuantity = d.OnhandQuantity.ToString("#,##0.00"),
-                                ColumnSearchItemListButtonPick = "Pick"
+                                ColumnSearchItemListButtonPick = SetLabel("Pick")
                             };
 
                 return Task.FromResult(items.ToList());

@@ -58,9 +58,87 @@ namespace EasyPOS.Forms.Software.SysSystemTables
         public BindingSource languageListDataSource = new BindingSource();
         public static Int32 languageListPageNumber = 1;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public SysSystemTablesForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonAdd.Text = SetLabel(buttonAdd.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    tabPage1.Text = SetLabel(tabPage1.Text);
+                    tabPage2.Text = SetLabel(tabPage2.Text);
+                    tabPage3.Text = SetLabel(tabPage3.Text);
+                    tabPage4.Text = SetLabel(tabPage4.Text);
+                    tabPage5.Text = SetLabel(tabPage5.Text);
+                    tabPage6.Text = SetLabel(tabPage6.Text);
+                    tabPage7.Text = SetLabel(tabPage7.Text);
+                    tabPage8.Text = SetLabel(tabPage8.Text);
+                    dataGridViewAccountList.Columns[3].HeaderText = SetLabel(dataGridViewAccountList.Columns[3].HeaderText);
+                    dataGridViewAccountList.Columns[4].HeaderText = SetLabel(dataGridViewAccountList.Columns[4].HeaderText);
+                    dataGridViewAccountList.Columns[5].HeaderText = SetLabel(dataGridViewAccountList.Columns[5].HeaderText);
+                    buttonAccountListPageListFirst.Text = SetLabel(buttonAccountListPageListFirst.Text);
+                    buttonAccountListPageListLast.Text = SetLabel(buttonAccountListPageListLast.Text);
+                    buttonAccountListPageListNext.Text = SetLabel(buttonAccountListPageListNext.Text);
+                    buttonAccountListPageListPrevious.Text = SetLabel(buttonAccountListPageListPrevious.Text);
+                    dataGridViewPayTypeList.Columns[3].HeaderText = SetLabel(dataGridViewPayTypeList.Columns[3].HeaderText);
+                    dataGridViewPayTypeList.Columns[4].HeaderText = SetLabel(dataGridViewPayTypeList.Columns[4].HeaderText);
+                    dataGridViewPayTypeList.Columns[6].HeaderText = SetLabel(dataGridViewPayTypeList.Columns[6].HeaderText);
+                    buttonPayTypeListPageListFirst.Text = SetLabel(buttonPayTypeListPageListFirst.Text);
+                    buttonPayTypeListPageListLast.Text = SetLabel(buttonPayTypeListPageListLast.Text);
+                    buttonPayTypeListPageListNext.Text = SetLabel(buttonPayTypeListPageListNext.Text);
+                    buttonPayTypeListPageListPrevious.Text = SetLabel(buttonPayTypeListPageListPrevious.Text);
+                    dataGridViewTaxList.Columns[3].HeaderText = SetLabel(dataGridViewTaxList.Columns[3].HeaderText);
+                    dataGridViewTaxList.Columns[4].HeaderText = SetLabel(dataGridViewTaxList.Columns[4].HeaderText);
+                    dataGridViewTaxList.Columns[5].HeaderText = SetLabel(dataGridViewTaxList.Columns[5].HeaderText);
+                    dataGridViewTaxList.Columns[7].HeaderText = SetLabel(dataGridViewTaxList.Columns[7].HeaderText);
+                    buttonTaxListPageListFirst.Text = SetLabel(buttonTaxListPageListFirst.Text);
+                    buttonTaxListPageListLast.Text = SetLabel(buttonTaxListPageListLast.Text);
+                    buttonTaxListPageListNext.Text = SetLabel(buttonTaxListPageListNext.Text);
+                    buttonTaxListPageListPrevious.Text = SetLabel(buttonTaxListPageListPrevious.Text);
+                    dataGridViewUnitList.Columns[3].HeaderText = SetLabel(dataGridViewUnitList.Columns[3].HeaderText);
+                    buttonUnitListPageListFirst.Text = SetLabel(buttonUnitListPageListFirst.Text);
+                    buttonUnitListPageListLast.Text = SetLabel(buttonUnitListPageListLast.Text);
+                    buttonUnitListPageListNext.Text = SetLabel(buttonUnitListPageListNext.Text);
+                    buttonUnitListPageListPrevious.Text = SetLabel(buttonUnitListPageListPrevious.Text);
+                    dataGridViewPeriodList.Columns[3].HeaderText = SetLabel(dataGridViewPeriodList.Columns[3].HeaderText);
+                    buttonPeriodListPageListFirst.Text = SetLabel(buttonPeriodListPageListFirst.Text);
+                    buttonPeriodListPageListLast.Text = SetLabel(buttonPeriodListPageListLast.Text);
+                    buttonPeriodListPageListNext.Text = SetLabel(buttonPeriodListPageListNext.Text);
+                    buttonPeriodListPageListPrevious.Text = SetLabel(buttonPeriodListPageListPrevious.Text);
+                    dataGridViewTerminalList.Columns[3].HeaderText = SetLabel(dataGridViewTerminalList.Columns[3].HeaderText);
+                    buttonTerminalListPageListFirst.Text = SetLabel(buttonTerminalListPageListFirst.Text);
+                    buttonTerminalListPageListLast.Text = SetLabel(buttonTerminalListPageListLast.Text);
+                    buttonTerminalListPageListNext.Text = SetLabel(buttonTerminalListPageListNext.Text);
+                    buttonTerminalListPageListPrevious.Text = SetLabel(buttonTerminalListPageListPrevious.Text);
+                    dataGridViewSupplierList.Columns[3].HeaderText = SetLabel(dataGridViewSupplierList.Columns[3].HeaderText);
+                    dataGridViewSupplierList.Columns[4].HeaderText = SetLabel(dataGridViewSupplierList.Columns[4].HeaderText);
+                    dataGridViewSupplierList.Columns[5].HeaderText = SetLabel(dataGridViewSupplierList.Columns[5].HeaderText);
+                    dataGridViewSupplierList.Columns[6].HeaderText = SetLabel(dataGridViewSupplierList.Columns[6].HeaderText);
+                    dataGridViewSupplierList.Columns[9].HeaderText = SetLabel(dataGridViewSupplierList.Columns[9].HeaderText);
+                    dataGridViewSupplierList.Columns[11].HeaderText = SetLabel(dataGridViewSupplierList.Columns[11].HeaderText);
+                    buttonSupplierListPageListFirst.Text = SetLabel(buttonSupplierListPageListFirst.Text);
+                    buttonSupplierListPageListLast.Text = SetLabel(buttonSupplierListPageListLast.Text);
+                    buttonSupplierListPageListNext.Text = SetLabel(buttonSupplierListPageListNext.Text);
+                    buttonSupplierListPageListPrevious.Text = SetLabel(buttonSupplierListPageListPrevious.Text);
+                    dataGridViewLanguageList.Columns[3].HeaderText = SetLabel(dataGridViewLanguageList.Columns[3].HeaderText);
+                    dataGridViewLanguageList.Columns[4].HeaderText = SetLabel(dataGridViewLanguageList.Columns[4].HeaderText);
+                    buttonLanguageListPageListFirst.Text = SetLabel(buttonLanguageListPageListFirst.Text);
+                    buttonLanguageListPageListLast.Text = SetLabel(buttonLanguageListPageListLast.Text);
+                    buttonLanguageListPageListNext.Text = SetLabel(buttonLanguageListPageListNext.Text);
+                    buttonLanguageListPageListPrevious.Text = SetLabel(buttonLanguageListPageListPrevious.Text);
+                }
+            }
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("SysTables");
@@ -108,6 +186,54 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 CreateSupplierListDataGridView();
                 CreateLanguageListDataGridView();
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
+        }
+
+        public string SetLabelEditDelete(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
 
@@ -185,8 +311,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var accounts = from d in listAccount
                                select new Entities.DgvMstSystemTablesAccountListEntity
                                {
-                                   ColumnAccountListButtonEdit = "Edit",
-                                   ColumnAccountListButtonDelete = "Delete",
+                                   ColumnAccountListButtonEdit = SetLabelEditDelete("Edit"),
+                                   ColumnAccountListButtonDelete = SetLabelEditDelete("Delete"),
                                    ColumnAccountListId = d.Id,
                                    ColumnAccountListCode = d.Code,
                                    ColumnAccountListAccount = d.Account,
@@ -415,8 +541,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var payTypes = from d in listPayType
                                select new Entities.DgvMstSystemTablesPayTypeListEntity
                                {
-                                   ColumnPayTypeListButtonEdit = "Edit",
-                                   ColumnPayTypeListButtonDelete = "Delete",
+                                   ColumnPayTypeListButtonEdit = SetLabelEditDelete("Edit"),
+                                   ColumnPayTypeListButtonDelete = SetLabelEditDelete("Delete"),
                                    ColumnPayTypeListId = d.Id,
                                    ColumnPayTypeListPayTypeCode = d.PayTypeCode,
                                    ColumnPayTypeListPayType = d.PayType,
@@ -646,8 +772,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var taxs = from d in listTax
                            select new Entities.DgvMstSystemTablesTaxListEntity
                            {
-                               ColumnTaxListButtonEdit = "Edit",
-                               ColumnTaxListButtonDelete = "Delete",
+                               ColumnTaxListButtonEdit = SetLabelEditDelete("Edit"),
+                               ColumnTaxListButtonDelete = SetLabelEditDelete("Delete"),
                                ColumnTaxListId = d.Id,
                                ColumnTaxListCode = d.Code,
                                ColumnTaxListTax = d.Tax,
@@ -879,8 +1005,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var units = from d in listUnit
                             select new Entities.DgvMstSystemTablesUnitListEntity
                             {
-                                ColumnUnitListButtonEdit = "Edit",
-                                ColumnUnitListButtonDelete = "Delete",
+                                ColumnUnitListButtonEdit = SetLabelEditDelete("Edit"),
+                                ColumnUnitListButtonDelete = SetLabelEditDelete("Delete"),
                                 ColumnUnitListId = d.Id,
                                 ColumnUnitListUnit = d.Unit
                             };
@@ -1104,8 +1230,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var periods = from d in listPeriod
                               select new Entities.DgvMstSystemTablesPeriodListEntity
                               {
-                                  ColumnPeriodListButtonEdit = "Edit",
-                                  ColumnPeriodListButtonDelete = "Delete",
+                                  ColumnPeriodListButtonEdit = SetLabelEditDelete("Edit"),
+                                  ColumnPeriodListButtonDelete = SetLabelEditDelete("Delete"),
                                   ColumnPeriodListId = d.Id,
                                   ColumnPeriodListPeriod = d.Period
                               };
@@ -1329,8 +1455,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var terminals = from d in listTerminal
                                 select new Entities.DgvMstSystemTablesTerminalListEntity
                                 {
-                                    ColumnTerminalListButtonEdit = "Edit",
-                                    ColumnTerminalListButtonDelete = "Delete",
+                                    ColumnTerminalListButtonEdit = SetLabelEditDelete("Edit"),
+                                    ColumnTerminalListButtonDelete = SetLabelEditDelete("Delete"),
                                     ColumnTerminalListId = d.Id,
                                     ColumnTerminalListTerminal = d.Terminal
                                 };
@@ -1554,8 +1680,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var suppliers = from d in listSupplier
                                 select new Entities.DgvMstSystemTablesSupplierListEntity
                                 {
-                                    ColumnSupplierListButtonEdit = "Edit",
-                                    ColumnSupplierListButtonDelete = "Delete",
+                                    ColumnSupplierListButtonEdit = SetLabelEditDelete("Edit"),
+                                    ColumnSupplierListButtonDelete = SetLabelEditDelete("Delete"),
                                     ColumnSupplierListId = d.Id,
                                     ColumnSupplierListSupplier = d.Supplier,
                                     ColumnSupplierListAddress = d.Address,
@@ -1733,30 +1859,37 @@ namespace EasyPOS.Forms.Software.SysSystemTables
             switch (selectedTab)
             {
                 case "Account":
+                case "帐户":
                     SysAccountDetailForm sysSystemTablesAccountDetailForm = new SysAccountDetailForm(this, null);
                     sysSystemTablesAccountDetailForm.ShowDialog();
                     break;
                 case "Pay Type":
+                case "薪酬类型":
                     SysPayTypeDetailForm sysSystemTablesPayTypeDetailForm = new SysPayTypeDetailForm(this, null);
                     sysSystemTablesPayTypeDetailForm.ShowDialog();
                     break;
                 case "Tax":
+                case "税":
                     SysTaxDetailForm sysSystemTablesTaxDetailForm = new SysTaxDetailForm(this, null);
                     sysSystemTablesTaxDetailForm.ShowDialog();
                     break;
                 case "Unit":
+                case "单元":
                     SysUnitDetailForm sysSystemTablesUnitDetailForm = new SysUnitDetailForm(this, null);
                     sysSystemTablesUnitDetailForm.ShowDialog();
                     break;
                 case "Period":
+                case "时期":
                     SysPeriodDetailForm sysSystemTablesPeriodDetailForm = new SysPeriodDetailForm(this, null);
                     sysSystemTablesPeriodDetailForm.ShowDialog();
                     break;
                 case "Terminal":
+                case "终端":
                     SysTerminalDetailForm sysSystemTablesTerminalDetailForm = new SysTerminalDetailForm(this, null);
                     sysSystemTablesTerminalDetailForm.ShowDialog();
                     break;
                 case "Supplier":
+                case "供应商":
                     Controllers.MstSupplierController mstSupplierController = new Controllers.MstSupplierController();
                     String[] newSupplier = mstSupplierController.AddSupplier();
                     if (newSupplier[1].Equals("0") == false)
@@ -1774,6 +1907,7 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                     }
                     break;
                 case "Label":
+                case "标签":
                     SysLanguageDetailForm sysLanguageDetailForm = new SysLanguageDetailForm(this, null);
                     sysLanguageDetailForm.ShowDialog();
                     break;
@@ -1853,8 +1987,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var language = from d in listLanguage
                                select new Entities.DgvMstSystemTablesLanguageListEntity
                                {
-                                   ColumnLanguageListButtonEdit = "Edit",
-                                   ColumnLanguageListButtonDelete = "Delete",
+                                   ColumnLanguageListButtonEdit = SetLabelEditDelete("Edit"),
+                                   ColumnLanguageListButtonDelete = SetLabelEditDelete("Delete"),
                                    ColumnLanguageListId = d.Id,
                                    ColumnLanguageListLabel = d.Label,
                                    ColumnLanguageListDisplayLabel = d.DisplayedLabel,

@@ -16,9 +16,29 @@ namespace EasyPOS.Forms.Software.SysSystemTables
         private Modules.SysUserRightsModule sysUserRights;
 
         Entities.SysLanguageEntity sysLanguagetEntity;
+
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public SysLanguageDetailForm(SysSystemTablesForm systemTablesForm, Entities.SysLanguageEntity languageEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonSave.Text = SetLabel(buttonSave.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+
+                }
+            }
+
             sysSystemTablesForm = systemTablesForm;
             sysLanguagetEntity = languageEntity;
 
@@ -37,6 +57,21 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 LoadLanguage();
                 textBoxLabel.Focus();
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
         public void LoadLanguage()
         {

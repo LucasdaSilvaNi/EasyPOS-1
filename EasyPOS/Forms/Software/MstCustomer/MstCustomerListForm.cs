@@ -22,9 +22,25 @@ namespace EasyPOS.Forms.Software.MstCustomer
         public PagedList<Entities.DgvMstCustomerListEntity> itemListPageList = new PagedList<Entities.DgvMstCustomerListEntity>(itemListData, pageNumber, pageSize);
         public BindingSource itemListDataSource = new BindingSource();
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public MstCustomerListForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            buttonAdd.Text = SetLabel(buttonAdd.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            label1.Text = SetLabel(label1.Text);
+            dataGridViewCustomerList.Columns[3].HeaderText = SetLabel(dataGridViewCustomerList.Columns[3].HeaderText);
+            dataGridViewCustomerList.Columns[4].HeaderText = SetLabel(dataGridViewCustomerList.Columns[4].HeaderText);
+            dataGridViewCustomerList.Columns[5].HeaderText = SetLabel(dataGridViewCustomerList.Columns[5].HeaderText);
+            dataGridViewCustomerList.Columns[6].HeaderText = SetLabel(dataGridViewCustomerList.Columns[6].HeaderText);
+            dataGridViewCustomerList.Columns[7].HeaderText = SetLabel(dataGridViewCustomerList.Columns[7].HeaderText);
+            buttonCustomerListPageListFirst.Text = SetLabel(buttonCustomerListPageListFirst.Text);
+            buttonCustomerListPageListLast.Text = SetLabel(buttonCustomerListPageListFirst.Text);
+            buttonCustomerListPageListNext.Text = SetLabel(buttonCustomerListPageListFirst.Text);
+            buttonCustomerListPageListPrevious.Text = SetLabel(buttonCustomerListPageListFirst.Text);
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("MstCustomer");
@@ -51,6 +67,40 @@ namespace EasyPOS.Forms.Software.MstCustomer
 
                 CreateCustomerListDataGridView();
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void UpdateCustomerListDataSource()
@@ -124,8 +174,8 @@ namespace EasyPOS.Forms.Software.MstCustomer
                 var items = from d in listCustomer
                             select new Entities.DgvMstCustomerListEntity
                             {
-                                ColumnCustomerListButtonEdit = "Edit",
-                                ColumnCustomerListButtonDelete = "Delete",
+                                ColumnCustomerListButtonEdit = SetLabel("Edit"),
+                                ColumnCustomerListButtonDelete = SetLabel("Delete"),
                                 ColumnCustomerListId = d.Id,
                                 ColumnCustomerListCustomerCode = d.CustomerCode,
                                 ColumnCustomerListCustomer = d.Customer,

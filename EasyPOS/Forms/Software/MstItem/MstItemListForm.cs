@@ -30,32 +30,23 @@ namespace EasyPOS.Forms.Software.MstItem
         {
             InitializeComponent();
 
-            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
-            if (sysLabel.ListLanguage("").Any())
-            {
-                sysLanguageEntities = sysLabel.ListLanguage("");
-                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
-                if (language != "English")
-                {
-                    buttonClose.Text = SetLabel(buttonClose.Text);
-                    buttonAdd.Text = SetLabel(buttonAdd.Text);
-                    label1.Text = SetLabel(label1.Text);
-                    dataGridViewItemList.Columns[3].HeaderText = SetLabel(dataGridViewItemList.Columns[3].HeaderText);
-                    dataGridViewItemList.Columns[4].HeaderText = SetLabel(dataGridViewItemList.Columns[4].HeaderText);
-                    dataGridViewItemList.Columns[5].HeaderText = SetLabel(dataGridViewItemList.Columns[5].HeaderText);
-                    dataGridViewItemList.Columns[6].HeaderText = SetLabel(dataGridViewItemList.Columns[6].HeaderText);
-                    dataGridViewItemList.Columns[7].HeaderText = SetLabel(dataGridViewItemList.Columns[7].HeaderText);
-                    dataGridViewItemList.Columns[8].HeaderText = SetLabel(dataGridViewItemList.Columns[8].HeaderText);
-                    dataGridViewItemList.Columns[9].HeaderText = SetLabel(dataGridViewItemList.Columns[9].HeaderText);
-                    dataGridViewItemList.Columns[11].HeaderText = SetLabel(dataGridViewItemList.Columns[11].HeaderText);
-                    dataGridViewItemList.Columns[12].HeaderText = SetLabel(dataGridViewItemList.Columns[12].HeaderText);
-                    dataGridViewItemList.Columns[13].HeaderText = SetLabel(dataGridViewItemList.Columns[13].HeaderText);
-                    buttonItemListPageListFirst.Text = SetLabel(buttonItemListPageListFirst.Text);
-                    buttonItemListPageListLast.Text = SetLabel(buttonItemListPageListLast.Text);
-                    buttonItemListPageListNext.Text = SetLabel(buttonItemListPageListNext.Text);
-                    buttonItemListPageListPrevious.Text = SetLabel(buttonItemListPageListPrevious.Text);
-                }
-            }
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonAdd.Text = SetLabel(buttonAdd.Text);
+            label1.Text = SetLabel(label1.Text);
+            dataGridViewItemList.Columns[3].HeaderText = SetLabel(dataGridViewItemList.Columns[3].HeaderText);
+            dataGridViewItemList.Columns[4].HeaderText = SetLabel(dataGridViewItemList.Columns[4].HeaderText);
+            dataGridViewItemList.Columns[5].HeaderText = SetLabel(dataGridViewItemList.Columns[5].HeaderText);
+            dataGridViewItemList.Columns[6].HeaderText = SetLabel(dataGridViewItemList.Columns[6].HeaderText);
+            dataGridViewItemList.Columns[7].HeaderText = SetLabel(dataGridViewItemList.Columns[7].HeaderText);
+            dataGridViewItemList.Columns[8].HeaderText = SetLabel(dataGridViewItemList.Columns[8].HeaderText);
+            dataGridViewItemList.Columns[9].HeaderText = SetLabel(dataGridViewItemList.Columns[9].HeaderText);
+            dataGridViewItemList.Columns[11].HeaderText = SetLabel(dataGridViewItemList.Columns[11].HeaderText);
+            dataGridViewItemList.Columns[12].HeaderText = SetLabel(dataGridViewItemList.Columns[12].HeaderText);
+            dataGridViewItemList.Columns[13].HeaderText = SetLabel(dataGridViewItemList.Columns[13].HeaderText);
+            buttonItemListPageListFirst.Text = SetLabel(buttonItemListPageListFirst.Text);
+            buttonItemListPageListLast.Text = SetLabel(buttonItemListPageListLast.Text);
+            buttonItemListPageListNext.Text = SetLabel(buttonItemListPageListNext.Text);
+            buttonItemListPageListPrevious.Text = SetLabel(buttonItemListPageListPrevious.Text);
 
             sysSoftwareForm = softwareForm;
 
@@ -82,17 +73,17 @@ namespace EasyPOS.Forms.Software.MstItem
                 }
                 inventoryOption = new List<String>
                 {
-                    "All",
-                    "Inventory",
-                    "Non-Inventory"
+                    SetLabel("All"),
+                    SetLabel("Inventory"),
+                    SetLabel("Non-Inventory")
                 };
                 comboBoxIsInventory.DataSource = inventoryOption;
 
                 lockOption = new List<String>
                 {
-                    "All",
-                    "Locked",
-                    "Unlocked"
+                    SetLabel("All"),
+                    SetLabel("Locked"),
+                    SetLabel("Unlocked")
                 };
                 comboBoxIsLocked.DataSource = lockOption;
                 if (Modules.SysCurrentModule.GetCurrentSettings().HideItemListBarcode == true)
@@ -118,13 +109,32 @@ namespace EasyPOS.Forms.Software.MstItem
         }
         public string SetLabel(string label)
         {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
             if (sysLanguageEntities.Any())
             {
-                foreach (var displayedLabel in sysLanguageEntities)
+
+                if (sysLabel.ListLanguage("").Any())
                 {
-                    if (displayedLabel.Label == label)
+
+                    foreach (var displayedLabel in sysLanguageEntities)
                     {
-                        return displayedLabel.DisplayedLabel;
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
                     }
                 }
             }
@@ -204,8 +214,8 @@ namespace EasyPOS.Forms.Software.MstItem
                 var items = from d in listItem
                             select new Entities.DgvMstItemListEntity
                             {
-                                ColumnItemListButtonEdit = "Edit",
-                                ColumnItemListButtonDelete = "Delete",
+                                ColumnItemListButtonEdit = SetLabel("Edit"),
+                                ColumnItemListButtonDelete = SetLabel("Delete"),
                                 ColumnItemListId = d.Id,
                                 ColumnItemListCode = d.ItemCode,
                                 ColumnItemListDescription = d.ItemDescription,

@@ -242,7 +242,7 @@
             this.dateTimePickerTimeEnd.CustomFormat = "hh:mm tt";
             this.dateTimePickerTimeEnd.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.dateTimePickerTimeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerTimeEnd.Location = new System.Drawing.Point(712, 149);
+            this.dateTimePickerTimeEnd.Location = new System.Drawing.Point(846, 149);
             this.dateTimePickerTimeEnd.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePickerTimeEnd.Name = "dateTimePickerTimeEnd";
             this.dateTimePickerTimeEnd.Size = new System.Drawing.Size(104, 26);
@@ -253,7 +253,7 @@
             this.dateTimePickerTimeStart.CustomFormat = "hh:mm tt";
             this.dateTimePickerTimeStart.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.dateTimePickerTimeStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerTimeStart.Location = new System.Drawing.Point(712, 119);
+            this.dateTimePickerTimeStart.Location = new System.Drawing.Point(846, 119);
             this.dateTimePickerTimeStart.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePickerTimeStart.Name = "dateTimePickerTimeStart";
             this.dateTimePickerTimeStart.Size = new System.Drawing.Size(104, 26);
@@ -272,14 +272,14 @@
             this.panel5.Location = new System.Drawing.Point(231, 119);
             this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(399, 54);
+            this.panel5.Size = new System.Drawing.Size(447, 56);
             this.panel5.TabIndex = 46;
             // 
             // checkBoxMon
             // 
             this.checkBoxMon.AutoSize = true;
             this.checkBoxMon.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.checkBoxMon.Location = new System.Drawing.Point(17, 15);
+            this.checkBoxMon.Location = new System.Drawing.Point(16, 15);
             this.checkBoxMon.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxMon.Name = "checkBoxMon";
             this.checkBoxMon.Size = new System.Drawing.Size(57, 23);
@@ -315,7 +315,7 @@
             // 
             this.checkBoxThu.AutoSize = true;
             this.checkBoxThu.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.checkBoxThu.Location = new System.Drawing.Point(186, 15);
+            this.checkBoxThu.Location = new System.Drawing.Point(188, 15);
             this.checkBoxThu.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxThu.Name = "checkBoxThu";
             this.checkBoxThu.Size = new System.Drawing.Size(51, 23);
@@ -327,7 +327,7 @@
             // 
             this.checkBoxFri.AutoSize = true;
             this.checkBoxFri.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.checkBoxFri.Location = new System.Drawing.Point(239, 15);
+            this.checkBoxFri.Location = new System.Drawing.Point(247, 15);
             this.checkBoxFri.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxFri.Name = "checkBoxFri";
             this.checkBoxFri.Size = new System.Drawing.Size(43, 23);
@@ -339,7 +339,7 @@
             // 
             this.checkBoxSat.AutoSize = true;
             this.checkBoxSat.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.checkBoxSat.Location = new System.Drawing.Point(284, 15);
+            this.checkBoxSat.Location = new System.Drawing.Point(317, 15);
             this.checkBoxSat.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxSat.Name = "checkBoxSat";
             this.checkBoxSat.Size = new System.Drawing.Size(47, 23);
@@ -351,7 +351,7 @@
             // 
             this.checkBoxSun.AutoSize = true;
             this.checkBoxSun.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.checkBoxSun.Location = new System.Drawing.Point(334, 15);
+            this.checkBoxSun.Location = new System.Drawing.Point(381, 15);
             this.checkBoxSun.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxSun.Name = "checkBoxSun";
             this.checkBoxSun.Size = new System.Drawing.Size(51, 23);
@@ -363,7 +363,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label11.Location = new System.Drawing.Point(639, 150);
+            this.label11.Location = new System.Drawing.Point(767, 149);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(68, 19);
@@ -374,7 +374,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label10.Location = new System.Drawing.Point(635, 122);
+            this.label10.Location = new System.Drawing.Point(767, 125);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(74, 19);
@@ -385,7 +385,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label9.Location = new System.Drawing.Point(634, 96);
+            this.label9.Location = new System.Drawing.Point(767, 96);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(107, 19);
@@ -396,7 +396,7 @@
             // 
             this.checkBoxTimeScheduled.AutoSize = true;
             this.checkBoxTimeScheduled.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.checkBoxTimeScheduled.Location = new System.Drawing.Point(746, 95);
+            this.checkBoxTimeScheduled.Location = new System.Drawing.Point(880, 95);
             this.checkBoxTimeScheduled.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxTimeScheduled.Name = "checkBoxTimeScheduled";
             this.checkBoxTimeScheduled.Size = new System.Drawing.Size(32, 23);
@@ -445,7 +445,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label6.Location = new System.Drawing.Point(51, 150);
+            this.label6.Location = new System.Drawing.Point(37, 149);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 19);
@@ -466,7 +466,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label5.Location = new System.Drawing.Point(46, 122);
+            this.label5.Location = new System.Drawing.Point(37, 125);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 19);
@@ -511,7 +511,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label8.Location = new System.Drawing.Point(49, 98);
+            this.label8.Location = new System.Drawing.Point(37, 97);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(84, 19);
@@ -545,7 +545,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label2.Location = new System.Drawing.Point(55, 12);
+            this.label2.Location = new System.Drawing.Point(24, 12);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 19);

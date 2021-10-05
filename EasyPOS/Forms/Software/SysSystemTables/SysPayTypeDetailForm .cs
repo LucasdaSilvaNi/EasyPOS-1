@@ -18,9 +18,20 @@ namespace EasyPOS.Forms.Software.SysSystemTables
 
         MstPayTypeEntity mstPayTypeEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public SysPayTypeDetailForm (SysSystemTablesForm systemTablesForm, MstPayTypeEntity payTypeEntity)
         {
             InitializeComponent();
+
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonSave.Text = SetLabel(buttonSave.Text);
+            label1.Text = SetLabel(label1.Text);
+            label2.Text = SetLabel(label2.Text);
+            label3.Text = SetLabel(label3.Text);
+            label4.Text = SetLabel(label4.Text);
+
             sysSystemTablesForm = systemTablesForm;
             mstPayTypeEntity = payTypeEntity;
 
@@ -39,6 +50,40 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 GetAccountList();
                 textBoxPayTypeCode.Focus();
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void LoadPayType()

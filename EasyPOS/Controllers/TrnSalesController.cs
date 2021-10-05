@@ -131,7 +131,7 @@ namespace EasyPOS.Controllers
         // ==========
         public List<Entities.TrnSalesEntity> ListSales(DateTime dateTime, Int32 terminalId, String filter, String selectedIsLocked)
         {
-            if (selectedIsLocked == "All")
+            if (selectedIsLocked == "All" || selectedIsLocked == "全部")
             {
                 var sales = from d in db.TrnSales
                             where d.SalesDate == dateTime
@@ -201,7 +201,7 @@ namespace EasyPOS.Controllers
 
                 return sales.OrderByDescending(d => d.Id).ToList();
             }
-            else if (selectedIsLocked == "Tendered")
+            else if (selectedIsLocked == "Tendered" || selectedIsLocked == "招标")
             {
                 var sales = from d in db.TrnSales
                             where d.SalesDate == dateTime
@@ -272,7 +272,7 @@ namespace EasyPOS.Controllers
 
                 return sales.OrderByDescending(d => d.Id).ToList();
             }
-            else if (selectedIsLocked == "Cancelled")
+            else if (selectedIsLocked == "Cancelled" || selectedIsLocked == "取消")
             {
                 var sales = from d in db.TrnSales
                             where d.SalesDate == dateTime
@@ -347,7 +347,7 @@ namespace EasyPOS.Controllers
             {
                 Boolean isLocked = false;
 
-                if (selectedIsLocked == "Locked")
+                if (selectedIsLocked == "Locked" || selectedIsLocked == "锁定")
                 {
                     isLocked = true;
                 }

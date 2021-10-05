@@ -34,68 +34,59 @@ namespace EasyPOS.Forms.Software.MstItem
 
         public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
-
         public MstItemDetailForm(SysSoftwareForm softwareForm, MstItemListForm itemListForm, Entities.MstItemEntity itemEntity)
         {
             InitializeComponent();
 
-            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
-            if (sysLabel.ListLanguage("").Any())
-            {
-                sysLanguageEntities = sysLabel.ListLanguage("");
-                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
-                if (language != "English")
-                {
-                    buttonClose.Text = SetLabel(buttonClose.Text);
-                    buttonLock.Text = SetLabel(buttonLock.Text);
-                    buttonUnlock.Text = SetLabel(buttonUnlock.Text);
-                    buttonAddItemPrice.Text = SetLabel(buttonAddItemPrice.Text);
-                    buttonItemComponentAdd.Text = SetLabel(buttonItemComponentAdd.Text);
-                    label1.Text = SetLabel(label1.Text);
-                    label2.Text = SetLabel(label2.Text);
-                    label3.Text = SetLabel(label3.Text);
-                    label4.Text = SetLabel(label4.Text);
-                    label5.Text = SetLabel(label5.Text);
-                    label6.Text = SetLabel(label6.Text);
-                    label7.Text = SetLabel(label7.Text);
-                    label8.Text = SetLabel(label8.Text);
-                    label9.Text = SetLabel(label9.Text);
-                    label10.Text = SetLabel(label10.Text);
-                    label11.Text = SetLabel(label11.Text);
-                    label12.Text = SetLabel(label12.Text);
-                    label13.Text = SetLabel(label13.Text);
-                    label14.Text = SetLabel(label14.Text);
-                    label15.Text = SetLabel(label15.Text);
-                    label16.Text = SetLabel(label16.Text);
-                    label17.Text = SetLabel(label17.Text);
-                    label18.Text = SetLabel(label18.Text);
-                    label19.Text = SetLabel(label19.Text);
-                    label20.Text = SetLabel(label10.Text);
-                    label21.Text = SetLabel(label21.Text);
-                    label22.Text = SetLabel(label22.Text);
-                    dataGridViewItemPriceList.Columns[4].HeaderText = SetLabel(dataGridViewItemPriceList.Columns[4].HeaderText);
-                    dataGridViewItemPriceList.Columns[5].HeaderText = SetLabel(dataGridViewItemPriceList.Columns[5].HeaderText);
-                    dataGridViewItemPriceList.Columns[3].HeaderText = SetLabel(dataGridViewItemPriceList.Columns[3].HeaderText);
-                    dataGridViewItemComponentList.Columns[6].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[6].HeaderText);
-                    dataGridViewItemComponentList.Columns[8].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[8].HeaderText);
-                    dataGridViewItemComponentList.Columns[9].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[9].HeaderText);
-                    dataGridViewItemComponentList.Columns[10].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[10].HeaderText);
-                    dataGridViewItemComponentList.Columns[11].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[11].HeaderText);
-                    dataGridViewItemComponentList.Columns[13].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[13].HeaderText);
-                    tabPage1.Text = SetLabel(tabPage1.Text);
-                    tabPage2.Text = SetLabel(tabPage2.Text);
-                    tabPage3.Text = SetLabel(tabPage3.Text);
-                    buttonItemComponentListPageListFirst.Text = SetLabel(buttonItemComponentListPageListFirst.Text);
-                    buttonItemComponentListPageListLast.Text = SetLabel(buttonItemComponentListPageListLast.Text);
-                    buttonItemComponentListPageListPrevious.Text = SetLabel(buttonItemComponentListPageListPrevious.Text);
-                    buttonItemComponentListPageListNext.Text = SetLabel(buttonItemComponentListPageListNext.Text);
-                    buttonItemPriceListPageListFirst.Text = SetLabel(buttonItemPriceListPageListFirst.Text);
-                    buttonItemPriceListPageListLast.Text = SetLabel(buttonItemPriceListPageListLast.Text);
-                    buttonItemPriceListPageListPrevious.Text = SetLabel(buttonItemPriceListPageListPrevious.Text);
-                    buttonItemPriceListPageListNext.Text = SetLabel(buttonItemPriceListPageListNext.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonLock.Text = SetLabel(buttonLock.Text);
+            buttonUnlock.Text = SetLabel(buttonUnlock.Text);
+            buttonAddItemPrice.Text = SetLabel(buttonAddItemPrice.Text);
+            buttonItemComponentAdd.Text = SetLabel(buttonItemComponentAdd.Text);
+            label1.Text = SetLabel(label1.Text);
+            label2.Text = SetLabel(label2.Text);
+            label3.Text = SetLabel(label3.Text);
+            label4.Text = SetLabel(label4.Text);
+            label5.Text = SetLabel(label5.Text);
+            label6.Text = SetLabel(label6.Text);
+            label7.Text = SetLabel(label7.Text);
+            label8.Text = SetLabel(label8.Text);
+            label9.Text = SetLabel(label9.Text);
+            label10.Text = SetLabel(label10.Text);
+            label11.Text = SetLabel(label11.Text);
+            label12.Text = SetLabel(label12.Text);
+            label13.Text = SetLabel(label13.Text);
+            label14.Text = SetLabel(label14.Text);
+            label15.Text = SetLabel(label15.Text);
+            label16.Text = SetLabel(label16.Text);
+            label17.Text = SetLabel(label17.Text);
+            label18.Text = SetLabel(label18.Text);
+            label19.Text = SetLabel(label19.Text);
+            label20.Text = SetLabel(label10.Text);
+            label21.Text = SetLabel(label21.Text);
+            label22.Text = SetLabel(label22.Text);
+            dataGridViewItemPriceList.Columns[4].HeaderText = SetLabel(dataGridViewItemPriceList.Columns[4].HeaderText);
+            dataGridViewItemPriceList.Columns[5].HeaderText = SetLabel(dataGridViewItemPriceList.Columns[5].HeaderText);
+            dataGridViewItemPriceList.Columns[3].HeaderText = SetLabel(dataGridViewItemPriceList.Columns[3].HeaderText);
+            dataGridViewItemComponentList.Columns[6].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[6].HeaderText);
+            dataGridViewItemComponentList.Columns[8].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[8].HeaderText);
+            dataGridViewItemComponentList.Columns[9].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[9].HeaderText);
+            dataGridViewItemComponentList.Columns[10].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[10].HeaderText);
+            dataGridViewItemComponentList.Columns[11].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[11].HeaderText);
+            dataGridViewItemComponentList.Columns[13].HeaderText = SetLabel(dataGridViewItemComponentList.Columns[13].HeaderText);
+            tabPage1.Text = SetLabel(tabPage1.Text);
+            tabPage2.Text = SetLabel(tabPage2.Text);
+            tabPage3.Text = SetLabel(tabPage3.Text);
+            buttonItemComponentListPageListFirst.Text = SetLabel(buttonItemComponentListPageListFirst.Text);
+            buttonItemComponentListPageListLast.Text = SetLabel(buttonItemComponentListPageListLast.Text);
+            buttonItemComponentListPageListPrevious.Text = SetLabel(buttonItemComponentListPageListPrevious.Text);
+            buttonItemComponentListPageListNext.Text = SetLabel(buttonItemComponentListPageListNext.Text);
+            buttonItemPriceListPageListFirst.Text = SetLabel(buttonItemPriceListPageListFirst.Text);
+            buttonItemPriceListPageListLast.Text = SetLabel(buttonItemPriceListPageListLast.Text);
+            buttonItemPriceListPageListPrevious.Text = SetLabel(buttonItemPriceListPageListPrevious.Text);
+            buttonItemPriceListPageListNext.Text = SetLabel(buttonItemPriceListPageListNext.Text);
 
-                }
-            }
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("MstItemDetail");
@@ -123,13 +114,32 @@ namespace EasyPOS.Forms.Software.MstItem
         }
         public string SetLabel(string label)
         {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
             if (sysLanguageEntities.Any())
             {
-                foreach (var displayedLabel in sysLanguageEntities)
+
+                if (sysLabel.ListLanguage("").Any())
                 {
-                    if (displayedLabel.Label == label)
+
+                    foreach (var displayedLabel in sysLanguageEntities)
                     {
-                        return displayedLabel.DisplayedLabel;
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
                     }
                 }
             }
@@ -483,7 +493,7 @@ namespace EasyPOS.Forms.Software.MstItem
                     sysSoftwareForm.RemoveTabPage();
                 }
             }
-            
+
         }
 
         private void textBoxCost_KeyPress(object sender, KeyPressEventArgs e)
@@ -620,8 +630,8 @@ namespace EasyPOS.Forms.Software.MstItem
                 var itemPrices = from d in listItemPrice
                                  select new Entities.DgvMstItemPriceListEntity
                                  {
-                                     ColumnItemPriceListButtonEdit = "Edit",
-                                     ColumnItemPriceListButtonDelete = "Delete",
+                                     ColumnItemPriceListButtonEdit = SetLabel("Edit"),
+                                     ColumnItemPriceListButtonDelete = SetLabel("Delete"),
                                      ColumnItemPriceListId = d.Id,
                                      ColumnItemPriceListPriceDescription = d.PriceDescription,
                                      ColumnItemPriceListPrice = d.Price.ToString("#,##0.00"),
@@ -823,8 +833,8 @@ namespace EasyPOS.Forms.Software.MstItem
                 var itemComponent = from d in listItemComponent
                                     select new Entities.DgvMstItemComponentListEntity
                                     {
-                                        ColumnItemComponentButtonEdit = "Edit",
-                                        ColumnItemComponentButtonDelete = "Delete",
+                                        ColumnItemComponentButtonEdit = SetLabel("Edit"),
+                                        ColumnItemComponentButtonDelete = SetLabel("Delete"),
                                         ColumnItemComponentId = d.Id,
                                         ColumnItemComponentItemId = d.ItemId,
                                         ColumnItemComponenItemDescription = d.ItemDescription,

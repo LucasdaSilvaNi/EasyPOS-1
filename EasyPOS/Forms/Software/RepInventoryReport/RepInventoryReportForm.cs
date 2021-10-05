@@ -27,9 +27,15 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
         public String category;
         public Int32 itemId;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public RepInventoryReportForm(DateTime dateStart, DateTime dateEnd, String filterItemCategory, Int32 itemIds)
         {
             InitializeComponent();
+
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonPrint.Text = SetLabel(buttonPrint.Text);
+            label1.Text = SetLabel(label1.Text);
 
             startDate = dateStart;
             endDate = dateEnd;
@@ -38,6 +44,40 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
 
             GetInventoryReportDataSource("");
             GetDataGridViewCollectionDetailReportSource();
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public List<Entities.DgvRepInventoryInventoryReportListEntity> GetInventoryReportListData(DateTime startDate, DateTime endDate, String category, String filter, Int32 itemId)

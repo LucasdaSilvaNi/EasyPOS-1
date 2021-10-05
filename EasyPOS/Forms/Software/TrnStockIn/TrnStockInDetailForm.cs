@@ -27,9 +27,44 @@ namespace EasyPOS.Forms.Software.TrnStockIn
         public PagedList<Entities.DgvTrnStockInLineListEntity> stockInLinePageList = new PagedList<Entities.DgvTrnStockInLineListEntity>(stockInLineData, stockInLinePageNumber, stockInLinePageSize);
         public BindingSource stockInLineDataSource = new BindingSource();
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public TrnStockInDetailForm(SysSoftwareForm softwareForm, TrnStockInListForm stockInListForm, Entities.TrnStockInEntity stockInEntity)
         {
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            label2.Text = SetLabel(label2.Text);
+            label3.Text = SetLabel(label3.Text);
+            label4.Text = SetLabel(label4.Text);
+            label5.Text = SetLabel(label5.Text);
+            label7.Text = SetLabel(label7.Text);
+            label11.Text = SetLabel(label11.Text);
+            label12.Text = SetLabel(label12.Text);
+            label13.Text = SetLabel(label13.Text);
+            buttonLock.Text = SetLabel(buttonLock.Text);
+            buttonUnlock.Text = SetLabel(buttonUnlock.Text);
+            buttonPrint.Text = SetLabel(buttonPrint.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonBarcode.Text = SetLabel(buttonBarcode.Text);
+            buttonImport.Text = SetLabel(buttonImport.Text);
+            buttonExport.Text = SetLabel(buttonExport.Text);
+            buttonExportAllItems.Text = SetLabel(buttonExportAllItems.Text);
+            buttonSearchItem.Text = SetLabel(buttonSearchItem.Text);
+            buttonStockInLineListPageListFirst.Text = SetLabel(buttonStockInLineListPageListFirst.Text);
+            buttonStockInLineListPageListPrevious.Text = SetLabel(buttonStockInLineListPageListPrevious.Text);
+            buttonStockInLineListPageListNext.Text = SetLabel(buttonStockInLineListPageListNext.Text);
+            buttonStockInLineListPageListLast.Text = SetLabel(buttonStockInLineListPageListLast.Text);
+            dataGridViewStockInLineList.Columns[6].HeaderText = SetLabel(dataGridViewStockInLineList.Columns[6].HeaderText);
+            dataGridViewStockInLineList.Columns[8].HeaderText = SetLabel(dataGridViewStockInLineList.Columns[8].HeaderText);
+            dataGridViewStockInLineList.Columns[9].HeaderText = SetLabel(dataGridViewStockInLineList.Columns[9].HeaderText);
+            dataGridViewStockInLineList.Columns[10].HeaderText = SetLabel(dataGridViewStockInLineList.Columns[10].HeaderText);
+            dataGridViewStockInLineList.Columns[11].HeaderText = SetLabel(dataGridViewStockInLineList.Columns[11].HeaderText);
+            dataGridViewStockInLineList.Columns[12].HeaderText = SetLabel(dataGridViewStockInLineList.Columns[12].HeaderText);
+            dataGridViewStockInLineList.Columns[13].HeaderText = SetLabel(dataGridViewStockInLineList.Columns[13].HeaderText);
+            dataGridViewStockInLineList.Columns[16].HeaderText = SetLabel(dataGridViewStockInLineList.Columns[16].HeaderText);
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("TrnStockInDetail");
@@ -66,6 +101,40 @@ namespace EasyPOS.Forms.Software.TrnStockIn
             //    ColumnStockInLineListPrice.Visible = true;
             //}
 
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetSupplierList()
@@ -389,8 +458,8 @@ namespace EasyPOS.Forms.Software.TrnStockIn
                 var items = from d in listStockInLine
                             select new Entities.DgvTrnStockInLineListEntity
                             {
-                                ColumnStockInLineListButtonEdit = "Edit",
-                                ColumnStockInLineListButtonDelete = "Delete",
+                                ColumnStockInLineListButtonEdit = SetLabel("Edit"),
+                                ColumnStockInLineListButtonDelete = SetLabel("Delete"),
                                 ColumnStockInLineListId = d.Id,
                                 ColumnStockInLineListStockInId = d.StockInId,
                                 ColumnStockInLineListItemId = d.ItemId,

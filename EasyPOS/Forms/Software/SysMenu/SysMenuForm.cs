@@ -15,9 +15,29 @@ namespace EasyPOS.Forms.Software.SysMenu
         public SysSoftwareForm sysSoftwareForm;
         private Modules.SysUserRightsModule sysUserRights;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public SysMenuForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            buttonItem.Text = SetLabel(buttonItem.Text);
+            buttonDiscounting.Text = SetLabel(buttonDiscounting.Text);
+            buttonCustomer.Text = SetLabel(buttonCustomer.Text);
+            buttonUser.Text = SetLabel(buttonUser.Text);
+            buttonPOS.Text = SetLabel(buttonPOS.Text);
+            buttonDisbursement.Text = SetLabel(buttonDisbursement.Text);
+            buttonStockIn.Text = SetLabel(buttonStockIn.Text);
+            buttonStockOut.Text = SetLabel(buttonStockOut.Text);
+            buttonSalesReport.Text = SetLabel(buttonSalesReport.Text);
+            buttonRemittanceReport.Text = SetLabel(buttonRemittanceReport.Text);
+            buttonInventory.Text = SetLabel(buttonInventory.Text);
+            buttonStockCount.Text = SetLabel(buttonStockCount.Text);
+            buttonPOSReport.Text = SetLabel(buttonPOSReport.Text);
+            buttonSettings.Text = SetLabel(buttonSettings.Text);
+            buttonUtilities.Text = SetLabel(buttonUtilities.Text);
+            buttonSystemTables.Text = SetLabel(buttonSystemTables.Text);
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("SysMenu");
@@ -31,6 +51,40 @@ namespace EasyPOS.Forms.Software.SysMenu
             {
                 buttonPOS.ImageIndex = 14;
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         private void buttonItem_Click(object sender, EventArgs e)

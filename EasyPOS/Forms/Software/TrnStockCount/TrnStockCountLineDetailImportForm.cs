@@ -14,11 +14,54 @@ namespace EasyPOS.Forms.Software.TrnStockCount
     public partial class TrnStockCountLineDetailImportForm : Form
     {
         TrnStockCountDetailForm _trnStockCountDetailForm = null;
+
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public TrnStockCountLineDetailImportForm(TrnStockCountDetailForm stockCountDetailForm)
         {
             _trnStockCountDetailForm = stockCountDetailForm;
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            buttonImport.Text = SetLabel(buttonImport.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonOpenFile.Text = SetLabel(buttonOpenFile.Text);
         }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
+        }
+
         public List<Entities.TrnStockCountLineEntity> stockCountItemList = new List<Entities.TrnStockCountLineEntity>();
         private void buttonClose_Click(object sender, EventArgs e)
         {

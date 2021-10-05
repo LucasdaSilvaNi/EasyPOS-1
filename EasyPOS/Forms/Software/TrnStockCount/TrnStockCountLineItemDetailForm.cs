@@ -15,9 +15,19 @@ namespace EasyPOS.Forms.Software.TrnStockCount
         public TrnStockCountDetailForm trnStockCountDetailForm;
         public Entities.TrnStockCountLineEntity trnStockCountLineEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public TrnStockCountLineItemDetailForm(TrnStockCountDetailForm stockCountDetailForm, Entities.TrnStockCountLineEntity stockCountLineEntity)
         {
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            label2.Text = SetLabel(label2.Text);
+            label3.Text = SetLabel(label3.Text);
+            label4.Text = SetLabel(label4.Text);
+            label9.Text = SetLabel(label9.Text);
+            buttonSave.Text = SetLabel(buttonSave.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
 
             trnStockCountDetailForm = stockCountDetailForm;
             trnStockCountLineEntity = stockCountLineEntity;
@@ -28,6 +38,39 @@ namespace EasyPOS.Forms.Software.TrnStockCount
             textBoxStockCountLineQuantity.SelectAll();
         }
 
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
+        }
         public void GetStockCountLineItemDetail()
         {
             textBoxStockCountLineItemDescription.Text = trnStockCountLineEntity.ItemDescription;

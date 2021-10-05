@@ -17,9 +17,26 @@ namespace EasyPOS.Forms.Software.SysSystemTables
 
         Entities.MstTerminalEntity mstTerminalEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public SysTerminalDetailForm(SysSystemTablesForm systemTablesForm, Entities.MstTerminalEntity terminalEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonSave.Text = SetLabel(buttonSave.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                }
+            }
+
             sysSystemTablesForm = systemTablesForm;
             mstTerminalEntity = terminalEntity;
 
@@ -39,6 +56,20 @@ namespace EasyPOS.Forms.Software.SysSystemTables
             }
         }
 
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
+        }
         public void LoadTerminal()
         {
             if (mstTerminalEntity != null)

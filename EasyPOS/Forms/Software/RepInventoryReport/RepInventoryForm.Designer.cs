@@ -115,7 +115,7 @@
             // labelFilter
             // 
             this.labelFilter.AutoSize = true;
-            this.labelFilter.Location = new System.Drawing.Point(362, 109);
+            this.labelFilter.Location = new System.Drawing.Point(353, 109);
             this.labelFilter.Name = "labelFilter";
             this.labelFilter.Size = new System.Drawing.Size(42, 19);
             this.labelFilter.TabIndex = 28;
@@ -137,7 +137,7 @@
             // 
             this.labelCategory.AutoSize = true;
             this.labelCategory.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.labelCategory.Location = new System.Drawing.Point(331, 163);
+            this.labelCategory.Location = new System.Drawing.Point(327, 163);
             this.labelCategory.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCategory.Name = "labelCategory";
             this.labelCategory.Size = new System.Drawing.Size(68, 19);
@@ -161,7 +161,7 @@
             // 
             this.labelItem.AutoSize = true;
             this.labelItem.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.labelItem.Location = new System.Drawing.Point(358, 132);
+            this.labelItem.Location = new System.Drawing.Point(327, 133);
             this.labelItem.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelItem.Name = "labelItem";
             this.labelItem.Size = new System.Drawing.Size(40, 19);
@@ -183,7 +183,7 @@
             // 
             this.labelStartDate.AutoSize = true;
             this.labelStartDate.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.labelStartDate.Location = new System.Drawing.Point(325, 47);
+            this.labelStartDate.Location = new System.Drawing.Point(321, 50);
             this.labelStartDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelStartDate.Name = "labelStartDate";
             this.labelStartDate.Size = new System.Drawing.Size(74, 19);
@@ -241,7 +241,7 @@
             // 
             this.labelEndDate.AutoSize = true;
             this.labelEndDate.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.labelEndDate.Location = new System.Drawing.Point(330, 77);
+            this.labelEndDate.Location = new System.Drawing.Point(327, 80);
             this.labelEndDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEndDate.Name = "labelEndDate";
             this.labelEndDate.Size = new System.Drawing.Size(68, 19);

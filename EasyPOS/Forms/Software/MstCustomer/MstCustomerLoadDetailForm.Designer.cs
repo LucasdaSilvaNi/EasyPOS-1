@@ -151,7 +151,7 @@
             this.MaximizeBox = false;
             this.Name = "MstCustomerLoadDetailForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Item Price Detail";
+            this.Text = "Customer Load Detail";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -15,9 +15,22 @@ namespace EasyPOS.Forms.Software.TrnStockIn
         public TrnStockInDetailForm trnStockInDetailForm;
         public Entities.TrnStockInLineEntity trnStockInLineEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public TrnStockInLineItemDetailForm(TrnStockInDetailForm stockInDetailForm, Entities.TrnStockInLineEntity stockInLineEntity)
         {
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            label2.Text = SetLabel(label2.Text);
+            label3.Text = SetLabel(label3.Text);
+            label4.Text = SetLabel(label4.Text);
+            label6.Text = SetLabel(label6.Text);
+            label7.Text = SetLabel(label7.Text);
+            label8.Text = SetLabel(label8.Text);
+            label9.Text = SetLabel(label9.Text);
+            buttonSave.Text = SetLabel(buttonSave.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
 
             trnStockInDetailForm = stockInDetailForm;
             trnStockInLineEntity = stockInLineEntity;
@@ -36,6 +49,40 @@ namespace EasyPOS.Forms.Software.TrnStockIn
                 textBoxStockInLineCost.Enabled = true;
                 textBoxStockInLinePrice.Enabled = true;
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetStockInLineItemDetail()

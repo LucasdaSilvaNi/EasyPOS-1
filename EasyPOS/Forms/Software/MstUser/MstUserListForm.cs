@@ -27,25 +27,17 @@ namespace EasyPOS.Forms.Software.MstUser
         {
             InitializeComponent();
 
-            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
-            if (sysLabel.ListLanguage("").Any())
-            {
-                sysLanguageEntities = sysLabel.ListLanguage("");
-                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
-                if (language != "English")
-                {
-                    buttonClose.Text = SetLabel(buttonClose.Text);
-                    buttonAdd.Text = SetLabel(buttonAdd.Text);
-                    label1.Text = SetLabel(label1.Text);
-                    dataGridViewUserList.Columns[3].HeaderText = SetLabel(dataGridViewUserList.Columns[3].HeaderText);
-                    dataGridViewUserList.Columns[4].HeaderText = SetLabel(dataGridViewUserList.Columns[4].HeaderText);
-                    dataGridViewUserList.Columns[5].HeaderText = SetLabel(dataGridViewUserList.Columns[5].HeaderText);
-                    buttonUserListPageListFirst.Text = SetLabel(buttonUserListPageListFirst.Text);
-                    buttonUserListPageListLast.Text = SetLabel(buttonUserListPageListLast.Text);
-                    buttonUserListPageListNext.Text = SetLabel(buttonUserListPageListNext.Text);
-                    buttonUserListPageListPrevious.Text = SetLabel(buttonUserListPageListPrevious.Text);
-                }
-            }
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonAdd.Text = SetLabel(buttonAdd.Text);
+            label1.Text = SetLabel(label1.Text);
+            dataGridViewUserList.Columns[3].HeaderText = SetLabel(dataGridViewUserList.Columns[3].HeaderText);
+            dataGridViewUserList.Columns[4].HeaderText = SetLabel(dataGridViewUserList.Columns[4].HeaderText);
+            dataGridViewUserList.Columns[5].HeaderText = SetLabel(dataGridViewUserList.Columns[5].HeaderText);
+            buttonUserListPageListFirst.Text = SetLabel(buttonUserListPageListFirst.Text);
+            buttonUserListPageListLast.Text = SetLabel(buttonUserListPageListLast.Text);
+            buttonUserListPageListNext.Text = SetLabel(buttonUserListPageListNext.Text);
+            buttonUserListPageListPrevious.Text = SetLabel(buttonUserListPageListPrevious.Text);
+
 
             sysSoftwareForm = softwareForm;
 
@@ -76,13 +68,32 @@ namespace EasyPOS.Forms.Software.MstUser
         }
         public string SetLabel(string label)
         {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
             if (sysLanguageEntities.Any())
             {
-                foreach (var displayedLabel in sysLanguageEntities)
+
+                if (sysLabel.ListLanguage("").Any())
                 {
-                    if (displayedLabel.Label == label)
+
+                    foreach (var displayedLabel in sysLanguageEntities)
                     {
-                        return displayedLabel.DisplayedLabel;
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
                     }
                 }
             }
@@ -159,8 +170,8 @@ namespace EasyPOS.Forms.Software.MstUser
                 var users = from d in listUser
                             select new Entities.DgvMstUserListEntity
                             {
-                                ColumnUserListButtonEdit = "Edit",
-                                ColumnUserListButtonDelete = "Delete",
+                                ColumnUserListButtonEdit = SetLabel("Edit"),
+                                ColumnUserListButtonDelete = SetLabel("Delete"),
                                 ColumnUserListId = d.Id,
                                 ColumnUserListUserName = d.UserName,
                                 ColumnUserListFullName = d.FullName,

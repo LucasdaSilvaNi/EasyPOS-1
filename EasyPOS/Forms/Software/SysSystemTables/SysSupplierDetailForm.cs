@@ -17,9 +17,36 @@ namespace EasyPOS.Forms.Software.SysSystemTables
 
         Entities.MstSupplierEntity mstSupplierEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public SysSupplierDetailForm(SysSystemTablesForm systemTablesForm, Entities.MstSupplierEntity supplierEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonLock.Text = SetLabel(buttonLock.Text);
+                    buttonUnlock.Text = SetLabel(buttonUnlock.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+                    label5.Text = SetLabel(label5.Text);
+                    label6.Text = SetLabel(label6.Text);
+                    label7.Text = SetLabel(label7.Text);
+                    label8.Text = SetLabel(label8.Text);
+                    label9.Text = SetLabel(label9.Text);
+
+                }
+            }
+
             sysSystemTablesForm = systemTablesForm;
             mstSupplierEntity = supplierEntity;
 
@@ -33,6 +60,21 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 GetTermList();
             }
 
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetTermList()

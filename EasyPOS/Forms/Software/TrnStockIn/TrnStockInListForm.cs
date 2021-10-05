@@ -22,9 +22,25 @@ namespace EasyPOS.Forms.Software.TrnStockIn
         public PagedList<Entities.DgvTrnStockInListEntity> itemListPageList = new PagedList<Entities.DgvTrnStockInListEntity>(itemListData, pageNumber, pageSize);
         public BindingSource itemListDataSource = new BindingSource();
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public TrnStockInListForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            buttonAdd.Text = SetLabel(buttonAdd.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonStockInListPageListFirst.Text = SetLabel(buttonStockInListPageListFirst.Text);
+            buttonStockInListPageListPrevious.Text = SetLabel(buttonStockInListPageListPrevious.Text);
+            buttonStockInListPageListNext.Text = SetLabel(buttonStockInListPageListNext.Text);
+            buttonStockInListPageListLast.Text = SetLabel(buttonStockInListPageListLast.Text);
+            dataGridViewStockInList.Columns[4].HeaderText = SetLabel(dataGridViewStockInList.Columns[4].HeaderText);
+            dataGridViewStockInList.Columns[5].HeaderText = SetLabel(dataGridViewStockInList.Columns[5].HeaderText);
+            dataGridViewStockInList.Columns[6].HeaderText = SetLabel(dataGridViewStockInList.Columns[6].HeaderText);
+            dataGridViewStockInList.Columns[7].HeaderText = SetLabel(dataGridViewStockInList.Columns[7].HeaderText);
+            dataGridViewStockInList.Columns[8].HeaderText = SetLabel(dataGridViewStockInList.Columns[8].HeaderText);
+
             sysSoftwareForm = softwareForm;
 
             String currentDate = DateTime.Today.ToShortDateString() + "\t\t";
@@ -59,6 +75,40 @@ namespace EasyPOS.Forms.Software.TrnStockIn
 
                 CreateStockInListDataGridView();
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void UpdateStockInListDataSource()
@@ -133,8 +183,8 @@ namespace EasyPOS.Forms.Software.TrnStockIn
                 var items = from d in listStockIn
                             select new Entities.DgvTrnStockInListEntity
                             {
-                                ColumnStockInListButtonEdit = "Edit",
-                                ColumnStockInListButtonDelete = "Delete",
+                                ColumnStockInListButtonEdit = SetLabel("Edit"),
+                                ColumnStockInListButtonDelete = SetLabel("Delete"),
                                 ColumnStockInListId = d.Id,
                                 ColumnStockInListStockInDate = d.StockInDate,
                                 ColumnStockInListStockInNumber = d.StockInNumber,

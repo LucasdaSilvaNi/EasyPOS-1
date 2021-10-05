@@ -18,9 +18,30 @@ namespace EasyPOS.Forms.Software.SysSystemTables
 
         MstAccountEntity mstAccountEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public SysAccountDetailForm(SysSystemTablesForm sysSystemTablesForm, MstAccountEntity accountEntity)
         {
             InitializeComponent();
+
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            if (sysLabel.ListLanguage("").Any())
+            {
+                sysLanguageEntities = sysLabel.ListLanguage("");
+                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+                if (language != "English")
+                {
+                    buttonClose.Text = SetLabel(buttonClose.Text);
+                    buttonSave.Text = SetLabel(buttonSave.Text);
+                    label1.Text = SetLabel(label1.Text);
+                    label2.Text = SetLabel(label2.Text);
+                    label3.Text = SetLabel(label3.Text);
+                    label4.Text = SetLabel(label4.Text);
+
+                }
+            }
+
             SysSystemTablesForm = sysSystemTablesForm;
             mstAccountEntity = accountEntity;
 
@@ -39,6 +60,21 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 GetTypeList();
                 textBoxAccount.Focus();
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            if (sysLanguageEntities.Any())
+            {
+                foreach (var displayedLabel in sysLanguageEntities)
+                {
+                    if (displayedLabel.Label == label)
+                    {
+                        return displayedLabel.DisplayedLabel;
+                    }
+                }
+            }
+            return label;
         }
 
         public void LoadAccount()

@@ -22,10 +22,24 @@ namespace EasyPOS.Forms.Software.MstDiscounting
         public PagedList<Entities.DgvMstDiscountingListEntity> discountListPageList = new PagedList<Entities.DgvMstDiscountingListEntity>(discountListData, pageNumber, pageSize);
         public BindingSource discountListDataSource = new BindingSource();
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
 
         public MstDiscountingListForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            buttonAdd.Text = SetLabel(buttonAdd.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            label1.Text = SetLabel(label1.Text);
+            dataGridViewDiscountList.Columns[3].HeaderText = SetLabel(dataGridViewDiscountList.Columns[3].HeaderText);
+            dataGridViewDiscountList.Columns[4].HeaderText = SetLabel(dataGridViewDiscountList.Columns[4].HeaderText);
+            dataGridViewDiscountList.Columns[5].HeaderText = SetLabel(dataGridViewDiscountList.Columns[5].HeaderText);
+            buttonDiscountListPageListFirst.Text = SetLabel(buttonDiscountListPageListFirst.Text);
+            buttonDiscountListPageListLast.Text = SetLabel(buttonDiscountListPageListLast.Text);
+            buttonDiscountListPageListNext.Text = SetLabel(buttonDiscountListPageListNext.Text);
+            buttonDiscountListPageListPrevious.Text = SetLabel(buttonDiscountListPageListPrevious.Text);
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("MstDiscount");
@@ -52,6 +66,40 @@ namespace EasyPOS.Forms.Software.MstDiscounting
 
                 CreateDiscountListDataGridView();
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void UpdateDiscountListDataSource()
@@ -125,8 +173,8 @@ namespace EasyPOS.Forms.Software.MstDiscounting
                 var discounts = from d in listDiscount
                                 select new Entities.DgvMstDiscountingListEntity
                                 {
-                                    ColumnDiscountListButtonEdit = "Edit",
-                                    ColumnDiscountListButtonDelete = "Delete",
+                                    ColumnDiscountListButtonEdit = SetLabel("Edit"),
+                                    ColumnDiscountListButtonDelete = SetLabel("Delete"),
                                     ColumnDiscountListId = d.Id,
                                     ColumnDiscountListDiscount = d.Discount,
                                     ColumnDiscountListDiscountRate = d.DiscountRate.ToString("#,##0.00"),

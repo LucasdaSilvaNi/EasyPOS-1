@@ -15,12 +15,74 @@ namespace EasyPOS.Forms.Software.RepSalesReport
         SysSoftwareForm sysSoftwareForm;
         private Modules.SysUserRightsModule sysUserRights;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public RepSalesReportForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            label2.Text = SetLabel(label2.Text);
+            labelStartDate.Text = SetLabel(labelStartDate.Text);
+            labelEndDate.Text = SetLabel(labelEndDate.Text);
+            labelTerminal.Text = SetLabel(labelTerminal.Text);
+            labelCustomer.Text = SetLabel(labelCustomer.Text);
+            labelAgent.Text = SetLabel(labelAgent.Text);
+            labelDateAsOf.Text = SetLabel(labelDateAsOf.Text);
+            buttonView.Text = SetLabel(buttonView.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+
+            //Listbox Change Language
+            listBoxSalesReport.BeginUpdate();
+
+            ListBox.ObjectCollection items = listBoxSalesReport.Items;
+            int count = items.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                // — Update The Item
+                items[i] = SetLabel(items[i].ToString());
+            }
+
+            listBoxSalesReport.EndUpdate();
+            //End Change Language
+
             sysSoftwareForm = softwareForm;
 
             GetTerminalList();
+        }
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetTerminalList()
@@ -99,6 +161,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 switch (selectedItem)
                 {
                     case "Sales Summary Report":
+                    case "销售总结报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -118,10 +181,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Sales Detail Report":
+                    case "销售明细报表":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -141,10 +205,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "80mm Sales Summary Report":
+                    case "80mm 销售总结报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -164,10 +229,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "Print";
+                        buttonView.Text = SetLabel("Print");
 
                         break;
                     case "80mm Sales Detail Report":
+                    case "80mm 销售明细报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -187,10 +253,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "Print";
+                        buttonView.Text = SetLabel("Print");
 
                         break;
                     case "80mm Sales Status Report":
+                    case "80mm 销售状况报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -210,10 +277,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "Print";
+                        buttonView.Text = SetLabel("Print");
 
                         break;
                     case "Collection Summary Report":
+                    case "馆藏汇总报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -233,10 +301,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Collection Detail Report":
+                    case "馆藏详情报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -256,10 +325,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "80mm Collection Detail Report":
+                    case "80 毫米系列详细报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -279,10 +349,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "Print";
+                        buttonView.Text = SetLabel("Print");
 
                         break;
                     case "Cancelled Summary Report":
+                    case "取消的总结报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -302,10 +373,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Stock Withdrawal Report":
+                    case "股票提取报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -325,10 +397,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Collection Detail Report (Facepay)":
+                    case "收款详情报告 (Facepay)":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -348,10 +421,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Top Selling Items Report":
+                    case "畅销商品报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -371,10 +445,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Sales Return Detail Report":
+                    case "销售退货明细报表":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -394,14 +469,16 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Customer List Report":
-                        buttonView.Text = "View";
+                    case "客户名单报告":
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Sales Summary Reward Report":
+                    case "销售总结奖励报告":
                         labelStartDate.Visible = false;
                         dateTimePickerStartDate.Visible = false;
 
@@ -420,10 +497,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Net Sales Summary Report - Daily":
+                    case "净销售额汇总报告 - 每日":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -441,10 +519,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Net Sales Summary Report - Monthly":
+                    case "净销售额汇总报告 - 每月":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -461,10 +540,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Hourly Top Selling Sales Report":
+                    case "每小时最畅销销售报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -481,11 +561,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
 
                     case "Unsold Item Report":
+                    case "未售出商品报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -502,10 +583,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = false;
 
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Cost Of Sales Report":
+                    case "销售成本报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
 
@@ -525,10 +607,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         dateTimePickerDateAsOf.Visible = true;
 
                         labelStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Accounts Receivable":
+                    case "应收账款":
                         labelStartDate.Visible = false;
                         dateTimePickerStartDate.Visible = false;
 
@@ -598,6 +681,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                     switch (selectedItem)
                     {
                         case "Sales Summary Report":
+                        case "销售总结报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesSummary");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -620,6 +704,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             break;
 
                         case "Sales Detail Report":
+                        case "销售明细报表":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -641,6 +726,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "80mm Sales Summary Report":
+                        case "80mm 销售总结报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepRestaurantSalesSummary");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -661,6 +747,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "80mm Sales Detail Report":
+                        case "80mm 销售明细报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepRestaurantSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -682,6 +769,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             break;
 
                         case "80mm Sales Status Report":
+                        case "80mm 销售状况报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepRestaurantSalesStatus");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -704,6 +792,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             break;
 
                         case "Collection Summary Report":
+                        case "馆藏汇总报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepCollectionSummary");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -725,6 +814,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "Collection Detail Report":
+                        case "馆藏详情报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepCollectionDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -746,6 +836,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "Cancelled Summary Report":
+                        case "80 毫米系列详细报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesCancelledSummary");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -767,6 +858,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "80mm Collection Detail Report":
+                        case "取消的总结报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepCollectionDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -787,6 +879,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "Stock Withdrawal Report":
+                        case "股票提取报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepCollectionDetail");
                             String printFilePath = "";
                             DialogResult folderBrowserDialoResult = folderBrowserDialogStockWithdrawalReport.ShowDialog();
@@ -814,6 +907,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "Collection Detail Report (Facepay)":
+                        case "收款详情报告 (Facepay)":
                             String printCollectionDetailReportFacepayFilePath = "";
 
                             DialogResult folderBrowserDialogCollectionDetailReportFacepayDialoResult = folderBrowserDialogCollectionDetailReportFacepay.ShowDialog();
@@ -825,11 +919,13 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "Top Selling Items Report":
+                        case "畅销商品报告":
                             RepTopSellingItemsReportForm repSalesReportTopSellingItemsReportForm = new RepTopSellingItemsReportForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date);
                             repSalesReportTopSellingItemsReportForm.ShowDialog();
 
                             break;
                         case "Sales Return Detail Report":
+                        case "销售退货明细报表":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -851,6 +947,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "Customer List Report":
+                        case "客户名单报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -872,6 +969,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                             break;
                         case "Sales Summary Reward Report":
+                        case "销售总结奖励报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -892,6 +990,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             }
                             break;
                         case "Net Sales Summary Report - Daily":
+                        case "净销售额汇总报告 - 每日":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -912,6 +1011,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             }
                             break;
                         case "Net Sales Summary Report - Monthly":
+                        case "净销售额汇总报告 - 每月":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -932,6 +1032,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             }
                             break;
                         case "Hourly Top Selling Sales Report":
+                        case "每小时最畅销销售报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -953,6 +1054,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             break;
 
                         case "Unsold Item Report":
+                        case "未售出商品报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -973,6 +1075,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             }
                             break;
                         case "Cost Of Sales Report":
+                        case "销售成本报告":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)
@@ -994,6 +1097,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             break;
 
                         case "Accounts Receivable":
+                        case "应收账款":
                             sysUserRights = new Modules.SysUserRightsModule("RepSalesDetail");
 
                             if (sysUserRights.GetUserRights() == null)

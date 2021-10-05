@@ -67,7 +67,7 @@ namespace EasyPOS.Forms.Software.SysSystemTables
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label3.Location = new System.Drawing.Point(55, 70);
+            this.label3.Location = new System.Drawing.Point(11, 69);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 19);
@@ -78,18 +78,18 @@ namespace EasyPOS.Forms.Software.SysSystemTables
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label2.Location = new System.Drawing.Point(8, 99);
+            this.label2.Location = new System.Drawing.Point(11, 100);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 19);
+            this.label2.Size = new System.Drawing.Size(92, 19);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Display Label: ";
+            this.label2.Text = "Display Label:";
             // 
             // textBoxLabel
             // 
             this.textBoxLabel.AcceptsTab = true;
             this.textBoxLabel.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxLabel.Location = new System.Drawing.Point(100, 66);
+            this.textBoxLabel.Location = new System.Drawing.Point(102, 66);
             this.textBoxLabel.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxLabel.Name = "textBoxLabel";
             this.textBoxLabel.Size = new System.Drawing.Size(365, 26);
@@ -99,7 +99,7 @@ namespace EasyPOS.Forms.Software.SysSystemTables
             // 
             this.textBoxDisplayLabel.AcceptsTab = true;
             this.textBoxDisplayLabel.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.textBoxDisplayLabel.Location = new System.Drawing.Point(100, 97);
+            this.textBoxDisplayLabel.Location = new System.Drawing.Point(102, 97);
             this.textBoxDisplayLabel.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxDisplayLabel.Name = "textBoxDisplayLabel";
             this.textBoxDisplayLabel.Size = new System.Drawing.Size(365, 26);

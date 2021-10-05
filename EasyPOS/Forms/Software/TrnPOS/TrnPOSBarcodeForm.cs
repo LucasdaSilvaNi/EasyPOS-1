@@ -36,49 +36,39 @@ namespace EasyPOS.Forms.Software.TrnPOS
         {
             InitializeComponent();
 
-            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
-            if (sysLabel.ListLanguage("").Any())
-            {
-                sysLanguageEntities = sysLabel.ListLanguage("");
-                var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
-                if (language != "English")
-                {
-                    buttonTender.Text = SetLabel(buttonTender.Text);
-                    label1.Text = SetLabel(label1.Text);
-                    buttonReprint.Text = SetLabel(buttonReprint.Text);
-                    buttonCancel.Text = SetLabel(buttonCancel.Text);
-                    buttonSales.Text = SetLabel(buttonSales.Text);
-                    buttonClose.Text = SetLabel(buttonClose.Text);
-                    dataGridViewSalesList.Columns[5].HeaderText = SetLabel(dataGridViewSalesList.Columns[5].HeaderText);
-                    dataGridViewSalesList.Columns[6].HeaderText = SetLabel(dataGridViewSalesList.Columns[6].HeaderText);
-                    dataGridViewSalesList.Columns[7].HeaderText = SetLabel(dataGridViewSalesList.Columns[7].HeaderText);
-                    dataGridViewSalesList.Columns[8].HeaderText = SetLabel(dataGridViewSalesList.Columns[8].HeaderText);
-                    dataGridViewSalesList.Columns[9].HeaderText = SetLabel(dataGridViewSalesList.Columns[9].HeaderText);
-                    dataGridViewSalesList.Columns[10].HeaderText = SetLabel(dataGridViewSalesList.Columns[10].HeaderText);
-                    dataGridViewSalesList.Columns[11].HeaderText = SetLabel(dataGridViewSalesList.Columns[11].HeaderText);
-                    dataGridViewSalesList.Columns[12].HeaderText = SetLabel(dataGridViewSalesList.Columns[12].HeaderText);
-                    dataGridViewSalesList.Columns[13].HeaderText = SetLabel(dataGridViewSalesList.Columns[13].HeaderText);
-                    dataGridViewSalesList.Columns[14].HeaderText = SetLabel(dataGridViewSalesList.Columns[14].HeaderText);
-                    label2.Text = SetLabel(label2.Text);
-                    label3.Text = SetLabel(label3.Text);
-                    label4.Text = SetLabel(label4.Text);
-                    label5.Text = SetLabel(label5.Text);
-                    label6.Text = SetLabel(label6.Text);
-                    label7.Text = SetLabel(label7.Text);
-                    label8.Text = SetLabel(label8.Text);
-                    dataGridViewSalesLineItemDisplay.Columns[0].HeaderText = SetLabel(dataGridViewSalesLineItemDisplay.Columns[0].HeaderText);
-                    dataGridViewSalesLineItemDisplay.Columns[1].HeaderText = SetLabel(dataGridViewSalesLineItemDisplay.Columns[1].HeaderText);
-                    dataGridViewSalesLineItemDisplay.Columns[2].HeaderText = SetLabel(dataGridViewSalesLineItemDisplay.Columns[2].HeaderText);
-                    buttonSalesListPageListFirst.Text = SetLabel(buttonSalesListPageListFirst.Text);
-                    buttonSalesListPageListPrevious.Text = SetLabel(buttonSalesListPageListPrevious.Text);
-                    buttonSalesListPageListNext.Text = SetLabel(buttonSalesListPageListNext.Text);
-                    buttonSalesListPageListLast.Text = SetLabel(buttonSalesListPageListLast.Text);
-                    buttonAutoRefresh.Text = SetLabel(buttonAutoRefresh.Text);
-                    labelLastChange.Text = SetLabel(labelLastChange.Text);
-                    ColumnEdit.Text = SetLabel(ColumnEdit.Text);
-                    ColumnDelete.Text = SetLabel(ColumnDelete.Text);
-                }
-            }
+            buttonTender.Text = SetLabel(buttonTender.Text);
+            label1.Text = SetLabel(label1.Text);
+            buttonReprint.Text = SetLabel(buttonReprint.Text);
+            buttonCancel.Text = SetLabel(buttonCancel.Text);
+            buttonSales.Text = SetLabel(buttonSales.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            dataGridViewSalesList.Columns[5].HeaderText = SetLabel(dataGridViewSalesList.Columns[5].HeaderText);
+            dataGridViewSalesList.Columns[6].HeaderText = SetLabel(dataGridViewSalesList.Columns[6].HeaderText);
+            dataGridViewSalesList.Columns[7].HeaderText = SetLabel(dataGridViewSalesList.Columns[7].HeaderText);
+            dataGridViewSalesList.Columns[8].HeaderText = SetLabel(dataGridViewSalesList.Columns[8].HeaderText);
+            dataGridViewSalesList.Columns[9].HeaderText = SetLabel(dataGridViewSalesList.Columns[9].HeaderText);
+            dataGridViewSalesList.Columns[10].HeaderText = SetLabel(dataGridViewSalesList.Columns[10].HeaderText);
+            dataGridViewSalesList.Columns[11].HeaderText = SetLabel(dataGridViewSalesList.Columns[11].HeaderText);
+            dataGridViewSalesList.Columns[12].HeaderText = SetLabel(dataGridViewSalesList.Columns[12].HeaderText);
+            dataGridViewSalesList.Columns[13].HeaderText = SetLabel(dataGridViewSalesList.Columns[13].HeaderText);
+            dataGridViewSalesList.Columns[14].HeaderText = SetLabel(dataGridViewSalesList.Columns[14].HeaderText);
+            label2.Text = SetLabel(label2.Text);
+            label3.Text = SetLabel(label3.Text);
+            label4.Text = SetLabel(label4.Text);
+            label5.Text = SetLabel(label5.Text);
+            label6.Text = SetLabel(label6.Text);
+            label7.Text = SetLabel(label7.Text);
+            label8.Text = SetLabel(label8.Text);
+            dataGridViewSalesLineItemDisplay.Columns[0].HeaderText = SetLabel(dataGridViewSalesLineItemDisplay.Columns[0].HeaderText);
+            dataGridViewSalesLineItemDisplay.Columns[1].HeaderText = SetLabel(dataGridViewSalesLineItemDisplay.Columns[1].HeaderText);
+            dataGridViewSalesLineItemDisplay.Columns[2].HeaderText = SetLabel(dataGridViewSalesLineItemDisplay.Columns[2].HeaderText);
+            buttonSalesListPageListFirst.Text = SetLabel(buttonSalesListPageListFirst.Text);
+            buttonSalesListPageListPrevious.Text = SetLabel(buttonSalesListPageListPrevious.Text);
+            buttonSalesListPageListNext.Text = SetLabel(buttonSalesListPageListNext.Text);
+            buttonSalesListPageListLast.Text = SetLabel(buttonSalesListPageListLast.Text);
+            buttonAutoRefresh.Text = SetLabel(buttonAutoRefresh.Text);
+            labelLastChange.Text = SetLabel(labelLastChange.Text);
+
             sysSoftwareForm = softwareForm;
             if (Modules.SysCurrentModule.GetCurrentSettings().HideSalesAmount == true)
             {
@@ -137,11 +127,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                 lockOption = new List<String>
                 {
-                    "All",
-                    "Locked",
-                    "Unlocked",
-                    "Tendered",
-                    "Cancelled"
+                    SetLabel("All"),
+                    SetLabel("Locked"),
+                    SetLabel("Unlocked"),
+                    SetLabel("Tendered"),
+                    SetLabel("Cancelled")
                 };
                 comboBoxLockOption.DataSource = lockOption;
 
@@ -155,13 +145,32 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public string SetLabel(string label)
         {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
             if (sysLanguageEntities.Any())
             {
-                foreach (var displayedLabel in sysLanguageEntities)
+
+                if (sysLabel.ListLanguage("").Any())
                 {
-                    if (displayedLabel.Label == label)
+
+                    foreach (var displayedLabel in sysLanguageEntities)
                     {
-                        return displayedLabel.DisplayedLabel;
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
                     }
                 }
             }
@@ -347,8 +356,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     var row = from d in salesList
                               select new Entities.DgvTrnSalesListEntity
                               {
-                                  ColumnDelete = "Delete",
-                                  ColumnEdit = "Edit",
+                                  ColumnDelete = SetLabel("Delete"),
+                                  ColumnEdit = SetLabel("Edit"),
                                   ColumnId = d.Id,
                                   ColumnTerminal = d.Terminal,
                                   ColumnSalesDate = d.SalesDate,
@@ -886,7 +895,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             {
                 isAutoRefresh = false;
 
-                buttonAutoRefresh.Text = "Start";
+                buttonAutoRefresh.Text = SetLabel("Start");
                 buttonAutoRefresh.BackColor = ColorTranslator.FromHtml("#7FBC00");
                 buttonAutoRefresh.ForeColor = Color.White;
             }
@@ -894,7 +903,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             {
                 isAutoRefresh = true;
 
-                buttonAutoRefresh.Text = "Stop";
+                buttonAutoRefresh.Text = SetLabel("Stop");
                 buttonAutoRefresh.BackColor = ColorTranslator.FromHtml("#F34F1C");
                 buttonAutoRefresh.ForeColor = Color.White;
             }

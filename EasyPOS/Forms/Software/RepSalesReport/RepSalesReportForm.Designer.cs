@@ -88,7 +88,7 @@
             // dateTimePickerDateAsOf
             // 
             this.dateTimePickerDateAsOf.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerDateAsOf.Location = new System.Drawing.Point(403, 195);
+            this.dateTimePickerDateAsOf.Location = new System.Drawing.Point(411, 195);
             this.dateTimePickerDateAsOf.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePickerDateAsOf.Name = "dateTimePickerDateAsOf";
             this.dateTimePickerDateAsOf.Size = new System.Drawing.Size(177, 26);
@@ -99,7 +99,7 @@
             // 
             this.labelDateAsOf.AutoSize = true;
             this.labelDateAsOf.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.labelDateAsOf.Location = new System.Drawing.Point(325, 198);
+            this.labelDateAsOf.Location = new System.Drawing.Point(325, 201);
             this.labelDateAsOf.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDateAsOf.Name = "labelDateAsOf";
             this.labelDateAsOf.Size = new System.Drawing.Size(74, 19);
@@ -110,7 +110,7 @@
             // comboBoxSalesAgent
             // 
             this.comboBoxSalesAgent.FormattingEnabled = true;
-            this.comboBoxSalesAgent.Location = new System.Drawing.Point(403, 164);
+            this.comboBoxSalesAgent.Location = new System.Drawing.Point(411, 164);
             this.comboBoxSalesAgent.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxSalesAgent.Name = "comboBoxSalesAgent";
             this.comboBoxSalesAgent.Size = new System.Drawing.Size(336, 27);
@@ -132,7 +132,7 @@
             // comboBoxCustomer
             // 
             this.comboBoxCustomer.FormattingEnabled = true;
-            this.comboBoxCustomer.Location = new System.Drawing.Point(403, 131);
+            this.comboBoxCustomer.Location = new System.Drawing.Point(411, 131);
             this.comboBoxCustomer.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxCustomer.Name = "comboBoxCustomer";
             this.comboBoxCustomer.Size = new System.Drawing.Size(336, 27);
@@ -143,7 +143,7 @@
             // 
             this.labelCustomer.AutoSize = true;
             this.labelCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.labelCustomer.Location = new System.Drawing.Point(327, 134);
+            this.labelCustomer.Location = new System.Drawing.Point(325, 134);
             this.labelCustomer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelCustomer.Name = "labelCustomer";
             this.labelCustomer.Size = new System.Drawing.Size(72, 19);
@@ -154,7 +154,7 @@
             // comboBoxTerminal
             // 
             this.comboBoxTerminal.FormattingEnabled = true;
-            this.comboBoxTerminal.Location = new System.Drawing.Point(403, 102);
+            this.comboBoxTerminal.Location = new System.Drawing.Point(411, 102);
             this.comboBoxTerminal.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxTerminal.Name = "comboBoxTerminal";
             this.comboBoxTerminal.Size = new System.Drawing.Size(177, 27);
@@ -165,7 +165,7 @@
             // 
             this.labelTerminal.AutoSize = true;
             this.labelTerminal.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.labelTerminal.Location = new System.Drawing.Point(336, 104);
+            this.labelTerminal.Location = new System.Drawing.Point(325, 102);
             this.labelTerminal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelTerminal.Name = "labelTerminal";
             this.labelTerminal.Size = new System.Drawing.Size(63, 19);
@@ -176,7 +176,7 @@
             // dateTimePickerStartDate
             // 
             this.dateTimePickerStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerStartDate.Location = new System.Drawing.Point(403, 44);
+            this.dateTimePickerStartDate.Location = new System.Drawing.Point(411, 44);
             this.dateTimePickerStartDate.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePickerStartDate.Name = "dateTimePickerStartDate";
             this.dateTimePickerStartDate.Size = new System.Drawing.Size(177, 26);
@@ -253,7 +253,7 @@
             // dateTimePickerEndDate
             // 
             this.dateTimePickerEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerEndDate.Location = new System.Drawing.Point(403, 73);
+            this.dateTimePickerEndDate.Location = new System.Drawing.Point(411, 73);
             this.dateTimePickerEndDate.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePickerEndDate.Name = "dateTimePickerEndDate";
             this.dateTimePickerEndDate.Size = new System.Drawing.Size(177, 26);
@@ -288,7 +288,7 @@
             // 
             this.labelEndDate.AutoSize = true;
             this.labelEndDate.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.labelEndDate.Location = new System.Drawing.Point(331, 75);
+            this.labelEndDate.Location = new System.Drawing.Point(325, 73);
             this.labelEndDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEndDate.Name = "labelEndDate";
             this.labelEndDate.Size = new System.Drawing.Size(68, 19);

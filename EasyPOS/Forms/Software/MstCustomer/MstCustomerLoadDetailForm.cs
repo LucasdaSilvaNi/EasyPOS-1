@@ -15,14 +15,55 @@ namespace EasyPOS.Forms.Software.MstCustomer
         MstCustomerDetailForm mstCustomerDetailForm;
         Entities.MstCustomerLoadEntity mstCustomerLoadEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public MstCustomerLoadDetailForm(MstCustomerDetailForm customerDetailForm, Entities.MstCustomerLoadEntity customerLoadEntity)
         {
             InitializeComponent();
+
+            buttonSave.Text = SetLabel(buttonSave.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            label1.Text = SetLabel(label1.Text);
+            label3.Text = SetLabel(label3.Text);
 
             mstCustomerDetailForm = customerDetailForm;
             mstCustomerLoadEntity = customerLoadEntity;
 
             LoadCustomerLoad();
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void LoadCustomerLoad()

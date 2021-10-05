@@ -18,9 +18,38 @@ namespace EasyPOS.Forms.Software.MstDiscounting
         public MstDiscountingListForm mstDiscountListForm;
         public Entities.MstDiscountEntity mstDiscountEntity;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public MstDiscountingDetailForm(SysSoftwareForm softwareForm, MstDiscountingListForm itemListForm, Entities.MstDiscountEntity itemEntity)
         {
             InitializeComponent();
+
+            buttonLock.Text = SetLabel(buttonLock.Text);
+            buttonUnlock.Text = SetLabel(buttonUnlock.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            checkBoxMon.Text = SetLabel(checkBoxMon.Text);
+            checkBoxTue.Text = SetLabel(checkBoxTue.Text);
+            checkBoxWed.Text = SetLabel(checkBoxWed.Text);
+            checkBoxThu.Text = SetLabel(checkBoxThu.Text);
+            checkBoxFri.Text = SetLabel(checkBoxFri.Text);
+            checkBoxSat.Text = SetLabel(checkBoxSat.Text);
+            checkBoxSun.Text = SetLabel(checkBoxSun.Text);
+            label1.Text = SetLabel(label1.Text);
+            label2.Text = SetLabel(label2.Text);
+            label3.Text = SetLabel(label3.Text);
+            label4.Text = SetLabel(label4.Text);
+            label5.Text = SetLabel(label5.Text);
+            label6.Text = SetLabel(label6.Text);
+            label7.Text = SetLabel(label7.Text);
+            label8.Text = SetLabel(label8.Text);
+            label9.Text = SetLabel(label9.Text);
+            label10.Text = SetLabel(label10.Text);
+            label11.Text = SetLabel(label11.Text);
+            buttonStockInLineListPageListFirst.Text = SetLabel(buttonStockInLineListPageListFirst.Text);
+            buttonStockInLineListPageListLast.Text = SetLabel(buttonStockInLineListPageListLast.Text);
+            buttonStockInLineListPageListNext.Text = SetLabel(buttonStockInLineListPageListNext.Text);
+            buttonStockInLineListPageListPrevious.Text = SetLabel(buttonStockInLineListPageListPrevious.Text);
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("MstDiscountDetail");
@@ -47,6 +76,39 @@ namespace EasyPOS.Forms.Software.MstDiscounting
             }
         }
 
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
+        }
 
         public void GetDiscountDetail()
         {

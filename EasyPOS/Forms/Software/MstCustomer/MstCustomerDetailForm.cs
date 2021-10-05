@@ -28,9 +28,44 @@ namespace EasyPOS.Forms.Software.MstCustomer
         public PagedList<Entities.DgvMstCustomerLoadListEntity> customerLoadListPageList = new PagedList<Entities.DgvMstCustomerLoadListEntity>(customerLoadListData, pageNumber, pageSize);
         public BindingSource customerLoadListDataSource = new BindingSource();
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public MstCustomerDetailForm(SysSoftwareForm softwareForm, MstCustomerListForm itemListForm, Entities.MstCustomerEntity itemEntity)
         {
             InitializeComponent();
+
+            tabPage1.Text = SetLabel(tabPage1.Text);
+            tabPage2.Text = SetLabel(tabPage2.Text);
+            buttonLock.Text = SetLabel(buttonLock.Text);
+            buttonUnlock.Text = SetLabel(buttonUnlock.Text);
+            buttonAddLoad.Text = SetLabel(buttonAddLoad.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            label1.Text = SetLabel(label1.Text);
+            label2.Text = SetLabel(label2.Text);
+            label3.Text = SetLabel(label3.Text);
+            label4.Text = SetLabel(label4.Text);
+            label5.Text = SetLabel(label5.Text);
+            label6.Text = SetLabel(label6.Text);
+            label7.Text = SetLabel(label7.Text);
+            label8.Text = SetLabel(label8.Text);
+            label9.Text = SetLabel(label9.Text);
+            label10.Text = SetLabel(label10.Text);
+            label11.Text = SetLabel(label11.Text);
+            label12.Text = SetLabel(label12.Text);
+            label13.Text = SetLabel(label13.Text);
+            label14.Text = SetLabel(label14.Text);
+            label15.Text = SetLabel(label15.Text);
+            label16.Text = SetLabel(label16.Text);
+            dataGridViewCustomerLoadList.Columns[2].HeaderText = SetLabel(dataGridViewCustomerLoadList.Columns[2].HeaderText);
+            dataGridViewCustomerLoadList.Columns[3].HeaderText = SetLabel(dataGridViewCustomerLoadList.Columns[3].HeaderText);
+            dataGridViewCustomerLoadList.Columns[4].HeaderText = SetLabel(dataGridViewCustomerLoadList.Columns[4].HeaderText);
+            dataGridViewCustomerLoadList.Columns[5].HeaderText = SetLabel(dataGridViewCustomerLoadList.Columns[5].HeaderText);
+            dataGridViewCustomerLoadList.Columns[6].HeaderText = SetLabel(dataGridViewCustomerLoadList.Columns[6].HeaderText);
+            buttonCustomerLoadListPageListFirst.Text = SetLabel(buttonCustomerLoadListPageListFirst.Text);
+            buttonCustomerLoadListPageListLast.Text = SetLabel(buttonCustomerLoadListPageListLast.Text);
+            buttonCustomerLoadListPageListNext.Text = SetLabel(buttonCustomerLoadListPageListNext.Text);
+            buttonCustomerLoadListPageListPrevious.Text = SetLabel(buttonCustomerLoadListPageListPrevious.Text);
+
             sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("MstCustomerDetail");
@@ -55,6 +90,40 @@ namespace EasyPOS.Forms.Software.MstCustomer
             {
                 sysSoftwareForm.displayTimeStamp(detail.EntryUserUserName, detail.EntryDateTime + " " + detail.EntryTime, detail.UpdatedUserUserName, detail.UpdateDateTime + " " + detail.UpdateTime);
             }
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetTermList()
@@ -525,6 +594,5 @@ namespace EasyPOS.Forms.Software.MstCustomer
             MstCustomerLoadDetailForm sysSystemTablesCustomerLoadDetailForm = new MstCustomerLoadDetailForm(this, newCustomerLoad);
             sysSystemTablesCustomerLoadDetailForm.ShowDialog();
         }
-
     }
 }

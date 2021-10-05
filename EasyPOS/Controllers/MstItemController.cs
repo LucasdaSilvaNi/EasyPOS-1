@@ -34,10 +34,10 @@ namespace EasyPOS.Controllers
         // ==========
         public List<Entities.MstItemEntity> ListItem(String filter, String selectedIsInventory, String selectedIsLocked)
         {
-            if (selectedIsInventory == "All" && selectedIsLocked != "All")
+            if (selectedIsInventory == "All" && selectedIsLocked != "All" || selectedIsInventory == "全部" && selectedIsLocked != "全部")
             {
                 Boolean isLocked = true;
-                if (selectedIsLocked == "Unlocked")
+                if (selectedIsLocked == "Unlocked" || selectedIsLocked == "解锁")
                 {
                     isLocked = false;
                 }
@@ -92,10 +92,10 @@ namespace EasyPOS.Controllers
                 return items.OrderBy(d => d.ItemDescription).ToList();
 
             }
-            else if (selectedIsLocked == "All" && selectedIsInventory != "All")
+            else if (selectedIsLocked == "All" && selectedIsInventory != "All" || selectedIsLocked == "全部" && selectedIsInventory != "全部")
             {
                 Boolean isInventory = true;
-                if (selectedIsInventory == "Non-Inventory")
+                if (selectedIsInventory == "Non-Inventory" || selectedIsInventory == "非库存")
                 {
                     isInventory = false;
                 }
@@ -149,7 +149,7 @@ namespace EasyPOS.Controllers
                 //return items.OrderByDescending(d => d.Id).ToList();
                 return items.OrderBy(d => d.ItemDescription).ToList();
             }
-            else if (selectedIsLocked == "All" && selectedIsInventory == "All")
+            else if (selectedIsLocked == "All" && selectedIsInventory == "All" || selectedIsLocked == "全部" && selectedIsInventory == "全部")
             {
                 var items = from d in db.MstItems
                             where d.ItemCode.Contains(filter)
@@ -199,15 +199,15 @@ namespace EasyPOS.Controllers
                 //return items.OrderByDescending(d => d.Id).ToList();
                 return items.OrderBy(d => d.ItemDescription).ToList();
             }
-            else if (selectedIsLocked != "All" && selectedIsInventory != "All")
+            else if (selectedIsLocked != "All" && selectedIsInventory != "All" || selectedIsLocked != "全部" && selectedIsInventory != "全部")
             {
                 Boolean isInventory = true;
-                if (selectedIsInventory == "Non-Inventory")
+                if (selectedIsInventory == "Non-Inventory" || selectedIsInventory == "非库存")
                 {
                     isInventory = false;
                 }
                 Boolean isLocked = true;
-                if (selectedIsLocked == "Unlocked")
+                if (selectedIsLocked == "Unlocked" || selectedIsLocked == "解锁")
                 {
                     isLocked = false;
                 }

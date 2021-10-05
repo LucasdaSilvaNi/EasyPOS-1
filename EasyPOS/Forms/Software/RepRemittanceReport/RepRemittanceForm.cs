@@ -16,12 +16,75 @@ namespace EasyPOS.Forms.Software.RepRemittanceReport
         public SysSoftwareForm sysSoftwareForm;
         private Modules.SysUserRightsModule sysUserRights;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public RepRemittanceForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            label2.Text = SetLabel(label2.Text);
+            labelTerminal.Text = SetLabel(labelTerminal.Text);
+            labelStartDate.Text = SetLabel(labelStartDate.Text);
+            labelEndDate.Text = SetLabel(labelEndDate.Text);
+            labelUser.Text = SetLabel(labelUser.Text);
+            labelRemittanceNumber.Text = SetLabel(labelRemittanceNumber.Text);
+            buttonView.Text = SetLabel(buttonView.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+
+
+            //Listbox Change Language
+            listBoxRemittanceReport.BeginUpdate();
+
+            ListBox.ObjectCollection items = listBoxRemittanceReport.Items;
+            int count = items.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                // — Update The Item
+                items[i] = SetLabel(items[i].ToString());
+            }
+
+            listBoxRemittanceReport.EndUpdate();
+            //End Change Language
+
             sysSoftwareForm = softwareForm;
 
             GetTerminalList();
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -85,6 +148,7 @@ namespace EasyPOS.Forms.Software.RepRemittanceReport
                 switch (selectedItem)
                 {
                     case "Remittance Report":
+                    case "汇款报告":
                         labelTerminal.Visible = true;
                         comboBoxTerminal.Visible = true;
                         dateTimePickerStartDateFilter.Visible = true;
@@ -98,6 +162,7 @@ namespace EasyPOS.Forms.Software.RepRemittanceReport
                         comboBoxTerminal.Focus();
                         break;
                     case "Cash In/Out Summary Report":
+                    case "提现/提现汇总报告":
                         labelTerminal.Visible = true;
                         comboBoxTerminal.Visible = true;
                         dateTimePickerStartDateFilter.Visible = true;
@@ -138,6 +203,7 @@ namespace EasyPOS.Forms.Software.RepRemittanceReport
                 switch (selectedItem)
                 {
                     case "Remittance Report":
+                    case "汇款报告":
                         sysUserRights = new Modules.SysUserRightsModule("RepDisbursementRemittance");
                         if (sysUserRights.GetUserRights() == null)
                         {
@@ -164,6 +230,7 @@ namespace EasyPOS.Forms.Software.RepRemittanceReport
                         }
                         break;
                     case "Cash In/Out Summary Report":
+                    case "提现/提现汇总报告":
                         sysUserRights = new Modules.SysUserRightsModule("RepDisbursementRemittance");
                         if (sysUserRights.GetUserRights() == null)
                         {

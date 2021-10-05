@@ -15,9 +15,37 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
         public SysSoftwareForm sysSoftwareForm;
         private Modules.SysUserRightsModule sysUserRights;
 
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
+
         public RepInventoryForm(SysSoftwareForm softwareForm)
         {
             InitializeComponent();
+
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonView.Text = SetLabel(buttonView.Text);
+            label1.Text = SetLabel(label1.Text);
+            labelStartDate.Text = SetLabel(labelStartDate.Text);
+            labelEndDate.Text = SetLabel(labelEndDate.Text);
+            labelFilter.Text = SetLabel(labelFilter.Text);
+            labelItem.Text = SetLabel(labelItem.Text);
+            labelCategory.Text = SetLabel(labelCategory.Text);
+            
+            //Listbox Change Language
+            listBoxInventoryReport.BeginUpdate();
+
+            ListBox.ObjectCollection items = listBoxInventoryReport.Items;
+            int count = items.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                // — Update The Item
+                items[i] = SetLabel(items[i].ToString());
+            }
+
+            listBoxInventoryReport.EndUpdate();
+            //End Change Language
+
             sysSoftwareForm = softwareForm;
 
 
@@ -26,6 +54,40 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
             GetItemList();
             HideComboBox();
 
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public void GetItemList()
@@ -86,6 +148,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                 switch (selectedItem)
                 {
                     case "Inventory Report":
+                    case "库存报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
                         labelEndDate.Visible = true;
@@ -96,18 +159,20 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         labelItem.Visible = false;
                         checkBoxFilter.Checked = false;
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Item List Report":
+                    case "物品清单报告":
                         checkBoxFilter.Visible = false;
                         labelFilter.Visible = false;
                         comboBoxItem.Visible = false;
                         labelItem.Visible = false;
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Stock Card":
+                    case "股票卡":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
                         labelEndDate.Visible = true;
@@ -119,10 +184,11 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         comboBoxCategory.Visible = false;
                         labelCategory.Visible = false;
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Stock In Detail Report":
+                    case "库存详细报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
                         labelEndDate.Visible = true;
@@ -134,10 +200,11 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         comboBoxItem.Visible = false;
                         labelItem.Visible = false;
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Stock Out Detail Report":
+                    case "缺货明细报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
                         labelEndDate.Visible = true;
@@ -149,10 +216,11 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         comboBoxItem.Visible = false;
                         labelItem.Visible = false;
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Stock Count Detail Report":
+                    case "库存盘点详细报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
                         labelEndDate.Visible = true;
@@ -164,10 +232,11 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         comboBoxItem.Visible = false;
                         labelItem.Visible = false;
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "Item Expiry Report":
+                    case "物品过期报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
                         labelEndDate.Visible = true;
@@ -179,10 +248,11 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         comboBoxItem.Visible = false;
                         labelItem.Visible = false;
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     case "80mm Inventory Report":
+                    case "80 毫米库存报告":
                         labelStartDate.Visible = true;
                         dateTimePickerStartDate.Visible = true;
                         labelEndDate.Visible = true;
@@ -193,7 +263,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         labelItem.Visible = false;
                         checkBoxFilter.Checked = false;
                         dateTimePickerStartDate.Focus();
-                        buttonView.Text = "Print";
+                        buttonView.Text = SetLabel("Print");
                         break;
                     default:
                         labelStartDate.Visible = false;
@@ -206,7 +276,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         labelCategory.Visible = false;
                         comboBoxItem.Visible = false;
                         labelItem.Visible = false;
-                        buttonView.Text = "View";
+                        buttonView.Text = SetLabel("View");
 
                         break;
                     
@@ -226,6 +296,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                 switch (selectedItem)
                 {
                     case "Inventory Report":
+                    case "库存报告":
                         sysUserRights = new Modules.SysUserRightsModule("RepInventory");
                         if (sysUserRights.GetUserRights() == null)
                         {
@@ -245,6 +316,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         }
                         break;
                     case "Item List Report":
+                    case "物品清单报告":
                         sysUserRights = new Modules.SysUserRightsModule("RepInventoryItemList");
                         if (sysUserRights.GetUserRights() == null)
                         {
@@ -264,6 +336,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         }
                         break;
                     case "Stock Card":
+                    case "股票卡":
                         sysUserRights = new Modules.SysUserRightsModule("RepInventoryStockCard");
                         if (sysUserRights.GetUserRights() == null)
                         {
@@ -283,6 +356,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         }
                         break;
                     case "Stock In Detail Report":
+                    case "库存详细报告":
                         sysUserRights = new Modules.SysUserRightsModule("RepInventoryStockInDetail");
                         if (sysUserRights.GetUserRights() == null)
                         {
@@ -302,6 +376,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         }
                         break;
                     case "Stock Out Detail Report":
+                    case "缺货明细报告":
                         sysUserRights = new Modules.SysUserRightsModule("RepInventoryStockOutDetail");
                         if (sysUserRights.GetUserRights() == null)
                         {
@@ -321,6 +396,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         }
                         break;
                     case "Stock Count Detail Report":
+                    case "库存盘点详细报告":
                         sysUserRights = new Modules.SysUserRightsModule("RepInventoryStockCountDetail");
                         if (sysUserRights.GetUserRights() == null)
                         {
@@ -341,6 +417,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                        
                         break;
                     case "Item Expiry Report":
+                    case "物品过期报告":
                         sysUserRights = new Modules.SysUserRightsModule("RepInventoryItemExpiry");
                         if (sysUserRights.GetUserRights() == null)
                         {
@@ -360,6 +437,7 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                         }
                         break;
                     case "80mm Inventory Report":
+                    case "80 毫米库存报告":
                         sysUserRights = new Modules.SysUserRightsModule("RepRestaurantInventory");
                         if (sysUserRights.GetUserRights() == null)
                         {

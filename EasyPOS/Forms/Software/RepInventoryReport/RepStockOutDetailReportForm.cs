@@ -24,15 +24,56 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
 
         public DateTime startDate;
         public DateTime endDate;
+
+        public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
+
         public RepStockOutDetailReportForm(DateTime dateStart, DateTime dateEnd)
         {
             InitializeComponent();
+
+            label1.Text = SetLabel(label1.Text);
+            buttonClose.Text = SetLabel(buttonClose.Text);
+            buttonPrint.Text = SetLabel(buttonPrint.Text);
 
             startDate = dateStart;
             endDate = dateEnd;
 
             GetStockOutDetailDataSource();
             GetDataGridViewStockOutDetailSource();
+        }
+
+        public string SetLabel(string label)
+        {
+            Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            sysLanguageEntities = sysLabel.ListLanguage("");
+            if (sysLanguageEntities.Any())
+            {
+
+                if (sysLabel.ListLanguage("").Any())
+                {
+
+                    foreach (var displayedLabel in sysLanguageEntities)
+                    {
+                        if (language != "English")
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.DisplayedLabel;
+                            }
+
+                        }
+                        else
+                        {
+                            if (displayedLabel.Label == label)
+                            {
+                                return displayedLabel.Label;
+                            }
+                        }
+                    }
+                }
+            }
+            return label;
         }
 
         public List<Entities.DgvRepInventoryStockOutDetailReportListEntity> GetStockOutDetailReportListData(DateTime startDate, DateTime endDate)

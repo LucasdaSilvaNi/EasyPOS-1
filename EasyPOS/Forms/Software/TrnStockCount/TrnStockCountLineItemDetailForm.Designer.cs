@@ -58,7 +58,7 @@
             this.panel1.Controls.Add(this.buttonSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(549, 50);
             this.panel1.TabIndex = 8;
@@ -67,7 +67,7 @@
             // 
             this.pictureBox1.Image = global::EasyPOS.Properties.Resources.Stock_Count;
             this.pictureBox1.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -95,7 +95,7 @@
             this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClose.ForeColor = System.Drawing.Color.White;
             this.buttonClose.Location = new System.Drawing.Point(469, 10);
-            this.buttonClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(2);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(70, 32);
             this.buttonClose.TabIndex = 21;
@@ -114,7 +114,7 @@
             this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSave.ForeColor = System.Drawing.Color.White;
             this.buttonSave.Location = new System.Drawing.Point(394, 10);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(70, 32);
             this.buttonSave.TabIndex = 20;
@@ -136,7 +136,7 @@
             this.panel2.Controls.Add(this.textBoxStockCountLineUnit);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 50);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(549, 153);
             this.panel2.TabIndex = 9;
@@ -145,7 +145,7 @@
             // 
             this.textBoxStockCountLineAmount.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxStockCountLineAmount.Location = new System.Drawing.Point(78, 122);
-            this.textBoxStockCountLineAmount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxStockCountLineAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxStockCountLineAmount.Name = "textBoxStockCountLineAmount";
             this.textBoxStockCountLineAmount.ReadOnly = true;
             this.textBoxStockCountLineAmount.Size = new System.Drawing.Size(142, 26);
@@ -168,7 +168,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label4.Location = new System.Drawing.Point(35, 95);
+            this.label4.Location = new System.Drawing.Point(13, 93);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 19);
@@ -179,7 +179,7 @@
             // 
             this.textBoxStockCountLineCost.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxStockCountLineCost.Location = new System.Drawing.Point(78, 93);
-            this.textBoxStockCountLineCost.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxStockCountLineCost.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxStockCountLineCost.Name = "textBoxStockCountLineCost";
             this.textBoxStockCountLineCost.Size = new System.Drawing.Size(142, 26);
             this.textBoxStockCountLineCost.TabIndex = 2;
@@ -207,7 +207,7 @@
             this.textBoxStockCountLineItemDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxStockCountLineItemDescription.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.textBoxStockCountLineItemDescription.Location = new System.Drawing.Point(8, 6);
-            this.textBoxStockCountLineItemDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxStockCountLineItemDescription.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxStockCountLineItemDescription.Name = "textBoxStockCountLineItemDescription";
             this.textBoxStockCountLineItemDescription.ReadOnly = true;
             this.textBoxStockCountLineItemDescription.Size = new System.Drawing.Size(530, 25);
@@ -221,7 +221,7 @@
             this.textBoxStockCountLineQuantity.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxStockCountLineQuantity.HideSelection = false;
             this.textBoxStockCountLineQuantity.Location = new System.Drawing.Point(78, 35);
-            this.textBoxStockCountLineQuantity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxStockCountLineQuantity.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxStockCountLineQuantity.Name = "textBoxStockCountLineQuantity";
             this.textBoxStockCountLineQuantity.Size = new System.Drawing.Size(142, 26);
             this.textBoxStockCountLineQuantity.TabIndex = 0;
@@ -234,7 +234,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label3.Location = new System.Drawing.Point(37, 66);
+            this.label3.Location = new System.Drawing.Point(13, 67);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 19);
@@ -245,7 +245,7 @@
             // 
             this.textBoxStockCountLineUnit.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.textBoxStockCountLineUnit.Location = new System.Drawing.Point(78, 64);
-            this.textBoxStockCountLineUnit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxStockCountLineUnit.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxStockCountLineUnit.Name = "textBoxStockCountLineUnit";
             this.textBoxStockCountLineUnit.ReadOnly = true;
             this.textBoxStockCountLineUnit.Size = new System.Drawing.Size(94, 26);
@@ -261,7 +261,7 @@
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "TrnStockCountLineItemDetailForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
