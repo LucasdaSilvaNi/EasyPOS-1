@@ -132,7 +132,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Y = y,
                 Size = new Size(245, ((int)graphics.MeasureString(companyAddress, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
             };
-            graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, 245.0F, height), drawFormatCenter);
+            graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
             y += companyAddressRectangle.Size.Height + 1.0F;
 
             // ==========

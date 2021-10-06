@@ -461,6 +461,7 @@ namespace EasyPOS.Forms.Software.SysSettings
             {
                 "Dot Matrix Printer",
                 "Thermal Printer",
+                "58mm Printer"
             };
 
             comboBoxPrinterType.DataSource = printerType;
