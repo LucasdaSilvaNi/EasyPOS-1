@@ -27,7 +27,7 @@ namespace EasyPOS.Forms.Software.TrnCollection
         {
             InitializeComponent();
             sysSoftwareForm = softwareForm;
-
+            
             sysUserRights = new Modules.SysUserRightsModule("TrnCollectionDetail");
             if (sysUserRights.GetUserRights() == null)
             {
@@ -171,6 +171,8 @@ namespace EasyPOS.Forms.Software.TrnCollection
             comboBoxPreparedBy.Enabled = !isLocked;
             comboBoxCheckedBy.Enabled = !isLocked;
             comboBoxApprovedBy.Enabled = !isLocked;
+            buttonAddCollectionLine.Enabled = !isLocked;
+
 
             dataGridViewCollectionLineList.Columns[0].Visible = !isLocked;
             dataGridViewCollectionLineList.Columns[1].Visible = !isLocked;
@@ -293,6 +295,15 @@ namespace EasyPOS.Forms.Software.TrnCollection
                 textBoxCollectionLineListPageNumber.Text = "1 / 1";
             }
         }
+
+        public string NullCheckDate(string checkdate)
+        {
+            if (checkdate == null)
+            {
+                return null;
+            }
+            return Convert.ToDateTime(checkdate).ToShortDateString();
+        }
         public Task<List<Entities.DgvTrnCollectionLineListEntity>> GetCollectionLineListDataTask()
         {
             Controllers.TrnCollectionLineController trnCollectionLineController = new Controllers.TrnCollectionLineController();
@@ -311,7 +322,7 @@ namespace EasyPOS.Forms.Software.TrnCollection
                                 ColumnCollectionLineListPayType = d.PayType,
                                 ColumnCollectionLineListAmount = d.Amount.ToString("#,##0.00"),
                                 ColumnCollectionLineListCheckNumber = d.CheckNumber,
-                                ColumnCollectionLineListCheckDate = d.CheckDate,
+                                ColumnCollectionLineListCheckDate = NullCheckDate(d.CheckDate),
                                 ColumnCollectionLineListCheckBank = d.CheckBank,
                                 ColumnCollectionLineListCreditCardVerificationCode = d.CreditCardVerificationCode,
                                 ColumnCollectionLineListCreditCardNumber = d.CreditCardNumber,

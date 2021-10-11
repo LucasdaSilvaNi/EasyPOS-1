@@ -38,6 +38,8 @@ namespace EasyPOS.Forms.Software.MstItem
         {
             InitializeComponent();
 
+            sysSoftwareForm = softwareForm;
+
             buttonClose.Text = SetLabel(buttonClose.Text);
             buttonLock.Text = SetLabel(buttonLock.Text);
             buttonUnlock.Text = SetLabel(buttonUnlock.Text);
@@ -85,9 +87,6 @@ namespace EasyPOS.Forms.Software.MstItem
             buttonItemPriceListPageListLast.Text = SetLabel(buttonItemPriceListPageListLast.Text);
             buttonItemPriceListPageListPrevious.Text = SetLabel(buttonItemPriceListPageListPrevious.Text);
             buttonItemPriceListPageListNext.Text = SetLabel(buttonItemPriceListPageListNext.Text);
-
-
-            sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("MstItemDetail");
             if (sysUserRights.GetUserRights() == null)

@@ -15,7 +15,7 @@ namespace EasyPOS.Forms.Software.MstItem
     {
         public SysSoftwareForm sysSoftwareForm;
         private Modules.SysUserRightsModule sysUserRights;
-        public static Int32 pageSize = 15;
+        public static Int32 pageSize = 17;
         public static List<Entities.DgvMstItemListEntity> itemListData = new List<Entities.DgvMstItemListEntity>();
         public static Int32 pageNumber = 1;
         public PagedList<Entities.DgvMstItemListEntity> itemListPageList = new PagedList<Entities.DgvMstItemListEntity>(itemListData, pageNumber, pageSize);
@@ -30,6 +30,7 @@ namespace EasyPOS.Forms.Software.MstItem
         {
             InitializeComponent();
 
+            sysSoftwareForm = softwareForm;
             buttonClose.Text = SetLabel(buttonClose.Text);
             buttonAdd.Text = SetLabel(buttonAdd.Text);
             label1.Text = SetLabel(label1.Text);
@@ -47,8 +48,6 @@ namespace EasyPOS.Forms.Software.MstItem
             buttonItemListPageListLast.Text = SetLabel(buttonItemListPageListLast.Text);
             buttonItemListPageListNext.Text = SetLabel(buttonItemListPageListNext.Text);
             buttonItemListPageListPrevious.Text = SetLabel(buttonItemListPageListPrevious.Text);
-
-            sysSoftwareForm = softwareForm;
 
             sysUserRights = new Modules.SysUserRightsModule("MstItem");
             if (sysUserRights.GetUserRights() == null)
@@ -83,9 +82,10 @@ namespace EasyPOS.Forms.Software.MstItem
                 {
                     SetLabel("All"),
                     SetLabel("Locked"),
-                    SetLabel("Unlocked")
+                    SetLabel("Unlocked"),
                 };
                 comboBoxIsLocked.DataSource = lockOption;
+
                 if (Modules.SysCurrentModule.GetCurrentSettings().HideItemListBarcode == true)
                 {
                     ColumnItemListBarcode.Visible = false;
@@ -206,6 +206,21 @@ namespace EasyPOS.Forms.Software.MstItem
 
         public Task<List<Entities.DgvMstItemListEntity>> GetItemListDataTask(String selectedIsInventory, String selectedIsLocked)
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (language != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             String filter = textBoxItemListFilter.Text;
             Controllers.MstItemController mstItemController = new Controllers.MstItemController();
             List<Entities.MstItemEntity> listItem = mstItemController.ListItem(filter, selectedIsInventory, selectedIsLocked);
@@ -214,8 +229,8 @@ namespace EasyPOS.Forms.Software.MstItem
                 var items = from d in listItem
                             select new Entities.DgvMstItemListEntity
                             {
-                                ColumnItemListButtonEdit = SetLabel("Edit"),
-                                ColumnItemListButtonDelete = SetLabel("Delete"),
+                                ColumnItemListButtonEdit = gridEdit,
+                                ColumnItemListButtonDelete = gridDelete,
                                 ColumnItemListId = d.Id,
                                 ColumnItemListCode = d.ItemCode,
                                 ColumnItemListDescription = d.ItemDescription,

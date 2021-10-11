@@ -263,6 +263,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                                        g.Key.NetPrice,
                                                        g.Key.DiscountId,
                                                        g.Key.DiscountRate,
+                                                       g.Key.Preparation,
                                                        g.Key.TaxId,
                                                        g.Key.MstTax,
                                                        g.Key.MstTax.Tax,
@@ -282,7 +283,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                                 if (salesLine.MstItem.BarCode != "0000000001")
                                 {
-                                    String itemData = salesLine.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
+                                    String itemData = salesLine.ItemDescription + " " + salesLine.Preparation + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
                                     String itemAmountData = (salesLine.Amount + salesLine.DiscountAmount).ToString("#,##0.00");
                                     RectangleF itemDataRectangle = new RectangleF
                                     {
@@ -450,6 +451,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                                        g.Key.NetPrice,
                                                        g.Key.DiscountId,
                                                        g.Key.DiscountRate,
+                                                       g.Key.Preparation,
                                                        g.Key.TaxId,
                                                        g.Key.MstTax,
                                                        g.Key.MstTax.Tax,
@@ -470,7 +472,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                                 if (salesLine.MstItem.BarCode != "0000000001")
                                 {
-                                    String itemData = salesLine.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
+                                    String itemData = salesLine.ItemDescription + " " + salesLine.Preparation + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
                                     String itemAmountData = (salesLine.Amount + salesLine.DiscountAmount).ToString("#,##0.00");
                                     RectangleF itemDataRectangle = new RectangleF
                                     {

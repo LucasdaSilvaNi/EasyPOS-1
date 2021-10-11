@@ -117,6 +117,9 @@ namespace EasyPOS.Data
     partial void InsertSysKitchenPrinter(SysKitchenPrinter instance);
     partial void UpdateSysKitchenPrinter(SysKitchenPrinter instance);
     partial void DeleteSysKitchenPrinter(SysKitchenPrinter instance);
+    partial void InsertSysLabel(SysLabel instance);
+    partial void UpdateSysLabel(SysLabel instance);
+    partial void DeleteSysLabel(SysLabel instance);
     partial void InsertSysSalesLocked(SysSalesLocked instance);
     partial void UpdateSysSalesLocked(SysSalesLocked instance);
     partial void DeleteSysSalesLocked(SysSalesLocked instance);
@@ -168,9 +171,6 @@ namespace EasyPOS.Data
     partial void InsertTrnStockOut(TrnStockOut instance);
     partial void UpdateTrnStockOut(TrnStockOut instance);
     partial void DeleteTrnStockOut(TrnStockOut instance);
-    partial void InsertSysLabel(SysLabel instance);
-    partial void UpdateSysLabel(SysLabel instance);
-    partial void DeleteSysLabel(SysLabel instance);
     #endregion
 		
 		public easyposdbDataContext() : 
@@ -435,6 +435,14 @@ namespace EasyPOS.Data
 			}
 		}
 		
+		public System.Data.Linq.Table<SysLabel> SysLabels
+		{
+			get
+			{
+				return this.GetTable<SysLabel>();
+			}
+		}
+		
 		public System.Data.Linq.Table<SysSalesLocked> SysSalesLockeds
 		{
 			get
@@ -568,14 +576,6 @@ namespace EasyPOS.Data
 			get
 			{
 				return this.GetTable<TrnStockOut>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SysLabel> SysLabels
-		{
-			get
-			{
-				return this.GetTable<SysLabel>();
 			}
 		}
 	}
@@ -13006,6 +13006,140 @@ namespace EasyPOS.Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SysLabel")]
+	public partial class SysLabel : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Label;
+		
+		private string _DisplayedLabel;
+		
+		private string _Language;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnLabelChanging(string value);
+    partial void OnLabelChanged();
+    partial void OnDisplayedLabelChanging(string value);
+    partial void OnDisplayedLabelChanged();
+    partial void OnLanguageChanging(string value);
+    partial void OnLanguageChanged();
+    #endregion
+		
+		public SysLabel()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Label", DbType="NVarChar(255)")]
+		public string Label
+		{
+			get
+			{
+				return this._Label;
+			}
+			set
+			{
+				if ((this._Label != value))
+				{
+					this.OnLabelChanging(value);
+					this.SendPropertyChanging();
+					this._Label = value;
+					this.SendPropertyChanged("Label");
+					this.OnLabelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplayedLabel", DbType="NVarChar(255)")]
+		public string DisplayedLabel
+		{
+			get
+			{
+				return this._DisplayedLabel;
+			}
+			set
+			{
+				if ((this._DisplayedLabel != value))
+				{
+					this.OnDisplayedLabelChanging(value);
+					this.SendPropertyChanging();
+					this._DisplayedLabel = value;
+					this.SendPropertyChanged("DisplayedLabel");
+					this.OnDisplayedLabelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="NVarChar(255)")]
+		public string Language
+		{
+			get
+			{
+				return this._Language;
+			}
+			set
+			{
+				if ((this._Language != value))
+				{
+					this.OnLanguageChanging(value);
+					this.SendPropertyChanging();
+					this._Language = value;
+					this.SendPropertyChanged("Language");
+					this.OnLanguageChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SysSalesLocked")]
 	public partial class SysSalesLocked : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -25362,140 +25496,6 @@ namespace EasyPOS.Data
 		{
 			this.SendPropertyChanging();
 			entity.TrnStockOut = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SysLabel")]
-	public partial class SysLabel : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Label;
-		
-		private string _DisplayedLabel;
-		
-		private string _Language;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnLabelChanging(string value);
-    partial void OnLabelChanged();
-    partial void OnDisplayedLabelChanging(string value);
-    partial void OnDisplayedLabelChanged();
-    partial void OnLanguageChanging(string value);
-    partial void OnLanguageChanged();
-    #endregion
-		
-		public SysLabel()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Label", DbType="NVarChar(255)")]
-		public string Label
-		{
-			get
-			{
-				return this._Label;
-			}
-			set
-			{
-				if ((this._Label != value))
-				{
-					this.OnLabelChanging(value);
-					this.SendPropertyChanging();
-					this._Label = value;
-					this.SendPropertyChanged("Label");
-					this.OnLabelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DisplayedLabel", DbType="NVarChar(255)")]
-		public string DisplayedLabel
-		{
-			get
-			{
-				return this._DisplayedLabel;
-			}
-			set
-			{
-				if ((this._DisplayedLabel != value))
-				{
-					this.OnDisplayedLabelChanging(value);
-					this.SendPropertyChanging();
-					this._DisplayedLabel = value;
-					this.SendPropertyChanged("DisplayedLabel");
-					this.OnDisplayedLabelChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Language", DbType="NVarChar(255)")]
-		public string Language
-		{
-			get
-			{
-				return this._Language;
-			}
-			set
-			{
-				if ((this._Language != value))
-				{
-					this.OnLanguageChanging(value);
-					this.SendPropertyChanging();
-					this._Language = value;
-					this.SendPropertyChanged("Language");
-					this.OnLanguageChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

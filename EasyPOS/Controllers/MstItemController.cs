@@ -34,10 +34,10 @@ namespace EasyPOS.Controllers
         // ==========
         public List<Entities.MstItemEntity> ListItem(String filter, String selectedIsInventory, String selectedIsLocked)
         {
-            if (selectedIsInventory == "All" && selectedIsLocked != "All" || selectedIsInventory == "全部" && selectedIsLocked != "全部")
+            if (selectedIsInventory == "All" && selectedIsLocked != "All") //|| selectedIsInventory == "全部" && selectedIsLocked != "全部")
             {
                 Boolean isLocked = true;
-                if (selectedIsLocked == "Unlocked" || selectedIsLocked == "解锁")
+                if (selectedIsLocked == "Unlocked") //|| selectedIsLocked == "解锁")
                 {
                     isLocked = false;
                 }

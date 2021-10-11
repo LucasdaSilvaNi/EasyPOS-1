@@ -532,6 +532,14 @@
       <Column Name="DefaultHeight" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.SysLabel" Member="SysLabels">
+    <Type Name="SysLabel">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Label" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DisplayedLabel" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Language" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.SysSalesLocked" Member="SysSalesLockeds">
     <Type Name="SysSalesLocked">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -1008,14 +1016,6 @@
       <Association Name="MstUser_TrnStockOut2" Member="MstUser2" ThisKey="ApprovedBy" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
       <Association Name="MstUser_TrnStockOut3" Member="MstUser3" ThisKey="EntryUserId" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
       <Association Name="MstUser_TrnStockOut4" Member="MstUser4" ThisKey="UpdateUserId" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SysLabel" Member="SysLabels">
-    <Type Name="SysLabel">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Label" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DisplayedLabel" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Language" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

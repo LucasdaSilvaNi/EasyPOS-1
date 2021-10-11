@@ -206,17 +206,17 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     if (Convert.ToDecimal(row.Cells[4].Value) > 0)
                     {
                         String checkDate = null;
-                        if (row.Cells[9].Value != null)
-                        {
-                            checkDate = row.Cells[9].Value.ToString();
-                        }
-
+                        //if (row.Cells[9].Value != null)
+                        //{
+                        //    checkDate = row.Cells[9].Value.ToString();
+                        //}
+                        
                         listCollectionLine.Add(new Entities.TrnCollectionLineEntity()
                         {
-                            Amount = Convert.ToDecimal(row.Cells[4].Value),
+                            Amount = Convert.ToDecimal(textBoxTotalSalesAmount.Text),
                             PayTypeId = Convert.ToInt32(row.Cells[0].Value),
                             CheckNumber = row.Cells[8].Value != null ? row.Cells[8].Value.ToString() : "NA",
-                            CheckDate = checkDate,
+                            CheckDate = checkDate != null ? checkDate : DateTime.Now.ToString(),
                             CheckBank = row.Cells[10].Value != null ? row.Cells[10].Value.ToString() : "NA",
                             CreditCardVerificationCode = row.Cells[11].Value != null ? row.Cells[11].Value.ToString() : "NA",
                             CreditCardNumber = row.Cells[14].Value != null ? row.Cells[14].Value.ToString() : "NA",

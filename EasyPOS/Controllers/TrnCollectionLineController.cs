@@ -28,7 +28,7 @@ namespace EasyPOS.Controllers
                                      PayType = d.MstPayType.PayType,
                                      Amount = d.Amount,
                                      CheckNumber = d.CheckNumber,
-                                     CheckDate = Convert.ToDateTime(d.CheckDate).ToShortDateString(),
+                                     CheckDate = d.CheckDate.ToString(),
                                      CheckBank = d.CheckBank,
                                      CreditCardVerificationCode = d.CreditCardVerificationCode,
                                      CreditCardNumber = d.CreditCardNumber,
