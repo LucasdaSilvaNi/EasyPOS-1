@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EasyPOS.Forms.Software.TrnPOS;
 
 namespace EasyPOS.Forms.Software.TrnCollection
 {
@@ -27,7 +28,7 @@ namespace EasyPOS.Forms.Software.TrnCollection
         {
             InitializeComponent();
             sysSoftwareForm = softwareForm;
-            
+
             sysUserRights = new Modules.SysUserRightsModule("TrnCollectionDetail");
             if (sysUserRights.GetUserRights() == null)
             {
@@ -598,7 +599,11 @@ namespace EasyPOS.Forms.Software.TrnCollection
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-            new TrnCollectionDetailReportForm(trnCollectionEntity.Id);
+            DialogResult tenderPrinterReadyDialogResult = MessageBox.Show("Is printer ready?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (tenderPrinterReadyDialogResult == DialogResult.Yes)
+            {
+                new TrnPOSOfficialReceiptReportForm(Convert.ToInt32(comboBoxSalesNumber.SelectedValue), trnCollectionEntity.Id, false, "");
+            }
         }
 
         private void comboBoxCustomer_KeyDown(object sender, KeyEventArgs e)

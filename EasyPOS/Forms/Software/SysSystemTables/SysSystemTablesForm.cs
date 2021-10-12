@@ -302,6 +302,20 @@ namespace EasyPOS.Forms.Software.SysSystemTables
 
         public Task<List<Entities.DgvMstSystemTablesAccountListEntity>> GetAccountListDataTask()
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (language != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             String filter = textBoxAccountListFilter.Text;
             Controllers.MstAccountController mstAccountController = new Controllers.MstAccountController();
 
@@ -311,8 +325,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var accounts = from d in listAccount
                                select new Entities.DgvMstSystemTablesAccountListEntity
                                {
-                                   ColumnAccountListButtonEdit = SetLabelEditDelete("Edit"),
-                                   ColumnAccountListButtonDelete = SetLabelEditDelete("Delete"),
+                                   ColumnAccountListButtonEdit = gridEdit,
+                                   ColumnAccountListButtonDelete = gridDelete,
                                    ColumnAccountListId = d.Id,
                                    ColumnAccountListCode = d.Code,
                                    ColumnAccountListAccount = d.Account,
@@ -532,6 +546,20 @@ namespace EasyPOS.Forms.Software.SysSystemTables
 
         public Task<List<Entities.DgvMstSystemTablesPayTypeListEntity>> GetPayTypeListDataTask()
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (language != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             String filter = textBoxPayTypeListFilter.Text;
             Controllers.MstPayTypeController mstPayTypeController = new Controllers.MstPayTypeController();
 
@@ -541,8 +569,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var payTypes = from d in listPayType
                                select new Entities.DgvMstSystemTablesPayTypeListEntity
                                {
-                                   ColumnPayTypeListButtonEdit = SetLabelEditDelete("Edit"),
-                                   ColumnPayTypeListButtonDelete = SetLabelEditDelete("Delete"),
+                                   ColumnPayTypeListButtonEdit = gridEdit,
+                                   ColumnPayTypeListButtonDelete = gridDelete,
                                    ColumnPayTypeListId = d.Id,
                                    ColumnPayTypeListPayTypeCode = d.PayTypeCode,
                                    ColumnPayTypeListPayType = d.PayType,
@@ -996,6 +1024,20 @@ namespace EasyPOS.Forms.Software.SysSystemTables
 
         public Task<List<Entities.DgvMstSystemTablesUnitListEntity>> GetUnitListDataTask()
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (language != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             String filter = textBoxUnitListFilter.Text;
             Controllers.MstUnitController mstUnitController = new Controllers.MstUnitController();
 
@@ -1005,8 +1047,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var units = from d in listUnit
                             select new Entities.DgvMstSystemTablesUnitListEntity
                             {
-                                ColumnUnitListButtonEdit = SetLabelEditDelete("Edit"),
-                                ColumnUnitListButtonDelete = SetLabelEditDelete("Delete"),
+                                ColumnUnitListButtonEdit = gridEdit,
+                                ColumnUnitListButtonDelete = gridDelete,
                                 ColumnUnitListId = d.Id,
                                 ColumnUnitListUnit = d.Unit
                             };
@@ -1671,6 +1713,20 @@ namespace EasyPOS.Forms.Software.SysSystemTables
 
         public Task<List<Entities.DgvMstSystemTablesSupplierListEntity>> GetSupplierListDataTask()
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (language != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             String filter = textBoxSupplierListFilter.Text;
             Controllers.MstSupplierController mstSupplierController = new Controllers.MstSupplierController();
 
@@ -1680,8 +1736,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var suppliers = from d in listSupplier
                                 select new Entities.DgvMstSystemTablesSupplierListEntity
                                 {
-                                    ColumnSupplierListButtonEdit = SetLabelEditDelete("Edit"),
-                                    ColumnSupplierListButtonDelete = SetLabelEditDelete("Delete"),
+                                    ColumnSupplierListButtonEdit = gridEdit,
+                                    ColumnSupplierListButtonDelete = gridDelete,
                                     ColumnSupplierListId = d.Id,
                                     ColumnSupplierListSupplier = d.Supplier,
                                     ColumnSupplierListAddress = d.Address,
@@ -1978,6 +2034,20 @@ namespace EasyPOS.Forms.Software.SysSystemTables
 
         public Task<List<Entities.DgvMstSystemTablesLanguageListEntity>> GetLanguageListDataTask()
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var languageLabel = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (languageLabel != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             String filter = textBoxLanguageListFilter.Text;
             Controllers.SysLanguageController sysLanguageController = new Controllers.SysLanguageController();
 
@@ -1987,8 +2057,8 @@ namespace EasyPOS.Forms.Software.SysSystemTables
                 var language = from d in listLanguage
                                select new Entities.DgvMstSystemTablesLanguageListEntity
                                {
-                                   ColumnLanguageListButtonEdit = SetLabelEditDelete("Edit"),
-                                   ColumnLanguageListButtonDelete = SetLabelEditDelete("Delete"),
+                                   ColumnLanguageListButtonEdit = gridEdit,
+                                   ColumnLanguageListButtonDelete = gridDelete,
                                    ColumnLanguageListId = d.Id,
                                    ColumnLanguageListLabel = d.Label,
                                    ColumnLanguageListDisplayLabel = d.DisplayedLabel,

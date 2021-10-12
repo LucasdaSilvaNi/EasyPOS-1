@@ -215,7 +215,6 @@ namespace EasyPOS.Forms.Software.MstItem
                 gridDelete = "删除";
             }
             else
-
             {
                 gridEdit = "Edit";
                 gridDelete = "Delete";

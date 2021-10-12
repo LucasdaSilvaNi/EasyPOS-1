@@ -72,5 +72,6 @@ namespace EasyPOS.Entities
         public String SalesOrderPrinterType { get; set; }
         public Boolean DisableSalesCustomerSelection { get; set; }
         public String Language { get; set; }
+        public Boolean SingleColumnBarcodePrintOut { get; set; }
     }
 }

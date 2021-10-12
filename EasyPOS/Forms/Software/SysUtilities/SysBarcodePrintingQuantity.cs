@@ -43,6 +43,7 @@ namespace EasyPOS.Forms.Software.SysUtilities
             try
             {
                 Controllers.MstItemController mstItemController = new Controllers.MstItemController();
+                
                 if (mstItemController.DetailItem(itemId) != null)
                 {
                     itemEntity = mstItemController.DetailItem(itemId);
@@ -53,44 +54,59 @@ namespace EasyPOS.Forms.Software.SysUtilities
                         printDocumentBarcodePrinting.PrinterSettings.PrinterName = printDialogBarcodePrinting.PrinterSettings.PrinterName;
                         quantity = Convert.ToInt32(textBoxPrintQuantity.Text);
 
-                        for (int i = 1; i <= quantity; i++)
+                        if (Modules.SysCurrentModule.GetCurrentSettings().SingleColumnBarcodePrintOut == true)
                         {
-                            if (i % 3 == 1)
+                            for (int i = 1; i <= quantity; i++)
                             {
-                                columns = 1;
-                            }
-                            else if (i % 3 == 2)
-                            {
-                                columns = 2;
-                            }
-                            else if (i % 3 == 0)
-                            {
-                                columns = 3;
-                                printDocumentBarcodePrinting.Print();
-                            }
-                            else
-                            {
-                                columns = 0;
-                            }
-
-                            if (i % 3 != 0)
-                            {
-                                if (quantity == i)
+                                if (i <= quantity)
                                 {
-                                    if (quantity % 3 == 1)
-                                    {
-                                        columns = 1;
-                                    }
-
-                                    if (quantity % 3 == 2)
-                                    {
-                                        columns = 2;
-                                    }
-
+                                    columns = 1;
                                     printDocumentBarcodePrinting.Print();
                                 }
                             }
                         }
+                        
+                        else
+                        {
+                            for (int i = 1; i <= quantity; i++)
+                            {
+                                if (i % 3 == 1)
+                                {
+                                    columns = 1;
+                                }
+                                else if (i % 3 == 2)
+                                {
+                                    columns = 2;
+                                }
+                                else if (i % 3 == 0)
+                                {
+                                    columns = 3;
+                                    printDocumentBarcodePrinting.Print();
+                                }
+                                else
+                                {
+                                    columns = 0;
+                                }
+
+                                if (i % 3 != 0)
+                                {
+                                    if (quantity == i)
+                                    {
+                                        if (quantity % 3 == 1)
+                                        {
+                                            columns = 1;
+                                        }
+
+                                        if (quantity % 3 == 2)
+                                        {
+                                            columns = 2;
+                                        }
+                                        printDocumentBarcodePrinting.Print();
+                                    }
+                                }
+                            }
+                        }
+                        
                     }
                 }
                 else
@@ -183,7 +199,7 @@ namespace EasyPOS.Forms.Software.SysUtilities
             String barcodeNumber = itemEntity.BarCode;
             Code128BarcodeDraw barcode = BarcodeDrawFactory.Code128WithChecksum;
             Image image = barcode.Draw(itemEntity.BarCode, 35);
-            String itemPrice = "P " + itemEntity.Price.ToString("#,##0.00");
+            String itemPrice = "₱ " + itemEntity.Price.ToString("#,##0.00");
             float AdjustStringItemDescription = 1;
             if (itemAlias.Length > 25)
             {
@@ -199,7 +215,7 @@ namespace EasyPOS.Forms.Software.SysUtilities
                     graphics.DrawImage(image, new RectangleF(x, y:14, 107, 28));
                     y += image.Height + 7;
 
-                    graphics.DrawString(barcodeNumber, fontCalibri6Bold, drawBrush, new RectangleF(x, y:41, width, height), drawFormatCenter);
+                    graphics.DrawString(barcodeNumber, fontArial7Bold, drawBrush, new RectangleF(x, y:41, width, height), drawFormatCenter);
                     y += graphics.MeasureString(barcodeNumber, fontCalibri6Bold).Height;
 
                     graphics.DrawString(itemAlias, fontArial6Bold, drawBrush, new RectangleF(x, y:52, width, height), drawFormatCenter);
@@ -214,12 +230,12 @@ namespace EasyPOS.Forms.Software.SysUtilities
                     graphics.DrawString(company, fontCalibri6Bold, drawBrush, new RectangleF(x + 7 + width, y:2, width, height), drawFormatCenter);
                     y += graphics.MeasureString(company, fontCalibri6Bold).Height;
                                         
-                    graphics.DrawImage(image, new RectangleF(x, y: 14, 107, 28));
+                    graphics.DrawImage(image, new RectangleF(x, y: 14, 110, 28));
                     graphics.DrawImage(image, new RectangleF(x + 15 + 107, y: 14, 107, 28));
                     y += image.Height + 7;
 
-                    graphics.DrawString(barcodeNumber, fontCalibri6Bold, drawBrush, new RectangleF(x, y: 41, width, height), drawFormatCenter);
-                    graphics.DrawString(barcodeNumber, fontCalibri6Bold, drawBrush, new RectangleF(x + 7 + width, y: 41, width, height), drawFormatCenter);
+                    graphics.DrawString(barcodeNumber, fontArial7Bold, drawBrush, new RectangleF(x, y: 41, width, height), drawFormatCenter);
+                    graphics.DrawString(barcodeNumber, fontArial7Bold, drawBrush, new RectangleF(x + 7 + width, y: 41, width, height), drawFormatCenter);
                     y += graphics.MeasureString(barcodeNumber, fontCalibri6Bold).Height;
 
                     graphics.DrawString(itemAlias, fontArial6Bold, drawBrush, new RectangleF(x, y: 52, width, height), drawFormatCenter);
@@ -242,9 +258,9 @@ namespace EasyPOS.Forms.Software.SysUtilities
                     graphics.DrawImage(image, new RectangleF(x + 30 + 214, y: 14, 107, 28));
                     y += image.Height + 7;
 
-                    graphics.DrawString(barcodeNumber, fontCalibri6Bold, drawBrush, new RectangleF(x, y: 41, width, height), drawFormatCenter);
-                    graphics.DrawString(barcodeNumber, fontCalibri6Bold, drawBrush, new RectangleF(x + 7 + width, y: 41, width, height), drawFormatCenter);
-                    graphics.DrawString(barcodeNumber, fontCalibri6Bold, drawBrush, new RectangleF(x + 15 + width + width, y: 41, width, height), drawFormatCenter);
+                    graphics.DrawString(barcodeNumber, fontArial7Bold, drawBrush, new RectangleF(x, y: 41, width, height), drawFormatCenter);
+                    graphics.DrawString(barcodeNumber, fontArial7Bold, drawBrush, new RectangleF(x + 7 + width, y: 41, width, height), drawFormatCenter);
+                    graphics.DrawString(barcodeNumber, fontArial7Bold, drawBrush, new RectangleF(x + 15 + width + width, y: 41, width, height), drawFormatCenter);
                     y += graphics.MeasureString(barcodeNumber, fontCalibri6Bold).Height;
 
                     graphics.DrawString(itemAlias, fontArial6Bold, drawBrush, new RectangleF(x, y: 52, width, height), drawFormatCenter);

@@ -173,6 +173,20 @@ namespace EasyPOS.Forms.Software.TrnStockIn
 
         public Task<List<Entities.DgvTrnStockInListEntity>> GetStockInListDataTask()
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (language != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             DateTime dateFilter = dateTimePickerStockInListFilter.Value.Date;
             String filter = textBoxStockInListFilter.Text;
             Controllers.TrnStockInController trnStockInController = new Controllers.TrnStockInController();
@@ -183,8 +197,8 @@ namespace EasyPOS.Forms.Software.TrnStockIn
                 var items = from d in listStockIn
                             select new Entities.DgvTrnStockInListEntity
                             {
-                                ColumnStockInListButtonEdit = SetLabel("Edit"),
-                                ColumnStockInListButtonDelete = SetLabel("Delete"),
+                                ColumnStockInListButtonEdit = gridEdit,
+                                ColumnStockInListButtonDelete = gridDelete,
                                 ColumnStockInListId = d.Id,
                                 ColumnStockInListStockInDate = d.StockInDate,
                                 ColumnStockInListStockInNumber = d.StockInNumber,

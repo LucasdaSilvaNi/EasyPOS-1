@@ -343,6 +343,20 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public async Task<List<Entities.DgvTrnSalesListEntity>> GetSalesListDataTask(DateTime salesDate, Int32 terminalId, String filter, String selectedIsLocked)
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (language != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             return await Task.Factory.StartNew(() =>
             {
                 List<Entities.DgvTrnSalesListEntity> rowList = new List<Entities.DgvTrnSalesListEntity>();
@@ -356,8 +370,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     var row = from d in salesList
                               select new Entities.DgvTrnSalesListEntity
                               {
-                                  ColumnDelete = SetLabel("Delete"),
-                                  ColumnEdit = SetLabel("Edit"),
+                                  ColumnDelete = gridDelete,
+                                  ColumnEdit = gridEdit,
                                   ColumnId = d.Id,
                                   ColumnTerminal = d.Terminal,
                                   ColumnSalesDate = d.SalesDate,

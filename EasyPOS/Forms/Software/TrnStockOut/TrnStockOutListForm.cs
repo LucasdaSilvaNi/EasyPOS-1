@@ -172,6 +172,20 @@ namespace EasyPOS.Forms.Software.TrnStockOut
 
         public Task<List<Entities.DgvStockOutListStockOutEntity>> GetStockOutListDataTask()
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (language != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             DateTime dateFilter = dateTimePickerStockOutListFilter.Value.Date;
             String filter = textBoxStockOutListFilter.Text;
             Controllers.TrnStockOutController trnStockOutController = new Controllers.TrnStockOutController();
@@ -182,8 +196,8 @@ namespace EasyPOS.Forms.Software.TrnStockOut
                 var items = from d in listStockOut
                             select new Entities.DgvStockOutListStockOutEntity
                             {
-                                ColumnStockOutListButtonEdit = SetLabel("Edit"),
-                                ColumnStockOutListButtonDelete = SetLabel("Delete"),
+                                ColumnStockOutListButtonEdit = gridEdit,
+                                ColumnStockOutListButtonDelete = gridDelete,
                                 ColumnStockOutListId = d.Id,
                                 ColumnStockOutListStockOutDate = d.StockOutDate,
                                 ColumnStockOutListStockOutNumber = d.StockOutNumber,

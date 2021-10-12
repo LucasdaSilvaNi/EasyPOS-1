@@ -544,6 +544,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 comboBoxSalesOrderPrinterType.Text = sysCurrent.SalesOrderPrinterType;
                 checkBoxDisableSalesCustomerSelection.Checked = Convert.ToBoolean(sysCurrent.DisableSalesCustomerSelection);
                 comboBoxLanguage.Text = sysCurrent.Language;
+                checkBoxSingleColumnBarcodePrintOut.Checked = Convert.ToBoolean(sysCurrent.SingleColumnBarcodePrintOut);
             }
         }
 
@@ -626,7 +627,8 @@ namespace EasyPOS.Forms.Software.SysSettings
                 EnableEditPrice = checkBoxEnableEditPrice.Checked,
                 SalesOrderPrinterType = comboBoxSalesOrderPrinterType.Text,
                 DisableSalesCustomerSelection = checkBoxDisableSalesCustomerSelection.Checked,
-                Language = comboBoxLanguage.Text
+                Language = comboBoxLanguage.Text,
+                SingleColumnBarcodePrintOut = checkBoxSingleColumnBarcodePrintOut.Checked
             };
 
             String[] saveSysCurrent = sysSettingsController.UpdateSysCurrent(sysCurrentEntity);
@@ -690,6 +692,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 comboBoxSalesOrderPrinterType.Enabled = false;
                 checkBoxDisableSalesCustomerSelection.Enabled = false;
                 comboBoxLanguage.Enabled = false;
+                checkBoxSingleColumnBarcodePrintOut.Enabled = false;
             }
             else
             {
@@ -778,6 +781,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 comboBoxSalesOrderPrinterType.Enabled = true;
                 checkBoxDisableSalesCustomerSelection.Enabled = true;
                 comboBoxLanguage.Enabled = true;
+                checkBoxSingleColumnBarcodePrintOut.Enabled = true;
             }
         }
 

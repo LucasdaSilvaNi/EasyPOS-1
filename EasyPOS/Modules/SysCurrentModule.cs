@@ -105,7 +105,8 @@ namespace EasyPOS.Modules
                 EnableEditPrice = currentSettings.EnableEditPrice,
                 SalesOrderPrinterType = currentSettings.SalesOrderPrinterType,
                 DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection,
-                Language = currentSettings.Language
+                Language = currentSettings.Language,
+                SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);
@@ -184,7 +185,8 @@ namespace EasyPOS.Modules
                 EnableEditPrice = objSysCurrentEntity.EnableEditPrice,
                 SalesOrderPrinterType = objSysCurrentEntity.SalesOrderPrinterType,
                 DisableSalesCustomerSelection = objSysCurrentEntity.DisableSalesCustomerSelection,
-                Language = objSysCurrentEntity.Language
+                Language = objSysCurrentEntity.Language,
+                SingleColumnBarcodePrintOut = objSysCurrentEntity.SingleColumnBarcodePrintOut
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newSysCurrentEntities);
@@ -264,7 +266,8 @@ namespace EasyPOS.Modules
                 EnableEditPrice = currentSettings.EnableEditPrice,
                 SalesOrderPrinterType = currentSettings.SalesOrderPrinterType,
                 DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection,
-                Language = currentSettings.Language
+                Language = currentSettings.Language,
+                SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);

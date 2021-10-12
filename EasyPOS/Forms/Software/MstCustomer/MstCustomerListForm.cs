@@ -165,6 +165,20 @@ namespace EasyPOS.Forms.Software.MstCustomer
 
         public Task<List<Entities.DgvMstCustomerListEntity>> GetCustomerListDataTask()
         {
+            string gridEdit = "Edit";
+            string gridDelete = "Delete";
+            var language = Modules.SysCurrentModule.GetCurrentSettings().Language;
+            if (language != "English")
+            {
+                gridEdit = "编辑";
+                gridDelete = "删除";
+            }
+            else
+            {
+                gridEdit = "Edit";
+                gridDelete = "Delete";
+            }
+
             String filter = textBoxCustomerListFilter.Text;
             Controllers.MstCustomerController mstCustomerController = new Controllers.MstCustomerController();
 
@@ -174,8 +188,8 @@ namespace EasyPOS.Forms.Software.MstCustomer
                 var items = from d in listCustomer
                             select new Entities.DgvMstCustomerListEntity
                             {
-                                ColumnCustomerListButtonEdit = SetLabel("Edit"),
-                                ColumnCustomerListButtonDelete = SetLabel("Delete"),
+                                ColumnCustomerListButtonEdit = gridEdit,
+                                ColumnCustomerListButtonDelete = gridDelete,
                                 ColumnCustomerListId = d.Id,
                                 ColumnCustomerListCustomerCode = d.CustomerCode,
                                 ColumnCustomerListCustomer = d.Customer,
@@ -214,18 +228,18 @@ namespace EasyPOS.Forms.Software.MstCustomer
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-           
-                Controllers.MstCustomerController mstCustomerController = new Controllers.MstCustomerController();
-                String[] addCustomer = mstCustomerController.AddCustomer();
-                if (addCustomer[1].Equals("0") == false)
-                {
-                    sysSoftwareForm.AddTabPageCustomerDetail(this, mstCustomerController.DetailCustomer(Convert.ToInt32(addCustomer[1])));
-                    UpdateCustomerListDataSource();
-                }
-                else
-                {
-                    MessageBox.Show(addCustomer[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+
+            Controllers.MstCustomerController mstCustomerController = new Controllers.MstCustomerController();
+            String[] addCustomer = mstCustomerController.AddCustomer();
+            if (addCustomer[1].Equals("0") == false)
+            {
+                sysSoftwareForm.AddTabPageCustomerDetail(this, mstCustomerController.DetailCustomer(Convert.ToInt32(addCustomer[1])));
+                UpdateCustomerListDataSource();
+            }
+            else
+            {
+                MessageBox.Show(addCustomer[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

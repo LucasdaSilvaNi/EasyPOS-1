@@ -138,6 +138,7 @@
             this.checkBoxEnableEasyShopIntegration = new System.Windows.Forms.CheckBox();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.checkBoxSingleColumnBarcodePrintOut = new System.Windows.Forms.CheckBox();
             this.comboBoxSalesOrderPrinterType = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxInvoiceFooter = new System.Windows.Forms.TextBox();
@@ -1534,6 +1535,7 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel9.Controls.Add(this.checkBoxSingleColumnBarcodePrintOut);
             this.panel9.Controls.Add(this.comboBoxSalesOrderPrinterType);
             this.panel9.Controls.Add(this.label3);
             this.panel9.Controls.Add(this.textBoxInvoiceFooter);
@@ -1555,6 +1557,17 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1095, 472);
             this.panel9.TabIndex = 35;
+            // 
+            // checkBoxSingleColumnBarcodePrintOut
+            // 
+            this.checkBoxSingleColumnBarcodePrintOut.AutoSize = true;
+            this.checkBoxSingleColumnBarcodePrintOut.Enabled = false;
+            this.checkBoxSingleColumnBarcodePrintOut.Location = new System.Drawing.Point(717, 174);
+            this.checkBoxSingleColumnBarcodePrintOut.Name = "checkBoxSingleColumnBarcodePrintOut";
+            this.checkBoxSingleColumnBarcodePrintOut.Size = new System.Drawing.Size(230, 23);
+            this.checkBoxSingleColumnBarcodePrintOut.TabIndex = 94;
+            this.checkBoxSingleColumnBarcodePrintOut.Text = "Single Column Barcode Print Out";
+            this.checkBoxSingleColumnBarcodePrintOut.UseVisualStyleBackColor = true;
             // 
             // comboBoxSalesOrderPrinterType
             // 
@@ -2311,5 +2324,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDefaultHeight;
         private System.Windows.Forms.ComboBox comboBoxLanguage;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox checkBoxSingleColumnBarcodePrintOut;
     }
 }
