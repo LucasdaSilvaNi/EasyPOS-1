@@ -315,7 +315,8 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                                               {
                                                   g.Key.PayTypeCode,
                                                   g.Key.PayType,
-                                                  Amount = g.Sum(s => s.TrnCollection.IsCancelled == false ? s.MstPayType.PayTypeCode == "CASH" ? s.Amount - s.TrnCollection.ChangeAmount : s.Amount : 0)
+                                                  //Amount = g.Sum(s => s.TrnCollection.IsCancelled == false ? s.MstPayType.PayTypeCode == "CASH" ? s.Amount - s.TrnCollection.ChangeAmount : s.Amount : 0)
+                                                  Amount = g.Sum(s => s.TrnCollection.IsCancelled == false ? s.MstPayType.PayTypeCode == "CASH" ?  s.Amount : 0 : 0)
                                               };
 
             Decimal totalCollectionAmount = 0;
