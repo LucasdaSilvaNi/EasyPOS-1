@@ -63,7 +63,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                               ColumnEntryDateTime = d.EntryDateTime
                           };
 
-                totalAmount = collectionList.Where(d => d.IsCancelled == false).Sum(d => d.Amount);
+                totalAmount = collectionList.Where(d => d.IsCancelled == false).Sum(d => d.Amount - d.ChangeAmount);
 
                 textBoxTotalAmount.Text = totalAmount.ToString("#,##0.00");
 

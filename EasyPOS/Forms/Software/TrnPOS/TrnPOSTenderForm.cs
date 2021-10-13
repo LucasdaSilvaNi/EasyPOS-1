@@ -213,7 +213,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         
                         listCollectionLine.Add(new Entities.TrnCollectionLineEntity()
                         {
-                            Amount = Convert.ToDecimal(textBoxTotalSalesAmount.Text),
+                            Amount = Convert.ToDecimal(row.Cells[4].Value),
                             PayTypeId = Convert.ToInt32(row.Cells[0].Value),
                             CheckNumber = row.Cells[8].Value != null ? row.Cells[8].Value.ToString() : "NA",
                             CheckDate = checkDate != null ? checkDate : DateTime.Now.ToString(),

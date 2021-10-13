@@ -96,9 +96,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         CollectionCount += 1;
                         tableLines.AddCell(new PdfPCell(new Phrase(sales.CollectionDate, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                         tableLines.AddCell(new PdfPCell(new Phrase(sales.CollectionNumber, fontHelvetica10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
-                        tableLines.AddCell(new PdfPCell(new Phrase(sales.Amount.ToString("#,##0.00"), fontHelvetica10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                        tableLines.AddCell(new PdfPCell(new Phrase((sales.Amount - sales.ChangeAmount).ToString("#,##0.00"), fontHelvetica10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
 
-                        totalAmount += Convert.ToDecimal(sales.Amount);
+                        totalAmount += Convert.ToDecimal((sales.Amount - sales.ChangeAmount));
                     }
                     subCollectionCount = (0 * CollectionCount) + CollectionCount;
                     totalCollectionCount += CollectionCount;

@@ -156,7 +156,7 @@ namespace EasyPOS.Forms.Software._80mmReport
                                       select new Entities.TrnCollectionLineEntity
                                       {
                                           PayType = g.Key.PayType,
-                                          Amount = g.Sum(a => a.Amount)
+                                          Amount = g.Sum(s => s.TrnCollection.IsCancelled == false ? s.MstPayType.PayTypeCode == "CASH" ? s.Amount - s.TrnCollection.ChangeAmount : s.Amount : 0)
                                       };
                 if (collectionLines.Any())
                 {
@@ -244,7 +244,7 @@ namespace EasyPOS.Forms.Software._80mmReport
                                       select new Entities.TrnCollectionLineEntity
                                       {
                                           PayType = g.Key.PayType,
-                                          Amount = g.Sum(a => a.Amount)
+                                          Amount = g.Sum(s => s.TrnCollection.IsCancelled == false ? s.MstPayType.PayTypeCode == "CASH" ? s.Amount - s.TrnCollection.ChangeAmount : s.Amount : 0)
                                       };
                 if (collectionLines.Any())
                 {
