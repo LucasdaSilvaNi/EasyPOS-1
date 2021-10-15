@@ -36,6 +36,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 if (salesLineList.Any())
                 {
                     var groupKitchenReports = from d in salesLineList
+                                              where d.IsPrinted == false
                                               group d by d.ItemKitchen into g
                                               select g;
 

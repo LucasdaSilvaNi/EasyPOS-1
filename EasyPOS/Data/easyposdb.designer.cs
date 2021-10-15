@@ -21350,6 +21350,8 @@ namespace EasyPOS.Data
 		
 		private decimal _PriceSplitPercentage;
 		
+		private System.Nullable<bool> _IsPrinted;
+		
 		private EntityRef<MstAccount> _MstAccount;
 		
 		private EntityRef<MstAccount> _MstAccount1;
@@ -21426,6 +21428,8 @@ namespace EasyPOS.Data
     partial void OnPrice2LessTaxChanged();
     partial void OnPriceSplitPercentageChanging(decimal value);
     partial void OnPriceSplitPercentageChanged();
+    partial void OnIsPrintedChanging(System.Nullable<bool> value);
+    partial void OnIsPrintedChanged();
     #endregion
 		
 		public TrnSalesLine()
@@ -21999,6 +22003,26 @@ namespace EasyPOS.Data
 					this._PriceSplitPercentage = value;
 					this.SendPropertyChanged("PriceSplitPercentage");
 					this.OnPriceSplitPercentageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPrinted", DbType="Bit")]
+		public System.Nullable<bool> IsPrinted
+		{
+			get
+			{
+				return this._IsPrinted;
+			}
+			set
+			{
+				if ((this._IsPrinted != value))
+				{
+					this.OnIsPrintedChanging(value);
+					this.SendPropertyChanging();
+					this._IsPrinted = value;
+					this.SendPropertyChanged("IsPrinted");
+					this.OnIsPrintedChanged();
 				}
 			}
 		}

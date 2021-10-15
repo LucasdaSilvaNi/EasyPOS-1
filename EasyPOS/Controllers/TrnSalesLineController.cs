@@ -57,7 +57,8 @@ namespace EasyPOS.Controllers
                                  Price2LessTax = d.Price2LessTax,
                                  PriceSplitPercentage = d.PriceSplitPercentage,
                                  TableId = d.TrnSale.TableId,
-                                 TableCode = d.TrnSale.TableId != null ? d.TrnSale.MstTable.TableCode : ""
+                                 TableCode = d.TrnSale.TableId != null ? d.TrnSale.MstTable.TableCode : "",
+                                 IsPrinted = d.IsPrinted
                              };
 
             return salesLines.OrderByDescending(d => d.Id).ToList();

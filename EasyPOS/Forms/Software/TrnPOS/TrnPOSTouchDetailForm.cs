@@ -388,7 +388,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                             Price1 = 0,
                             Price2 = 0,
                             Price2LessTax = 0,
-                            PriceSplitPercentage = 0
+                            PriceSplitPercentage = 0,
                         };
 
                         TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(null, this, trnSalesLineEntity, null);
@@ -710,7 +710,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         objSalesLineList.Price1.ToString("#,##0.00"),
                         objSalesLineList.Price2.ToString("#,##0.00"),
                         objSalesLineList.Price2LessTax.ToString("#,##0.00"),
-                        objSalesLineList.PriceSplitPercentage.ToString("#,##0.00")
+                        objSalesLineList.PriceSplitPercentage.ToString("#,##0.00"),
+                        objSalesLineList.IsPrinted
                     );
                 }
             }
@@ -1036,7 +1037,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Label Printer")
                         {
                             new TrnPOSSalesOrderReportFormLabelPrinter(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
-                        }                        
+                        }
                         else
                         {
                             new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
