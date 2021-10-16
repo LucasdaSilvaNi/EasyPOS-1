@@ -123,7 +123,6 @@
             this.printDialogSelectPrinter = new System.Windows.Forms.PrintDialog();
             this.ColumnSalesLineEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.ColumnSalesLineDelete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnIsPrinted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnSalesLineId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesLineSalesId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesLineItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1299,7 +1298,6 @@
             this.dataGridViewSalesLineList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnSalesLineEdit,
             this.ColumnSalesLineDelete,
-            this.ColumnIsPrinted,
             this.ColumnSalesLineId,
             this.ColumnSalesLineSalesId,
             this.ColumnSalesLineItemId,
@@ -1458,14 +1456,6 @@
             this.ColumnSalesLineDelete.ReadOnly = true;
             this.ColumnSalesLineDelete.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnSalesLineDelete.Width = 70;
-            // 
-            // ColumnIsPrinted
-            // 
-            this.ColumnIsPrinted.Frozen = true;
-            this.ColumnIsPrinted.HeaderText = "P";
-            this.ColumnIsPrinted.Name = "ColumnIsPrinted";
-            this.ColumnIsPrinted.ReadOnly = true;
-            this.ColumnIsPrinted.Width = 25;
             // 
             // ColumnSalesLineId
             // 
@@ -1797,7 +1787,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnSalesLineEdit;
         private System.Windows.Forms.DataGridViewButtonColumn ColumnSalesLineDelete;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnIsPrinted;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesLineId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesLineSalesId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesLineItemId;

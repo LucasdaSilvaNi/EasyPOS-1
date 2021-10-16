@@ -197,6 +197,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Id = trnSalesLineEntity.Id,
                 SalesId = trnSalesLineEntity.SalesId,
                 ItemId = trnSalesLineEntity.ItemId,
+                IsPrinted = Convert.ToBoolean(trnSalesLineEntity.IsPrinted),
                 ItemDescription = trnSalesLineEntity.ItemDescription,
                 UnitId = trnSalesLineEntity.UnitId,
                 Unit = trnSalesLineEntity.Unit,

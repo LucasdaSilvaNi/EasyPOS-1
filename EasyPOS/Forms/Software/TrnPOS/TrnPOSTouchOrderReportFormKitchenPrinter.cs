@@ -36,7 +36,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 if (salesLineList.Any())
                 {
                     var groupKitchenReports = from d in salesLineList
-                                              where d.IsPrinted == false
                                               group d by d.ItemKitchen into g
                                               select g;
 
@@ -732,7 +731,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
 
 
-                var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId && d.MstItem.DefaultKitchenReport == kitchenReport select d;
+                var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId && d.MstItem.DefaultKitchenReport == kitchenReport && d.IsPrinted == false select d;
                 if (salesLines.Any())
                 {
                     var salesLineGroupbyItem = from s in salesLines

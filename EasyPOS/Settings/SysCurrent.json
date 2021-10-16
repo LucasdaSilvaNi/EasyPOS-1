@@ -11,7 +11,7 @@
   "ReceiptFooter": "POS VENDOR: Easy Cloud Systems Inc.\nUnit 1023 City Soho Bldg. B. Rodriguez St. Guadalupe Cebu City Phil, 6000\nVAT REG TIN: 751-968-730-000\n\nAccreditation No.: 000000000000 \nDate Issued: mm-dd-yyy\nValid Until: mm-dd-yyyy\n\nPTU No.: 000000000000 \nDate Issued: mm-dd-yyy\nValid Until: mm-dd-yyyy\n\nTHIS INVOICE SHALL BE VALID FOR FIVE (5) YEARS FROM THE DATE OF THE PERMIT TO USE",
   "WithdrawalFooter": "POS VENDOR: Easy Cloud Systems Inc.\nUnit 1023 City Soho Bldg. B. Rodriguez St. Guadalupe Cebu City Phil, 6000\nVAT REG TIN: 751-968-730-000\n\nAccreditation No.: 000000000000 \nDate Issued: mm-dd-yyy\nValid Until: mm-dd-yyyy\n\nPTU No.: 000000000000 \nDate Issued: mm-dd-yyy\nValid Until: mm-dd-yyyy\n\nTHIS INVOICE SHALL BE VALID FOR FIVE (5) YEARS FROM THE DATE OF THE PERMIT TO USE",
   "InvoiceFooter": "POS VENDOR: Easy Cloud Systems Inc.\nUnit 1023 City Soho Bldg. B. Rodriguez St. Guadalupe Cebu City Phil, 6000\nVAT REG TIN: 751-968-730-000\n\nAccreditation No.: 000000000000 \nDate Issued: mm-dd-yyy\nValid Until: mm-dd-yyyy\n\nPTU No.: 000000000000 \nDate Issued: mm-dd-yyy\nValid Until: mm-dd-yyyy\n\nTHIS INVOICE SHALL BE VALID FOR FIVE (5) YEARS FROM THE DATE OF THE PERMIT TO USE",
-  "LicenseCode": "P0v6Y7ryDDfrzYvYEDKxpEOecwJqAKt9FHFM4v7IYkM=",
+  "LicenseCode": "0XKC9gBoxTfPWdQF4Szs+c97ND/PLBmq02kJcIQYSDQ=",
   "TenantOf": "",
   "CurrentUserId": 1,
   "CurrentUserName": "admin",
@@ -59,7 +59,7 @@
   "ChoosePrinter": false,
   "IsTriggeredQuantity": false,
   "EnableEditPrice": false,
-  "SalesOrderPrinterType": "Default Printer",
+  "SalesOrderPrinterType": "Kitchen Printer",
   "DisableSalesCustomerSelection": false,
   "Language": "English",
   "SingleColumnBarcodePrintOut": false

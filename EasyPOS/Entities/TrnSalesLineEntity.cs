@@ -41,6 +41,6 @@ namespace EasyPOS.Entities
         public Decimal PriceSplitPercentage { get; set; }
         public Int32? TableId { get; set; }
         public String TableCode { get; set; }
-        public Boolean? IsPrinted { get; set; }
+        public Boolean IsPrinted { get; set; }
     }
 }
