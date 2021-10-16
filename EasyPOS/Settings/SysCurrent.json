@@ -41,7 +41,7 @@
   "EasypayMotherCardNumber": "0000000001",
   "ActivateAuditTrail": true,
   "FacepayImagePath": "D:\\Facepay",
-  "POSType": "POS Touch",
+  "POSType": "POS Barcode",
   "AllowNegativeInventory": true,
   "IsLoginDate": true,
   "EnableEasyShopIntegration": false,
@@ -62,5 +62,6 @@
   "SalesOrderPrinterType": "Kitchen Printer",
   "DisableSalesCustomerSelection": false,
   "Language": "English",
-  "SingleColumnBarcodePrintOut": false
+  "SingleColumnBarcodePrintOut": false,
+  "RestrictCashin":  true
 }

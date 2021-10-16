@@ -545,6 +545,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxDisableSalesCustomerSelection.Checked = Convert.ToBoolean(sysCurrent.DisableSalesCustomerSelection);
                 comboBoxLanguage.Text = sysCurrent.Language;
                 checkBoxSingleColumnBarcodePrintOut.Checked = Convert.ToBoolean(sysCurrent.SingleColumnBarcodePrintOut);
+                checkBoxRestrictCashin.Checked = Convert.ToBoolean(sysCurrent.RestrictCashin);
             }
         }
 
@@ -628,8 +629,9 @@ namespace EasyPOS.Forms.Software.SysSettings
                 SalesOrderPrinterType = comboBoxSalesOrderPrinterType.Text,
                 DisableSalesCustomerSelection = checkBoxDisableSalesCustomerSelection.Checked,
                 Language = comboBoxLanguage.Text,
-                SingleColumnBarcodePrintOut = checkBoxSingleColumnBarcodePrintOut.Checked
-            };
+                SingleColumnBarcodePrintOut = checkBoxSingleColumnBarcodePrintOut.Checked,
+                RestrictCashin = checkBoxRestrictCashin.Checked
+        };
 
             String[] saveSysCurrent = sysSettingsController.UpdateSysCurrent(sysCurrentEntity);
             if (saveSysCurrent[1].Equals("0") == false)
@@ -693,6 +695,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxDisableSalesCustomerSelection.Enabled = false;
                 comboBoxLanguage.Enabled = false;
                 checkBoxSingleColumnBarcodePrintOut.Enabled = false;
+                checkBoxRestrictCashin.Enabled = false;
             }
             else
             {
@@ -782,6 +785,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxDisableSalesCustomerSelection.Enabled = true;
                 comboBoxLanguage.Enabled = true;
                 checkBoxSingleColumnBarcodePrintOut.Enabled = true;
+                checkBoxRestrictCashin.Enabled = true;
             }
         }
 
