@@ -173,6 +173,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 Decimal totalVATZeroRatedSales = 0;
                 Decimal totalNoOfSKUs = 0;
                 Decimal totalQUantity = 0;
+                Decimal totalVATExempt = 0;
 
                 var salesLinesQuery = from d in currentCollectionSalesLineQuery
                                       where d.Quantity > 0
@@ -210,7 +211,8 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                     );
 
                     totalVATAmount = salesLines.Sum(d =>
-                        d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount
+                        d.MstTax.Code == "EXEMPTVAT" ? 0 : d.TaxAmount
+                        //d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount
                     );
 
                     totalNonVATSales = salesLines.Sum(d =>
@@ -218,7 +220,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                     );
 
                     totalVATExemptSales = salesLines.Sum(d =>
-                        d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - totalSeniorCitizenDiscount - totalPWDDiscount : 0
+                    d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - d.DiscountAmount * d.Quantity: 0
                     );
 
                     totalVATZeroRatedSales = salesLines.Sum(d =>
@@ -316,7 +318,6 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                                                   g.Key.PayTypeCode,
                                                   g.Key.PayType,
                                                   Amount = g.Sum(s => s.TrnCollection.IsCancelled == false ? s.MstPayType.PayTypeCode == "CASH" ? s.Amount - s.TrnCollection.ChangeAmount : s.Amount : 0)
-                                                  //Amount = g.Sum(s => s.TrnCollection.IsCancelled == false ? s.MstPayType.PayTypeCode == "CASH" ?  s.Amount : 0 : 0)
                                               };
 
             Decimal totalCollectionAmount = 0;
@@ -823,7 +824,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 Decimal totalVATAmount = dataSource.TotalVATAmount * currentDeclareRate;
                 Decimal totalNonVAT = dataSource.TotalNonVAT * currentDeclareRate;
                 Decimal totalVATExclusive = dataSource.TotalVATExclusive * currentDeclareRate;
-                Decimal totalVATExempt = dataSource.TotalVATExempt * currentDeclareRate;
+                Decimal totalVATExemptSales = dataSource.TotalVATExempt * currentDeclareRate;
                 Decimal totalVATZeroRated = dataSource.TotalVATZeroRated * currentDeclareRate;
 
                 String vatSalesLabel = "\nVAT Sales";
@@ -845,7 +846,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(totalNonVATAmount, fontArial6Regular).Height;
 
                 String totalVATExemptLabel = "VAT Exempt";
-                String totalVATExemptData = totalVATExempt.ToString("#,##0.00");
+                String totalVATExemptData = totalVATExemptSales.ToString("#,##0.00");
                 graphics.DrawString(totalVATExemptLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                 graphics.DrawString(totalVATExemptData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                 y += graphics.MeasureString(totalVATExemptData, fontArial6Regular).Height;
