@@ -706,56 +706,56 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 // ===========
                 // Gross Sales
                 // ===========
-                String totalGrossSalesLabel = "\nGross Sales (Net of VAT)";
+                String totalGrossSalesLabel = "\nG. S.(Net of VAT)";
                 String totalGrossSalesData = "\n" + totalGrossSales.ToString("#,##0.00");
-                graphics.DrawString(totalGrossSalesLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalGrossSalesData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalGrossSalesData, fontArial6Regular).Height;
+                graphics.DrawString(totalGrossSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalGrossSalesData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalGrossSalesData, fontArial7Regular).Height;
 
                 // ================
                 // Regular Discount
                 // ================
                 String totalRegularDiscountLabel = "Regular Discount";
                 String totalRegularDiscountData = totalRegularDiscount.ToString("#,##0.00");
-                graphics.DrawString(totalRegularDiscountLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalRegularDiscountData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalRegularDiscountData, fontArial6Regular).Height;
+                graphics.DrawString(totalRegularDiscountLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalRegularDiscountData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalRegularDiscountData, fontArial7Regular).Height;
 
                 // ===============
                 // Senior Discount
                 // ===============
                 String totalSeniorDiscountLabel = "Senior Discount";
                 String totalSeniorDiscountData = totalSeniorDiscount.ToString("#,##0.00");
-                graphics.DrawString(totalSeniorDiscountLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalSeniorDiscountData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalSeniorDiscountData, fontArial6Regular).Height;
+                graphics.DrawString(totalSeniorDiscountLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalSeniorDiscountData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalSeniorDiscountData, fontArial7Regular).Height;
 
                 // ============
                 // PWD Discount
                 // ============
                 String totalPWDDiscountLabel = "PWD Discount";
                 String totalPWDDiscountData = totalPWDDiscount.ToString("#,##0.00");
-                graphics.DrawString(totalPWDDiscountLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalPWDDiscountData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalPWDDiscountData, fontArial6Regular).Height;
+                graphics.DrawString(totalPWDDiscountLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalPWDDiscountData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalPWDDiscountData, fontArial7Regular).Height;
 
                 // ============
                 // Sales Return
                 // ============
                 String totalSalesReturnLabel = "Sales Return";
                 String totalSalesReturnData = "(" + totalSalesReturn.ToString("#,##0.00") + ")";
-                graphics.DrawString(totalSalesReturnLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalSalesReturnData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalSalesReturnData, fontArial6Regular).Height;
+                graphics.DrawString(totalSalesReturnLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalSalesReturnData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalSalesReturnData, fontArial7Regular).Height;
 
                 // =========
                 // Net Sales
                 // =========
                 String totalNetSalesLabel = "Net Sales \n\n";
                 String totalNetSalesData = totalNetSales.ToString("#,##0.00") + "\n\n";
-                graphics.DrawString(totalNetSalesLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalNetSalesData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalNetSalesData, fontArial6Regular).Height;
+                graphics.DrawString(totalNetSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalNetSalesData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalNetSalesData, fontArial7Regular).Height;
 
                 // ========
                 // 2nd Line
@@ -777,18 +777,18 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                         // ================
                         String collectionLineLabel = collectionLine.PayType;
                         String collectionLineData = (collectionLine.Amount * currentDeclareRate).ToString("#,##0.00");
-                        graphics.DrawString(collectionLineLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                        graphics.DrawString(collectionLineData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                        y += graphics.MeasureString(collectionLineData, fontArial6Regular).Height;
+                        graphics.DrawString(collectionLineLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        graphics.DrawString(collectionLineData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                        y += graphics.MeasureString(collectionLineData, fontArial7Regular).Height;
                     }
 
                     Decimal totalRefund = dataSource.TotalRefund * currentDeclareRate;
 
                     String totalRefundLabel = "Refund";
                     String totalRefundData = "(" + totalRefund.ToString("#,##0.00") + ")";
-                    graphics.DrawString(totalRefundLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                    graphics.DrawString(totalRefundData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                    y += graphics.MeasureString(totalRefundData, fontArial6Regular).Height;
+                    graphics.DrawString(totalRefundLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                    graphics.DrawString(totalRefundData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                    y += graphics.MeasureString(totalRefundData, fontArial7Regular).Height;
 
                     // ========
                     // 3rd Line
@@ -809,9 +809,9 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 String totalCollectionLabel = "\nTotal Collection";
                 String totalCollectionData = "\n" + totalCollection.ToString("#,##0.00");
-                graphics.DrawString(totalCollectionLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalCollectionData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalCollectionData, fontArial6Regular).Height;
+                graphics.DrawString(totalCollectionLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalCollectionData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalCollectionData, fontArial7Regular).Height;
 
                 // ========
                 // 4th Line
@@ -829,33 +829,33 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 String vatSalesLabel = "\nVAT Sales";
                 String totalVatSalesData = "\n" + totalVATSales.ToString("#,##0.00");
-                graphics.DrawString(vatSalesLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalVatSalesData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalVatSalesData, fontArial6Regular).Height;
+                graphics.DrawString(vatSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalVatSalesData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalVatSalesData, fontArial7Regular).Height;
 
                 String totalVATAmountLabel = "VAT Amount";
                 String totalVATAmountData = totalVATAmount.ToString("#,##0.00");
-                graphics.DrawString(totalVATAmountLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalVATAmountData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalVATAmountData, fontArial6Regular).Height;
+                graphics.DrawString(totalVATAmountLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalVATAmountData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalVATAmountData, fontArial7Regular).Height;
 
                 String totalNonVATLabel = "Non-VAT";
                 String totalNonVATAmount = totalNonVAT.ToString("#,##0.00");
-                graphics.DrawString(totalNonVATLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalNonVATAmount, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalNonVATAmount, fontArial6Regular).Height;
+                graphics.DrawString(totalNonVATLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalNonVATAmount, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalNonVATAmount, fontArial7Regular).Height;
 
                 String totalVATExemptLabel = "VAT Exempt";
                 String totalVATExemptData = totalVATExemptSales.ToString("#,##0.00");
-                graphics.DrawString(totalVATExemptLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalVATExemptData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalVATExemptData, fontArial6Regular).Height;
+                graphics.DrawString(totalVATExemptLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalVATExemptData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalVATExemptData, fontArial7Regular).Height;
 
                 String totalVATZeroRatedLabel = "VAT Zero Rated";
                 String totalVatZeroRatedData = totalVATZeroRated.ToString("#,##0.00");
-                graphics.DrawString(totalVATZeroRatedLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalVatZeroRatedData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalVatZeroRatedData, fontArial6Regular).Height;
+                graphics.DrawString(totalVATZeroRatedLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalVatZeroRatedData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalVatZeroRatedData, fontArial7Regular).Height;
 
                 // ========
                 // 5th Line
@@ -869,15 +869,15 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 String startCounterIdLabel = "\nCounter ID Start";
                 String startCounterIdData = "\n" + counterIdStart;
-                graphics.DrawString(startCounterIdLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(startCounterIdData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(startCounterIdData, fontArial6Regular).Height;
+                graphics.DrawString(startCounterIdLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(startCounterIdData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(startCounterIdData, fontArial7Regular).Height;
 
                 String endCounterIdLabel = "Counter ID End";
                 String endCounterIdData = counterIdEnd;
-                graphics.DrawString(endCounterIdLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(endCounterIdData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(endCounterIdData, fontArial6Regular).Height;
+                graphics.DrawString(endCounterIdLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(endCounterIdData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(endCounterIdData, fontArial7Regular).Height;
 
                 // ========
                 // 6th Line
@@ -891,15 +891,15 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 String totalCancelledTrnsactionCountLabel = "\nCancelled Tx.";
                 String totalCancelledTrnsactionCountData = "\n" + totalCancelledTrnsactionCount.ToString("#,##0");
-                graphics.DrawString(totalCancelledTrnsactionCountLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalCancelledTrnsactionCountData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalCancelledTrnsactionCountData, fontArial6Regular).Height;
+                graphics.DrawString(totalCancelledTrnsactionCountLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalCancelledTrnsactionCountData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalCancelledTrnsactionCountData, fontArial7Regular).Height;
 
                 String totalCancelledAmountLabel = "Cancelled Amount";
                 String totalCancelledAmountData = totalCancelledAmount.ToString("#,##0.00");
-                graphics.DrawString(totalCancelledAmountLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalCancelledAmountData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalCancelledAmountData, fontArial6Regular).Height;
+                graphics.DrawString(totalCancelledAmountLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalCancelledAmountData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalCancelledAmountData, fontArial7Regular).Height;
 
                 // ========
                 // 7th Line
@@ -914,21 +914,21 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 String totalNumberOfTransactionsLabel = "\nNo. of Transactions";
                 String totalNumberOfTransactionsData = "\n" + totalNumberOfTransactions.ToString("#,##0");
-                graphics.DrawString(totalNumberOfTransactionsLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalNumberOfTransactionsData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalNumberOfTransactionsData, fontArial6Regular).Height;
+                graphics.DrawString(totalNumberOfTransactionsLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalNumberOfTransactionsData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalNumberOfTransactionsData, fontArial7Regular).Height;
 
                 String totalNumberOfSKULabel = "No. of SKU";
                 String totalNumberOfSKUData = totalNumberOfSKU.ToString("#,##0");
-                graphics.DrawString(totalNumberOfSKULabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalNumberOfSKUData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalNumberOfSKUData, fontArial6Regular).Height;
+                graphics.DrawString(totalNumberOfSKULabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalNumberOfSKUData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalNumberOfSKUData, fontArial7Regular).Height;
 
                 String totalQuantityLabel = "Total Quantity";
                 String totalQuantityData = totalQuantity.ToString("#,##0.00");
-                graphics.DrawString(totalQuantityLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalQuantityData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalQuantityData, fontArial6Regular).Height;
+                graphics.DrawString(totalQuantityLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalQuantityData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalQuantityData, fontArial7Regular).Height;
 
                 // ========
                 // 8th Line
@@ -937,27 +937,27 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 Point eightLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                 graphics.DrawLine(blackPen, eightLineFirstPoint, eightLineSecondPoint);
 
-                graphics.DrawString("\nAccumulated Gross Sales (Net of VAT)", fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                y += graphics.MeasureString("\nAccumulated Gross Sales (Net of VAT)", fontArial6Regular).Height;
+                graphics.DrawString("\nAccu. Gross Sales (Net of VAT)", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                y += graphics.MeasureString("\nAccu. Gross Sales (Net of VAT)", fontArial7Regular).Height;
 
                 Decimal grossSalesTotalPreviousReading = dataSource.GrossSalesTotalPreviousReading;
                 Decimal grossSalesRunningTotal = dataSource.GrossSalesRunningTotal;
 
                 String grossSalesTotalPreviousReadingLabel = "\nPrevious Reading";
                 String grossSalesTotalPreviousReadingData = "\n" + grossSalesTotalPreviousReading.ToString("#,##0.00");
-                graphics.DrawString(grossSalesTotalPreviousReadingLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(grossSalesTotalPreviousReadingData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(grossSalesTotalPreviousReadingData, fontArial6Regular).Height;
+                graphics.DrawString(grossSalesTotalPreviousReadingLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(grossSalesTotalPreviousReadingData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(grossSalesTotalPreviousReadingData, fontArial7Regular).Height;
 
-                graphics.DrawString("Gross Sales (Net of VAT)", fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalGrossSales.ToString("#,##0.00"), fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalGrossSales.ToString("#,##0.00"), fontArial6Regular).Height;
+                graphics.DrawString("G. S.(Net of VAT)", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalGrossSales.ToString("#,##0.00"), fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalGrossSales.ToString("#,##0.00"), fontArial7Regular).Height;
 
-                String grossSalesRunningTotalLabel = "Accu. Gross Sales (Net of VAT)";
+                String grossSalesRunningTotalLabel = "A. G. S. (Net of VAT)";
                 String grossSalesRunningTotalData = grossSalesRunningTotal.ToString("#,##0.00");
-                graphics.DrawString(grossSalesRunningTotalLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(grossSalesRunningTotalData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(grossSalesRunningTotalData, fontArial6Regular).Height;
+                graphics.DrawString(grossSalesRunningTotalLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(grossSalesRunningTotalData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(grossSalesRunningTotalData, fontArial7Regular).Height;
 
                 // ========
                 // 9th Line
@@ -966,27 +966,27 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 Point ninethLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                 graphics.DrawLine(blackPen, ninethLineFirstPoint, ninethLineSecondPoint);
 
-                graphics.DrawString("\nAccumulated Net Sales", fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                y += graphics.MeasureString("\nAccumulated Net Sales", fontArial6Regular).Height;
+                graphics.DrawString("\nAccu. Net Sales", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                y += graphics.MeasureString("\nAccu. Net Sales", fontArial7Regular).Height;
 
                 Decimal netSalesTotalPreviousReading = dataSource.NetSalesTotalPreviousReading;
                 Decimal netSalesRunningTotal = dataSource.NetSalesRunningTotal;
 
                 String netSalesTotalPreviousReadingLabel = "\nPrevious Reading";
                 String netSalesTotalPreviousReadingData = "\n" + netSalesTotalPreviousReading.ToString("#,##0.00");
-                graphics.DrawString(netSalesTotalPreviousReadingLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(netSalesTotalPreviousReadingData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(netSalesTotalPreviousReadingData, fontArial6Regular).Height;
+                graphics.DrawString(netSalesTotalPreviousReadingLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(netSalesTotalPreviousReadingData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(netSalesTotalPreviousReadingData, fontArial7Regular).Height;
 
-                graphics.DrawString("Net Sales", fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(totalNetSales.ToString("#,##0.00"), fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(totalNetSales.ToString("#,##0.00"), fontArial6Regular).Height;
+                graphics.DrawString("Net Sales", fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalNetSales.ToString("#,##0.00"), fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalNetSales.ToString("#,##0.00"), fontArial7Regular).Height;
 
                 String netSalesRunningTotalLabel = "Accu. Net Sales";
                 String netSalesRunningTotalData = netSalesRunningTotal.ToString("#,##0.00");
-                graphics.DrawString(netSalesRunningTotalLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(netSalesRunningTotalData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(netSalesRunningTotalData, fontArial6Regular).Height;
+                graphics.DrawString(netSalesRunningTotalLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(netSalesRunningTotalData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(netSalesRunningTotalData, fontArial7Regular).Height;
 
                 // =========
                 // 10th Line
@@ -999,9 +999,9 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 String zReadingCounterLabel = "\nZ-Reading Counter";
                 String zReadingCounterData = "\n" + zReadingCounter;
-                graphics.DrawString(zReadingCounterLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(zReadingCounterData, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(zReadingCounterData, fontArial6Regular).Height;
+                graphics.DrawString(zReadingCounterLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(zReadingCounterData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(zReadingCounterData, fontArial7Regular).Height;
 
                 // =========
                 // 11th Line
@@ -1013,8 +1013,8 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 String zReadingFooter = systemCurrent.ZReadingFooter;
 
                 String zReadingEndLabel = "\n" + zReadingFooter;
-                graphics.DrawString(zReadingEndLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                y += graphics.MeasureString(zReadingEndLabel, fontArial6Regular).Height;
+                graphics.DrawString(zReadingEndLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                y += graphics.MeasureString(zReadingEndLabel, fontArial7Regular).Height;
             }
             else
             {
