@@ -173,7 +173,6 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 Decimal totalVATZeroRatedSales = 0;
                 Decimal totalNoOfSKUs = 0;
                 Decimal totalQUantity = 0;
-                Decimal totalVATExempt = 0;
 
                 var salesLinesQuery = from d in currentCollectionSalesLineQuery
                                       where d.Quantity > 0
