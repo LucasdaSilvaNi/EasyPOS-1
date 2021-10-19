@@ -910,6 +910,20 @@ namespace EasyPOS.Controllers
                 return new String[] { e.Message, "0" };
             }
         }
+        public Entities.TrnDisbursementEntity ScanCashIn(Int32 currentUserId, DateTime currentDate, string disbursementType )
+        {
+            var hasCashin = from d in db.TrnDisbursements
+                               where d.PreparedBy == currentUserId
+                               && d.DisbursementDate == currentDate
+                               && d.DisbursementType == disbursementType
+                               select new Entities.TrnDisbursementEntity
+                               {
+                                   Id = d.Id,
+                                   DisbursementDate = d.DisbursementDate.ToShortDateString(),
+                                   DisbursementType = d.DisbursementType
+                               };
 
+            return hasCashin.FirstOrDefault();
+        }
     }
 }

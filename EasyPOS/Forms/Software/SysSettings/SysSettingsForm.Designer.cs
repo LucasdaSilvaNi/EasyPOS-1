@@ -186,7 +186,7 @@
             this.buttonKitchenPageListLast = new System.Windows.Forms.Button();
             this.textBoxKitchenPageNumber = new System.Windows.Forms.TextBox();
             this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
-            this.checkBoxFixedSCDiscount = new System.Windows.Forms.CheckBox();
+            this.checkBoxRestrictCashin = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -445,9 +445,9 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel5.Controls.Add(this.checkBoxFixedSCDiscount);
             this.panel5.Controls.Add(this.comboBoxLanguage);
             this.panel5.Controls.Add(this.label16);
+            this.panel5.Controls.Add(this.checkBoxRestrictCashin);
             this.panel5.Controls.Add(this.checkBoxDisableSalesCustomerSelection);
             this.panel5.Controls.Add(this.checkBoxEnableEditPrice);
             this.panel5.Controls.Add(this.checkBoxIsTriggeredQuantity);
@@ -2116,18 +2116,18 @@
             this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
             this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
             // 
-            // checkBoxFixedSCDiscount
+            // checkBoxRestrictCashin
             // 
-            this.checkBoxFixedSCDiscount.AutoSize = true;
-            this.checkBoxFixedSCDiscount.Enabled = false;
-            this.checkBoxFixedSCDiscount.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxFixedSCDiscount.Location = new System.Drawing.Point(874, 62);
-            this.checkBoxFixedSCDiscount.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxFixedSCDiscount.Name = "checkBoxFixedSCDiscount";
-            this.checkBoxFixedSCDiscount.Size = new System.Drawing.Size(137, 23);
-            this.checkBoxFixedSCDiscount.TabIndex = 97;
-            this.checkBoxFixedSCDiscount.Text = "Fixed SC Discount";
-            this.checkBoxFixedSCDiscount.UseVisualStyleBackColor = true;
+            this.checkBoxRestrictCashin.AutoSize = true;
+            this.checkBoxRestrictCashin.Enabled = false;
+            this.checkBoxRestrictCashin.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxRestrictCashin.Location = new System.Drawing.Point(874, 62);
+            this.checkBoxRestrictCashin.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxRestrictCashin.Name = "checkBoxRestrictCashin";
+            this.checkBoxRestrictCashin.Size = new System.Drawing.Size(124, 23);
+            this.checkBoxRestrictCashin.TabIndex = 94;
+            this.checkBoxRestrictCashin.Text = "Restrict Cash-in";
+            this.checkBoxRestrictCashin.UseVisualStyleBackColor = true;
             // 
             // SysSettingsForm
             // 
@@ -2340,6 +2340,6 @@
         private System.Windows.Forms.ComboBox comboBoxLanguage;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox checkBoxSingleColumnBarcodePrintOut;
-        private System.Windows.Forms.CheckBox checkBoxFixedSCDiscount;
+        private System.Windows.Forms.CheckBox checkBoxRestrictCashin;
     }
 }

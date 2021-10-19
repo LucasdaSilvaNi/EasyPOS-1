@@ -210,7 +210,8 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                     );
 
                     totalVATAmount = salesLines.Sum(d =>
-                        d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount
+                        d.MstTax.Code == "EXEMPTVAT" ? 0 : d.TaxAmount
+                    //d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount
                     );
 
                     totalNonVATSales = salesLines.Sum(d =>
@@ -218,7 +219,8 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                     );
 
                     totalVATExemptSales = salesLines.Sum(d =>
-                        d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - totalSeniorCitizenDiscount - totalPWDDiscount : 0
+                    d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - d.DiscountAmount * d.Quantity : 0
+                    //d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - totalSeniorCitizenDiscount - totalPWDDiscount : 0
                     );
 
                     totalVATZeroRatedSales = salesLines.Sum(d =>

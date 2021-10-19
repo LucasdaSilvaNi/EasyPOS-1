@@ -107,7 +107,7 @@ namespace EasyPOS.Modules
                 DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection,
                 Language = currentSettings.Language,
                 SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut,
-                FixedSCDiscount = currentSettings.FixedSCDiscount
+                RestrictCashin = currentSettings.RestrictCashin
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);
@@ -188,7 +188,7 @@ namespace EasyPOS.Modules
                 DisableSalesCustomerSelection = objSysCurrentEntity.DisableSalesCustomerSelection,
                 Language = objSysCurrentEntity.Language,
                 SingleColumnBarcodePrintOut = objSysCurrentEntity.SingleColumnBarcodePrintOut,
-                FixedSCDiscount = objSysCurrentEntity.FixedSCDiscount
+                RestrictCashin = objSysCurrentEntity.RestrictCashin
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newSysCurrentEntities);
@@ -270,7 +270,7 @@ namespace EasyPOS.Modules
                 DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection,
                 Language = currentSettings.Language,
                 SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut,
-                FixedSCDiscount = currentSettings.FixedSCDiscount
+                RestrictCashin = currentSettings.RestrictCashin
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);
