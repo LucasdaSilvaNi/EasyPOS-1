@@ -106,7 +106,8 @@ namespace EasyPOS.Modules
                 SalesOrderPrinterType = currentSettings.SalesOrderPrinterType,
                 DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection,
                 Language = currentSettings.Language,
-                SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut
+                SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut,
+                FixedSCDiscount = currentSettings.FixedSCDiscount
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);
@@ -186,7 +187,8 @@ namespace EasyPOS.Modules
                 SalesOrderPrinterType = objSysCurrentEntity.SalesOrderPrinterType,
                 DisableSalesCustomerSelection = objSysCurrentEntity.DisableSalesCustomerSelection,
                 Language = objSysCurrentEntity.Language,
-                SingleColumnBarcodePrintOut = objSysCurrentEntity.SingleColumnBarcodePrintOut
+                SingleColumnBarcodePrintOut = objSysCurrentEntity.SingleColumnBarcodePrintOut,
+                FixedSCDiscount = objSysCurrentEntity.FixedSCDiscount
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newSysCurrentEntities);
@@ -267,7 +269,8 @@ namespace EasyPOS.Modules
                 SalesOrderPrinterType = currentSettings.SalesOrderPrinterType,
                 DisableSalesCustomerSelection = currentSettings.DisableSalesCustomerSelection,
                 Language = currentSettings.Language,
-                SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut
+                SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut,
+                FixedSCDiscount = currentSettings.FixedSCDiscount
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);

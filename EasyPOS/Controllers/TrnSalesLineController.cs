@@ -57,12 +57,61 @@ namespace EasyPOS.Controllers
                                  Price2LessTax = d.Price2LessTax,
                                  PriceSplitPercentage = d.PriceSplitPercentage,
                                  TableId = d.TrnSale.TableId,
-                                 TableCode = d.TrnSale.TableId != null ? d.TrnSale.MstTable.TableCode : ""
+                                 TableCode = d.TrnSale.TableId != null ? d.TrnSale.MstTable.TableCode : "",
+                                 IsPrinted = d.IsPrinted
                              };
 
             return salesLines.OrderByDescending(d => d.Id).ToList();
         }
 
+        // ================
+        // Print Sales Line
+        // ================
+        public List<Entities.TrnSalesLineEntity> OrderListPrintSalesLine(Int32 salesId, Boolean isPrinted)
+        {
+            var salesLines = from d in db.TrnSalesLines
+                             where d.SalesId == salesId
+                             && d.IsPrinted == isPrinted
+                             select new Entities.TrnSalesLineEntity
+                             {
+                                 Id = d.Id,
+                                 SalesId = d.SalesId,
+                                 ItemId = d.ItemId,
+                                 ItemDescription = d.MstItem.ItemDescription,
+                                 ItemKitchen = d.MstItem.DefaultKitchenReport,
+                                 UnitId = d.UnitId,
+                                 Unit = d.MstUnit.Unit,
+                                 Price = d.Price,
+                                 DiscountId = d.DiscountId,
+                                 Discount = d.MstDiscount.Discount,
+                                 DiscountRate = d.DiscountRate,
+                                 DiscountAmount = d.DiscountAmount,
+                                 NetPrice = d.NetPrice,
+                                 Quantity = d.Quantity,
+                                 Amount = d.Amount,
+                                 TaxId = d.TaxId,
+                                 Tax = d.MstTax.Tax,
+                                 TaxRate = d.TaxRate,
+                                 TaxAmount = d.TaxAmount,
+                                 SalesAccountId = d.SalesAccountId,
+                                 AssetAccountId = d.AssetAccountId,
+                                 CostAccountId = d.CostAccountId,
+                                 TaxAccountId = d.TaxAccountId,
+                                 SalesLineTimeStamp = d.SalesLineTimeStamp.ToShortTimeString(),
+                                 UserId = d.UserId,
+                                 Preparation = d.Preparation,
+                                 IsPrepared = d.IsPrepared,
+                                 Price1 = d.Price1,
+                                 Price2 = d.Price2,
+                                 Price2LessTax = d.Price2LessTax,
+                                 PriceSplitPercentage = d.PriceSplitPercentage,
+                                 TableId = d.TrnSale.TableId,
+                                 TableCode = d.TrnSale.TableId != null ? d.TrnSale.MstTable.TableCode : "",
+                                 IsPrinted = d.IsPrinted
+                             };
+
+            return salesLines.OrderByDescending(d => d.Id).ToList();
+        }
 
         // =================
         // Detail Sales Line
@@ -76,7 +125,6 @@ namespace EasyPOS.Controllers
                                  Id = d.Id,
                                  SalesId = d.SalesId,
                                  ItemId = d.ItemId,
-                                 IsPrinted = Convert.ToBoolean(d.IsPrinted),
                                  ItemDescription = d.MstItem.ItemDescription,
                                  UnitId = d.UnitId,
                                  Unit = d.MstUnit.Unit,
@@ -103,7 +151,7 @@ namespace EasyPOS.Controllers
                                  Price1 = d.Price1,
                                  Price2 = d.Price2,
                                  Price2LessTax = d.Price2LessTax,
-                                 PriceSplitPercentage = d.PriceSplitPercentage
+                                 PriceSplitPercentage = d.PriceSplitPercentage,
                              };
 
             return salesLines.FirstOrDefault();
@@ -404,6 +452,7 @@ namespace EasyPOS.Controllers
                     updateSalesLine.SalesLineTimeStamp = DateTime.Now;
                     updateSalesLine.UserId = user.FirstOrDefault().Id;
                     updateSalesLine.Preparation = objSalesLine.Preparation;
+                    updateSalesLine.IsPrinted = objSalesLine.IsPrinted;
                     db.SubmitChanges();
 
                     String newObject = Modules.SysAuditTrailModule.GetObjectString(salesLine.FirstOrDefault());
@@ -688,7 +737,7 @@ namespace EasyPOS.Controllers
                                 }
 
                                 Int32 discountId = 0;
-   
+
                                 var discount = from d in db.MstDiscounts where d.Discount == salesOrderItem.Discount select d;
                                 if (discount.Any() == false)
                                 {

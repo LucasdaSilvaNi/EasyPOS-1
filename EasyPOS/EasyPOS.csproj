@@ -56,6 +56,12 @@
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -296,6 +302,7 @@
     <Compile Include="EasyFISIntegration\Entities\EasyPOSTrnStockOutItem.cs" />
     <Compile Include="EasyFISIntegration\Entities\EasyPOSTrnStockTransfer.cs" />
     <Compile Include="EasyFISIntegration\Entities\EasyPOSTrnStockTransferItem.cs" />
+    <Compile Include="Entities\DgvTrnPOSTouchPrintOrderDetailEntity.cs" />
     <Compile Include="Entities\DgvTrnSalesMergeEntity.cs" />
     <Compile Include="Entities\DgvTrnSalesItemSplitEntity.cs" />
     <Compile Include="Entities\DgvItemExpiryEntity.cs" />
@@ -425,6 +432,7 @@
     <Compile Include="Entities\TrnCollectionEntity.cs" />
     <Compile Include="Entities\TrnCollectionLineEntity.cs" />
     <Compile Include="Entities\TrnDisbursementEntity.cs" />
+    <Compile Include="Entities\TrnPOSTouchPrintOrderDetailEntity.cs" />
     <Compile Include="Entities\TrnPurchaseOrderEntity.cs" />
     <Compile Include="Entities\TrnPurchaseOrderLineEntity.cs" />
     <Compile Include="Entities\TrnSalesEntity.cs" />
@@ -1240,6 +1248,12 @@
     <Compile Include="Forms\Software\TrnPOS\TrnPOSTenderExchangeInformation.Designer.cs">
       <DependentUpon>TrnPOSTenderExchangeInformation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchPrintOrderDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\TrnPOS\TrnPOSTouchPrintOrderDetailForm.Designer.cs">
+      <DependentUpon>TrnPOSTouchPrintOrderDetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Software\TrnPurchaseOrder\TrnPurchaseOrderDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1800,6 +1814,9 @@
     <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTenderExchangeInformation.resx">
       <DependentUpon>TrnPOSTenderExchangeInformation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\TrnPOS\TrnPOSTouchPrintOrderDetailForm.resx">
+      <DependentUpon>TrnPOSTouchPrintOrderDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\TrnPurchaseOrder\TrnPurchaseOrderDetailForm.resx">
       <DependentUpon>TrnPurchaseOrderDetailForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1939,6 +1956,7 @@
     <None Include="OpenCvSharp.dll.config" />
     <None Include="OpenCvSharp.MachineLearning.dll.config" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

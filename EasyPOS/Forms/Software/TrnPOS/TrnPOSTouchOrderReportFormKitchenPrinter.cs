@@ -16,11 +16,13 @@ namespace EasyPOS.Forms.Software.TrnPOS
     {
         public Int32 trnSalesId = 0;
         public String kitchenReport = "";
+        public DataGridView _orderPrintTable;
 
-        public TrnPOSTouchOrderReportFormKitchenPrinter(Int32 salesId, String printerName)
+        public TrnPOSTouchOrderReportFormKitchenPrinter(Int32 salesId, String printerName, DataGridView orderPrintTable)
         {
             InitializeComponent();
             trnSalesId = salesId;
+            _orderPrintTable = orderPrintTable;
 
             if (String.IsNullOrEmpty(printerName) == false)
             {
@@ -731,76 +733,65 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
 
 
-                var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId && d.MstItem.DefaultKitchenReport == kitchenReport && d.IsPrinted == false select d;
+                var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesId && d.MstItem.DefaultKitchenReport == kitchenReport select d;
                 if (salesLines.Any())
                 {
-                    var salesLineGroupbyItem = from s in salesLines
-                                               group s by new
-                                               {
-                                                   s.SalesId,
-                                                   s.ItemId,
-                                                   s.MstItem,
-                                                   s.UnitId,
-                                                   s.MstUnit,
-                                                   s.NetPrice,
-                                                   s.Price,
-                                                   s.TaxId,
-                                                   s.MstTax,
-                                                   s.DiscountId,
-                                                   s.DiscountRate,
-                                                   s.SalesAccountId,
-                                                   s.AssetAccountId,
-                                                   s.CostAccountId,
-                                                   s.TaxAccountId,
-                                                   s.SalesLineTimeStamp,
-                                                   s.UserId,
-                                                   s.Preparation,
-                                                   s.Price1,
-                                                   s.Price2,
-                                                   s.Price2LessTax,
-                                                   s.PriceSplitPercentage
-                                               } into g
-                                               select new
-                                               {
-                                                   g.Key.ItemId,
-                                                   g.Key.MstItem,
-                                                   g.Key.MstItem.ItemDescription,
-                                                   g.Key.MstUnit.Unit,
-                                                   g.Key.Price,
-                                                   g.Key.NetPrice,
-                                                   g.Key.DiscountId,
-                                                   g.Key.DiscountRate,
-                                                   g.Key.Preparation,
-                                                   g.Key.TaxId,
-                                                   g.Key.MstTax,
-                                                   g.Key.MstTax.Tax,
-                                                   Amount = g.Sum(a => a.Amount),
-                                                   Quantity = g.Sum(a => a.Quantity),
-                                                   DiscountAmount = g.Sum(a => a.DiscountAmount * a.Quantity),
-                                                   TaxAmount = g.Sum(a => a.TaxAmount)
-                                               };
+                    var salesLineGroupbyItem = from s in salesLines select s;
+                                              
 
                     if (salesLineGroupbyItem.Any())
                     {
                         foreach (var salesLine in salesLineGroupbyItem.ToList())
                         {
-                            totalNumberOfItems += 1;
+                            List<Entities.TrnSalesLineEntity> salesLineList = new List<Entities.TrnSalesLineEntity>();
 
-                            totalAmount += salesLine.Amount;
-
-
-                            if (salesLine.MstItem.BarCode != "0000000001")
+                            foreach (DataGridViewRow row in _orderPrintTable.Rows)
                             {
-                                String itemData = salesLine.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " " + salesLine.Preparation;
-                                RectangleF itemDataRectangle = new RectangleF
-                                {
-                                    X = x,
-                                    Y = y,
-                                    Size = new Size(150, ((int)graphics.MeasureString(itemData, fontArial8Regular, 150, StringFormat.GenericDefault).Height))
-                                };
-                                graphics.DrawString(itemData, fontArial8Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
+                                Boolean isPrinted = false;
 
-                                y += itemDataRectangle.Size.Height + 3.0F;
+                                if (String.IsNullOrEmpty(row.Cells["ColumnSalesLineListPrintOrderPrinted"].Value.ToString()) == true)
+                                {
+                                    isPrinted = true;
+                                }
+                                salesLineList.Add(new Entities.TrnSalesLineEntity()
+                                {
+                                    Id = Convert.ToInt32(row.Cells["ColumnSalesLineListPrintOrderId"].Value),
+                                    IsPrinted = isPrinted
+                                });
+                            }
+
+                            var salesLineObject = from d in salesLineList where d.Id == salesLine.Id select d;
+                            if (salesLineObject.Any())
+                            {
+                                if (salesLineObject.FirstOrDefault().IsPrinted == false)
+                                {
+                                    totalNumberOfItems += 1;
+
+                                    totalAmount += salesLine.Amount;
+
+
+                                    if (salesLine.MstItem.BarCode != "0000000001")
+                                    {
+                                        String itemData = salesLine.MstItem.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.MstUnit.Unit + " " + salesLine.Preparation;
+                                        RectangleF itemDataRectangle = new RectangleF
+                                        {
+                                            X = x,
+                                            Y = y,
+                                            Size = new Size(150, ((int)graphics.MeasureString(itemData, fontArial8Regular, 150, StringFormat.GenericDefault).Height))
+                                        };
+                                        graphics.DrawString(itemData, fontArial8Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
+
+                                        y += itemDataRectangle.Size.Height + 3.0F;
+
+                                        var updateSalesLinePrinted = from d in db.TrnSalesLines where d.Id == salesLine.Id select d;
+                                        if (updateSalesLinePrinted.Any())
+                                        {
+                                            var updateSalesLine = updateSalesLinePrinted.FirstOrDefault();
+                                            updateSalesLine.IsPrinted = true;
+                                            db.SubmitChanges();
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

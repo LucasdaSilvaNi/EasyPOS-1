@@ -19,6 +19,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public TrnPOSTouchForm trnPOSTouchForm;
         public Entities.TrnSalesEntity trnSalesEntity;
+        public Entities.TrnSalesLineEntity salesLineEntity;
 
         private List<Entities.MstItemGroupEntity> listItemGroups = new List<Entities.MstItemGroupEntity>();
         private ToolTip itemGroupToolTip = new ToolTip();
@@ -1023,43 +1024,45 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-            if (Modules.SysCurrentModule.GetCurrentSettings().ChoosePrinter == true)
-            {
-                DialogResult printDialogResult = printDialogSelectPrinter.ShowDialog();
-                if (printDialogResult == DialogResult.OK)
-                {
-                    if (trnSalesEntity.IsReturned == true)
-                    {
-                        new TrnPOSReturnReportForm(trnSalesEntity.Id);
-                    }
-                    else
-                    {
-                        if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Label Printer")
-                        {
-                            new TrnPOSSalesOrderReportFormLabelPrinter(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
-                        }
-                        else
-                        {
-                            new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (trnSalesEntity.IsReturned == true)
-                {
-                    new TrnPOSReturnReportForm(trnSalesEntity.Id);
-                }
-                else if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Kitchen Printer")
-                {
-                    new TrnPOSTouchOrderReportFormKitchenPrinter(trnSalesEntity.Id, "");
-                }
-                else
-                {
-                    new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, "");
-                }
-            }
+            TrnPOSTouchPrintOrderDetailForm order = new TrnPOSTouchPrintOrderDetailForm(trnSalesEntity);
+            order.Show();
+            //if (Modules.SysCurrentModule.GetCurrentSettings().ChoosePrinter == true)
+            //{
+            //    DialogResult printDialogResult = printDialogSelectPrinter.ShowDialog();
+            //    if (printDialogResult == DialogResult.OK)
+            //    {
+            //        if (trnSalesEntity.IsReturned == true)
+            //        {
+            //            new TrnPOSReturnReportForm(trnSalesEntity.Id);
+            //        }
+            //        else
+            //        {
+            //            if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Label Printer")
+            //            {
+            //                new TrnPOSSalesOrderReportFormLabelPrinter(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
+            //            }
+            //            else
+            //            {
+            //                new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSelectPrinter.PrinterSettings.PrinterName);
+            //            }
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    if (trnSalesEntity.IsReturned == true)
+            //    {
+            //        new TrnPOSReturnReportForm(trnSalesEntity.Id);
+            //    }
+            //    else if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Kitchen Printer")
+            //    {
+            //        new TrnPOSTouchOrderReportFormKitchenPrinter(trnSalesEntity.Id, "");
+            //    }
+            //    else
+            //    {
+            //        new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, "");
+            //    }
+            //}
         }
 
         private void buttonOverRide_Click(object sender, EventArgs e)

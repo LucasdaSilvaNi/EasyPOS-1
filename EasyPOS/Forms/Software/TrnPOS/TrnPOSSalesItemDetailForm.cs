@@ -224,6 +224,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Price2 = 0,
                 Price2LessTax = 0,
                 PriceSplitPercentage = 0,
+                
             };
 
             Controllers.TrnSalesLineController trnPOSSalesLineController = new Controllers.TrnSalesLineController();

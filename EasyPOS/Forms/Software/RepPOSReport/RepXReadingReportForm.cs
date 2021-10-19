@@ -550,9 +550,9 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 // ===========
                 // Gross Sales
                 // ===========
-                String totalGrossSalesLabel = "\nGross Sales (Net of VAT)";
+                String totalGrossSalesLabel = "\nG. S.(Net of VAT)";
                 String totalGrossSalesData = "\n" + totalGrossSales.ToString("#,##0.00");
-                graphics.DrawString(totalGrossSalesLabel, fontArial6Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalGrossSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                 graphics.DrawString(totalGrossSalesData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                 y += graphics.MeasureString(totalGrossSalesData, fontArial7Regular).Height;
 
