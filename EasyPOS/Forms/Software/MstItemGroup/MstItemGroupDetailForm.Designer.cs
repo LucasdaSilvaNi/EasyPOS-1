@@ -36,6 +36,13 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.buttonSearchItem = new System.Windows.Forms.Button();
             this.dataGridViewItemGroupItemList = new System.Windows.Forms.DataGridView();
+            this.ColumnItemGroupItemListButtonEdit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnItemGroupItemListButtonDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnItemGroupItemListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnItemGroupItemListItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnItemGroupItemListItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnItemGroupItemListItemGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnItemGroupItemListShow = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel4 = new System.Windows.Forms.Panel();
             this.buttonItemGroupItemListPageListFirst = new System.Windows.Forms.Button();
             this.buttonItemGroupItemListPageListPrevious = new System.Windows.Forms.Button();
@@ -55,13 +62,6 @@
             this.buttonUnlock = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.ColumnItemGroupItemListButtonEdit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnItemGroupItemListButtonDelete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnItemGroupItemListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnItemGroupItemListItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnItemGroupItemListItemDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnItemGroupItemListItemGroupId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnItemGroupItemListShow = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -164,6 +164,64 @@
             this.dataGridViewItemGroupItemList.TabIndex = 1;
             this.dataGridViewItemGroupItemList.TabStop = false;
             this.dataGridViewItemGroupItemList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewItemGroupItemList_CellClick);
+            // 
+            // ColumnItemGroupItemListButtonEdit
+            // 
+            this.ColumnItemGroupItemListButtonEdit.DataPropertyName = "ColumnItemGroupItemListButtonEdit";
+            this.ColumnItemGroupItemListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColumnItemGroupItemListButtonEdit.HeaderText = "";
+            this.ColumnItemGroupItemListButtonEdit.Name = "ColumnItemGroupItemListButtonEdit";
+            this.ColumnItemGroupItemListButtonEdit.ReadOnly = true;
+            this.ColumnItemGroupItemListButtonEdit.Width = 70;
+            // 
+            // ColumnItemGroupItemListButtonDelete
+            // 
+            this.ColumnItemGroupItemListButtonDelete.DataPropertyName = "ColumnItemGroupItemListButtonDelete";
+            this.ColumnItemGroupItemListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ColumnItemGroupItemListButtonDelete.HeaderText = "";
+            this.ColumnItemGroupItemListButtonDelete.Name = "ColumnItemGroupItemListButtonDelete";
+            this.ColumnItemGroupItemListButtonDelete.ReadOnly = true;
+            this.ColumnItemGroupItemListButtonDelete.Width = 70;
+            // 
+            // ColumnItemGroupItemListId
+            // 
+            this.ColumnItemGroupItemListId.DataPropertyName = "ColumnItemGroupItemListId";
+            this.ColumnItemGroupItemListId.HeaderText = "Id";
+            this.ColumnItemGroupItemListId.Name = "ColumnItemGroupItemListId";
+            this.ColumnItemGroupItemListId.ReadOnly = true;
+            this.ColumnItemGroupItemListId.Visible = false;
+            // 
+            // ColumnItemGroupItemListItemId
+            // 
+            this.ColumnItemGroupItemListItemId.DataPropertyName = "ColumnItemGroupItemListItemId";
+            this.ColumnItemGroupItemListItemId.HeaderText = "Item Id";
+            this.ColumnItemGroupItemListItemId.Name = "ColumnItemGroupItemListItemId";
+            this.ColumnItemGroupItemListItemId.ReadOnly = true;
+            this.ColumnItemGroupItemListItemId.Visible = false;
+            // 
+            // ColumnItemGroupItemListItemDescription
+            // 
+            this.ColumnItemGroupItemListItemDescription.DataPropertyName = "ColumnItemGroupItemListItemDescription";
+            this.ColumnItemGroupItemListItemDescription.HeaderText = "Item Description";
+            this.ColumnItemGroupItemListItemDescription.Name = "ColumnItemGroupItemListItemDescription";
+            this.ColumnItemGroupItemListItemDescription.ReadOnly = true;
+            this.ColumnItemGroupItemListItemDescription.Width = 300;
+            // 
+            // ColumnItemGroupItemListItemGroupId
+            // 
+            this.ColumnItemGroupItemListItemGroupId.DataPropertyName = "ColumnItemGroupItemListItemGroupId";
+            this.ColumnItemGroupItemListItemGroupId.HeaderText = "Item Group Id";
+            this.ColumnItemGroupItemListItemGroupId.Name = "ColumnItemGroupItemListItemGroupId";
+            this.ColumnItemGroupItemListItemGroupId.ReadOnly = true;
+            this.ColumnItemGroupItemListItemGroupId.Visible = false;
+            // 
+            // ColumnItemGroupItemListShow
+            // 
+            this.ColumnItemGroupItemListShow.DataPropertyName = "ColumnItemGroupItemListShow";
+            this.ColumnItemGroupItemListShow.HeaderText = "Show";
+            this.ColumnItemGroupItemListShow.Name = "ColumnItemGroupItemListShow";
+            this.ColumnItemGroupItemListShow.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnItemGroupItemListShow.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // panel4
             // 
@@ -433,64 +491,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // ColumnItemGroupItemListButtonEdit
-            // 
-            this.ColumnItemGroupItemListButtonEdit.DataPropertyName = "ColumnItemGroupItemListButtonEdit";
-            this.ColumnItemGroupItemListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ColumnItemGroupItemListButtonEdit.HeaderText = "";
-            this.ColumnItemGroupItemListButtonEdit.Name = "ColumnItemGroupItemListButtonEdit";
-            this.ColumnItemGroupItemListButtonEdit.ReadOnly = true;
-            this.ColumnItemGroupItemListButtonEdit.Width = 70;
-            // 
-            // ColumnItemGroupItemListButtonDelete
-            // 
-            this.ColumnItemGroupItemListButtonDelete.DataPropertyName = "ColumnItemGroupItemListButtonDelete";
-            this.ColumnItemGroupItemListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ColumnItemGroupItemListButtonDelete.HeaderText = "";
-            this.ColumnItemGroupItemListButtonDelete.Name = "ColumnItemGroupItemListButtonDelete";
-            this.ColumnItemGroupItemListButtonDelete.ReadOnly = true;
-            this.ColumnItemGroupItemListButtonDelete.Width = 70;
-            // 
-            // ColumnItemGroupItemListId
-            // 
-            this.ColumnItemGroupItemListId.DataPropertyName = "ColumnItemGroupItemListId";
-            this.ColumnItemGroupItemListId.HeaderText = "Id";
-            this.ColumnItemGroupItemListId.Name = "ColumnItemGroupItemListId";
-            this.ColumnItemGroupItemListId.ReadOnly = true;
-            this.ColumnItemGroupItemListId.Visible = false;
-            // 
-            // ColumnItemGroupItemListItemId
-            // 
-            this.ColumnItemGroupItemListItemId.DataPropertyName = "ColumnItemGroupItemListItemId";
-            this.ColumnItemGroupItemListItemId.HeaderText = "Item Id";
-            this.ColumnItemGroupItemListItemId.Name = "ColumnItemGroupItemListItemId";
-            this.ColumnItemGroupItemListItemId.ReadOnly = true;
-            this.ColumnItemGroupItemListItemId.Visible = false;
-            // 
-            // ColumnItemGroupItemListItemDescription
-            // 
-            this.ColumnItemGroupItemListItemDescription.DataPropertyName = "ColumnItemGroupItemListItemDescription";
-            this.ColumnItemGroupItemListItemDescription.HeaderText = "Item Description";
-            this.ColumnItemGroupItemListItemDescription.Name = "ColumnItemGroupItemListItemDescription";
-            this.ColumnItemGroupItemListItemDescription.ReadOnly = true;
-            this.ColumnItemGroupItemListItemDescription.Width = 300;
-            // 
-            // ColumnItemGroupItemListItemGroupId
-            // 
-            this.ColumnItemGroupItemListItemGroupId.DataPropertyName = "ColumnItemGroupItemListItemGroupId";
-            this.ColumnItemGroupItemListItemGroupId.HeaderText = "Item Group Id";
-            this.ColumnItemGroupItemListItemGroupId.Name = "ColumnItemGroupItemListItemGroupId";
-            this.ColumnItemGroupItemListItemGroupId.ReadOnly = true;
-            this.ColumnItemGroupItemListItemGroupId.Visible = false;
-            // 
-            // ColumnItemGroupItemListShow
-            // 
-            this.ColumnItemGroupItemListShow.DataPropertyName = "ColumnItemGroupItemListShow";
-            this.ColumnItemGroupItemListShow.HeaderText = "Show";
-            this.ColumnItemGroupItemListShow.Name = "ColumnItemGroupItemListShow";
-            this.ColumnItemGroupItemListShow.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnItemGroupItemListShow.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // MstItemGroupDetailForm
             // 

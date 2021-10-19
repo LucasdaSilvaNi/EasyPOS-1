@@ -66,7 +66,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public void GetSalesLineList()
         {
-
             dataGridViewPrintOrderSalesLineList.Rows.Clear();
             dataGridViewPrintOrderSalesLineList.Refresh();
 
@@ -89,9 +88,21 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         objSalesLineList.SalesId,
                         objSalesLineList.ItemId,
                         isPrinted,
-                        objSalesLineList.ItemDescription
+                        objSalesLineList.ItemDescription,
+                        objSalesLineList.Preparation
                     );
                 }
+            }
+
+            List<Entities.TrnSalesLineEntity> obPrintOrder = new List<Entities.TrnSalesLineEntity>();
+
+            foreach (DataGridViewRow row in dataGridViewPrintOrderSalesLineList.Rows)
+            {
+                obPrintOrder.Add(new Entities.TrnSalesLineEntity()
+                {
+                    Id = Convert.ToInt32(row.Cells[0].Value),
+                    IsPrinted = Convert.ToBoolean(row.Cells[3].Value)
+                });
             }
         }
 
@@ -99,30 +110,5 @@ namespace EasyPOS.Forms.Software.TrnPOS
         {
             Close();
         }
-
-        //public Task<List<Entities.DgvTrnPOSTouchPrintOrderDetailEntity>> GetItemGroupItemListDataTask(Int32 salesId)
-        //{
-        //    Controllers.TrnSalesLineController trnPOSSalesLineController = new Controllers.TrnSalesLineController();
-
-        //    Entities.TrnPOSTouchPrintOrderDetailEntity listPrintOrderItem = new Entities.TrnPOSTouchPrintOrderDetailEntity();
-        //    if (listPrintOrderItem.Any())
-        //    {
-        //        var items = from d in listPrintOrderItem
-        //                    select new Entities.DgvTrnPOSTouchPrintOrderDetailEntity
-        //                    {
-        //                        ColumnSalesLineListPrintOrderId = d.Id,
-        //                        ColumnSalesLinetListPrintOrderItemId = d.ItemId,
-        //                        ColumnSalesLineListPrintOrderSalesId = d.SalesId,
-        //                        ColumnSalesLineListPrintOrderItemDescription = d.ItemDescription,
-        //                        ColumnSalesLineListPrintOrderPrinted = d.IsPrinted != null ? Convert.ToBoolean(d.IsPrinted) : false
-        //                    };
-
-        //        return Task.FromResult(items.ToList());
-        //    }
-        //    else
-        //    {
-        //        return Task.FromResult(new List<Entities.DgvTrnPOSTouchPrintOrderDetailEntity>());
-        //    }
-        //}
     }
 }
