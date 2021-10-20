@@ -93,17 +93,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     );
                 }
             }
-
-            List<Entities.TrnSalesLineEntity> obPrintOrder = new List<Entities.TrnSalesLineEntity>();
-
-            foreach (DataGridViewRow row in dataGridViewPrintOrderSalesLineList.Rows)
-            {
-                obPrintOrder.Add(new Entities.TrnSalesLineEntity()
-                {
-                    Id = Convert.ToInt32(row.Cells[0].Value),
-                    IsPrinted = Convert.ToBoolean(row.Cells[3].Value)
-                });
-            }
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

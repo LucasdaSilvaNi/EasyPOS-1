@@ -762,10 +762,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                         //IsPrinted = isPrinted
                                         Id = Convert.ToInt32(row.Cells[0].Value),
                                         IsPrinted = Convert.ToBoolean(row.Cells[3].Value)
-
                                     });
                                 }
-                                
                             }
 
                             var salesLineObject = from d in salesLineList where d.Id == salesLine.Id select d;
@@ -798,6 +796,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                             updateSalesLine.IsPrinted = true;
                                             db.SubmitChanges();
                                         }
+
                                         //if (salesLineList.Any())
                                         //{
                                         //    foreach (var updatePrinted in salesLineList)
@@ -810,10 +809,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                         //        {
                                         //            var updatePrintedOrder = isPrinted.FirstOrDefault();
                                         //            updatePrintedOrder.IsPrinted = updatePrinted.IsPrinted;
+                                        //            db.SubmitChanges();
                                         //        }
                                         //    }
-
-                                        //    db.SubmitChanges();
                                         //}
 
                                     }
@@ -822,7 +820,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         }
                     }
                 }
-
                 
 
                 // ========
