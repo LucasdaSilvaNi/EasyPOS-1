@@ -193,25 +193,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             }
             else
             {
-                if (Modules.SysCurrentModule.GetCurrentSettings().RestrictCashin == true)
-                {
-                    Int32 currentUser = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
-                    Controllers.TrnDisbursementController trnDisbursementController = new Controllers.TrnDisbursementController();
-                    var disbursementList = trnDisbursementController.ScanCashIn(currentUser, DateTime.Today, "DEBIT");
-
-                    if (disbursementList != null)
-                    {
-                        newSales();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please make a cash-in transaction first!", "EasyPOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    newSales();
-                }
+                newSales();
             }
         }
 

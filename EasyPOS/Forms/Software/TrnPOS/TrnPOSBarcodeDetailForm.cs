@@ -453,9 +453,22 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Customer = trnSalesEntity.Customer,
                     Remarks = trnSalesEntity.Remarks
                 };
+                if (Modules.SysCurrentModule.GetCurrentSettings().RestrictCashin == true)
+                {
+                    Int32 currentUser = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                    Controllers.TrnDisbursementController trnDisbursementController = new Controllers.TrnDisbursementController();
+                    var disbursementList = trnDisbursementController.ScanCashIn(currentUser, DateTime.Today, "DEBIT");
 
-                TrnPOSTenderForm trnSalesDetailTenderForm = new TrnPOSTenderForm(sysSoftwareForm, trnSalesListForm, this, null, null, newSalesEntity);
-                trnSalesDetailTenderForm.ShowDialog();
+                    if (disbursementList != null)
+                    {
+                        TrnPOSTenderForm trnSalesDetailTenderForm = new TrnPOSTenderForm(sysSoftwareForm, trnSalesListForm, this, null, null, newSalesEntity);
+                        trnSalesDetailTenderForm.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please make a cash-in transaction first!", "EasyPOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
             else
             {
