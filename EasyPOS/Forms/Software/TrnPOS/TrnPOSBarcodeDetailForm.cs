@@ -469,6 +469,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         MessageBox.Show("Please make a cash-in transaction first!", "EasyPOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                else
+                {
+                    TrnPOSTenderForm trnSalesDetailTenderForm = new TrnPOSTenderForm(sysSoftwareForm, trnSalesListForm, this, null, null, newSalesEntity);
+                    trnSalesDetailTenderForm.ShowDialog();
+                }
             }
             else
             {
