@@ -37,24 +37,77 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                 if (salesLineList.Any())
                 {
-                    var groupKitchenReports = from d in salesLineList
-                                              group d by d.ItemKitchen into g
-                                              select g;
+                    List<String> kitchenReports = new List<String>();
+                    List<Entities.TrnSalesLineEntity> salesLineListDataGrid = new List<Entities.TrnSalesLineEntity>();
 
-                    if (groupKitchenReports.ToList().Any())
+                    foreach (DataGridViewRow row in _orderPrintTable.Rows)
                     {
-                        foreach (var groupKitchenReport in groupKitchenReports.ToList())
+                        Boolean? isPrinted = true;
+
+                        if (row.Cells[3].Value.ToString() == "false" || Convert.ToBoolean(row.Cells[3].Value.ToString()) == false)
                         {
-                            kitchenReport = groupKitchenReport.Key;
+                            isPrinted = null;
+                        }
 
-                            Controllers.SysKitchenPrinterController sysKitchenPrinterController = new Controllers.SysKitchenPrinterController();
-                            var kitchenPrinters = sysKitchenPrinterController.KitchenPerKitchenNumber(kitchenReport);
+                        if (isPrinted == null)
+                        {
+                            var salesLineKitchenReports = from d in salesLineList
+                                                          where d.Id == Convert.ToInt32(row.Cells[0].Value)
+                                                          select d;
 
-                            if (kitchenPrinters.Any())
+                            if (salesLineKitchenReports.Any())
                             {
-                                printDocumentKitchenReport.PrinterSettings.PrinterName = kitchenPrinters.FirstOrDefault().PrinterName;
-                                printDocumentKitchenReport.DefaultPageSettings.PaperSize = new PaperSize(kitchenPrinters.FirstOrDefault().Alias, kitchenPrinters.FirstOrDefault().DefaultWidth, kitchenPrinters.FirstOrDefault().DefaultHeight);
-                                printDocumentKitchenReport.Print();
+                                if (salesLineKitchenReports.ToList().Any())
+                                {
+                                    foreach (var salesLineKitchenReport in salesLineKitchenReports.ToList())
+                                    {
+                                        if (kitchenReports.Contains(salesLineKitchenReport.ItemKitchen) == false)
+                                        {
+                                            kitchenReports.Add(salesLineKitchenReport.ItemKitchen);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (kitchenReports.Any())
+                    {
+                        var groupKitchenReports = from d in kitchenReports select d;
+
+                        if (groupKitchenReports.ToList().Any())
+                        {
+                            foreach (var groupKitchenReport in groupKitchenReports.ToList())
+                            {
+                                kitchenReport = groupKitchenReport;
+
+                                Controllers.SysKitchenPrinterController sysKitchenPrinterController = new Controllers.SysKitchenPrinterController();
+                                var kitchenPrinters = sysKitchenPrinterController.KitchenPerKitchenNumber(kitchenReport);
+
+                                if (kitchenPrinters.Any())
+                                {
+                                    printDocumentKitchenReport.PrinterSettings.PrinterName = kitchenPrinters.FirstOrDefault().PrinterName;
+                                    printDocumentKitchenReport.DefaultPageSettings.PaperSize = new PaperSize(kitchenPrinters.FirstOrDefault().Alias, kitchenPrinters.FirstOrDefault().DefaultWidth, kitchenPrinters.FirstOrDefault().DefaultHeight);
+                                    printDocumentKitchenReport.Print();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
+                            {
+                                printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 255, 38500);
+                                printDocumentReturnReport.Print();
+                            }
+                            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+                            {
+                                printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 270, 38500);
+                                printDocumentReturnReport.Print();
+                            }
+                            else
+                            {
+                                printDocumentReturnReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
+                                printDocumentReturnReport.Print();
                             }
                         }
                     }
@@ -713,7 +766,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
 
 
-
                 // ========
                 // 1st Line
                 // ========
@@ -737,90 +789,86 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 if (salesLines.Any())
                 {
                     var salesLineGroupbyItem = from s in salesLines select s;
-                                              
+
 
                     if (salesLineGroupbyItem.Any())
                     {
-                        foreach (var salesLine in salesLineGroupbyItem.ToList())
+                        List<Entities.TrnSalesLineEntity> salesLineList = new List<Entities.TrnSalesLineEntity>();
+
+
+                        foreach (DataGridViewRow row in _orderPrintTable.Rows)
                         {
-                            List<Entities.TrnSalesLineEntity> salesLineList = new List<Entities.TrnSalesLineEntity>();
+                            Boolean? isPrinted = true;
 
-                            foreach (DataGridViewRow row in _orderPrintTable.Rows)
+                            if (row.Cells[3].Value.ToString() == "false")
                             {
-                                Boolean isPrinted = false;
-
-                                if (String.IsNullOrEmpty(row.Cells["ColumnSalesLineListPrintOrderPrinted"].Value.ToString()) == true)
-                                {
-                                    isPrinted = true;
-                                }
-                                else 
-                                {
-                                    isPrinted = false;
-                                    salesLineList.Add(new Entities.TrnSalesLineEntity()
-                                    {
-                                        //Id = Convert.ToInt32(row.Cells["ColumnSalesLineListPrintOrderId"].Value),
-                                        //IsPrinted = isPrinted
-                                        Id = Convert.ToInt32(row.Cells[0].Value),
-                                        IsPrinted = Convert.ToBoolean(row.Cells[3].Value)
-                                    });
-                                }
+                                isPrinted = null;
                             }
 
-                            var salesLineObject = from d in salesLineList where d.Id == salesLine.Id select d;
+                            salesLineList.Add(new Entities.TrnSalesLineEntity()
+                            {
+                                //Id = Convert.ToInt32(row.Cells["ColumnSalesLineListPrintOrderId"].Value),
+                                //IsPrinted = isPrinted
+                                Id = Convert.ToInt32(row.Cells[0].Value),
+                                IsPrinted = isPrinted
+                            });
+                        }
+
+                        foreach (var salesLine in salesLineGroupbyItem.ToList())
+                        {
+                            var salesLineObject = from d in salesLineList where d.Id == salesLine.Id && d.IsPrinted == null select d;
                             if (salesLineObject.Any())
                             {
-                                if (salesLineObject.FirstOrDefault().IsPrinted == false)
+
+                                totalNumberOfItems += 1;
+
+                                totalAmount += salesLine.Amount;
+
+
+                                if (salesLine.MstItem.BarCode != "0000000001")
                                 {
-                                    totalNumberOfItems += 1;
-
-                                    totalAmount += salesLine.Amount;
-
-
-                                    if (salesLine.MstItem.BarCode != "0000000001")
+                                    String itemData = salesLine.MstItem.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.MstUnit.Unit + " " + salesLine.Preparation;
+                                    RectangleF itemDataRectangle = new RectangleF
                                     {
-                                        String itemData = salesLine.MstItem.ItemDescription + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.MstUnit.Unit + " " + salesLine.Preparation;
-                                        RectangleF itemDataRectangle = new RectangleF
-                                        {
-                                            X = x,
-                                            Y = y,
-                                            Size = new Size(150, ((int)graphics.MeasureString(itemData, fontArial8Regular, 150, StringFormat.GenericDefault).Height))
-                                        };
-                                        graphics.DrawString(itemData, fontArial8Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
+                                        X = x,
+                                        Y = y,
+                                        Size = new Size(150, ((int)graphics.MeasureString(itemData, fontArial8Regular, 150, StringFormat.GenericDefault).Height))
+                                    };
+                                    graphics.DrawString(itemData, fontArial8Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
 
-                                        y += itemDataRectangle.Size.Height + 3.0F;
+                                    y += itemDataRectangle.Size.Height + 3.0F;
 
-                                        var updateSalesLinePrinted = from d in db.TrnSalesLines where d.Id == salesLine.Id select d;
-                                        if (updateSalesLinePrinted.Any())
-                                        {
-                                            var updateSalesLine = updateSalesLinePrinted.FirstOrDefault();
-                                            updateSalesLine.IsPrinted = true;
-                                            db.SubmitChanges();
-                                        }
-
-                                        //if (salesLineList.Any())
-                                        //{
-                                        //    foreach (var updatePrinted in salesLineList)
-                                        //    {
-                                        //        var isPrinted = from p in db.TrnSalesLines
-                                        //                        where p.Id == updatePrinted.Id
-                                        //                        select p;
-
-                                        //        if (isPrinted.Any())
-                                        //        {
-                                        //            var updatePrintedOrder = isPrinted.FirstOrDefault();
-                                        //            updatePrintedOrder.IsPrinted = updatePrinted.IsPrinted;
-                                        //            db.SubmitChanges();
-                                        //        }
-                                        //    }
-                                        //}
-
+                                    var updateSalesLinePrinted = from d in db.TrnSalesLines where d.Id == salesLine.Id select d;
+                                    if (updateSalesLinePrinted.Any())
+                                    {
+                                        var updateSalesLine = updateSalesLinePrinted.FirstOrDefault();
+                                        updateSalesLine.IsPrinted = true;
+                                        db.SubmitChanges();
                                     }
+
+                                    //if (salesLineList.Any())
+                                    //{
+                                    //    foreach (var updatePrinted in salesLineList)
+                                    //    {
+                                    //        var isPrinted = from p in db.TrnSalesLines
+                                    //                        where p.Id == updatePrinted.Id
+                                    //                        select p;
+
+                                    //        if (isPrinted.Any())
+                                    //        {
+                                    //            var updatePrintedOrder = isPrinted.FirstOrDefault();
+                                    //            updatePrintedOrder.IsPrinted = updatePrinted.IsPrinted;
+                                    //            db.SubmitChanges();
+                                    //        }
+                                    //    }
+                                    //}
+
                                 }
                             }
                         }
                     }
                 }
-                
+
 
                 // ========
                 // 2nd Line

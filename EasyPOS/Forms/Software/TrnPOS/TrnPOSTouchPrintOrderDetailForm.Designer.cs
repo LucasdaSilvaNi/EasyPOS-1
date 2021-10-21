@@ -34,15 +34,15 @@ namespace EasyPOS.Forms.Software.TrnPOS
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrnPOSTouchPrintOrderDetailForm));
             this.dataGridViewPrintOrderSalesLineList = new System.Windows.Forms.DataGridView();
+            this.buttonPrint = new System.Windows.Forms.Button();
+            this.printDialogSelectPrinter = new System.Windows.Forms.PrintDialog();
+            this.buttonClose = new System.Windows.Forms.Button();
             this.ColumnSalesLineListPrintOrderId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesLineListPrintOrderSalesId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesLineListPrintOrderItemId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesLineListPrintOrderPrinted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnSalesLineListItemPrintOrderDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesLineListPrintOrderPreparation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonPrint = new System.Windows.Forms.Button();
-            this.printDialogSelectPrinter = new System.Windows.Forms.PrintDialog();
-            this.buttonClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPrintOrderSalesLineList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,7 +78,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
             this.dataGridViewPrintOrderSalesLineList.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewPrintOrderSalesLineList.Location = new System.Drawing.Point(0, 37);
             this.dataGridViewPrintOrderSalesLineList.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridViewPrintOrderSalesLineList.MultiSelect = false;
             this.dataGridViewPrintOrderSalesLineList.Name = "dataGridViewPrintOrderSalesLineList";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -94,54 +93,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
             this.dataGridViewPrintOrderSalesLineList.Size = new System.Drawing.Size(793, 385);
             this.dataGridViewPrintOrderSalesLineList.TabIndex = 28;
             this.dataGridViewPrintOrderSalesLineList.TabStop = false;
-            // 
-            // ColumnSalesLineListPrintOrderId
-            // 
-            this.ColumnSalesLineListPrintOrderId.DataPropertyName = "ColumnSalesLineListPrintOrderId";
-            this.ColumnSalesLineListPrintOrderId.HeaderText = "Id";
-            this.ColumnSalesLineListPrintOrderId.Name = "ColumnSalesLineListPrintOrderId";
-            this.ColumnSalesLineListPrintOrderId.ReadOnly = true;
-            this.ColumnSalesLineListPrintOrderId.Visible = false;
-            // 
-            // ColumnSalesLineListPrintOrderSalesId
-            // 
-            this.ColumnSalesLineListPrintOrderSalesId.DataPropertyName = "ColumnSalesLineListPrintOrderSalesId";
-            this.ColumnSalesLineListPrintOrderSalesId.HeaderText = "SalesId";
-            this.ColumnSalesLineListPrintOrderSalesId.Name = "ColumnSalesLineListPrintOrderSalesId";
-            this.ColumnSalesLineListPrintOrderSalesId.ReadOnly = true;
-            this.ColumnSalesLineListPrintOrderSalesId.Visible = false;
-            // 
-            // ColumnSalesLineListPrintOrderItemId
-            // 
-            this.ColumnSalesLineListPrintOrderItemId.DataPropertyName = "ColumnSalesLineListPrintOrderItemId";
-            this.ColumnSalesLineListPrintOrderItemId.HeaderText = "ItemId";
-            this.ColumnSalesLineListPrintOrderItemId.Name = "ColumnSalesLineListPrintOrderItemId";
-            this.ColumnSalesLineListPrintOrderItemId.ReadOnly = true;
-            this.ColumnSalesLineListPrintOrderItemId.Visible = false;
-            // 
-            // ColumnSalesLineListPrintOrderPrinted
-            // 
-            this.ColumnSalesLineListPrintOrderPrinted.DataPropertyName = "ColumnSalesLineListPrintOrderPrinted";
-            this.ColumnSalesLineListPrintOrderPrinted.FalseValue = "";
-            this.ColumnSalesLineListPrintOrderPrinted.HeaderText = "Printed";
-            this.ColumnSalesLineListPrintOrderPrinted.Name = "ColumnSalesLineListPrintOrderPrinted";
-            this.ColumnSalesLineListPrintOrderPrinted.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ColumnSalesLineListPrintOrderPrinted.TrueValue = "";
-            // 
-            // ColumnSalesLineListItemPrintOrderDescription
-            // 
-            this.ColumnSalesLineListItemPrintOrderDescription.DataPropertyName = "ColumnSalesLineListItemPrintOrderDescription";
-            this.ColumnSalesLineListItemPrintOrderDescription.HeaderText = "Item Description";
-            this.ColumnSalesLineListItemPrintOrderDescription.Name = "ColumnSalesLineListItemPrintOrderDescription";
-            this.ColumnSalesLineListItemPrintOrderDescription.ReadOnly = true;
-            this.ColumnSalesLineListItemPrintOrderDescription.Width = 350;
-            // 
-            // ColumnSalesLineListPrintOrderPreparation
-            // 
-            this.ColumnSalesLineListPrintOrderPreparation.DataPropertyName = "ColumnSalesLineListPrintOrderPreparation";
-            this.ColumnSalesLineListPrintOrderPreparation.HeaderText = "Preparation";
-            this.ColumnSalesLineListPrintOrderPreparation.Name = "ColumnSalesLineListPrintOrderPreparation";
-            this.ColumnSalesLineListPrintOrderPreparation.Width = 350;
             // 
             // buttonPrint
             // 
@@ -184,6 +135,53 @@ namespace EasyPOS.Forms.Software.TrnPOS
             this.buttonClose.Text = "Close";
             this.buttonClose.UseVisualStyleBackColor = false;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // ColumnSalesLineListPrintOrderId
+            // 
+            this.ColumnSalesLineListPrintOrderId.DataPropertyName = "ColumnSalesLineListPrintOrderId";
+            this.ColumnSalesLineListPrintOrderId.HeaderText = "Id";
+            this.ColumnSalesLineListPrintOrderId.Name = "ColumnSalesLineListPrintOrderId";
+            this.ColumnSalesLineListPrintOrderId.ReadOnly = true;
+            this.ColumnSalesLineListPrintOrderId.Visible = false;
+            // 
+            // ColumnSalesLineListPrintOrderSalesId
+            // 
+            this.ColumnSalesLineListPrintOrderSalesId.DataPropertyName = "ColumnSalesLineListPrintOrderSalesId";
+            this.ColumnSalesLineListPrintOrderSalesId.HeaderText = "SalesId";
+            this.ColumnSalesLineListPrintOrderSalesId.Name = "ColumnSalesLineListPrintOrderSalesId";
+            this.ColumnSalesLineListPrintOrderSalesId.ReadOnly = true;
+            this.ColumnSalesLineListPrintOrderSalesId.Visible = false;
+            // 
+            // ColumnSalesLineListPrintOrderItemId
+            // 
+            this.ColumnSalesLineListPrintOrderItemId.DataPropertyName = "ColumnSalesLineListPrintOrderItemId";
+            this.ColumnSalesLineListPrintOrderItemId.HeaderText = "ItemId";
+            this.ColumnSalesLineListPrintOrderItemId.Name = "ColumnSalesLineListPrintOrderItemId";
+            this.ColumnSalesLineListPrintOrderItemId.ReadOnly = true;
+            this.ColumnSalesLineListPrintOrderItemId.Visible = false;
+            // 
+            // ColumnSalesLineListPrintOrderPrinted
+            // 
+            this.ColumnSalesLineListPrintOrderPrinted.DataPropertyName = "ColumnSalesLineListPrintOrderPrinted";
+            this.ColumnSalesLineListPrintOrderPrinted.FalseValue = "false";
+            this.ColumnSalesLineListPrintOrderPrinted.HeaderText = "Printed";
+            this.ColumnSalesLineListPrintOrderPrinted.Name = "ColumnSalesLineListPrintOrderPrinted";
+            this.ColumnSalesLineListPrintOrderPrinted.TrueValue = "";
+            // 
+            // ColumnSalesLineListItemPrintOrderDescription
+            // 
+            this.ColumnSalesLineListItemPrintOrderDescription.DataPropertyName = "ColumnSalesLineListItemPrintOrderDescription";
+            this.ColumnSalesLineListItemPrintOrderDescription.HeaderText = "Item Description";
+            this.ColumnSalesLineListItemPrintOrderDescription.Name = "ColumnSalesLineListItemPrintOrderDescription";
+            this.ColumnSalesLineListItemPrintOrderDescription.ReadOnly = true;
+            this.ColumnSalesLineListItemPrintOrderDescription.Width = 350;
+            // 
+            // ColumnSalesLineListPrintOrderPreparation
+            // 
+            this.ColumnSalesLineListPrintOrderPreparation.DataPropertyName = "ColumnSalesLineListPrintOrderPreparation";
+            this.ColumnSalesLineListPrintOrderPreparation.HeaderText = "Preparation";
+            this.ColumnSalesLineListPrintOrderPreparation.Name = "ColumnSalesLineListPrintOrderPreparation";
+            this.ColumnSalesLineListPrintOrderPreparation.Width = 350;
             // 
             // TrnPOSTouchPrintOrderDetailForm
             // 
