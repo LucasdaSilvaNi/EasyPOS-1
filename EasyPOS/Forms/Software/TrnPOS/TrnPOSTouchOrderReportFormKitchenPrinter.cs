@@ -800,7 +800,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         {
                             Boolean? isPrinted = true;
 
-                            if (row.Cells[3].Value.ToString() == "false")
+                            if (row.Cells[3].Value.ToString() == "false" || Convert.ToBoolean(row.Cells[3].Value.ToString()) == false)
                             {
                                 isPrinted = null;
                             }
