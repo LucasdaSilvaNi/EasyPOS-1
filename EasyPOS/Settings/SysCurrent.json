@@ -63,5 +63,6 @@
   "DisableSalesCustomerSelection": false,
   "Language": "English",
   "SingleColumnBarcodePrintOut": false,
-  "RestrictCashin": true
+  "RestrictCashin": false,
+  "DisableLockTender":  true
 }
