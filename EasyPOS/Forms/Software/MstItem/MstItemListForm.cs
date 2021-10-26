@@ -238,7 +238,7 @@ namespace EasyPOS.Forms.Software.MstItem
                                 ColumnItemListCategory = d.Category,
                                 ColumnItemListCost = d.Cost.ToString("#,##0.00"),
                                 ColumnItemListPrice = d.Price.ToString("#,##0.00"),
-                                ColumnItemListOnHandQuantity = d.OnhandQuantity.ToString("#,##0"),
+                                ColumnItemListOnHandQuantity = Math.Round(d.OnhandQuantity,2).ToString(),
                                 ColumnItemListIsInventory = d.IsInventory,
                                 ColumnItemListIsLocked = d.IsLocked,
                                 ColumnSupplier = d.Supplier

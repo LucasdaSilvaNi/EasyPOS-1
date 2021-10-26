@@ -34,5 +34,6 @@ namespace EasyPOS.Entities
         public Decimal TotalQuantity { get; set; }
         public Decimal TotalPreviousReading { get; set; }
         public Decimal RunningTotal { get; set; }
+        public Int32 XPrintCount { get; set; }
     }
 }

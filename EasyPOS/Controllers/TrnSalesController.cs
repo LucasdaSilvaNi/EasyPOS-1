@@ -1725,6 +1725,27 @@ namespace EasyPOS.Controllers
                     Modules.TrnInventoryModule trnInventoryModule = new Modules.TrnInventoryModule();
                     trnInventoryModule.UpdateSalesInventory(salesId);
 
+                    if (sales.FirstOrDefault().MstCustomer.WithReward == true)
+                    {
+                        Decimal rewardConversion = sales.FirstOrDefault().MstCustomer.RewardConversion;
+                        if (rewardConversion != 0)
+                        {
+                            var customer = from d in db.MstCustomers
+                                           where d.Id == sales.FirstOrDefault().CustomerId
+                                           select d;
+
+                            if (customer.Any())
+                            {
+                                Decimal availableReward = sales.FirstOrDefault().Amount / rewardConversion;
+                                Decimal existingReward = customer.FirstOrDefault().AvailableReward;
+
+                                var updateRewards = customer.FirstOrDefault();
+                                updateRewards.AvailableReward = existingReward + availableReward;
+                                db.SubmitChanges();
+                            }
+                        }
+                    }
+
                     return new String[] { "", "1" };
                 }
                 else

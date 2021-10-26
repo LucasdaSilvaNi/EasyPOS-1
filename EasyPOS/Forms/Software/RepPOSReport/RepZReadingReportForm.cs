@@ -65,6 +65,17 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             DialogResult printerDialogResult = printDialogZReadingReport.ShowDialog();
             if (printerDialogResult == DialogResult.OK)
             {
+                Int32 currentUser = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                Entities.SysReadingPrintCount newPrintCout = new Entities.SysReadingPrintCount()
+                {
+                    PrintDate = Convert.ToDateTime(DateTime.Today.ToShortDateString()),
+                    PrintCount = 1,
+                    PrintType = "Z",
+                    UserId = currentUser
+                };
+                Controllers.SysReadingPrintCountController zreadingCount = new Controllers.SysReadingPrintCountController();
+                zreadingCount.InsertPrintCount(newPrintCout);
+
                 PrintReport();
                 Close();
             }
@@ -114,7 +125,8 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 GrossSalesRunningTotal = 0,
                 NetSalesTotalPreviousReading = 0,
                 NetSalesRunningTotal = 0,
-                ZReadingCounter = "0"
+                ZReadingCounter = "0",
+                ZPrintCount = 0
             };
 
             repZReadingReportEntity.Date = filterDate.ToShortDateString();
@@ -211,7 +223,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                     totalVATAmount = salesLines.Sum(d =>
                         d.MstTax.Code == "EXEMPTVAT" ? 0 : d.TaxAmount
-                        //d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount
+                    //d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount
                     );
 
                     totalNonVATSales = salesLines.Sum(d =>
@@ -219,7 +231,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                     );
 
                     totalVATExemptSales = salesLines.Sum(d =>
-                    d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - d.DiscountAmount * d.Quantity: 0
+                    d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - d.DiscountAmount * d.Quantity : 0
                     );
 
                     totalVATZeroRatedSales = salesLines.Sum(d =>
@@ -520,6 +532,23 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 repZReadingReportEntity.ZReadingCounter = totalDays.ToString("#,##0");
             }
 
+            Int32 printCount = 0;
+            var printCountZReading = from d in db.SysReadingPrintCounts
+                                     where d.PrintType == "Z"
+                                     && d.PrintDate == Convert.ToDateTime(DateTime.Today.ToShortDateString())
+                                     && d.UserId == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId)
+                                     select d;
+
+            if (printCountZReading.Any())
+            {
+                printCount = printCountZReading.Sum(d => d.PrintCount);
+                repZReadingReportEntity.ZPrintCount = printCount + 1;
+            }
+            else
+            {
+                repZReadingReportEntity.ZPrintCount = printCount + 1;
+            }
+
             zReadingReportEntity = repZReadingReportEntity;
         }
 
@@ -553,6 +582,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             Decimal totalPWDDiscount = dataSource.TotalPWDDiscount * currentDeclareRate;
             Decimal totalSalesReturn = dataSource.TotalSalesReturn * currentDeclareRate;
             Decimal totalNetSales = dataSource.TotalNetSales;
+            Int32 totalPrintCount = dataSource.ZPrintCount;
 
             // =============
             // Font Settings
@@ -689,6 +719,15 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             String collectionDateText = filterDate.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
             graphics.DrawString(collectionDateText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
             y += graphics.MeasureString(collectionDateText, fontArial8Regular).Height;
+
+            // ====
+            // Z Print Count 
+            // ====
+            String printCountLabel = "Print Count : ";
+            string printCount = totalPrintCount.ToString();
+            graphics.DrawString(printCountLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+            graphics.DrawString(printCount, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+            y += graphics.MeasureString(printCount, fontArial8Regular).Height;
 
             // ========
             // 1st Line

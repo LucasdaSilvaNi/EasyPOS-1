@@ -734,29 +734,70 @@ namespace EasyPOS.Forms.Software.TrnPOS
                             {
                                 Modules.SysSerialPortModule.OpenSerialPort();
 
-                                Entities.TrnSalesEntity newSalesEntity = new Entities.TrnSalesEntity
+                                if (Modules.SysCurrentModule.GetCurrentSettings().RestrictCashin == true)
                                 {
-                                    Id = Convert.ToInt32(dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnId"].Index].Value),
-                                    Amount = Convert.ToDecimal(dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnAmount"].Index].Value),
-                                    SalesNumber = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnSalesNumber"].Index].Value.ToString(),
-                                    SalesDate = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnSalesDate"].Index].Value.ToString(),
-                                    CustomerCode = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnCustomerCode"].Index].Value.ToString(),
-                                    Customer = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnCustomer"].Index].Value.ToString(),
-                                    Remarks = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnRemarks"].Index].Value.ToString()
-                                };
+                                    Int32 currentUser = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                                    Controllers.TrnDisbursementController trnDisbursementController = new Controllers.TrnDisbursementController();
+                                    var disbursementList = trnDisbursementController.ScanCashIn(currentUser, DateTime.Today, "DEBIT");
 
-                                String line1 = Modules.SysCurrentModule.GetCurrentSettings().CustomerDisplayFirstLineMessage;
-                                String line2 = "P " + newSalesEntity.Amount.ToString("#,##0.00");
+                                    if (disbursementList != null)
+                                    {
+                                        Entities.TrnSalesEntity newSalesEntity = new Entities.TrnSalesEntity
+                                        {
+                                            Id = Convert.ToInt32(dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnId"].Index].Value),
+                                            Amount = Convert.ToDecimal(dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnAmount"].Index].Value),
+                                            SalesNumber = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnSalesNumber"].Index].Value.ToString(),
+                                            SalesDate = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnSalesDate"].Index].Value.ToString(),
+                                            CustomerCode = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnCustomerCode"].Index].Value.ToString(),
+                                            Customer = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnCustomer"].Index].Value.ToString(),
+                                            Remarks = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnRemarks"].Index].Value.ToString()
+                                        };
 
-                                if (newSalesEntity.Amount > 0)
+                                        String line1 = Modules.SysCurrentModule.GetCurrentSettings().CustomerDisplayFirstLineMessage;
+                                        String line2 = "P " + newSalesEntity.Amount.ToString("#,##0.00");
+
+                                        if (newSalesEntity.Amount > 0)
+                                        {
+                                            line1 = "TOTAL:";
+                                        }
+
+                                        Modules.SysSerialPortModule.WriteSeralPortMessage(line1, line2);
+
+                                        TrnPOSTenderForm trnSalesDetailTenderForm = new TrnPOSTenderForm(sysSoftwareForm, this, null, null, null, newSalesEntity);
+                                        trnSalesDetailTenderForm.ShowDialog();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Please make a cash-in transaction first!", "EasyPOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
                                 {
-                                    line1 = "TOTAL:";
+                                    Entities.TrnSalesEntity newSalesEntity = new Entities.TrnSalesEntity
+                                    {
+                                        Id = Convert.ToInt32(dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnId"].Index].Value),
+                                        Amount = Convert.ToDecimal(dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnAmount"].Index].Value),
+                                        SalesNumber = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnSalesNumber"].Index].Value.ToString(),
+                                        SalesDate = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnSalesDate"].Index].Value.ToString(),
+                                        CustomerCode = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnCustomerCode"].Index].Value.ToString(),
+                                        Customer = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnCustomer"].Index].Value.ToString(),
+                                        Remarks = dataGridViewSalesList.Rows[dataGridViewSalesList.CurrentCell.RowIndex].Cells[dataGridViewSalesList.Columns["ColumnRemarks"].Index].Value.ToString()
+                                    };
+
+                                    String line1 = Modules.SysCurrentModule.GetCurrentSettings().CustomerDisplayFirstLineMessage;
+                                    String line2 = "P " + newSalesEntity.Amount.ToString("#,##0.00");
+
+                                    if (newSalesEntity.Amount > 0)
+                                    {
+                                        line1 = "TOTAL:";
+                                    }
+
+                                    Modules.SysSerialPortModule.WriteSeralPortMessage(line1, line2);
+
+                                    TrnPOSTenderForm trnSalesDetailTenderForm = new TrnPOSTenderForm(sysSoftwareForm, this, null, null, null, newSalesEntity);
+                                    trnSalesDetailTenderForm.ShowDialog();
                                 }
 
-                                Modules.SysSerialPortModule.WriteSeralPortMessage(line1, line2);
-
-                                TrnPOSTenderForm trnSalesDetailTenderForm = new TrnPOSTenderForm(sysSoftwareForm, this, null, null, null, newSalesEntity);
-                                trnSalesDetailTenderForm.ShowDialog();
                             }
                         }
                     }

@@ -37,5 +37,6 @@ namespace EasyPOS.Entities
         public Decimal NetSalesTotalPreviousReading { get; set; }
         public Decimal NetSalesRunningTotal { get; set; }
         public String ZReadingCounter { get; set; }
+        public Int32 ZPrintCount { get; set; }
     }
 }

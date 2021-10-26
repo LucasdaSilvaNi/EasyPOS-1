@@ -456,7 +456,10 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                 buttonTender.Enabled = true;
 
-                TenderSales();
+                //if (dataGridViewTenderPayType.CurrentRow.Cells[1].Value.ToString() == "CREDIT CARD")
+                //{
+                    TenderSales();
+                //}
             }
             catch (Exception ex)
             {

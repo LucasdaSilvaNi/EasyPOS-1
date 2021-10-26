@@ -1091,7 +1091,17 @@ namespace EasyPOS.Forms.Software.MstItem
                     Decimal MarkUp = Convert.ToDecimal(textBoxMarkUp.Text);
                     Decimal Cost = Convert.ToDecimal(textBoxCost.Text);
                     Decimal Price = Convert.ToDecimal(textBoxPrice.Text);
-                    Decimal newPrice = Cost + (Cost * (MarkUp / 100));
+                    Decimal newPrice = 0;
+
+                    if (Cost > 0)
+                    {
+                        newPrice = Cost + (Cost * (MarkUp / 100));
+                    }
+                    else
+                    {
+                        newPrice = Convert.ToDecimal(textBoxPrice.Text);
+                    }
+
 
                     textBoxPrice.Text = newPrice.ToString("#,##0.00");
                 }
@@ -1110,7 +1120,11 @@ namespace EasyPOS.Forms.Software.MstItem
                 {
                     Decimal Cost = Convert.ToDecimal(textBoxCost.Text);
                     Decimal Price = Convert.ToDecimal(textBoxPrice.Text);
-                    Decimal newMarkUp = ((Price - Cost) / Cost) * 100;
+                    Decimal newMarkUp = 0;
+                    if (Cost > 0)
+                    {
+                        newMarkUp = ((Price - Cost) / Cost) * 100;
+                    }
 
                     textBoxMarkUp.Text = newMarkUp.ToString("#,##0.00");
                 }

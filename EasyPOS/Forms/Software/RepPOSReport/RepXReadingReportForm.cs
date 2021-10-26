@@ -67,6 +67,17 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             DialogResult printerDialogResult = printDialogXReadingReport.ShowDialog();
             if (printerDialogResult == DialogResult.OK)
             {
+                Int32 currentUser = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+                Entities.SysReadingPrintCount newPrintCout = new Entities.SysReadingPrintCount()
+                {
+                    PrintDate = Convert.ToDateTime(DateTime.Today.ToShortDateString()),
+                    PrintCount = 1,
+                    PrintType = "X",
+                    UserId = currentUser
+                };
+                Controllers.SysReadingPrintCountController xreadingCount = new Controllers.SysReadingPrintCountController();
+                xreadingCount.InsertPrintCount(newPrintCout);
+
                 PrintReport();
                 Close();
             }
@@ -372,6 +383,23 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 repXReadingReportEntity.TotalCancelledAmount = currentCancelledCollections.Sum(d => d.Amount);
             }
 
+            Int32 printCount = 0;
+            var printCountZReading = from d in db.SysReadingPrintCounts
+                                     where d.PrintType == "X"
+                                     && d.PrintDate == Convert.ToDateTime(DateTime.Today.ToShortDateString())
+                                     && d.UserId == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId)
+                                     select d;
+
+            if (printCountZReading.Any())
+            {
+                printCount = printCountZReading.Sum(d => d.PrintCount);
+                repXReadingReportEntity.XPrintCount = printCount + 1;
+            }
+            else
+            {
+                repXReadingReportEntity.XPrintCount = printCount + 1;
+            }
+
             xReadingReportEntity = repXReadingReportEntity;
         }
 
@@ -405,6 +433,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             Decimal totalPWDDiscount = dataSource.TotalPWDDiscount * currentDeclareRate;
             Decimal totalSalesReturn = dataSource.TotalSalesReturn * currentDeclareRate;
             Decimal totalNetSales = dataSource.TotalNetSales;
+            Int32 totalPrintCount = dataSource.XPrintCount;
 
             // =============
             // Font Settings
@@ -539,6 +568,15 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             String collectionDateText = filterDate.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
             graphics.DrawString(collectionDateText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
             y += graphics.MeasureString(collectionDateText, fontArial8Regular).Height;
+
+            // ====
+            // X Print Count 
+            // ====
+            String printCountLabel = "Print Count : ";
+            string printCount = totalPrintCount.ToString();
+            graphics.DrawString(printCountLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+            graphics.DrawString(printCount, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+            y += graphics.MeasureString(printCount, fontArial8Regular).Height;
 
             // ========
             // 1st Line

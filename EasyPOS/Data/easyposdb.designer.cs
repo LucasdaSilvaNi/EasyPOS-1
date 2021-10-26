@@ -120,6 +120,9 @@ namespace EasyPOS.Data
     partial void InsertSysLabel(SysLabel instance);
     partial void UpdateSysLabel(SysLabel instance);
     partial void DeleteSysLabel(SysLabel instance);
+    partial void InsertSysReadingPrintCount(SysReadingPrintCount instance);
+    partial void UpdateSysReadingPrintCount(SysReadingPrintCount instance);
+    partial void DeleteSysReadingPrintCount(SysReadingPrintCount instance);
     partial void InsertSysSalesLocked(SysSalesLocked instance);
     partial void UpdateSysSalesLocked(SysSalesLocked instance);
     partial void DeleteSysSalesLocked(SysSalesLocked instance);
@@ -174,7 +177,7 @@ namespace EasyPOS.Data
     #endregion
 		
 		public easyposdbDataContext() : 
-				base(global::EasyPOS.Properties.Settings.Default.easyposConnectionString, mappingSource)
+				base(global::EasyPOS.Properties.Settings.Default.easyposConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -440,6 +443,14 @@ namespace EasyPOS.Data
 			get
 			{
 				return this.GetTable<SysLabel>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SysReadingPrintCount> SysReadingPrintCounts
+		{
+			get
+			{
+				return this.GetTable<SysReadingPrintCount>();
 			}
 		}
 		
@@ -13115,6 +13126,164 @@ namespace EasyPOS.Data
 					this._Language = value;
 					this.SendPropertyChanged("Language");
 					this.OnLanguageChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SysReadingPrintCount")]
+	public partial class SysReadingPrintCount : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.DateTime _PrintDate;
+		
+		private int _PrintCount;
+		
+		private string _PrintType;
+		
+		private int _UserId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnPrintDateChanging(System.DateTime value);
+    partial void OnPrintDateChanged();
+    partial void OnPrintCountChanging(int value);
+    partial void OnPrintCountChanged();
+    partial void OnPrintTypeChanging(string value);
+    partial void OnPrintTypeChanged();
+    partial void OnUserIdChanging(int value);
+    partial void OnUserIdChanged();
+    #endregion
+		
+		public SysReadingPrintCount()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrintDate", DbType="DateTime NOT NULL")]
+		public System.DateTime PrintDate
+		{
+			get
+			{
+				return this._PrintDate;
+			}
+			set
+			{
+				if ((this._PrintDate != value))
+				{
+					this.OnPrintDateChanging(value);
+					this.SendPropertyChanging();
+					this._PrintDate = value;
+					this.SendPropertyChanged("PrintDate");
+					this.OnPrintDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrintCount", DbType="Int NOT NULL")]
+		public int PrintCount
+		{
+			get
+			{
+				return this._PrintCount;
+			}
+			set
+			{
+				if ((this._PrintCount != value))
+				{
+					this.OnPrintCountChanging(value);
+					this.SendPropertyChanging();
+					this._PrintCount = value;
+					this.SendPropertyChanged("PrintCount");
+					this.OnPrintCountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrintType", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string PrintType
+		{
+			get
+			{
+				return this._PrintType;
+			}
+			set
+			{
+				if ((this._PrintType != value))
+				{
+					this.OnPrintTypeChanging(value);
+					this.SendPropertyChanging();
+					this._PrintType = value;
+					this.SendPropertyChanged("PrintType");
+					this.OnPrintTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="Int NOT NULL")]
+		public int UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
 				}
 			}
 		}
