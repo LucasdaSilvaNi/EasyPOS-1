@@ -17,6 +17,7 @@ namespace EasyPOS.Entities
         public String ColumnTerm { get; set; }
         public String ColumnRemarks { get; set; }
         public String ColumnPreparedByUserName { get; set; }
+        public String ColumnCashier { get; set; }
         public String ColumnAmount { get; set; }
         public String ColumnEntryDateTime { get; set; }
     }

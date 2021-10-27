@@ -193,7 +193,7 @@ namespace EasyPOS.Controllers
                                 EntryUserName = d.MstUser3.FullName,
                                 EntryDateTime = d.EntryDateTime.ToShortDateString(),
                                 UpdateUserId = d.UpdateUserId,
-                                UpdatedUserName = d.MstUser4.FullName,
+                                UpdatedUserName = d.MstUser4.UserName,
                                 UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
                                 Pax = d.Pax,
                                 PostCode = d.PostCode

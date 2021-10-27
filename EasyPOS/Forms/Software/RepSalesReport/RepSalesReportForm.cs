@@ -151,6 +151,62 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 comboBoxSalesAgent.ValueMember = "Id";
                 comboBoxSalesAgent.DisplayMember = "FullName";
             }
+            GetSalesSupplierList();
+        }
+
+        public void GetSalesSupplierList()
+        {
+            Controllers.RepSalesReportController repSalesReportController = new Controllers.RepSalesReportController();
+            if (repSalesReportController.DropdownListSupplier().Any())
+            {
+                List<Entities.MstSupplierEntity> newSalesSupplierList = new List<Entities.MstSupplierEntity>();
+                newSalesSupplierList.Add(new Entities.MstSupplierEntity
+                {
+                    Id = 0,
+                    Supplier = "ALL"
+                });
+
+                foreach (var obj in repSalesReportController.DropdownListSupplier())
+                {
+                    newSalesSupplierList.Add(new Entities.MstSupplierEntity
+                    {
+                        Id = obj.Id,
+                        Supplier = obj.Supplier
+                    });
+                };
+
+                comboBoxSupplier.DataSource = newSalesSupplierList;
+                comboBoxSupplier.ValueMember = "Id";
+                comboBoxSupplier.DisplayMember = "Supplier";
+            }
+            GetSalesItemList();
+        }
+
+        public void GetSalesItemList()
+        {
+            Controllers.RepSalesReportController repSalesReportController = new Controllers.RepSalesReportController();
+            if (repSalesReportController.DropdownListSalesItem().Any())
+            {
+                List<Entities.MstItemEntity> newSalesItemList = new List<Entities.MstItemEntity>();
+                newSalesItemList.Add(new Entities.MstItemEntity
+                {
+                    Id = 0,
+                    ItemDescription = "ALL"
+                });
+
+                foreach (var obj in repSalesReportController.DropdownListSalesItem())
+                {
+                    newSalesItemList.Add(new Entities.MstItemEntity
+                    {
+                        Id = obj.Id,
+                        ItemDescription = obj.ItemDescription
+                    });
+                };
+
+                comboBoxItemFilter.DataSource = newSalesItemList;
+                comboBoxItemFilter.ValueMember = "Id";
+                comboBoxItemFilter.DisplayMember = "ItemDescription";
+            }
         }
 
         private void listBoxSalesReport_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,6 +233,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = true;
                         comboBoxSalesAgent.Visible = true;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
 
@@ -200,6 +262,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelAgent.Visible = true;
                         comboBoxSalesAgent.Visible = true;
+
+                        labelSupplier.Visible = true;
+                        comboBoxSupplier.Visible = true;
+
+                        labelItem.Visible = true;
+                        comboBoxItemFilter.Visible = true;
 
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
@@ -225,6 +293,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
 
@@ -248,6 +322,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
+
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
 
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
@@ -273,6 +353,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
 
@@ -296,6 +382,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
+
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
 
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
@@ -321,6 +413,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
 
@@ -344,6 +442,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
+
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
 
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
@@ -369,6 +473,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
 
@@ -392,6 +502,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
+
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
 
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
@@ -417,6 +533,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
 
@@ -441,6 +563,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
 
@@ -464,6 +592,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
+
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
 
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
@@ -497,6 +631,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         buttonView.Text = SetLabel("View");
 
                         break;
@@ -519,6 +659,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         buttonView.Text = SetLabel("View");
 
                         break;
@@ -535,6 +681,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
+
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
 
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
@@ -557,6 +709,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
 
@@ -578,6 +736,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
+
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
 
                         labelDateAsOf.Visible = false;
                         dateTimePickerDateAsOf.Visible = false;
@@ -603,6 +767,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
                         labelDateAsOf.Visible = true;
                         dateTimePickerDateAsOf.Visible = true;
 
@@ -627,6 +797,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
 
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
+
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
                         labelDateAsOf.Visible = true;
                         dateTimePickerDateAsOf.Visible = true;
 
@@ -649,6 +825,12 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                         labelAgent.Visible = false;
                         comboBoxSalesAgent.Visible = false;
+
+                        labelSupplier.Visible = false;
+                        comboBoxSupplier.Visible = false;
+
+                        labelItem.Visible = false;
+                        comboBoxItemFilter.Visible = false;
 
                         dateTimePickerStartDate.Focus();
 
@@ -715,7 +897,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             {
                                 if (sysUserRights.GetUserRights().CanView == true)
                                 {
-                                    RepSalesDetailReportForm repSalesReportSalesDetail = new RepSalesDetailReportForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), Convert.ToInt32(comboBoxCustomer.SelectedValue), Convert.ToInt32(comboBoxSalesAgent.SelectedValue));
+                                    RepSalesDetailReportForm repSalesReportSalesDetail = new RepSalesDetailReportForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), Convert.ToInt32(comboBoxCustomer.SelectedValue), Convert.ToInt32(comboBoxSalesAgent.SelectedValue), Convert.ToInt32(comboBoxSupplier.SelectedValue), Convert.ToInt32(comboBoxItemFilter.SelectedValue));
                                     repSalesReportSalesDetail.ShowDialog();
                                 }
                                 else
@@ -1086,7 +1268,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                             {
                                 if (sysUserRights.GetUserRights().CanView == true)
                                 {
-                                    RepCostOfSaleReportForm repCostOfSaleReportForm = new RepCostOfSaleReportForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), Convert.ToInt32(comboBoxCustomer.SelectedValue), Convert.ToInt32(comboBoxSalesAgent.SelectedValue));
+                                    RepCostOfSaleReportForm repCostOfSaleReportForm = new RepCostOfSaleReportForm(dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date, Convert.ToInt32(comboBoxTerminal.SelectedValue), Convert.ToInt32(comboBoxCustomer.SelectedValue), Convert.ToInt32(comboBoxSalesAgent.SelectedValue), Convert.ToInt32(comboBoxSupplier.SelectedValue), Convert.ToInt32(comboBoxItemFilter.SelectedValue));
                                     repCostOfSaleReportForm.ShowDialog();
                                 }
                                 else

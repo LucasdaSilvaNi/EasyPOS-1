@@ -43,6 +43,7 @@ namespace EasyPOS.Controllers
 
             return customers.OrderBy(d => d.Id).ToList();
         }
+
         // =========================
         // Dropdown List Sales Agent
         // =========================
@@ -57,6 +58,38 @@ namespace EasyPOS.Controllers
 
             return salesAgent.OrderBy(d => d.Id).ToList();
         }
+
+        // ======================
+        // Dropdown List Supplier
+        // ======================
+        public List<Entities.MstSupplierEntity> DropdownListSupplier()
+        {
+            var supplier = from d in db.MstSuppliers
+                           select new Entities.MstSupplierEntity
+                           {
+                               Id = d.Id,
+                               Supplier = d.Supplier
+                           };
+
+            return supplier.OrderBy(d => d.Id).ToList();
+        }
+
+        // ==================
+        // Dropdown List Item
+        // ==================
+        public List<Entities.MstItemEntity> DropdownListSalesItem()
+        {
+            var item = from d in db.MstItems
+                           select new Entities.MstItemEntity
+                           {
+                               Id = d.Id,
+                               ItemDescription = d.ItemDescription
+                           };
+
+            return item.OrderBy(d => d.Id).ToList();
+        }
+
+
 
         // ====================
         // Sales Summary Report
@@ -81,7 +114,8 @@ namespace EasyPOS.Controllers
                                 Customer = d.MstCustomer.Customer,
                                 Term = d.MstTerm.Term,
                                 Remarks = d.Remarks,
-                                PreparedByUserName = d.MstUser.FullName,
+                                PreparedByUserName = d.MstUser.UserName,
+                                UpdatedUserName = d.MstUser4.UserName,
                                 Amount = d.Amount,
                                 EntryDateTime = d.EntryDateTime.ToShortTimeString()
 
@@ -177,9 +211,9 @@ namespace EasyPOS.Controllers
         // ===================
         // Sales Detail Report
         // ===================
-        public List<Entities.RepSalesReportSalesDetailReportEntity> SalesDetailReport(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId)
+        public List<Entities.RepSalesReportSalesDetailReportEntity> SalesDetailReport(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId, Int32 supplierId, Int32 itemId)
         {
-            if (CustomerId == 0 && SalesAgentId == 0)
+            if ((CustomerId == 0 && SalesAgentId == 0) && (supplierId == 0 && itemId == 0))
             {
                 var salesLines = from d in db.TrnSalesLines
                                  where d.TrnSale.SalesDate >= startDate
@@ -214,7 +248,7 @@ namespace EasyPOS.Controllers
 
                 return salesLines.ToList();
             }
-            else if (CustomerId != 0 && SalesAgentId == 0)
+            else if ((CustomerId != 0 && SalesAgentId == 0) && (supplierId == 0 && itemId == 0))
             {
                 var salesLines = from d in db.TrnSalesLines
                                  where d.TrnSale.SalesDate >= startDate
@@ -250,13 +284,235 @@ namespace EasyPOS.Controllers
 
                 return salesLines.ToList();
             }
-            else if (CustomerId == 0 && SalesAgentId != 0)
+            else if ((CustomerId == 0 && SalesAgentId != 0) && (supplierId == 0 && itemId == 0))
             {
                 var salesLines = from d in db.TrnSalesLines
                                  where d.TrnSale.SalesDate >= startDate
                                  && d.TrnSale.SalesDate <= endDate
                                  && d.TrnSale.TerminalId == terminalId
                                  && d.TrnSale.SalesAgent == SalesAgentId
+                                 && d.TrnSale.IsLocked == true
+                                 && d.TrnSale.IsCancelled == false
+                                 select new Entities.RepSalesReportSalesDetailReportEntity
+                                 {
+                                     Id = d.Id,
+                                     Terminal = d.TrnSale.MstTerminal.Terminal,
+                                     Date = d.TrnSale.SalesDate.ToShortDateString(),
+                                     SalesNumber = d.TrnSale.SalesNumber,
+                                     CustomerCode = d.TrnSale.MstCustomer.CustomerCode,
+                                     Customer = d.TrnSale.MstCustomer.Customer,
+                                     ItemCode = d.MstItem.ItemCode,
+                                     BarCode = d.MstItem.BarCode,
+                                     ItemDescription = d.MstItem.ItemDescription,
+                                     ItemCategory = d.MstItem.Category,
+                                     Quantity = d.Quantity,
+                                     Unit = d.MstUnit.Unit,
+                                     Cost = d.MstItem.Cost,
+                                     Price = d.Price,
+                                     CostAmount = d.Quantity * d.MstItem.Cost,
+                                     DiscountAmount = d.DiscountAmount,
+                                     NetPrice = d.NetPrice,
+                                     Amount = d.Amount,
+                                     Tax = d.MstTax.Tax,
+                                     TaxRate = d.TaxRate,
+                                     TaxAmount = d.TaxAmount
+                                 };
+
+                return salesLines.ToList();
+            }
+            else if ((CustomerId == 0 && SalesAgentId == 0) && (supplierId != 0 && itemId == 0))
+            {
+                var salesLines = from d in db.TrnSalesLines
+                                 where d.TrnSale.SalesDate >= startDate
+                                 && d.TrnSale.SalesDate <= endDate
+                                 && d.TrnSale.TerminalId == terminalId
+                                 && d.MstItem.DefaultSupplierId == supplierId
+                                 && d.TrnSale.IsLocked == true
+                                 && d.TrnSale.IsCancelled == false
+                                 select new Entities.RepSalesReportSalesDetailReportEntity
+                                 {
+                                     Id = d.Id,
+                                     Terminal = d.TrnSale.MstTerminal.Terminal,
+                                     Date = d.TrnSale.SalesDate.ToShortDateString(),
+                                     SalesNumber = d.TrnSale.SalesNumber,
+                                     CustomerCode = d.TrnSale.MstCustomer.CustomerCode,
+                                     Customer = d.TrnSale.MstCustomer.Customer,
+                                     ItemCode = d.MstItem.ItemCode,
+                                     BarCode = d.MstItem.BarCode,
+                                     ItemDescription = d.MstItem.ItemDescription,
+                                     Supplier = d.MstItem.MstSupplier.Supplier,
+                                     ItemCategory = d.MstItem.Category,
+                                     Quantity = d.Quantity,
+                                     Unit = d.MstUnit.Unit,
+                                     Cost = d.MstItem.Cost,
+                                     Price = d.Price,
+                                     CostAmount = d.Quantity * d.MstItem.Cost,
+                                     DiscountAmount = d.DiscountAmount,
+                                     NetPrice = d.NetPrice,
+                                     Amount = d.Amount,
+                                     Tax = d.MstTax.Tax,
+                                     TaxRate = d.TaxRate,
+                                     TaxAmount = d.TaxAmount
+                                 };
+
+                return salesLines.ToList();
+            }
+            else if ((CustomerId == 0 && SalesAgentId == 0) && (supplierId == 0 && itemId != 0))
+            {
+                var salesLines = from d in db.TrnSalesLines
+                                 where d.TrnSale.SalesDate >= startDate
+                                 && d.TrnSale.SalesDate <= endDate
+                                 && d.TrnSale.TerminalId == terminalId
+                                 && d.MstItem.Id == itemId
+                                 && d.TrnSale.IsLocked == true
+                                 && d.TrnSale.IsCancelled == false
+                                 select new Entities.RepSalesReportSalesDetailReportEntity
+                                 {
+                                     Id = d.Id,
+                                     Terminal = d.TrnSale.MstTerminal.Terminal,
+                                     Date = d.TrnSale.SalesDate.ToShortDateString(),
+                                     SalesNumber = d.TrnSale.SalesNumber,
+                                     CustomerCode = d.TrnSale.MstCustomer.CustomerCode,
+                                     Customer = d.TrnSale.MstCustomer.Customer,
+                                     ItemCode = d.MstItem.ItemCode,
+                                     BarCode = d.MstItem.BarCode,
+                                     ItemDescription = d.MstItem.ItemDescription,
+                                     ItemCategory = d.MstItem.Category,
+                                     Quantity = d.Quantity,
+                                     Unit = d.MstUnit.Unit,
+                                     Cost = d.MstItem.Cost,
+                                     Price = d.Price,
+                                     CostAmount = d.Quantity * d.MstItem.Cost,
+                                     DiscountAmount = d.DiscountAmount,
+                                     NetPrice = d.NetPrice,
+                                     Amount = d.Amount,
+                                     Tax = d.MstTax.Tax,
+                                     TaxRate = d.TaxRate,
+                                     TaxAmount = d.TaxAmount
+                                 };
+
+                return salesLines.ToList();
+            }
+            else if ((CustomerId == 0 && SalesAgentId == 0) && (supplierId != 0 && itemId != 0))
+            {
+                var salesLines = from d in db.TrnSalesLines
+                                 where d.TrnSale.SalesDate >= startDate
+                                 && d.TrnSale.SalesDate <= endDate
+                                 && d.TrnSale.TerminalId == terminalId
+                                 && d.MstItem.Id == itemId
+                                 && d.MstItem.DefaultSupplierId == supplierId
+                                 && d.TrnSale.IsLocked == true
+                                 && d.TrnSale.IsCancelled == false
+                                 select new Entities.RepSalesReportSalesDetailReportEntity
+                                 {
+                                     Id = d.Id,
+                                     Terminal = d.TrnSale.MstTerminal.Terminal,
+                                     Date = d.TrnSale.SalesDate.ToShortDateString(),
+                                     SalesNumber = d.TrnSale.SalesNumber,
+                                     CustomerCode = d.TrnSale.MstCustomer.CustomerCode,
+                                     Customer = d.TrnSale.MstCustomer.Customer,
+                                     ItemCode = d.MstItem.ItemCode,
+                                     BarCode = d.MstItem.BarCode,
+                                     ItemDescription = d.MstItem.ItemDescription,
+                                     ItemCategory = d.MstItem.Category,
+                                     Quantity = d.Quantity,
+                                     Unit = d.MstUnit.Unit,
+                                     Cost = d.MstItem.Cost,
+                                     Price = d.Price,
+                                     CostAmount = d.Quantity * d.MstItem.Cost,
+                                     DiscountAmount = d.DiscountAmount,
+                                     NetPrice = d.NetPrice,
+                                     Amount = d.Amount,
+                                     Tax = d.MstTax.Tax,
+                                     TaxRate = d.TaxRate,
+                                     TaxAmount = d.TaxAmount
+                                 };
+
+                return salesLines.ToList();
+            }
+            else if ((CustomerId == 0 && SalesAgentId != 0) && (supplierId != 0 && itemId != 0))
+            {
+                var salesLines = from d in db.TrnSalesLines
+                                 where d.TrnSale.SalesDate >= startDate
+                                 && d.TrnSale.SalesDate <= endDate
+                                 && d.TrnSale.TerminalId == terminalId
+                                 && d.TrnSale.SalesAgent == SalesAgentId
+                                 && d.MstItem.Id == itemId
+                                 && d.MstItem.DefaultSupplierId == supplierId
+                                 && d.TrnSale.IsLocked == true
+                                 && d.TrnSale.IsCancelled == false
+                                 select new Entities.RepSalesReportSalesDetailReportEntity
+                                 {
+                                     Id = d.Id,
+                                     Terminal = d.TrnSale.MstTerminal.Terminal,
+                                     Date = d.TrnSale.SalesDate.ToShortDateString(),
+                                     SalesNumber = d.TrnSale.SalesNumber,
+                                     CustomerCode = d.TrnSale.MstCustomer.CustomerCode,
+                                     Customer = d.TrnSale.MstCustomer.Customer,
+                                     ItemCode = d.MstItem.ItemCode,
+                                     BarCode = d.MstItem.BarCode,
+                                     ItemDescription = d.MstItem.ItemDescription,
+                                     ItemCategory = d.MstItem.Category,
+                                     Quantity = d.Quantity,
+                                     Unit = d.MstUnit.Unit,
+                                     Cost = d.MstItem.Cost,
+                                     Price = d.Price,
+                                     CostAmount = d.Quantity * d.MstItem.Cost,
+                                     DiscountAmount = d.DiscountAmount,
+                                     NetPrice = d.NetPrice,
+                                     Amount = d.Amount,
+                                     Tax = d.MstTax.Tax,
+                                     TaxRate = d.TaxRate,
+                                     TaxAmount = d.TaxAmount
+                                 };
+
+                return salesLines.ToList();
+            }
+            else if ((CustomerId == 0 && SalesAgentId != 0) && (supplierId == 0 && itemId != 0))
+            {
+                var salesLines = from d in db.TrnSalesLines
+                                 where d.TrnSale.SalesDate >= startDate
+                                 && d.TrnSale.SalesDate <= endDate
+                                 && d.TrnSale.TerminalId == terminalId
+                                 && d.TrnSale.SalesAgent == SalesAgentId
+                                 && d.MstItem.Id == itemId
+                                 && d.TrnSale.IsLocked == true
+                                 && d.TrnSale.IsCancelled == false
+                                 select new Entities.RepSalesReportSalesDetailReportEntity
+                                 {
+                                     Id = d.Id,
+                                     Terminal = d.TrnSale.MstTerminal.Terminal,
+                                     Date = d.TrnSale.SalesDate.ToShortDateString(),
+                                     SalesNumber = d.TrnSale.SalesNumber,
+                                     CustomerCode = d.TrnSale.MstCustomer.CustomerCode,
+                                     Customer = d.TrnSale.MstCustomer.Customer,
+                                     ItemCode = d.MstItem.ItemCode,
+                                     BarCode = d.MstItem.BarCode,
+                                     ItemDescription = d.MstItem.ItemDescription,
+                                     ItemCategory = d.MstItem.Category,
+                                     Quantity = d.Quantity,
+                                     Unit = d.MstUnit.Unit,
+                                     Cost = d.MstItem.Cost,
+                                     Price = d.Price,
+                                     CostAmount = d.Quantity * d.MstItem.Cost,
+                                     DiscountAmount = d.DiscountAmount,
+                                     NetPrice = d.NetPrice,
+                                     Amount = d.Amount,
+                                     Tax = d.MstTax.Tax,
+                                     TaxRate = d.TaxRate,
+                                     TaxAmount = d.TaxAmount
+                                 };
+
+                return salesLines.ToList();
+            }
+            else if ((CustomerId == 0 && SalesAgentId != 0) && (supplierId != 0 && itemId == 0))
+            {
+                var salesLines = from d in db.TrnSalesLines
+                                 where d.TrnSale.SalesDate >= startDate
+                                 && d.TrnSale.SalesDate <= endDate
+                                 && d.TrnSale.TerminalId == terminalId
+                                 && d.TrnSale.SalesAgent == SalesAgentId
+                                 && d.MstItem.DefaultSupplierId == supplierId
                                  && d.TrnSale.IsLocked == true
                                  && d.TrnSale.IsCancelled == false
                                  select new Entities.RepSalesReportSalesDetailReportEntity
@@ -294,6 +550,8 @@ namespace EasyPOS.Controllers
                                  && d.TrnSale.TerminalId == terminalId
                                  && d.TrnSale.CustomerId == CustomerId
                                  && d.TrnSale.SalesAgent == SalesAgentId
+                                 && d.MstItem.DefaultSupplierId == supplierId
+                                 && d.MstItem.Id == itemId
                                  && d.TrnSale.IsLocked == true
                                  && d.TrnSale.IsCancelled == false
                                  select new Entities.RepSalesReportSalesDetailReportEntity

@@ -103,6 +103,7 @@ namespace EasyPOS.Controllers
                               where d.CustomerId == customerId
                               && d.TerminalId == terminalId
                               && d.IsLocked == true
+                              && d.BalanceAmount > 0 
                               select new Entities.TrnSalesEntity
                               {
                                   Id = d.Id,

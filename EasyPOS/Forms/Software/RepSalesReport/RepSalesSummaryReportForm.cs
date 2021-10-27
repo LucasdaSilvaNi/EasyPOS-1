@@ -64,6 +64,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                               ColumnTerm = d.Term,
                               ColumnRemarks = d.Remarks,
                               ColumnPreparedByUserName = d.PreparedByUserName,
+                              ColumnCashier = d.UpdatedUserName,
                               ColumnAmount = d.Amount.ToString("#,##0.00"),
                               ColumnEntryDateTime = d.EntryDateTime
                           };
@@ -215,7 +216,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 if (dialogResult == DialogResult.OK)
                 {
                     StringBuilder csv = new StringBuilder();
-                    String[] header = { "Terminal", "Date", "Sales Number", "Customer Code", "Customer", "Term", "Remarks", "Prepared By", "Amount" };
+                    String[] header = { "Terminal", "Date", "Sales Number", "Customer Code", "Customer", "Term", "Remarks", "Teller", "Cashier", "Amount" };
                     csv.AppendLine(String.Join(",", header));
 
                     if (salesList.Any())
@@ -237,6 +238,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                 sales.ColumnTerm.Replace("," , ""),
                                 sales.ColumnRemarks.Replace(",", String.Empty).Replace("\n", String.Empty).Replace("\t", String.Empty).Replace("\r", String.Empty),
                                 sales.ColumnPreparedByUserName.Replace("," , ""),
+                                sales.ColumnCashier.Replace("," , ""),
                                 sales.ColumnAmount.Replace("," , ""),
                                 sales.ColumnEntryDateTime,
                             };

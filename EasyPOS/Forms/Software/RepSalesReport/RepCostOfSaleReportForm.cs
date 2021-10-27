@@ -27,7 +27,9 @@ namespace EasyPOS.Forms.Software.RepSalesReport
         public Int32 filterTerminalId;
         public Int32 filterCustomerId;
         public Int32 filterSalesAgentId;
-        public RepCostOfSaleReportForm(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId)
+        public Int32 filterSupplierId;
+        public Int32 filterItemId;
+        public RepCostOfSaleReportForm(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId, Int32 supplierId, Int32 itemId)
         {
             InitializeComponent();
             dateStart = startDate;
@@ -35,18 +37,20 @@ namespace EasyPOS.Forms.Software.RepSalesReport
             filterTerminalId = terminalId;
             filterCustomerId = CustomerId;
             filterSalesAgentId = SalesAgentId;
+            filterSupplierId = supplierId;
+            filterItemId = itemId;
 
             GetSalesDetailListDataSource();
             GetSalesDetailListDataGridSource();
         }
 
-        public List<Entities.DgvRepSalesCostOfSalesReportEntity> GetSalesDetailListData(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId)
+        public List<Entities.DgvRepSalesCostOfSalesReportEntity> GetSalesDetailListData(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId, Int32 supplierId, Int32 itemId)
         {
             List<Entities.DgvRepSalesCostOfSalesReportEntity> rowList = new List<Entities.DgvRepSalesCostOfSalesReportEntity>();
 
             Controllers.RepSalesReportController repSalesDetailReportController = new Controllers.RepSalesReportController();
 
-            var salesDetailList = repSalesDetailReportController.SalesDetailReport(startDate, endDate, terminalId, CustomerId, SalesAgentId);
+            var salesDetailList = repSalesDetailReportController.SalesDetailReport(startDate, endDate, terminalId, CustomerId, SalesAgentId, supplierId, itemId);
             if (salesDetailList.OrderByDescending(d => d.Id).Any())
             {
                 Decimal totalCost = 0;
@@ -75,7 +79,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
         }
         public void GetSalesDetailListDataSource()
         {
-            salesDetailList = GetSalesDetailListData(dateStart, dateEnd, filterTerminalId, filterCustomerId, filterSalesAgentId);
+            salesDetailList = GetSalesDetailListData(dateStart, dateEnd, filterTerminalId, filterCustomerId, filterSalesAgentId, filterSupplierId, filterItemId);
             if (salesDetailList.Any())
             {
 

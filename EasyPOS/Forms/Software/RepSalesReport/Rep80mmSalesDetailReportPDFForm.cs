@@ -21,6 +21,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
         public Int32 filterTerminalId;
         public Int32 filterCustomerId;
         public Int32 filterSalesAgentId;
+        public Int32 filterSupplierId;
+        public Int32 filterItemId;
 
 
         public Rep80mmSalesDetailReportPDFForm(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId)
@@ -85,7 +87,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 tableLines.AddCell(new PdfPCell(new Phrase("Amount", fontHelvetica10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
 
                 Controllers.RepSalesReportController repSalesReport = new Controllers.RepSalesReportController();
-                var salesList = repSalesReport.SalesDetailReport(dateStart, dateEnd, filterTerminalId, filterCustomerId, filterSalesAgentId);
+                var salesList = repSalesReport.SalesDetailReport(dateStart, dateEnd, filterTerminalId, filterCustomerId, filterSalesAgentId, filterSupplierId, filterItemId);
 
                 Decimal totalItemAmount = 0;
 

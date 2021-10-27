@@ -21,6 +21,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
         public Int32 filterTerminalId;
         public Int32 filterCustomerId;
         public Int32 filterSalesAgentId;
+        public Int32 filterSupplierId;
+        public Int32 filterItemId;
 
         public RepSalesDetailReportPDFForm(DateTime startDate, DateTime endDate, Int32 terminalId)
         {
@@ -60,7 +62,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 document.Open();
 
                 Controllers.RepSalesReportController repSalesDetailReportController = new Controllers.RepSalesReportController();
-                var salesDetailList = repSalesDetailReportController.SalesDetailReport(dateStart, dateEnd, filterTerminalId, filterCustomerId, filterSalesAgentId);
+                var salesDetailList = repSalesDetailReportController.SalesDetailReport(dateStart, dateEnd, filterTerminalId, filterCustomerId, filterSalesAgentId, filterSupplierId, filterItemId);
 
                 if (salesDetailList.Any())
                 {

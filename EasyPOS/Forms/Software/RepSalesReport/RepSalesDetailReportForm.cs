@@ -27,8 +27,10 @@ namespace EasyPOS.Forms.Software.RepSalesReport
         public Int32 filterTerminalId;
         public Int32 filterCustomerId;
         public Int32 filterSalesAgentId;
+        public Int32 filterSupplierId;
+        public Int32 filterItemId;
 
-        public RepSalesDetailReportForm(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId)
+        public RepSalesDetailReportForm(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId, Int32 supplierId, Int32 itemId)
         {
             InitializeComponent();
 
@@ -37,18 +39,20 @@ namespace EasyPOS.Forms.Software.RepSalesReport
             filterTerminalId = terminalId;
             filterCustomerId = CustomerId;
             filterSalesAgentId = SalesAgentId;
+            filterSupplierId = supplierId;
+            filterItemId = itemId;
 
             GetSalesDetailListDataSource();
             GetSalesDetailListDataGridSource();
         }
 
-        public List<Entities.DgvRepSalesReportSalesDetailReportListEntity> GetSalesDetailListData(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId)
+        public List<Entities.DgvRepSalesReportSalesDetailReportListEntity> GetSalesDetailListData(DateTime startDate, DateTime endDate, Int32 terminalId, Int32 CustomerId, Int32 SalesAgentId, Int32 supplierId, Int32 itemId)
         {
             List<Entities.DgvRepSalesReportSalesDetailReportListEntity> rowList = new List<Entities.DgvRepSalesReportSalesDetailReportListEntity>();
 
             Controllers.RepSalesReportController repSalesDetailReportController = new Controllers.RepSalesReportController();
 
-            var salesDetailList = repSalesDetailReportController.SalesDetailReport(startDate, endDate, terminalId, CustomerId, SalesAgentId);
+            var salesDetailList = repSalesDetailReportController.SalesDetailReport(startDate, endDate, terminalId, CustomerId, SalesAgentId, supplierId, itemId);
             if (salesDetailList.OrderByDescending(d => d.Id).Any())
             {
                 Decimal totalAmount = 0;
@@ -64,6 +68,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                               ColumnItemCode = d.ItemCode,
                               ColumnBarCode = d.BarCode,
                               ColumnItemDescription = d.ItemDescription,
+                              ColumnSupplier = d.Supplier,
                               ColumnItemCategory = d.ItemCategory,
                               ColumnUnit = d.Unit,
                               ColumnCost = d.Cost.ToString("#,##0.00"),
@@ -90,7 +95,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
         public void GetSalesDetailListDataSource()
         {
-            salesDetailList = GetSalesDetailListData(dateStart, dateEnd, filterTerminalId, filterCustomerId, filterSalesAgentId);
+            salesDetailList = GetSalesDetailListData(dateStart, dateEnd, filterTerminalId, filterCustomerId, filterSalesAgentId, filterSupplierId, filterItemId);
             if (salesDetailList.Any())
             {
 
@@ -225,7 +230,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                     DateTime endDate = dateEnd;
 
                     StringBuilder csv = new StringBuilder();
-                    String[] header = { "Terminal", "Date", "Sales Number", "Customer Code", "Customer", "Item Code", "Barcode", "Item Description", "Item Category", "Unit", "Cost", "Price", "CostAmount", "Discount", "Net Price", "Quantity", "Amount", "Tax", "Tax Rate", "Tax Amount" };
+                    String[] header = { "Terminal", "Date", "Sales Number", "Customer Code", "Customer", "Item Code", "Barcode", "Item Description", "Item Category", "Supplier", "Unit", "Cost", "Price", "CostAmount", "Discount", "Net Price", "Quantity", "Amount", "Tax", "Tax Rate", "Tax Amount" };
                     csv.AppendLine(String.Join(",", header));
 
                     if (salesDetailList.Any())
@@ -248,6 +253,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                 salesDetail.ColumnBarCode.Replace("," , ""),
                                 salesDetail.ColumnItemDescription.Replace("," , ""),
                                 salesDetail.ColumnItemCategory.Replace("," , ""),
+                                salesDetail.ColumnSupplier.Replace("," , ""),
                                 salesDetail.ColumnUnit.Replace("," , ""),
                                 salesDetail.ColumnCost.Replace("," , ""),
                                 salesDetail.ColumnPrice.Replace("," , ""),

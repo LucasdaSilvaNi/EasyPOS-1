@@ -382,6 +382,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                   ColumnCustomerCode = d.CustomerCode,
                                   ColumnCustomer = d.Customer,
                                   ColumnSalesAgent = d.SalesAgentUserName,
+                                  ColumnCashier = d.UpdatedUserName,
                                   //ColumnAmount = isHiddenValueSalesAmount == true ? hideSalesAmmount(d.Amount.ToString("#,##0.00")) : d.Amount.ToString("#,##0.00"),
                                   ColumnAmount = d.Amount.ToString("#,##0.00"),
                                   ColumnIsLocked = d.IsLocked,

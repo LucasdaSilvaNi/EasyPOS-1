@@ -99,6 +99,10 @@ namespace EasyPOS.Forms.Account.SysLogin
                     Hide();
                 }
             }
+            else if (_trnPOSBarcodeDetailForm != null || _trnPOSTouchDetailForm != null)
+            {
+                Hide();
+            }
             else
             {
                 Environment.Exit(0);
