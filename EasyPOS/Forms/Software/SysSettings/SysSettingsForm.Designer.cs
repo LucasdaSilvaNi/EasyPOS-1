@@ -51,6 +51,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.checkBoxRestrictCashin = new System.Windows.Forms.CheckBox();
             this.checkBoxDisableSalesCustomerSelection = new System.Windows.Forms.CheckBox();
             this.checkBoxEnableEditPrice = new System.Windows.Forms.CheckBox();
             this.checkBoxIsTriggeredQuantity = new System.Windows.Forms.CheckBox();
@@ -186,7 +187,7 @@
             this.buttonKitchenPageListLast = new System.Windows.Forms.Button();
             this.textBoxKitchenPageNumber = new System.Windows.Forms.TextBox();
             this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
-            this.checkBoxRestrictCashin = new System.Windows.Forms.CheckBox();
+            this.checkBoxDisableLockTender = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -445,6 +446,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel5.Controls.Add(this.checkBoxDisableLockTender);
             this.panel5.Controls.Add(this.comboBoxLanguage);
             this.panel5.Controls.Add(this.label16);
             this.panel5.Controls.Add(this.checkBoxRestrictCashin);
@@ -518,6 +520,19 @@
             this.label16.Size = new System.Drawing.Size(72, 19);
             this.label16.TabIndex = 95;
             this.label16.Text = "Language:";
+            // 
+            // checkBoxRestrictCashin
+            // 
+            this.checkBoxRestrictCashin.AutoSize = true;
+            this.checkBoxRestrictCashin.Enabled = false;
+            this.checkBoxRestrictCashin.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxRestrictCashin.Location = new System.Drawing.Point(874, 62);
+            this.checkBoxRestrictCashin.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxRestrictCashin.Name = "checkBoxRestrictCashin";
+            this.checkBoxRestrictCashin.Size = new System.Drawing.Size(124, 23);
+            this.checkBoxRestrictCashin.TabIndex = 94;
+            this.checkBoxRestrictCashin.Text = "Restrict Cash-in";
+            this.checkBoxRestrictCashin.UseVisualStyleBackColor = true;
             // 
             // checkBoxDisableSalesCustomerSelection
             // 
@@ -2116,18 +2131,18 @@
             this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
             this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
             // 
-            // checkBoxRestrictCashin
+            // checkBoxDisableLockTender
             // 
-            this.checkBoxRestrictCashin.AutoSize = true;
-            this.checkBoxRestrictCashin.Enabled = false;
-            this.checkBoxRestrictCashin.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxRestrictCashin.Location = new System.Drawing.Point(874, 62);
-            this.checkBoxRestrictCashin.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxRestrictCashin.Name = "checkBoxRestrictCashin";
-            this.checkBoxRestrictCashin.Size = new System.Drawing.Size(124, 23);
-            this.checkBoxRestrictCashin.TabIndex = 94;
-            this.checkBoxRestrictCashin.Text = "Restrict Cash-in";
-            this.checkBoxRestrictCashin.UseVisualStyleBackColor = true;
+            this.checkBoxDisableLockTender.AutoSize = true;
+            this.checkBoxDisableLockTender.Enabled = false;
+            this.checkBoxDisableLockTender.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxDisableLockTender.Location = new System.Drawing.Point(874, 87);
+            this.checkBoxDisableLockTender.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxDisableLockTender.Name = "checkBoxDisableLockTender";
+            this.checkBoxDisableLockTender.Size = new System.Drawing.Size(181, 23);
+            this.checkBoxDisableLockTender.TabIndex = 97;
+            this.checkBoxDisableLockTender.Text = "Disable Lock after Tender";
+            this.checkBoxDisableLockTender.UseVisualStyleBackColor = true;
             // 
             // SysSettingsForm
             // 
@@ -2341,5 +2356,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox checkBoxSingleColumnBarcodePrintOut;
         private System.Windows.Forms.CheckBox checkBoxRestrictCashin;
+        private System.Windows.Forms.CheckBox checkBoxDisableLockTender;
     }
 }

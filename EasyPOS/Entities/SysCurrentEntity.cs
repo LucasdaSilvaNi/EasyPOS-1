@@ -74,5 +74,6 @@ namespace EasyPOS.Entities
         public String Language { get; set; }
         public Boolean SingleColumnBarcodePrintOut { get; set; }
         public Boolean RestrictCashin { get; set; }
+        public Boolean DisableLockTender { get; set; }
     }
 }
