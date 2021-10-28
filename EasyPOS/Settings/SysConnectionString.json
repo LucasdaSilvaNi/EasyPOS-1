@@ -1,6 +1,6 @@
 ﻿{
   "DataSource": "localhost",
-  "InitialCatalog": "easypos",
+  "InitialCatalog": "easypos_mylora_carcar",
   "UserId": "sa",
   "Password": "easyfis"
 }

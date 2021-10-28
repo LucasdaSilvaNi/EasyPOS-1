@@ -54,6 +54,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             dataGridViewSalesList.Columns[12].HeaderText = SetLabel(dataGridViewSalesList.Columns[12].HeaderText);
             dataGridViewSalesList.Columns[13].HeaderText = SetLabel(dataGridViewSalesList.Columns[13].HeaderText);
             dataGridViewSalesList.Columns[14].HeaderText = SetLabel(dataGridViewSalesList.Columns[14].HeaderText);
+            dataGridViewSalesList.Columns[15].HeaderText = SetLabel(dataGridViewSalesList.Columns[15].HeaderText);
             label2.Text = SetLabel(label2.Text);
             label3.Text = SetLabel(label3.Text);
             label4.Text = SetLabel(label4.Text);

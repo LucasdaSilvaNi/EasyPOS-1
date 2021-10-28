@@ -215,27 +215,31 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 if (dialogResult == DialogResult.OK)
                 {
                     StringBuilder csv = new StringBuilder();
-                    String[] header = { "Terminal", "Date", "Sales Number", "Customer Code", "Customer", "Term", "Remarks", "Prepared By", "Amount" };
+                    String[] header = { "Customer", "Term", "Credit Limit", "Sales No.", "Sales Date", "Sales Amount", "Payment", "Balance", "Due Date", "Current", "30 Days", "60 Days", "90 Days", "120 Days" };
                     csv.AppendLine(String.Join(",", header));
 
                     if (salesList.Any())
                     {
                         foreach (var sales in salesList)
                         {
-                            //String[] data = {
-                            //    sales.ColumnTerminal,
-                            //    sales.ColumnSalesDate,
-                            //    sales.ColumnSalesNumber,
-                            //    customerCode,
-                            //    sales.ColumnCustomer.Replace("," , ""),
-                            //    sales.ColumnTerm.Replace("," , ""),
-                            //    sales.ColumnRemarks.Replace(",", String.Empty).Replace("\n", String.Empty).Replace("\t", String.Empty).Replace("\r", String.Empty),
-                            //    sales.ColumnPreparedByUserName.Replace("," , ""),
-                            //    sales.ColumnAmount.Replace("," , ""),
-                            //    sales.ColumnEntryDateTime,
-                            //};
+                            String[] data = {
+                                sales.ColumnCustomer.Replace("," , ""),
+                                sales.ColumnTerm,
+                                sales.ColumnCreditLimit.Replace("," , ""),
+                                sales.ColumnSalesNumber,
+                                sales.ColumnSalesDate,
+                                sales.ColumnSalesAmount.Replace("," , ""),
+                                sales.ColumnPaymentAmount.Replace("," , ""),
+                                sales.ColumnBalanceAmount.Replace("," , ""),
+                                sales.ColumnDueDate,
+                                sales.ColumnCurrent.Replace("," , ""),
+                                sales.Column30Days.Replace("," , ""),
+                                sales.Column60Days.Replace("," , ""),
+                                sales.Column90Days.Replace("," , ""),
+                                sales.Column120Days.Replace("," , "")
+                            };
 
-                            //csv.AppendLine(String.Join(",", data));
+                            csv.AppendLine(String.Join(",", data));
                         }
                     }
 

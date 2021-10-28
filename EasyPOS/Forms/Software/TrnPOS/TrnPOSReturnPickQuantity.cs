@@ -13,6 +13,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
     public partial class TrnPOSReturnPickQuantity : Form
     {
         public TrnPOSReturn trnPOSReturn;
+        public Decimal originalQuantity = 0;
 
         public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
@@ -36,6 +37,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 }
             }
 
+            originalQuantity = defaultQuantity;
             textBoxReturnQuantity.Text = defaultQuantity.ToString("#,##0.00");
             trnPOSReturn = POSReturn;
         }
@@ -63,9 +65,15 @@ namespace EasyPOS.Forms.Software.TrnPOS
         private void buttonOK_Click(object sender, EventArgs e)
         {
             Decimal quantity = Convert.ToDecimal(textBoxReturnQuantity.Text);
-            trnPOSReturn.UpdateReturnQuantity(quantity);
-
-            Close();
+            if (quantity > originalQuantity)
+            {
+                MessageBox.Show("Cannot return if the encoded quantity is greater than the orignal quantity.", "EasyPOS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                trnPOSReturn.UpdateReturnQuantity(quantity);
+                Close();
+            }
         }
 
         private void textBoxReturnQuantity_KeyPress(object sender, KeyPressEventArgs e)
