@@ -48,6 +48,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                 Paragraph line = new Paragraph(new Chunk(new iTextSharp.text.pdf.draw.LineSeparator(0.5F, 100.0F, BaseColor.DARK_GRAY, Element.ALIGN_MIDDLE, 10F)));
 
+                Encoding utf8 = Encoding.UTF8;
                 var fileName = "SalesDetailReport" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
                 var currentUser = from d in db.MstUsers where d.Id == Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId) select d;
 

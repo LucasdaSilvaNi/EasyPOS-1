@@ -37,15 +37,6 @@
             this.buttonClose = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dataGridViewAccountsReceivableSummaryReport = new System.Windows.Forms.DataGridView();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.textBoxTotalAmount = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.buttonSalesListPageListFirst = new System.Windows.Forms.Button();
-            this.buttonSalesListPageListNext = new System.Windows.Forms.Button();
-            this.buttonSalesListPageListLast = new System.Windows.Forms.Button();
-            this.buttonSalesListPageListPrevious = new System.Windows.Forms.Button();
-            this.textBoxPageNumber = new System.Windows.Forms.TextBox();
-            this.folderBrowserDialogGenerateCSV = new System.Windows.Forms.FolderBrowserDialog();
             this.ColumnCustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTerm = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCreditLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +51,15 @@
             this.Column60Days = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column90Days = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column120Days = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.textBoxTotalAmount = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonSalesListPageListFirst = new System.Windows.Forms.Button();
+            this.buttonSalesListPageListNext = new System.Windows.Forms.Button();
+            this.buttonSalesListPageListLast = new System.Windows.Forms.Button();
+            this.buttonSalesListPageListPrevious = new System.Windows.Forms.Button();
+            this.textBoxPageNumber = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialogGenerateCSV = new System.Windows.Forms.FolderBrowserDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -77,9 +77,9 @@
             this.panel1.Controls.Add(this.buttonClose);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1096, 50);
+            this.panel1.Size = new System.Drawing.Size(1370, 62);
             this.panel1.TabIndex = 8;
             // 
             // buttonPrint
@@ -91,10 +91,10 @@
             this.buttonPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPrint.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonPrint.ForeColor = System.Drawing.Color.White;
-            this.buttonPrint.Location = new System.Drawing.Point(866, 9);
+            this.buttonPrint.Location = new System.Drawing.Point(1082, 11);
             this.buttonPrint.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPrint.Name = "buttonPrint";
-            this.buttonPrint.Size = new System.Drawing.Size(70, 32);
+            this.buttonPrint.Size = new System.Drawing.Size(88, 40);
             this.buttonPrint.TabIndex = 25;
             this.buttonPrint.TabStop = false;
             this.buttonPrint.Text = "Print";
@@ -110,10 +110,10 @@
             this.buttonGenerateCSV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonGenerateCSV.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGenerateCSV.ForeColor = System.Drawing.Color.White;
-            this.buttonGenerateCSV.Location = new System.Drawing.Point(940, 9);
-            this.buttonGenerateCSV.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.buttonGenerateCSV.Location = new System.Drawing.Point(1175, 11);
+            this.buttonGenerateCSV.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.buttonGenerateCSV.Name = "buttonGenerateCSV";
-            this.buttonGenerateCSV.Size = new System.Drawing.Size(70, 32);
+            this.buttonGenerateCSV.Size = new System.Drawing.Size(88, 40);
             this.buttonGenerateCSV.TabIndex = 5;
             this.buttonGenerateCSV.TabStop = false;
             this.buttonGenerateCSV.Text = "CSV";
@@ -123,10 +123,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::EasyPOS.Properties.Resources.Reports;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 6);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.pictureBox1.Location = new System.Drawing.Point(14, 8);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 38);
+            this.pictureBox1.Size = new System.Drawing.Size(45, 48);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
@@ -135,10 +135,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(57, 12);
+            this.label1.Location = new System.Drawing.Point(71, 15);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(207, 28);
+            this.label1.Size = new System.Drawing.Size(256, 35);
             this.label1.TabIndex = 2;
             this.label1.Text = "Accounts Receivable";
             // 
@@ -151,10 +151,10 @@
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonClose.ForeColor = System.Drawing.Color.White;
-            this.buttonClose.Location = new System.Drawing.Point(1015, 9);
-            this.buttonClose.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.buttonClose.Location = new System.Drawing.Point(1269, 11);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(70, 32);
+            this.buttonClose.Size = new System.Drawing.Size(88, 40);
             this.buttonClose.TabIndex = 1;
             this.buttonClose.TabStop = false;
             this.buttonClose.Text = "Close";
@@ -166,10 +166,10 @@
             this.panel2.Controls.Add(this.dataGridViewAccountsReceivableSummaryReport);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 50);
+            this.panel2.Location = new System.Drawing.Point(0, 62);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1096, 472);
+            this.panel2.Size = new System.Drawing.Size(1370, 590);
             this.panel2.TabIndex = 9;
             // 
             // dataGridViewAccountsReceivableSummaryReport
@@ -197,16 +197,143 @@
             this.Column60Days,
             this.Column90Days,
             this.Column120Days});
-            this.dataGridViewAccountsReceivableSummaryReport.Location = new System.Drawing.Point(18, 7);
+            this.dataGridViewAccountsReceivableSummaryReport.Location = new System.Drawing.Point(22, 9);
             this.dataGridViewAccountsReceivableSummaryReport.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewAccountsReceivableSummaryReport.MultiSelect = false;
             this.dataGridViewAccountsReceivableSummaryReport.Name = "dataGridViewAccountsReceivableSummaryReport";
             this.dataGridViewAccountsReceivableSummaryReport.ReadOnly = true;
+            this.dataGridViewAccountsReceivableSummaryReport.RowHeadersWidth = 51;
             this.dataGridViewAccountsReceivableSummaryReport.RowTemplate.Height = 24;
             this.dataGridViewAccountsReceivableSummaryReport.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAccountsReceivableSummaryReport.ShowEditingIcon = false;
-            this.dataGridViewAccountsReceivableSummaryReport.Size = new System.Drawing.Size(1076, 419);
+            this.dataGridViewAccountsReceivableSummaryReport.Size = new System.Drawing.Size(1345, 524);
             this.dataGridViewAccountsReceivableSummaryReport.TabIndex = 22;
+            // 
+            // ColumnCustomer
+            // 
+            this.ColumnCustomer.DataPropertyName = "ColumnCustomer";
+            this.ColumnCustomer.HeaderText = "Customer";
+            this.ColumnCustomer.MinimumWidth = 6;
+            this.ColumnCustomer.Name = "ColumnCustomer";
+            this.ColumnCustomer.ReadOnly = true;
+            this.ColumnCustomer.Width = 125;
+            // 
+            // ColumnTerm
+            // 
+            this.ColumnTerm.DataPropertyName = "ColumnTerm";
+            this.ColumnTerm.HeaderText = "Term";
+            this.ColumnTerm.MinimumWidth = 6;
+            this.ColumnTerm.Name = "ColumnTerm";
+            this.ColumnTerm.ReadOnly = true;
+            this.ColumnTerm.Width = 125;
+            // 
+            // ColumnCreditLimit
+            // 
+            this.ColumnCreditLimit.DataPropertyName = "ColumnCreditLimit";
+            this.ColumnCreditLimit.HeaderText = "Credit Limit";
+            this.ColumnCreditLimit.MinimumWidth = 6;
+            this.ColumnCreditLimit.Name = "ColumnCreditLimit";
+            this.ColumnCreditLimit.ReadOnly = true;
+            this.ColumnCreditLimit.Width = 125;
+            // 
+            // ColumnSalesNumber
+            // 
+            this.ColumnSalesNumber.DataPropertyName = "ColumnSalesNumber";
+            this.ColumnSalesNumber.HeaderText = "Sales Number";
+            this.ColumnSalesNumber.MinimumWidth = 6;
+            this.ColumnSalesNumber.Name = "ColumnSalesNumber";
+            this.ColumnSalesNumber.ReadOnly = true;
+            this.ColumnSalesNumber.Width = 125;
+            // 
+            // ColumnSalesDate
+            // 
+            this.ColumnSalesDate.DataPropertyName = "ColumnSalesDate";
+            this.ColumnSalesDate.HeaderText = "Sales Date";
+            this.ColumnSalesDate.MinimumWidth = 6;
+            this.ColumnSalesDate.Name = "ColumnSalesDate";
+            this.ColumnSalesDate.ReadOnly = true;
+            this.ColumnSalesDate.Width = 125;
+            // 
+            // ColumnSalesAmount
+            // 
+            this.ColumnSalesAmount.DataPropertyName = "ColumnSalesAmount";
+            this.ColumnSalesAmount.HeaderText = "Sales Amount";
+            this.ColumnSalesAmount.MinimumWidth = 6;
+            this.ColumnSalesAmount.Name = "ColumnSalesAmount";
+            this.ColumnSalesAmount.ReadOnly = true;
+            this.ColumnSalesAmount.Width = 125;
+            // 
+            // ColumnPaymentAmount
+            // 
+            this.ColumnPaymentAmount.DataPropertyName = "ColumnPaymentAmount";
+            this.ColumnPaymentAmount.HeaderText = "Payment";
+            this.ColumnPaymentAmount.MinimumWidth = 6;
+            this.ColumnPaymentAmount.Name = "ColumnPaymentAmount";
+            this.ColumnPaymentAmount.ReadOnly = true;
+            this.ColumnPaymentAmount.Width = 125;
+            // 
+            // ColumnBalanceAmount
+            // 
+            this.ColumnBalanceAmount.DataPropertyName = "ColumnBalanceAmount";
+            this.ColumnBalanceAmount.HeaderText = "Balance";
+            this.ColumnBalanceAmount.MinimumWidth = 6;
+            this.ColumnBalanceAmount.Name = "ColumnBalanceAmount";
+            this.ColumnBalanceAmount.ReadOnly = true;
+            this.ColumnBalanceAmount.Width = 125;
+            // 
+            // ColumnDueDate
+            // 
+            this.ColumnDueDate.DataPropertyName = "ColumnDueDate";
+            this.ColumnDueDate.HeaderText = "Due Date";
+            this.ColumnDueDate.MinimumWidth = 6;
+            this.ColumnDueDate.Name = "ColumnDueDate";
+            this.ColumnDueDate.ReadOnly = true;
+            this.ColumnDueDate.Width = 125;
+            // 
+            // ColumnCurrent
+            // 
+            this.ColumnCurrent.DataPropertyName = "ColumnCurrent";
+            this.ColumnCurrent.HeaderText = "Current";
+            this.ColumnCurrent.MinimumWidth = 6;
+            this.ColumnCurrent.Name = "ColumnCurrent";
+            this.ColumnCurrent.ReadOnly = true;
+            this.ColumnCurrent.Width = 125;
+            // 
+            // Column30Days
+            // 
+            this.Column30Days.DataPropertyName = "Column30Days";
+            this.Column30Days.HeaderText = "30 Days";
+            this.Column30Days.MinimumWidth = 6;
+            this.Column30Days.Name = "Column30Days";
+            this.Column30Days.ReadOnly = true;
+            this.Column30Days.Width = 125;
+            // 
+            // Column60Days
+            // 
+            this.Column60Days.DataPropertyName = "Column60Days";
+            this.Column60Days.HeaderText = "60 Days";
+            this.Column60Days.MinimumWidth = 6;
+            this.Column60Days.Name = "Column60Days";
+            this.Column60Days.ReadOnly = true;
+            this.Column60Days.Width = 125;
+            // 
+            // Column90Days
+            // 
+            this.Column90Days.DataPropertyName = "Column90Days";
+            this.Column90Days.HeaderText = "90 Days";
+            this.Column90Days.MinimumWidth = 6;
+            this.Column90Days.Name = "Column90Days";
+            this.Column90Days.ReadOnly = true;
+            this.Column90Days.Width = 125;
+            // 
+            // Column120Days
+            // 
+            this.Column120Days.DataPropertyName = "Column120Days";
+            this.Column120Days.HeaderText = "120 Days";
+            this.Column120Days.MinimumWidth = 6;
+            this.Column120Days.Name = "Column120Days";
+            this.Column120Days.ReadOnly = true;
+            this.Column120Days.Width = 125;
             // 
             // panel4
             // 
@@ -219,10 +346,10 @@
             this.panel4.Controls.Add(this.buttonSalesListPageListPrevious);
             this.panel4.Controls.Add(this.textBoxPageNumber);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 430);
+            this.panel4.Location = new System.Drawing.Point(0, 538);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1096, 42);
+            this.panel4.Size = new System.Drawing.Size(1370, 52);
             this.panel4.TabIndex = 20;
             // 
             // textBoxTotalAmount
@@ -230,11 +357,11 @@
             this.textBoxTotalAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxTotalAmount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxTotalAmount.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTotalAmount.Location = new System.Drawing.Point(800, 11);
+            this.textBoxTotalAmount.Location = new System.Drawing.Point(1000, 14);
             this.textBoxTotalAmount.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTotalAmount.Name = "textBoxTotalAmount";
             this.textBoxTotalAmount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.textBoxTotalAmount.Size = new System.Drawing.Size(246, 19);
+            this.textBoxTotalAmount.Size = new System.Drawing.Size(308, 23);
             this.textBoxTotalAmount.TabIndex = 15;
             this.textBoxTotalAmount.TabStop = false;
             // 
@@ -243,10 +370,10 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(688, 11);
+            this.label2.Location = new System.Drawing.Point(860, 14);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 19);
+            this.label2.Size = new System.Drawing.Size(120, 23);
             this.label2.TabIndex = 13;
             this.label2.Text = "Total Balance:";
             // 
@@ -257,10 +384,10 @@
             this.buttonSalesListPageListFirst.FlatAppearance.BorderSize = 0;
             this.buttonSalesListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSalesListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.buttonSalesListPageListFirst.Location = new System.Drawing.Point(10, 7);
+            this.buttonSalesListPageListFirst.Location = new System.Drawing.Point(12, 9);
             this.buttonSalesListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSalesListPageListFirst.Name = "buttonSalesListPageListFirst";
-            this.buttonSalesListPageListFirst.Size = new System.Drawing.Size(66, 26);
+            this.buttonSalesListPageListFirst.Size = new System.Drawing.Size(82, 32);
             this.buttonSalesListPageListFirst.TabIndex = 8;
             this.buttonSalesListPageListFirst.TabStop = false;
             this.buttonSalesListPageListFirst.Text = "First";
@@ -273,10 +400,10 @@
             this.buttonSalesListPageListNext.FlatAppearance.BorderSize = 0;
             this.buttonSalesListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSalesListPageListNext.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.buttonSalesListPageListNext.Location = new System.Drawing.Point(269, 7);
+            this.buttonSalesListPageListNext.Location = new System.Drawing.Point(336, 9);
             this.buttonSalesListPageListNext.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSalesListPageListNext.Name = "buttonSalesListPageListNext";
-            this.buttonSalesListPageListNext.Size = new System.Drawing.Size(66, 26);
+            this.buttonSalesListPageListNext.Size = new System.Drawing.Size(82, 32);
             this.buttonSalesListPageListNext.TabIndex = 10;
             this.buttonSalesListPageListNext.TabStop = false;
             this.buttonSalesListPageListNext.Text = "Next";
@@ -289,10 +416,10 @@
             this.buttonSalesListPageListLast.FlatAppearance.BorderSize = 0;
             this.buttonSalesListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSalesListPageListLast.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.buttonSalesListPageListLast.Location = new System.Drawing.Point(337, 7);
+            this.buttonSalesListPageListLast.Location = new System.Drawing.Point(421, 9);
             this.buttonSalesListPageListLast.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSalesListPageListLast.Name = "buttonSalesListPageListLast";
-            this.buttonSalesListPageListLast.Size = new System.Drawing.Size(66, 26);
+            this.buttonSalesListPageListLast.Size = new System.Drawing.Size(82, 32);
             this.buttonSalesListPageListLast.TabIndex = 11;
             this.buttonSalesListPageListLast.TabStop = false;
             this.buttonSalesListPageListLast.Text = "Last";
@@ -306,10 +433,10 @@
             this.buttonSalesListPageListPrevious.FlatAppearance.BorderSize = 0;
             this.buttonSalesListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSalesListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.buttonSalesListPageListPrevious.Location = new System.Drawing.Point(80, 7);
+            this.buttonSalesListPageListPrevious.Location = new System.Drawing.Point(100, 9);
             this.buttonSalesListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSalesListPageListPrevious.Name = "buttonSalesListPageListPrevious";
-            this.buttonSalesListPageListPrevious.Size = new System.Drawing.Size(66, 26);
+            this.buttonSalesListPageListPrevious.Size = new System.Drawing.Size(82, 32);
             this.buttonSalesListPageListPrevious.TabIndex = 9;
             this.buttonSalesListPageListPrevious.TabStop = false;
             this.buttonSalesListPageListPrevious.Text = "Previous";
@@ -321,124 +448,26 @@
             this.textBoxPageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.textBoxPageNumber.BackColor = System.Drawing.Color.White;
             this.textBoxPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxPageNumber.Location = new System.Drawing.Point(181, 11);
+            this.textBoxPageNumber.Location = new System.Drawing.Point(226, 14);
             this.textBoxPageNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPageNumber.Name = "textBoxPageNumber";
             this.textBoxPageNumber.ReadOnly = true;
-            this.textBoxPageNumber.Size = new System.Drawing.Size(55, 19);
+            this.textBoxPageNumber.Size = new System.Drawing.Size(69, 23);
             this.textBoxPageNumber.TabIndex = 12;
             this.textBoxPageNumber.TabStop = false;
             this.textBoxPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // ColumnCustomer
-            // 
-            this.ColumnCustomer.DataPropertyName = "ColumnCustomer";
-            this.ColumnCustomer.HeaderText = "Customer";
-            this.ColumnCustomer.Name = "ColumnCustomer";
-            this.ColumnCustomer.ReadOnly = true;
-            // 
-            // ColumnTerm
-            // 
-            this.ColumnTerm.DataPropertyName = "ColumnTerm";
-            this.ColumnTerm.HeaderText = "Term";
-            this.ColumnTerm.Name = "ColumnTerm";
-            this.ColumnTerm.ReadOnly = true;
-            // 
-            // ColumnCreditLimit
-            // 
-            this.ColumnCreditLimit.DataPropertyName = "ColumnCreditLimit";
-            this.ColumnCreditLimit.HeaderText = "Credit Limit";
-            this.ColumnCreditLimit.Name = "ColumnCreditLimit";
-            this.ColumnCreditLimit.ReadOnly = true;
-            // 
-            // ColumnSalesNumber
-            // 
-            this.ColumnSalesNumber.DataPropertyName = "ColumnSalesNumber";
-            this.ColumnSalesNumber.HeaderText = "Sales Number";
-            this.ColumnSalesNumber.Name = "ColumnSalesNumber";
-            this.ColumnSalesNumber.ReadOnly = true;
-            // 
-            // ColumnSalesDate
-            // 
-            this.ColumnSalesDate.DataPropertyName = "ColumnSalesDate";
-            this.ColumnSalesDate.HeaderText = "Sales Date";
-            this.ColumnSalesDate.Name = "ColumnSalesDate";
-            this.ColumnSalesDate.ReadOnly = true;
-            // 
-            // ColumnSalesAmount
-            // 
-            this.ColumnSalesAmount.DataPropertyName = "ColumnSalesAmount";
-            this.ColumnSalesAmount.HeaderText = "Sales Amount";
-            this.ColumnSalesAmount.Name = "ColumnSalesAmount";
-            this.ColumnSalesAmount.ReadOnly = true;
-            // 
-            // ColumnPaymentAmount
-            // 
-            this.ColumnPaymentAmount.DataPropertyName = "ColumnPaymentAmount";
-            this.ColumnPaymentAmount.HeaderText = "Payment";
-            this.ColumnPaymentAmount.Name = "ColumnPaymentAmount";
-            this.ColumnPaymentAmount.ReadOnly = true;
-            // 
-            // ColumnBalanceAmount
-            // 
-            this.ColumnBalanceAmount.DataPropertyName = "ColumnBalanceAmount";
-            this.ColumnBalanceAmount.HeaderText = "Balance";
-            this.ColumnBalanceAmount.Name = "ColumnBalanceAmount";
-            this.ColumnBalanceAmount.ReadOnly = true;
-            // 
-            // ColumnDueDate
-            // 
-            this.ColumnDueDate.DataPropertyName = "ColumnDueDate";
-            this.ColumnDueDate.HeaderText = "Due Date";
-            this.ColumnDueDate.Name = "ColumnDueDate";
-            this.ColumnDueDate.ReadOnly = true;
-            // 
-            // ColumnCurrent
-            // 
-            this.ColumnCurrent.DataPropertyName = "ColumnCurrent";
-            this.ColumnCurrent.HeaderText = "Current";
-            this.ColumnCurrent.Name = "ColumnCurrent";
-            this.ColumnCurrent.ReadOnly = true;
-            // 
-            // Column30Days
-            // 
-            this.Column30Days.DataPropertyName = "Column30Days";
-            this.Column30Days.HeaderText = "30 Days";
-            this.Column30Days.Name = "Column30Days";
-            this.Column30Days.ReadOnly = true;
-            // 
-            // Column60Days
-            // 
-            this.Column60Days.DataPropertyName = "Column60Days";
-            this.Column60Days.HeaderText = "60 Days";
-            this.Column60Days.Name = "Column60Days";
-            this.Column60Days.ReadOnly = true;
-            // 
-            // Column90Days
-            // 
-            this.Column90Days.DataPropertyName = "Column90Days";
-            this.Column90Days.HeaderText = "90 Days";
-            this.Column90Days.Name = "Column90Days";
-            this.Column90Days.ReadOnly = true;
-            // 
-            // Column120Days
-            // 
-            this.Column120Days.DataPropertyName = "Column120Days";
-            this.Column120Days.HeaderText = "120 Days";
-            this.Column120Days.Name = "Column120Days";
-            this.Column120Days.ReadOnly = true;
-            // 
             // RepAccountsReceivableSummaryReportForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1096, 522);
+            this.ClientSize = new System.Drawing.Size(1370, 652);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "RepAccountsReceivableSummaryReportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sales Summary Report";
