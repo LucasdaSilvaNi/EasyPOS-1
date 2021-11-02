@@ -2485,6 +2485,7 @@ namespace EasyPOS.Controllers
                            Category = d.Category,
                            Cost = d.Cost,
                            Price = d.Price,
+                           ReorderQuantity = d.ReorderQuantity,
                            OnhandQuantity = d.OnhandQuantity,
                            IsInventory = d.IsInventory,
                            IsLocked = d.IsLocked
