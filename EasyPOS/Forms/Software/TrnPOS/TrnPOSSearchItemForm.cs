@@ -243,9 +243,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         private void dataGridViewSearchItemList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var customer = from d in db.MstCustomers
-                           where d.Id == trnSalesEntity.CustomerId
-                           select d;
+            var customer = from c in db.MstCustomers
+                           where c.CustomerCode == trnSalesEntity.CustomerCode
+                           select c;
 
             var customerPriceLevel = customer.FirstOrDefault();
 
