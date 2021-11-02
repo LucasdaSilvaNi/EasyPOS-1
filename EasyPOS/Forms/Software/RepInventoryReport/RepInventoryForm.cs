@@ -414,7 +414,26 @@ namespace EasyPOS.Forms.Software.RepInventoryReport
                                 MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
-                       
+                        break;
+                    case "Stock Level Report":
+                    case "库存水平报告":
+                        sysUserRights = new Modules.SysUserRightsModule("RepInventoryStockLevelReport");
+                        if (sysUserRights.GetUserRights() == null)
+                        {
+                            MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            if (sysUserRights.GetUserRights().CanView == true)
+                            {
+                                RepInventoryStockLevelReportForm repInventoryReportStockLevel = new RepInventoryStockLevelReportForm();
+                                repInventoryReportStockLevel.ShowDialog();
+                            }
+                            else
+                            {
+                                MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
                         break;
                     case "Item Expiry Report":
                     case "物品过期报告":
