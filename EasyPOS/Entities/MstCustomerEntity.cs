@@ -39,5 +39,6 @@ namespace EasyPOS.Entities
         public String BusinessStyle { get; set; }
         public Decimal? TotalClaimRewards { get; set; }
         public Decimal LoadAmount { get; set; }
+        public String PriceLevel { get; set; }
     }
 }

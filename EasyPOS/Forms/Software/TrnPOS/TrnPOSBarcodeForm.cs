@@ -14,6 +14,15 @@ namespace EasyPOS.Forms.Software.TrnPOS
 {
     public partial class TrnPOSBarcodeForm : Form
     {
+        public TrnPOSBarcodeDetailForm trnPOSBarcodeDetailForm;
+
+        public TrnPOSTouchForm trnPOSTouchForm;
+        public TrnPOSTouchDetailForm trnPOSTouchDetailForm;
+
+        public TrnPOSTenderForm trnSalesDetailTenderForm;
+
+        public Entities.TrnSalesEntity trnSalesEntity;
+
         public SysSoftwareForm sysSoftwareForm;
         private Modules.SysUserRightsModule sysUserRights;
 

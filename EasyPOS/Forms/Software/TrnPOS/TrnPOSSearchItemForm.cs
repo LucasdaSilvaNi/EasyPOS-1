@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace EasyPOS.Forms.Software.TrnPOS
 {
-    
+
     public partial class TrnPOSSearchItemForm : Form
     {
         public TrnPOSBarcodeDetailForm trnSalesDetailForm;
@@ -26,6 +26,10 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         public List<Entities.SysLanguageEntity> sysLanguageEntities = new List<Entities.SysLanguageEntity>();
 
+        // ============
+        // Data Context
+        // ============
+        public Data.easyposdbDataContext db = new Data.easyposdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
 
         public TrnPOSSearchItemForm(TrnPOSBarcodeDetailForm salesDetailForm, TrnPOSTouchDetailForm POSTouchDetailForm, Entities.TrnSalesEntity salesEntity)
         {
@@ -71,7 +75,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             GetListSearchItemDataSource("");
             GetDataGridViewListSearchItemSource();
-            
+
         }
 
         public string SetLabel(string label)
@@ -236,9 +240,19 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 GetListSearchItemDataSource(textBoxFilter.Text);
             }
         }
-        
+
         private void dataGridViewSearchItemList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            var customer = from d in db.MstCustomers
+                           where d.Id == trnSalesEntity.CustomerId
+                           select d;
+
+            var customerPriceLevel = customer.FirstOrDefault();
+
+            var itemPrice = from d in db.MstItemPrices
+                            where d.PriceDescription == "Dealer Price" && d.ItemId == Convert.ToInt32(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[0].Value)
+                            select d;
+
             if (dataGridViewSearchItemList.CurrentCell.ColumnIndex == dataGridViewSearchItemList.Columns["ColumnSearchItemButtonPick"].Index)
             {
                 Int32 ItemId = Convert.ToInt32(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[0].Value);
@@ -249,9 +263,19 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Decimal TaxRate = Convert.ToDecimal(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[6].Value);
                 Int32 UnitId = Convert.ToInt32(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[7].Value);
                 String Unit = dataGridViewSearchItemList.Rows[e.RowIndex].Cells[8].Value.ToString();
-                Decimal Price = Convert.ToDecimal(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[9].Value);
+                Decimal Price = 0;
                 Int32 DiscountId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().DefaultDiscountId);
                 Int32 UserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
+
+                if (itemPrice.Any())
+                {
+                    var dealerPrice = itemPrice.FirstOrDefault();
+                    Price = customerPriceLevel.PriceLevel == "Dealer Price" ? dealerPrice.Price : Convert.ToDecimal(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[9].Value);
+                }
+                else
+                {
+                    Price = Convert.ToDecimal(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[9].Value);
+                }
 
                 Decimal TaxAmount = 0;
                 if (TaxRate > 0)
@@ -291,9 +315,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Price2LessTax = 0,
                     PriceSplitPercentage = 0
                 };
-                TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(trnSalesDetailForm, trnPOSTouchDetailForm, trnSalesLineEntity,this);
+                TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(trnSalesDetailForm, trnPOSTouchDetailForm, trnSalesLineEntity, this);
                 trnSalesDetailSalesItemDetailForm.ShowDialog();
-
             }
         }
 
@@ -356,7 +379,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Price2LessTax = 0,
                     PriceSplitPercentage = 0
                 };
-                TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(trnSalesDetailForm, trnPOSTouchDetailForm, trnSalesLineEntity,this);
+                TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(trnSalesDetailForm, trnPOSTouchDetailForm, trnSalesLineEntity, this);
                 trnSalesDetailSalesItemDetailForm.ShowDialog();
 
                 resetCursor();

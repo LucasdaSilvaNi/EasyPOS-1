@@ -87,6 +87,8 @@
             this.ColumnCustomerLoadType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCustomerLoadAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCustomerLoadRemarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxPriceLevel = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -261,8 +263,10 @@
             this.panel3.Controls.Add(this.checkBoxWithReward);
             this.panel3.Controls.Add(this.label7);
             this.panel3.Controls.Add(this.label14);
+            this.panel3.Controls.Add(this.label17);
             this.panel3.Controls.Add(this.label8);
             this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.comboBoxPriceLevel);
             this.panel3.Controls.Add(this.comboBoxTerm);
             this.panel3.Controls.Add(this.textBoxTIN);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -802,6 +806,27 @@
             this.ColumnCustomerLoadRemarks.ReadOnly = true;
             this.ColumnCustomerLoadRemarks.Width = 300;
             // 
+            // comboBoxPriceLevel
+            // 
+            this.comboBoxPriceLevel.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.comboBoxPriceLevel.FormattingEnabled = true;
+            this.comboBoxPriceLevel.Location = new System.Drawing.Point(617, 95);
+            this.comboBoxPriceLevel.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxPriceLevel.Name = "comboBoxPriceLevel";
+            this.comboBoxPriceLevel.Size = new System.Drawing.Size(172, 27);
+            this.comboBoxPriceLevel.TabIndex = 6;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label17.Location = new System.Drawing.Point(518, 103);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(68, 19);
+            this.label17.TabIndex = 36;
+            this.label17.Text = "Pricelevel:";
+            // 
             // MstCustomerDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -890,5 +915,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCustomerLoadRemarks;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBoxLoadBalance;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox comboBoxPriceLevel;
     }
 }

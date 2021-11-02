@@ -547,6 +547,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxSingleColumnBarcodePrintOut.Checked = Convert.ToBoolean(sysCurrent.SingleColumnBarcodePrintOut);
                 checkBoxRestrictCashin.Checked = Convert.ToBoolean(sysCurrent.RestrictCashin);
                 checkBoxDisableLockTender.Checked = Convert.ToBoolean(sysCurrent.DisableLockTender);
+                checkBoxPopupCustomer.Checked = Convert.ToBoolean(sysCurrent.PopupCustomerInfo);
             }
         }
 
@@ -632,8 +633,9 @@ namespace EasyPOS.Forms.Software.SysSettings
                 Language = comboBoxLanguage.Text,
                 SingleColumnBarcodePrintOut = checkBoxSingleColumnBarcodePrintOut.Checked,
                 RestrictCashin = checkBoxRestrictCashin.Checked,
-                DisableLockTender = checkBoxDisableLockTender.Checked
-        };
+                DisableLockTender = checkBoxDisableLockTender.Checked,
+                PopupCustomerInfo = checkBoxPopupCustomer.Checked
+            };
 
             String[] saveSysCurrent = sysSettingsController.UpdateSysCurrent(sysCurrentEntity);
             if (saveSysCurrent[1].Equals("0") == false)
@@ -699,6 +701,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxSingleColumnBarcodePrintOut.Enabled = false;
                 checkBoxRestrictCashin.Enabled = false;
                 checkBoxDisableLockTender.Enabled = false;
+                checkBoxPopupCustomer.Enabled = false;
             }
             else
             {
@@ -790,6 +793,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxSingleColumnBarcodePrintOut.Enabled = true;
                 checkBoxRestrictCashin.Enabled = true;
                 checkBoxDisableLockTender.Enabled = true;
+                checkBoxPopupCustomer.Enabled = true;
             }
         }
 

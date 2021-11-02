@@ -47,7 +47,8 @@ namespace EasyPOS.Controllers
                                 DefaultPriceDescription = d.DefaultPriceDescription,
                                 CustomerCode = d.CustomerCode,
                                 BusinessStyle = d.BusinessStyle,
-                                LoadAmount = d.LoadAmount
+                                LoadAmount = d.LoadAmount,
+                                PriceLevel = d.PriceLevel
                             };
 
             return customers.OrderByDescending(d => d.Id).ToList();
@@ -87,7 +88,8 @@ namespace EasyPOS.Controllers
                                DefaultPriceDescription = d.DefaultPriceDescription,
                                CustomerCode = d.CustomerCode,
                                BusinessStyle = d.BusinessStyle,
-                               LoadAmount = d.LoadAmount
+                               LoadAmount = d.LoadAmount,
+                               PriceLevel = d.PriceLevel
                            };
 
             return customer.FirstOrDefault();
@@ -124,7 +126,8 @@ namespace EasyPOS.Controllers
                                DefaultPriceDescription = d.DefaultPriceDescription,
                                CustomerCode = d.CustomerCode,
                                BusinessStyle = d.BusinessStyle,
-                               LoadAmount = d.LoadAmount
+                               LoadAmount = d.LoadAmount,
+                               PriceLevel = d.PriceLevel
                            };
 
             return customer.FirstOrDefault();
@@ -192,7 +195,8 @@ namespace EasyPOS.Controllers
                     DefaultPriceDescription = null,
                     CustomerCode = null,
                     BusinessStyle = "",
-                    LoadAmount = 0
+                    LoadAmount = 0,
+                    PriceLevel = "Retail Price"
                 };
 
                 db.MstCustomers.InsertOnSubmit(newCustomer);
@@ -279,6 +283,7 @@ namespace EasyPOS.Controllers
                     lockCustomer.DefaultPriceDescription = objCustomer.DefaultPriceDescription;
                     lockCustomer.CustomerCode = objCustomer.CustomerCode;
                     lockCustomer.BusinessStyle = objCustomer.BusinessStyle;
+                    lockCustomer.PriceLevel = objCustomer.PriceLevel;
                     db.SubmitChanges();
 
                     String newObject = Modules.SysAuditTrailModule.GetObjectString(customer.FirstOrDefault());
@@ -472,7 +477,8 @@ namespace EasyPOS.Controllers
                             DefaultPriceDescription = null,
                             CustomerCode = obj.CustomerCode,
                             BusinessStyle = obj.BusinessStyle,
-                            LoadAmount = 0
+                            LoadAmount = 0,
+                            PriceLevel = "Retail Price"
                         };
 
                         db.MstCustomers.InsertOnSubmit(newCustomer);
@@ -549,6 +555,7 @@ namespace EasyPOS.Controllers
                     saveCustomer.DefaultPriceDescription = objCustomer.DefaultPriceDescription;
                     saveCustomer.CustomerCode = objCustomer.CustomerCode;
                     saveCustomer.BusinessStyle = objCustomer.BusinessStyle;
+                    saveCustomer.PriceLevel = objCustomer.PriceLevel;
                     db.SubmitChanges();
 
                     String newObject = Modules.SysAuditTrailModule.GetObjectString(customer.FirstOrDefault());

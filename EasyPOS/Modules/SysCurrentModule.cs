@@ -108,7 +108,8 @@ namespace EasyPOS.Modules
                 Language = currentSettings.Language,
                 SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut,
                 RestrictCashin = currentSettings.RestrictCashin,
-                DisableLockTender = currentSettings.DisableLockTender
+                DisableLockTender = currentSettings.DisableLockTender,
+                PopupCustomerInfo = currentSettings.PopupCustomerInfo
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);
@@ -190,7 +191,8 @@ namespace EasyPOS.Modules
                 Language = objSysCurrentEntity.Language,
                 SingleColumnBarcodePrintOut = objSysCurrentEntity.SingleColumnBarcodePrintOut,
                 RestrictCashin = objSysCurrentEntity.RestrictCashin,
-                DisableLockTender = objSysCurrentEntity.DisableLockTender
+                DisableLockTender = objSysCurrentEntity.DisableLockTender,
+                PopupCustomerInfo = objSysCurrentEntity.PopupCustomerInfo
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newSysCurrentEntities);
@@ -273,7 +275,8 @@ namespace EasyPOS.Modules
                 Language = currentSettings.Language,
                 SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut,
                 RestrictCashin = currentSettings.RestrictCashin,
-                DisableLockTender = currentSettings.DisableLockTender
+                DisableLockTender = currentSettings.DisableLockTender,
+                PopupCustomerInfo = currentSettings.PopupCustomerInfo
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);
