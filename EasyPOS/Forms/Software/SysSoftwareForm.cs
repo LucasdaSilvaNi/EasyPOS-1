@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EasyPOS.Forms.Software.TrnPOS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -404,6 +405,12 @@ namespace EasyPOS.Forms.Software
             {
                 tabControlSoftware.TabPages.Add(tabPagePOSBarcodeDetail);
                 tabControlSoftware.SelectTab(tabPagePOSBarcodeDetail);
+            }
+
+            if (Modules.SysCurrentModule.GetCurrentSettings().PopupCustomerInfo == true)
+            {
+                TrnPOSTenderSalesForm trnSalesDetailTenderSalesForm = new TrnPOSTenderSalesForm(salesListForm, trnSalesDetailForm, null, null, null, salesEntity);
+                trnSalesDetailTenderSalesForm.ShowDialog();
             }
         }
 

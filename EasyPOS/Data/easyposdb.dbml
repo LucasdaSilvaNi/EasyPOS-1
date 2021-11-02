@@ -82,6 +82,7 @@
       <Column Name="CustomerCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="BusinessStyle" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="LoadAmount" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
+      <Column Name="PriceLevel" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="MstCustomer_MstCustomerLoad" Member="MstCustomerLoads" ThisKey="Id" OtherKey="CustomerId" Type="MstCustomerLoad" />
       <Association Name="MstCustomer_TrnCollection" Member="TrnCollections" ThisKey="Id" OtherKey="CustomerId" Type="TrnCollection" />
       <Association Name="MstCustomer_TrnSale" Member="TrnSales" ThisKey="Id" OtherKey="CustomerId" Type="TrnSale" />

@@ -78,6 +78,14 @@ namespace EasyPOS.Forms.Software.MstCustomer
                 mstCustomerListForm = itemListForm;
                 mstCustomerEntity = itemEntity;
 
+                List<String> priceLevel = new List<String>
+                    {
+                        "Retail Price",
+                        "Dealer Price"
+                    };
+
+                comboBoxPriceLevel.DataSource = priceLevel;
+
                 textBoxCustomerCode.Focus();
                 GetTermList();
             }
@@ -134,9 +142,9 @@ namespace EasyPOS.Forms.Software.MstCustomer
                 comboBoxTerm.DataSource = mstCustomerController.DropdownListCustomerTerm();
                 comboBoxTerm.ValueMember = "Id";
                 comboBoxTerm.DisplayMember = "Term";
-
-                GetCustomerDetail();
             }
+
+            GetCustomerDetail();
         }
 
         public void GetCustomerDetail()
@@ -158,6 +166,7 @@ namespace EasyPOS.Forms.Software.MstCustomer
             textBoxDefaultPrice.Text = mstCustomerEntity.DefaultPriceDescription;
             textBoxBusinessStyle.Text = mstCustomerEntity.BusinessStyle;
             textBoxLoadBalance.Text = mstCustomerEntity.LoadAmount.ToString("#,##0.00");
+            comboBoxPriceLevel.Text = mstCustomerEntity.PriceLevel;
 
             CreateCustomerLoadListDataGridView();
         }
@@ -197,6 +206,7 @@ namespace EasyPOS.Forms.Software.MstCustomer
             buttonAddLoad.Enabled = !isLocked;
             textBoxCustomerCode.Focus();
             textBoxBusinessStyle.Enabled = !isLocked;
+            comboBoxPriceLevel.Enabled = !isLocked;
         }
 
         private void buttonLock_Click(object sender, EventArgs e)
@@ -218,7 +228,8 @@ namespace EasyPOS.Forms.Software.MstCustomer
                 RewardConversion = Convert.ToDecimal(textBoxRewardConversion.Text),
                 AvailableReward = Convert.ToDecimal(textBoxAvailableReward.Text),
                 DefaultPriceDescription = textBoxDefaultPrice.Text,
-                BusinessStyle = textBoxBusinessStyle.Text
+                BusinessStyle = textBoxBusinessStyle.Text,
+                PriceLevel = comboBoxPriceLevel.SelectedValue.ToString()
             };
 
             String[] lockCustomer = mstCustomerController.LockCustomer(mstCustomerEntity.Id, newCustomerEntity);
@@ -286,7 +297,8 @@ namespace EasyPOS.Forms.Software.MstCustomer
                         RewardConversion = Convert.ToDecimal(textBoxRewardConversion.Text),
                         AvailableReward = Convert.ToDecimal(textBoxAvailableReward.Text),
                         DefaultPriceDescription = textBoxDefaultPrice.Text,
-                        BusinessStyle = textBoxBusinessStyle.Text
+                        BusinessStyle = textBoxBusinessStyle.Text,
+                        PriceLevel = comboBoxPriceLevel.SelectedValue.ToString()
                     };
 
                     String[] lockCustomer = mstCustomerController.SaveCustomer(mstCustomerEntity.Id, newCustomerEntity);

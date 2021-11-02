@@ -165,10 +165,13 @@ namespace EasyPOS.Forms.Software.TrnPOS
             String[] updateSales = trnPOSSalesController.TenderUpdateSales(trnSalesEntity.Id, newSalesEntity);
             if (updateSales[1].Equals("0") == false)
             {
-                trnSalesDetailTenderForm.trnSalesEntity.CustomerCode = customerCode;
-                trnSalesDetailTenderForm.trnSalesEntity.Customer = customerName;
-                trnSalesDetailTenderForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
-                trnSalesDetailTenderForm.GetSalesDetail();
+                if (trnSalesDetailTenderForm != null)
+                {
+                    trnSalesDetailTenderForm.trnSalesEntity.CustomerCode = customerCode;
+                    trnSalesDetailTenderForm.trnSalesEntity.Customer = customerName;
+                    trnSalesDetailTenderForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
+                    trnSalesDetailTenderForm.GetSalesDetail();
+                }
 
                 if (trnPOSBarcodeDetailForm != null)
                 {

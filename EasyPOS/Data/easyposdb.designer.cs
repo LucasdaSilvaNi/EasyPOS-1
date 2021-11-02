@@ -2033,6 +2033,8 @@ namespace EasyPOS.Data
 		
 		private decimal _LoadAmount;
 		
+		private string _PriceLevel;
+		
 		private EntitySet<MstCustomerLoad> _MstCustomerLoads;
 		
 		private EntitySet<TrnCollection> _TrnCollections;
@@ -2095,6 +2097,8 @@ namespace EasyPOS.Data
     partial void OnBusinessStyleChanged();
     partial void OnLoadAmountChanging(decimal value);
     partial void OnLoadAmountChanged();
+    partial void OnPriceLevelChanging(string value);
+    partial void OnPriceLevelChanged();
     #endregion
 		
 		public MstCustomer()
@@ -2561,6 +2565,26 @@ namespace EasyPOS.Data
 					this._LoadAmount = value;
 					this.SendPropertyChanged("LoadAmount");
 					this.OnLoadAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PriceLevel", DbType="NVarChar(255)")]
+		public string PriceLevel
+		{
+			get
+			{
+				return this._PriceLevel;
+			}
+			set
+			{
+				if ((this._PriceLevel != value))
+				{
+					this.OnPriceLevelChanging(value);
+					this.SendPropertyChanging();
+					this._PriceLevel = value;
+					this.SendPropertyChanged("PriceLevel");
+					this.OnPriceLevelChanged();
 				}
 			}
 		}

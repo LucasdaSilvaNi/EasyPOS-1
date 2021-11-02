@@ -49,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.checkBoxDisableLockTender = new System.Windows.Forms.CheckBox();
             this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.checkBoxRestrictCashin = new System.Windows.Forms.CheckBox();
@@ -187,7 +188,7 @@
             this.buttonKitchenPageListLast = new System.Windows.Forms.Button();
             this.textBoxKitchenPageNumber = new System.Windows.Forms.TextBox();
             this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
-            this.checkBoxDisableLockTender = new System.Windows.Forms.CheckBox();
+            this.checkBoxPopupCustomer = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -446,6 +447,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel5.Controls.Add(this.checkBoxPopupCustomer);
             this.panel5.Controls.Add(this.checkBoxDisableLockTender);
             this.panel5.Controls.Add(this.comboBoxLanguage);
             this.panel5.Controls.Add(this.label16);
@@ -498,6 +500,19 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1095, 472);
             this.panel5.TabIndex = 34;
+            // 
+            // checkBoxDisableLockTender
+            // 
+            this.checkBoxDisableLockTender.AutoSize = true;
+            this.checkBoxDisableLockTender.Enabled = false;
+            this.checkBoxDisableLockTender.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxDisableLockTender.Location = new System.Drawing.Point(874, 87);
+            this.checkBoxDisableLockTender.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxDisableLockTender.Name = "checkBoxDisableLockTender";
+            this.checkBoxDisableLockTender.Size = new System.Drawing.Size(181, 23);
+            this.checkBoxDisableLockTender.TabIndex = 97;
+            this.checkBoxDisableLockTender.Text = "Disable Lock after Tender";
+            this.checkBoxDisableLockTender.UseVisualStyleBackColor = true;
             // 
             // comboBoxLanguage
             // 
@@ -2131,18 +2146,18 @@
             this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
             this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
             // 
-            // checkBoxDisableLockTender
+            // checkBoxPopupCustomer
             // 
-            this.checkBoxDisableLockTender.AutoSize = true;
-            this.checkBoxDisableLockTender.Enabled = false;
-            this.checkBoxDisableLockTender.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxDisableLockTender.Location = new System.Drawing.Point(874, 87);
-            this.checkBoxDisableLockTender.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxDisableLockTender.Name = "checkBoxDisableLockTender";
-            this.checkBoxDisableLockTender.Size = new System.Drawing.Size(181, 23);
-            this.checkBoxDisableLockTender.TabIndex = 97;
-            this.checkBoxDisableLockTender.Text = "Disable Lock after Tender";
-            this.checkBoxDisableLockTender.UseVisualStyleBackColor = true;
+            this.checkBoxPopupCustomer.AutoSize = true;
+            this.checkBoxPopupCustomer.Enabled = false;
+            this.checkBoxPopupCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxPopupCustomer.Location = new System.Drawing.Point(874, 114);
+            this.checkBoxPopupCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxPopupCustomer.Name = "checkBoxPopupCustomer";
+            this.checkBoxPopupCustomer.Size = new System.Drawing.Size(165, 23);
+            this.checkBoxPopupCustomer.TabIndex = 97;
+            this.checkBoxPopupCustomer.Text = "Pop-up Customer Info";
+            this.checkBoxPopupCustomer.UseVisualStyleBackColor = true;
             // 
             // SysSettingsForm
             // 
@@ -2357,5 +2372,6 @@
         private System.Windows.Forms.CheckBox checkBoxSingleColumnBarcodePrintOut;
         private System.Windows.Forms.CheckBox checkBoxRestrictCashin;
         private System.Windows.Forms.CheckBox checkBoxDisableLockTender;
+        private System.Windows.Forms.CheckBox checkBoxPopupCustomer;
     }
 }
