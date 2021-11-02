@@ -65,7 +65,16 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 textBoxSalesLinePrice.ReadOnly = false;
             }
 
-            GetDiscountList();
+            if (Modules.SysCurrentModule.GetCurrentSettings().PopupCustomerInfo == false)
+            {
+                textBoxSalesLinePrice.Enabled = true;
+            }
+            else
+            {
+                textBoxSalesLinePrice.Enabled = false;
+            }
+
+                GetDiscountList();
 
             textBoxSalesLineQuantity.Focus();
             textBoxSalesLineQuantity.SelectAll();
