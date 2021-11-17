@@ -391,9 +391,59 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point sixthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, sixthLineFirstPoint, sixthLineSecondPoint);
 
-                    String salesInvoiceFooter = "\n" + systemCurrent.InvoiceFooter;
-                    graphics.DrawString(salesInvoiceFooter, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                    y += graphics.MeasureString(salesInvoiceFooter, fontArial7Regular).Height;
+                    // ================
+                    // Customer Details
+                    // ================
+
+                    if (Modules.SysCurrentModule.GetCurrentSettings().ShowCustomerInfo == false)
+                    {
+                        String soldToLabel = "\nCustomer Name: _______________________";
+
+                        graphics.DrawString(soldToLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToLabel, fontArial8Regular).Height;
+
+                        String soldToAddressLabel = "Address: _____________________________";
+                        graphics.DrawString(soldToAddressLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToAddressLabel, fontArial8Regular).Height;
+
+                        String soldToTINLabel = "TIN: _________________________________";
+                        graphics.DrawString(soldToTINLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
+
+                        String soldToBusinessStyleLabel = "Business Style: ________________________";
+                        graphics.DrawString(soldToBusinessStyleLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
+                    }
+                    else
+                    {
+                        String customerName = sales.FirstOrDefault().MstCustomer.Customer;
+                        String customerAddress = sales.FirstOrDefault().MstCustomer.Address;
+                        String customerTIN = sales.FirstOrDefault().MstCustomer.TIN;
+                        String customerBusinessStyle = sales.FirstOrDefault().MstCustomer.BusinessStyle;
+
+                        String soldToLabel = "\nCustomer Name: " + customerName;
+                        graphics.DrawString(soldToLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToLabel, fontArial8Regular).Height;
+
+                        String soldToAddressLabel = "Address: " + customerAddress;
+                        graphics.DrawString(soldToAddressLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToAddressLabel, fontArial8Regular).Height;
+
+                        String soldToTINLabel = "TIN: " + customerTIN;
+                        graphics.DrawString(soldToTINLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
+
+                        String soldToBusinessStyleLabel = "Business Style: " + customerBusinessStyle;
+                        graphics.DrawString(soldToBusinessStyleLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
+                    }
+
+                    // ========
+                    // 7th Line
+                    // ========
+                    Point seventhLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
+                    Point seventhLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
+                    graphics.DrawLine(blackPen, seventhLineFirstPoint, seventhLineSecondPoint);
                 }
                 else
                 {
@@ -587,6 +637,60 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point sixthLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                     Point sixthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, sixthLineFirstPoint, sixthLineSecondPoint);
+
+                    // ================
+                    // Customer Details
+                    // ================
+
+                    if (Modules.SysCurrentModule.GetCurrentSettings().ShowCustomerInfo == false)
+                    {
+                        String soldToLabel = "\nCustomer Name: _______________________";
+
+                        graphics.DrawString(soldToLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToLabel, fontArial8Regular).Height;
+
+                        String soldToAddressLabel = "Address: _____________________________";
+                        graphics.DrawString(soldToAddressLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToAddressLabel, fontArial8Regular).Height;
+
+                        String soldToTINLabel = "TIN: _________________________________";
+                        graphics.DrawString(soldToTINLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
+
+                        String soldToBusinessStyleLabel = "Business Style: ________________________";
+                        graphics.DrawString(soldToBusinessStyleLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
+                    }
+                    else
+                    {
+                        String customerName = sales.FirstOrDefault().MstCustomer.Customer;
+                        String customerAddress = sales.FirstOrDefault().MstCustomer.Address;
+                        String customerTIN = sales.FirstOrDefault().MstCustomer.TIN;
+                        String customerBusinessStyle = sales.FirstOrDefault().MstCustomer.BusinessStyle;
+
+                        String soldToLabel = "\nCustomer Name: " + customerName;
+                        graphics.DrawString(soldToLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToLabel, fontArial8Regular).Height;
+
+                        String soldToAddressLabel = "Address: " + customerAddress;
+                        graphics.DrawString(soldToAddressLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToAddressLabel, fontArial8Regular).Height;
+
+                        String soldToTINLabel = "TIN: " + customerTIN;
+                        graphics.DrawString(soldToTINLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
+
+                        String soldToBusinessStyleLabel = "Business Style: " + customerBusinessStyle;
+                        graphics.DrawString(soldToBusinessStyleLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial8Regular).Height;
+                    }
+
+                    // ========
+                    // 7th Line
+                    // ========
+                    Point seventhLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
+                    Point seventhLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
+                    graphics.DrawLine(blackPen, seventhLineFirstPoint, seventhLineSecondPoint);
 
                     String salesInvoiceFooter = "\n" + systemCurrent.InvoiceFooter;
                     graphics.DrawString(salesInvoiceFooter, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);

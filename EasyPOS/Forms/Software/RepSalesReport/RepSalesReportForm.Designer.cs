@@ -277,6 +277,7 @@
             "Sales Summary Report",
             "Sales Detail Report",
             "Sales Return Detail Report",
+            "Daily Sales Report (BIR)",
             "",
             "Collection Summary Report",
             "Collection Detail Report",

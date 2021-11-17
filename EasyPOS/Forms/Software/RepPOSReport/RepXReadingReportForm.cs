@@ -196,13 +196,10 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                     var salesLines = salesLinesQuery.ToArray();
 
-                    totalGrossSales = salesLines.Sum(d =>
-                        d.MstTax.Code == "EXEMPTVAT" ?
-                            d.MstItem.MstTax1.Rate > 0 ?
-                                (d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.Price * d.Quantity
-                        : d.MstTax.Rate > 0 ?
-                                (d.Price * d.Quantity) - d.TaxAmount : d.Price * d.Quantity
+                    Decimal VATAmountValue = salesLines.Sum(d =>
+                            d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount
                     );
+                    totalGrossSales = salesLines.Sum(d => d.Price * d.Quantity) - VATAmountValue;
 
                     totalRegularDiscount = salesLines.Sum(d =>
                         d.MstDiscount.Discount != "Senior Citizen Discount" && d.MstDiscount.Discount != "PWD" ? d.DiscountAmount * d.Quantity : 0
@@ -230,7 +227,8 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                     );
 
                     totalVATExemptSales = salesLines.Sum(d =>
-                    d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - d.DiscountAmount * d.Quantity : 0
+                    d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) : 0
+                    //d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - d.DiscountAmount * d.Quantity : 0
                     //d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - totalSeniorCitizenDiscount - totalPWDDiscount : 0
                     );
 
@@ -297,7 +295,8 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 repXReadingReportEntity.TotalVATSales = totalVATSales - (VATSalesReturn * -1);
                 repXReadingReportEntity.TotalVATAmount = totalVATAmount - VATAmountSalesReturn - VATAmountExemptSalesReturn;
                 repXReadingReportEntity.TotalNonVAT = totalNonVATSales;
-                repXReadingReportEntity.TotalVATExempt = totalVATExemptSales - (VATExemptSalesReturn * -1);
+                repXReadingReportEntity.TotalVATExempt = (totalVATExemptSales - Convert.ToDecimal(_totalSeniorCitizenDiscount) - Convert.ToDecimal(_totalPWDDiscount)) - (VATExemptSalesReturn * -1);
+                //repXReadingReportEntity.TotalVATExempt = totalVATExemptSales - (VATExemptSalesReturn * -1);
                 repXReadingReportEntity.TotalVATZeroRated = totalVATZeroRatedSales;
                 repXReadingReportEntity.TotalNumberOfSKU = totalNoOfSKUs;
                 repXReadingReportEntity.TotalQuantity = totalQUantity;
@@ -590,7 +589,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 // ===========
                 // Gross Sales
                 // ===========
-                String totalGrossSalesLabel = "\nG. S.(Net of VAT)";
+                String totalGrossSalesLabel = "\nGross Sales";
                 String totalGrossSalesData = "\n" + totalGrossSales.ToString("#,##0.00");
                 graphics.DrawString(totalGrossSalesLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                 graphics.DrawString(totalGrossSalesData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
@@ -742,6 +741,24 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(totalVatZeroRatedData, fontArial7Regular).Height;
 
                 // ========
+                // 9th Line
+                // ========
+                Point ninethLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
+                Point ninethLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
+                graphics.DrawLine(blackPen, ninethLineFirstPoint, ninethLineSecondPoint);
+
+                Decimal totalVAT = Convert.ToDecimal(totalVATSales.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATAmount.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalNonVAT.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATExempt.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATZeroRated.ToString("#,##0.00"));
+                String totalVATTotalLabel = "\nTotal";
+                String totalVatTotalData = "\n" + totalVAT.ToString("#,##0.00");
+                graphics.DrawString(totalVATTotalLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalVatTotalData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalVatTotalData, fontArial8Regular).Height;
+
+                // ========
                 // 5th Line
                 // ========
                 Point fifthLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
@@ -825,7 +842,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
                 {
-                    String zReadingEndLabel = "\n" + zReadingFooter + "\n \n\n\n.";
+                    String zReadingEndLabel = "\n" + zReadingFooter;
                     graphics.DrawString(zReadingEndLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                     y += graphics.MeasureString(zReadingEndLabel, fontArial7Regular).Height;
                 }
@@ -993,6 +1010,24 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(totalVatZeroRatedData, fontArial8Regular).Height;
 
                 // ========
+                // 9th Line
+                // ========
+                Point ninethLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
+                Point ninethLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
+                graphics.DrawLine(blackPen, ninethLineFirstPoint, ninethLineSecondPoint);
+
+                Decimal totalVAT = Convert.ToDecimal(totalVATSales.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATAmount.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalNonVAT.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATExempt.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATZeroRated.ToString("#,##0.00"));
+                String totalVATTotalLabel = "\nTotal";
+                String totalVatTotalData = "\n" + totalVAT.ToString("#,##0.00");
+                graphics.DrawString(totalVATTotalLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalVatTotalData, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalVatTotalData, fontArial8Regular).Height;
+
+                // ========
                 // 5th Line
                 // ========
                 Point fifthLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
@@ -1076,7 +1111,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Dot Matrix Printer")
                 {
-                    String zReadingEndLabel = "\n" + zReadingFooter + "\n \n\n\n.";
+                    String zReadingEndLabel = "\n" + zReadingFooter;
                     graphics.DrawString(zReadingEndLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
                     y += graphics.MeasureString(zReadingEndLabel, fontArial8Regular).Height;
                 }

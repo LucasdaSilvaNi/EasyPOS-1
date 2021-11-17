@@ -147,6 +147,25 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                         labelEndDate.Visible = true;
                         comboBoxTerminal.Focus();
                         break;
+
+                    case "E-Sales Journal":
+                        labelTerminal.Visible = true;
+                        comboBoxTerminal.Visible = true;
+
+                        dateTimePickerDate.Visible = false;
+                        labelDate.Visible = false;
+
+                        comboBoxUser.Visible = false;
+                        labelUser.Visible = false;
+
+                        dateTimePickerStartDate.Visible = true;
+                        labelStartDate.Visible = true;
+
+                        dateTimePickerEndDate.Visible = true;
+                        labelEndDate.Visible = true;
+                        comboBoxTerminal.Focus();
+                        break;
+
                     default:
                         labelTerminal.Visible = false;
                         comboBoxTerminal.Visible = false;
@@ -529,6 +548,10 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                         }
 
                         break;
+                    case "E-Sales Journal":
+                        new RepPOSReportESalesJournalPDFForm(Convert.ToInt32(comboBoxTerminal.SelectedValue), dateTimePickerStartDate.Value.Date, dateTimePickerEndDate.Value.Date);
+                        break;
+
                     default:
                         MessageBox.Show("Please select a report.", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

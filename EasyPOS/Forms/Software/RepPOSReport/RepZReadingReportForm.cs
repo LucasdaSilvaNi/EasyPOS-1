@@ -125,8 +125,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 GrossSalesRunningTotal = 0,
                 NetSalesTotalPreviousReading = 0,
                 NetSalesRunningTotal = 0,
-                ZReadingCounter = "0",
-                ZPrintCount = 0
+                ZReadingCounter = "0"
             };
 
             repZReadingReportEntity.Date = filterDate.ToShortDateString();
@@ -197,13 +196,10 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                     var salesLines = salesLinesQuery.ToArray();
 
-                    totalGrossSales = salesLines.Sum(d =>
-                        d.MstTax.Code == "EXEMPTVAT" ?
-                            d.MstItem.MstTax1.Rate > 0 ?
-                                (d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.Price * d.Quantity
-                        : d.MstTax.Rate > 0 ?
-                                (d.Price * d.Quantity) - d.TaxAmount : d.Price * d.Quantity
+                    Decimal VATAmountValue = salesLines.Sum(d =>
+                        d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount
                     );
+                    totalGrossSales = salesLines.Sum(d => d.Price * d.Quantity) - VATAmountValue;
 
                     totalRegularDiscount = salesLines.Sum(d =>
                         d.MstDiscount.Discount != "Senior Citizen Discount" && d.MstDiscount.Discount != "PWD" ? d.DiscountAmount * d.Quantity : 0
@@ -223,7 +219,6 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                     totalVATAmount = salesLines.Sum(d =>
                         d.MstTax.Code == "EXEMPTVAT" ? 0 : d.TaxAmount
-                    //d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100)) : d.TaxAmount
                     );
 
                     totalNonVATSales = salesLines.Sum(d =>
@@ -231,7 +226,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                     );
 
                     totalVATExemptSales = salesLines.Sum(d =>
-                    d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) - d.DiscountAmount * d.Quantity : 0
+                        d.MstTax.Code == "EXEMPTVAT" ? ((d.Price * d.Quantity) - ((d.Price * d.Quantity) / (1 + (d.MstItem.MstTax1.Rate / 100)) * (d.MstItem.MstTax1.Rate / 100))) : 0
                     );
 
                     totalVATZeroRatedSales = salesLines.Sum(d =>
@@ -296,7 +291,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 repZReadingReportEntity.TotalVATSales = totalVATSales - (VATSalesReturn * -1);
                 repZReadingReportEntity.TotalVATAmount = totalVATAmount - VATAmountSalesReturn - VATAmountExemptSalesReturn;
                 repZReadingReportEntity.TotalNonVAT = totalNonVATSales;
-                repZReadingReportEntity.TotalVATExempt = totalVATExemptSales - (VATExemptSalesReturn * -1);
+                repZReadingReportEntity.TotalVATExempt = (totalVATExemptSales - Convert.ToDecimal(_totalSeniorCitizenDiscount) - Convert.ToDecimal(_totalPWDDiscount)) - (VATExemptSalesReturn * -1);
                 repZReadingReportEntity.TotalVATZeroRated = totalVATZeroRatedSales;
                 repZReadingReportEntity.TotalNumberOfSKU = totalNoOfSKUs;
                 repZReadingReportEntity.TotalQuantity = totalQUantity;
@@ -895,8 +890,27 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 graphics.DrawString(totalVatZeroRatedData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                 y += graphics.MeasureString(totalVatZeroRatedData, fontArial7Regular).Height;
 
-                // ========
+                // =========
                 // 5th Line
+                // =========
+                Point twelvethLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
+                Point twelvethLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
+                graphics.DrawLine(blackPen, twelvethLineFirstPoint, twelvethLineSecondPoint);
+
+                Decimal totalVAT = Convert.ToDecimal(totalVATSales.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATAmount.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalNonVAT.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATExemptSales.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATZeroRated.ToString("#,##0.00"));
+
+                String totalVATTotalLabel = "\nTotal";
+                String totalVatTotalData = "\n" + totalVAT.ToString("#,##0.00");
+                graphics.DrawString(totalVATTotalLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalVatTotalData, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalVatTotalData, fontArial8Regular).Height;
+
+                // ========
+                // 6th Line
                 // ========
                 Point fifthLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point fifthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -918,7 +932,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(endCounterIdData, fontArial7Regular).Height;
 
                 // ========
-                // 6th Line
+                // 7th Line
                 // ========
                 Point sixthLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point sixthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -940,7 +954,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(totalCancelledAmountData, fontArial7Regular).Height;
 
                 // ========
-                // 7th Line
+                // 8th Line
                 // ========
                 Point seventhLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point seventhLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -969,7 +983,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(totalQuantityData, fontArial7Regular).Height;
 
                 // ========
-                // 8th Line
+                // 9th Line
                 // ========
                 Point eightLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point eightLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -998,7 +1012,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(grossSalesRunningTotalData, fontArial7Regular).Height;
 
                 // ========
-                // 9th Line
+                // 10th Line
                 // ========
                 Point ninethLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point ninethLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1027,7 +1041,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(netSalesRunningTotalData, fontArial7Regular).Height;
 
                 // =========
-                // 10th Line
+                // 11th Line
                 // =========
                 Point tenthLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point tenthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1042,7 +1056,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(zReadingCounterData, fontArial7Regular).Height;
 
                 // =========
-                // 11th Line
+                // 12th Line
                 // =========
                 Point eleventhLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point eleventhLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1210,8 +1224,26 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 graphics.DrawString(totalVatZeroRatedData, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                 y += graphics.MeasureString(totalVatZeroRatedData, fontArial8Regular).Height;
 
-                // ========
+                // =========
                 // 5th Line
+                // =========
+                Point twelvethLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
+                Point twelvethLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
+                graphics.DrawLine(blackPen, twelvethLineFirstPoint, twelvethLineSecondPoint);
+
+                Decimal totalVAT = Convert.ToDecimal(totalVATSales.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATAmount.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalNonVAT.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATExempt.ToString("#,##0.00")) +
+                    Convert.ToDecimal(totalVATZeroRated.ToString("#,##0.00"));
+                String totalVATTotalLabel = "\nTotal";
+                String totalVatTotalData = "\n" + totalVAT.ToString("#,##0.00");
+                graphics.DrawString(totalVATTotalLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(totalVatTotalData, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(totalVatTotalData, fontArial8Regular).Height;
+
+                // ========
+                // 6th Line
                 // ========
                 Point fifthLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point fifthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1233,7 +1265,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(endCounterIdData, fontArial8Regular).Height;
 
                 // ========
-                // 6th Line
+                // 7th Line
                 // ========
                 Point sixthLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point sixthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1255,7 +1287,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(totalCancelledAmountData, fontArial8Regular).Height;
 
                 // ========
-                // 7th Line
+                // 8th Line
                 // ========
                 Point seventhLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point seventhLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1284,7 +1316,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(totalQuantityData, fontArial8Regular).Height;
 
                 // ========
-                // 8th Line
+                // 9th Line
                 // ========
                 Point eightLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point eightLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1313,7 +1345,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(grossSalesRunningTotalData, fontArial8Regular).Height;
 
                 // ========
-                // 9th Line
+                // 10th Line
                 // ========
                 Point ninethLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point ninethLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1342,7 +1374,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(netSalesRunningTotalData, fontArial8Regular).Height;
 
                 // =========
-                // 10th Line
+                // 11th Line
                 // =========
                 Point tenthLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point tenthLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1357,7 +1389,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 y += graphics.MeasureString(zReadingCounterData, fontArial8Regular).Height;
 
                 // =========
-                // 11th Line
+                // 12th Line
                 // =========
                 Point eleventhLineFirstPoint = new Point(0, Convert.ToInt32(y) + 5);
                 Point eleventhLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
@@ -1367,7 +1399,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 String zReadingEndLabel = "\n" + zReadingFooter;
                 graphics.DrawString(zReadingEndLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                y += graphics.MeasureString(zReadingEndLabel, fontArial8Regular).Height;
+                y += graphics.MeasureString(zReadingEndLabel, fontArial8Regular).Height;               
             }
         }
     }

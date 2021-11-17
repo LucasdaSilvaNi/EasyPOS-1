@@ -692,6 +692,12 @@
     <Compile Include="Forms\Software\RepInventoryReport\RepStockOutDetailReportForm.Designer.cs">
       <DependentUpon>RepStockOutDetailReportForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Software\RepPOSReport\RepPOSReportESalesJournalPDFForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\RepPOSReport\RepPOSReportESalesJournalPDFForm.designer.cs">
+      <DependentUpon>RepPOSReportESalesJournalPDFForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Software\RepPOSReport\RepPOSReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -739,6 +745,12 @@
     </Compile>
     <Compile Include="Forms\Software\RepSalesReport\RepCollectionDetailReportPDFForm.Designer.cs">
       <DependentUpon>RepCollectionDetailReportPDFForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Software\RepSalesReport\RepDailySalesBIRReportPDFForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Software\RepSalesReport\RepDailySalesBIRReportPDFForm.designer.cs">
+      <DependentUpon>RepDailySalesBIRReportPDFForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Software\RepSalesReport\RepCollectionSummaryReportPDFForm.cs">
       <SubType>Form</SubType>
@@ -1569,6 +1581,9 @@
     <EmbeddedResource Include="Forms\Software\RepInventoryReport\RepStockOutDetailReportForm.resx">
       <DependentUpon>RepStockOutDetailReportForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\RepPOSReport\RepPOSReportESalesJournalPDFForm.resx">
+      <DependentUpon>RepPOSReportESalesJournalPDFForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\RepRemittanceReport\RepRemittanceForm.resx">
       <DependentUpon>RepRemittanceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1589,6 +1604,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\RepSalesReport\RepCollectionDetailReportPDFForm.resx">
       <DependentUpon>RepCollectionDetailReportPDFForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Software\RepSalesReport\RepDailySalesBIRReportPDFForm.resx">
+      <DependentUpon>RepDailySalesBIRReportPDFForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Software\RepSalesReport\RepCollectionSummaryReportPDFForm.resx">
       <DependentUpon>RepCollectionSummaryReportPDFForm.cs</DependentUpon>
@@ -2019,6 +2037,7 @@
     <Content Include="Resources\Images\Icons\User.png" />
     <Content Include="Resources\Images\Logo\easypos cropped.ico" />
     <Content Include="Resources\Images\Logo\easypos cropped.jpg" />
+    <None Include="Resources\Images\Logo\liteclerklogo.png" />
     <Content Include="Resources\Images\Logo\newEasyposIcon.ico" />
     <Content Include="Resources\Images\NewLogo\easypos.ico" />
     <Content Include="Resources\Images\NewLogo\easypos.png" />

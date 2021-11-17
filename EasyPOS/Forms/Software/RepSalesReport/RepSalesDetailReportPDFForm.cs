@@ -54,7 +54,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                 var systemCurrent = Modules.SysCurrentModule.GetCurrentSettings();
 
-                Document document = new Document(PageSize.LETTER.Rotate());
+                Document document = new Document(PageSize.LEGAL.Rotate());
                 document.SetMargins(30f, 30f, 100f, 30f);
 
                 PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(fileName, FileMode.Create));

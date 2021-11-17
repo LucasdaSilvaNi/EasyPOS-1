@@ -203,6 +203,16 @@ namespace EasyPOS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap liteclerklogo {
+            get {
+                object obj = ResourceManager.GetObject("liteclerklogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap POS {
             get {
                 object obj = ResourceManager.GetObject("POS", resourceCulture);

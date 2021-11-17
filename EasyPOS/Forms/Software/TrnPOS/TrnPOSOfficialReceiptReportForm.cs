@@ -325,14 +325,16 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                 }
                                 else if (salesLine.MstTax.Code == "EXEMPTVAT")
                                 {
-                                    if (salesLine.MstItem.MstTax1.Rate > 0)
-                                    {
-                                        totalVATExempt += (salesLine.Price * salesLine.Quantity) - ((salesLine.Price * salesLine.Quantity) / (1 + (salesLine.MstItem.MstTax1.Rate / 100)) * (salesLine.MstItem.MstTax1.Rate / 100));
-                                    }
-                                    else
-                                    {
-                                        totalVATExempt += salesLine.Price * salesLine.Quantity;
-                                    }
+                                    totalVATExempt += salesLine.Amount;
+
+                                    //if (salesLine.MstItem.MstTax1.Rate > 0)
+                                    //{
+                                    //    totalVATExempt += (salesLine.Price * salesLine.Quantity) - ((salesLine.Price * salesLine.Quantity) / (1 + (salesLine.MstItem.MstTax1.Rate / 100)) * (salesLine.MstItem.MstTax1.Rate / 100));
+                                    //}
+                                    //else
+                                    //{
+                                    //    totalVATExempt += salesLine.Price * salesLine.Quantity;
+                                    //}
                                 }
                                 else if (salesLine.MstTax.Code == "ZEROVAT")
                                 {
@@ -341,8 +343,16 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                                 if (salesLine.MstItem.BarCode != "0000000001")
                                 {
+                                    Decimal _amount = salesLine.Price * salesLine.Quantity;
+                                    Decimal _VAT = _amount;
+
+                                    if (salesLine.MstTax.Code == "EXEMPTVAT")
+                                    {
+                                        _VAT = _amount / (1 + (salesLine.MstItem.MstTax1.Rate / 100));
+                                    }
+
                                     String itemData = salesLine.ItemDescription + " " + salesLine.Preparation + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
-                                    String itemAmountData = (salesLine.Amount + salesLine.DiscountAmount).ToString("#,##0.00");
+                                    String itemAmountData = (_VAT).ToString("#,##0.00");
                                     RectangleF itemDataRectangle = new RectangleF
                                     {
                                         X = x,
@@ -699,14 +709,16 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                 }
                                 else if (salesLine.MstTax.Code == "EXEMPTVAT")
                                 {
-                                    if (salesLine.MstItem.MstTax1.Rate > 0)
-                                    {
-                                        totalVATExempt += (salesLine.Price * salesLine.Quantity) - ((salesLine.Price * salesLine.Quantity) / (1 + (salesLine.MstItem.MstTax1.Rate / 100)) * (salesLine.MstItem.MstTax1.Rate / 100));
-                                    }
-                                    else
-                                    {
-                                        totalVATExempt += salesLine.Price * salesLine.Quantity;
-                                    }
+                                    totalVATExempt += salesLine.Amount;
+
+                                    //if (salesLine.MstItem.MstTax1.Rate > 0)
+                                    //{
+                                    //    totalVATExempt += (salesLine.Price * salesLine.Quantity) - ((salesLine.Price * salesLine.Quantity) / (1 + (salesLine.MstItem.MstTax1.Rate / 100)) * (salesLine.MstItem.MstTax1.Rate / 100));
+                                    //}
+                                    //else
+                                    //{
+                                    //    totalVATExempt += salesLine.Price * salesLine.Quantity;
+                                    //}
                                 }
                                 else if (salesLine.MstTax.Code == "ZEROVAT")
                                 {
@@ -716,8 +728,16 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                                 if (salesLine.MstItem.BarCode != "0000000001")
                                 {
+                                    Decimal _amount = salesLine.Price * salesLine.Quantity;
+                                    Decimal _VAT = _amount;
+
+                                    if (salesLine.MstTax.Code == "EXEMPTVAT")
+                                    {
+                                        _VAT = _amount / (1 + (salesLine.MstItem.MstTax1.Rate / 100));
+                                    }
+
                                     String itemData = salesLine.ItemDescription + " " + salesLine.Preparation + "\n" + salesLine.Quantity.ToString("#,##0.00") + " " + salesLine.Unit + " @ " + salesLine.Price.ToString("#,##0.00") + " - " + salesLine.MstTax.Code[0];
-                                    String itemAmountData = (salesLine.Amount + salesLine.DiscountAmount).ToString("#,##0.00");
+                                    String itemAmountData = (_VAT).ToString("#,##0.00");
                                     RectangleF itemDataRectangle = new RectangleF
                                     {
                                         X = x,
