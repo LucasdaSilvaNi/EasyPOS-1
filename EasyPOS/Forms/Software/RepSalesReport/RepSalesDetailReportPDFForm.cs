@@ -55,7 +55,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 var systemCurrent = Modules.SysCurrentModule.GetCurrentSettings();
 
                 Document document = new Document(PageSize.LEGAL.Rotate());
-                document.SetMargins(30f, 30f, 100f, 30f);
+                document.SetMargins(15f, 15f, 100f, 30f);
 
                 PdfWriter pdfWriter = PdfWriter.GetInstance(document, new FileStream(fileName, FileMode.Create));
                 pdfWriter.PageEvent = new ConfigureHeaderFooter(dateStart, dateEnd, filterTerminalId);
@@ -67,8 +67,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
                 if (salesDetailList.Any())
                 {
-                    PdfPTable tableLines = new PdfPTable(16);
-                    tableLines.SetWidths(new float[] { 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f });
+                    PdfPTable tableLines = new PdfPTable(17);
+                    tableLines.SetWidths(new float[] { 35f, 50f, 50f, 50f, 50f, 50f, 50f, 30f, 20f, 30f, 30f, 30f, 30f, 40f, 40f, 40f, 30f });
                     tableLines.WidthPercentage = 100;
 
                     Decimal totalAmount = 0;
@@ -93,19 +93,22 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                         tableLines.AddCell(new PdfPCell(new Phrase(salesDetail.Amount.ToString("#,##0.00"), fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                         tableLines.AddCell(new PdfPCell(new Phrase(salesDetail.Tax, fontTimesNewRoman10)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
                         tableLines.AddCell(new PdfPCell(new Phrase(salesDetail.TaxAmount.ToString("#,##0.00"), fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
+                        tableLines.AddCell(new PdfPCell(new Phrase(salesDetail.EntryDateTime.ToString(), fontTimesNewRoman10)) { HorizontalAlignment = 2, Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 0f });
 
                         totalAmount += Convert.ToDecimal(salesDetail.Amount);
                         totalDiscountAmount += Convert.ToDecimal(salesDetail.DiscountAmount);
                         totalTaxAmount += Convert.ToDecimal(salesDetail.TaxAmount);
                     }
 
-                    tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 16 });
+                    tableLines.AddCell(new PdfPCell(new Phrase(line)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = -5f, Colspan = 17 });
+
                     tableLines.AddCell(new PdfPCell(new Phrase("Total: ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 20f, Colspan = 10, HorizontalAlignment = 2 });
                     tableLines.AddCell(new PdfPCell(new Phrase(totalDiscountAmount.ToString("#,##0.00"), fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 20f, HorizontalAlignment = 2 });
                     tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 20f, Colspan = 2, HorizontalAlignment = 2 });
                     tableLines.AddCell(new PdfPCell(new Phrase(totalAmount.ToString("#,##0.00"), fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 20f, HorizontalAlignment = 2 });
                     tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 20f, HorizontalAlignment = 2 });
                     tableLines.AddCell(new PdfPCell(new Phrase(totalTaxAmount.ToString("#,##0.00"), fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 20f, HorizontalAlignment = 2 });
+                    tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, PaddingLeft = 3f, PaddingRight = 3f, PaddingTop = 3f, PaddingBottom = 20f, HorizontalAlignment = 2 });
 
                     document.Add(tableLines);
                     document.Close();
@@ -172,12 +175,31 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 tableHeader.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
                 tableHeader.AddCell(new PdfPCell(new Phrase(companyName, fontTimesNewRoman14Bold)) { Colspan = 2, Border = 0, Padding = 3f, PaddingBottom = 3f });
                 tableHeader.AddCell(new PdfPCell(new Phrase(documentTitle, fontTimesNewRoman14Bold)) { HorizontalAlignment = 2, Colspan = 2, Border = 0, Padding = 3f, PaddingBottom = 3f });
-                tableHeader.AddCell(new PdfPCell(new Phrase("From : " + dateStart.ToShortDateString() + " To: " + dateEnd.ToShortDateString() + "\n", fontTimesNewRoman10)) { Colspan = 4, Border = 0, Padding = 3f, PaddingBottom = -5f });
+                tableHeader.AddCell(new PdfPCell(new Phrase("From : " + dateStart.ToShortDateString() + " To: " + dateEnd.ToShortDateString() + "\n", fontTimesNewRoman10)) { Colspan = 4, Border = 0, Padding = 3f, PaddingBottom = 0 });
 
-                PdfPTable tableLines = new PdfPTable(16);
-                tableLines.SetWidths(new float[] { 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f, 50f });
+
+                PdfPTable tableLines = new PdfPTable(17);
+                tableLines.SetWidths(new float[] { 35f, 50f, 50f, 50f, 50f, 50f, 50f, 30f, 20f, 30f, 30f, 30f, 30f, 40f, 40f, 40f, 30f });
                 tableLines.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
-                tableLines.AddCell(new PdfPCell(new Phrase(" \n", fontTimesNewRoman10Bold)) { Border = 0, Colspan = 16, PaddingBottom = 5f });
+
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+                tableLines.AddCell(new PdfPCell(new Phrase(" ", fontTimesNewRoman10Bold)) { Border = 0, HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 0 });
+
                 tableLines.AddCell(new PdfPCell(new Phrase("Terminal", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
                 tableLines.AddCell(new PdfPCell(new Phrase("Sales No.", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
                 tableLines.AddCell(new PdfPCell(new Phrase("Date", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
@@ -191,9 +213,11 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                 tableLines.AddCell(new PdfPCell(new Phrase("Discount", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
                 tableLines.AddCell(new PdfPCell(new Phrase("Net Price", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
                 tableLines.AddCell(new PdfPCell(new Phrase("Quantity", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
-                tableLines.AddCell(new PdfPCell(new Phrase("Amoount", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableLines.AddCell(new PdfPCell(new Phrase("Amount", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
                 tableLines.AddCell(new PdfPCell(new Phrase("Tax", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
                 tableLines.AddCell(new PdfPCell(new Phrase("Tax Amount", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+                tableLines.AddCell(new PdfPCell(new Phrase("Time", fontTimesNewRoman10Bold)) { HorizontalAlignment = 1, PaddingTop = 2f, PaddingBottom = 5f });
+
                 tableHeader.AddCell(new PdfPCell(tableLines) { Border = 0, Colspan = 4, PaddingBottom = -5f, PaddingLeft = 0f, PaddingRight = 0f });
                 tableHeader.WriteSelectedRows(0, -1, document.LeftMargin, writer.PageSize.GetTop(document.TopMargin) + 67f, writer.DirectContent);
             }

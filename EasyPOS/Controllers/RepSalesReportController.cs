@@ -244,7 +244,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();
@@ -281,7 +282,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();
@@ -318,7 +320,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();
@@ -355,7 +358,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();
@@ -392,7 +396,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();
@@ -430,7 +435,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();
@@ -469,7 +475,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();
@@ -507,7 +514,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();
@@ -545,7 +553,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();
@@ -585,7 +594,8 @@ namespace EasyPOS.Controllers
                                      Amount = d.Amount,
                                      Tax = d.MstTax.Tax,
                                      TaxRate = d.TaxRate,
-                                     TaxAmount = d.TaxAmount
+                                     TaxAmount = d.TaxAmount,
+                                     EntryDateTime = d.TrnSale.EntryDateTime.ToShortTimeString()
                                  };
 
                 return salesLines.ToList();

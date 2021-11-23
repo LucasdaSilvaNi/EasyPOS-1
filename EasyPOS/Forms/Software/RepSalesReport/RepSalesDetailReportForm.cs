@@ -80,7 +80,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                               ColumnAmount = d.Amount.ToString("#,##0.00"),
                               ColumnTax = d.Tax,
                               ColumnTaxRate = d.TaxRate.ToString("#,##0.00"),
-                              ColumnTaxAmount = d.TaxAmount.ToString("#,##0.00")
+                              ColumnTaxAmount = d.TaxAmount.ToString("#,##0.00"),
+                              ColumnEntryDateTime = d.EntryDateTime.ToString()
                           };
 
                 totalAmount = salesDetailList.Sum(d => d.Amount);
@@ -230,7 +231,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                     DateTime endDate = dateEnd;
 
                     StringBuilder csv = new StringBuilder();
-                    String[] header = { "Terminal", "Date", "Sales Number", "Customer Code", "Customer", "Item Code", "Barcode", "Item Description", "Item Category", "Supplier", "Unit", "Cost", "Price", "CostAmount", "Discount", "Net Price", "Quantity", "Amount", "Tax", "Tax Rate", "Tax Amount" };
+                    String[] header = { "Terminal", "Date", "Sales Number", "Customer Code", "Customer", "Item Code", "Barcode", "Item Description", "Item Category", "Supplier", "Unit", "Cost", "Price", "CostAmount", "Discount", "Net Price", "Quantity", "Amount", "Tax", "Tax Rate", "Tax Amount", "Time" };
                     csv.AppendLine(String.Join(",", header));
 
                     if (salesDetailList.Any())
@@ -264,7 +265,8 @@ namespace EasyPOS.Forms.Software.RepSalesReport
                                 salesDetail.ColumnAmount.Replace("," , ""),
                                 salesDetail.ColumnTax.Replace("," , ""),
                                 salesDetail.ColumnTaxRate.Replace("," , ""),
-                                salesDetail.ColumnTaxAmount.Replace("," , "")
+                                salesDetail.ColumnTaxAmount.Replace("," , ""),
+                                salesDetail.ColumnEntryDateTime.Replace("," , "")
                             };
                             csv.AppendLine(String.Join(",", data));
                         }

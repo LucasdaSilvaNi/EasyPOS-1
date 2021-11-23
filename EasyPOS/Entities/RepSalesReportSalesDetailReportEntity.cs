@@ -40,5 +40,6 @@ namespace EasyPOS.Entities
         public String SalesLineTimeStamp { get; set; }
         public Int32? UserId { get; set; }
         public String User { get; set; }
+        public String EntryDateTime { get; set; }
     }
 }
