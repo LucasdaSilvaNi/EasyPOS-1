@@ -21,6 +21,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
         public String filterTerminal = "";
         public DateTime filterDate;
         public Int32 filterSalesAgentId;
+        public String filterSalesAgent;
         public Entities.RepPOSReportXReadingReportEntity xReadingReportEntity;
 
         public RepXReadingReportForm(Forms.Software.RepPOSReport.RepPOSReportForm POSReportForm, Int32 terminalId, DateTime date, Int32 salesAgentId)
@@ -128,6 +129,11 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             };
 
             repXReadingReportEntity.Date = filterDate.ToShortDateString();
+
+            var user = from d in db.MstUsers
+                       where d.Id == filterSalesAgentId
+                       select d;
+            filterSalesAgent = user.FirstOrDefault().UserName;
 
             var terminal = from d in db.MstTerminals
                            where d.Id == filterTerminalId
@@ -567,6 +573,12 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             String collectionDateText = filterDate.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
             graphics.DrawString(collectionDateText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
             y += graphics.MeasureString(collectionDateText, fontArial8Regular).Height;
+
+            // ====
+            // Cashier 
+            // ====
+            graphics.DrawString(filterSalesAgent, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += graphics.MeasureString(filterSalesAgent, fontArial8Regular).Height;
 
             // ====
             // X Print Count 
