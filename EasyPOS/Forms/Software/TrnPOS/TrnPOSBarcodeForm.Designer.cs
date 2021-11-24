@@ -90,9 +90,9 @@
             this.ColumnRececiptInvoiceNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCustomerCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesAgent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCashier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnIsLocked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnIsTendered = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnIsCancelled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -259,9 +259,9 @@
             this.ColumnRececiptInvoiceNumber,
             this.ColumnCustomerCode,
             this.ColumnCustomer,
+            this.ColumnAmount,
             this.ColumnSalesAgent,
             this.ColumnCashier,
-            this.ColumnAmount,
             this.ColumnIsLocked,
             this.ColumnIsTendered,
             this.ColumnIsCancelled,
@@ -833,6 +833,18 @@
             this.ColumnCustomer.ReadOnly = true;
             this.ColumnCustomer.Width = 130;
             // 
+            // ColumnAmount
+            // 
+            this.ColumnAmount.DataPropertyName = "ColumnAmount";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColumnAmount.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnAmount.HeaderText = "Amount";
+            this.ColumnAmount.MinimumWidth = 6;
+            this.ColumnAmount.Name = "ColumnAmount";
+            this.ColumnAmount.ReadOnly = true;
+            this.ColumnAmount.Width = 120;
+            // 
             // ColumnSalesAgent
             // 
             this.ColumnSalesAgent.DataPropertyName = "ColumnSalesAgent";
@@ -850,18 +862,6 @@
             this.ColumnCashier.Name = "ColumnCashier";
             this.ColumnCashier.ReadOnly = true;
             this.ColumnCashier.Width = 125;
-            // 
-            // ColumnAmount
-            // 
-            this.ColumnAmount.DataPropertyName = "ColumnAmount";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.NullValue = null;
-            this.ColumnAmount.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnAmount.HeaderText = "Amount";
-            this.ColumnAmount.MinimumWidth = 6;
-            this.ColumnAmount.Name = "ColumnAmount";
-            this.ColumnAmount.ReadOnly = true;
-            this.ColumnAmount.Width = 120;
             // 
             // ColumnIsLocked
             // 
@@ -1027,9 +1027,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnRececiptInvoiceNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCustomerCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCustomer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesAgent;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCashier;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAmount;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnIsLocked;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnIsTendered;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnIsCancelled;

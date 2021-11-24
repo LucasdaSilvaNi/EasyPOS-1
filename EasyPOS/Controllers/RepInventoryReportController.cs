@@ -28,7 +28,7 @@ namespace EasyPOS.Controllers
                             ItemDescription = d.ItemDescription
                         };
 
-            return items.OrderBy(d => d.Id).ToList();
+            return items.OrderBy(d => d.ItemDescription).ToList();
         }
         // ======================
         // Dropdown List Item Category
