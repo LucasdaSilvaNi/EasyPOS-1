@@ -195,10 +195,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 {
                     dataGridViewSalesLineList.Columns[1].Visible = false;
                 }
-
-                GetSalesDetail();
-                GetSalesLineList();
             }
+
+            GetSalesDetail();
+            GetSalesLineList();
+
             var id = trnSalesEntity.Id;
 
             Controllers.TrnSalesController newSales = new Controllers.TrnSalesController();
@@ -259,7 +260,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     itemGroupItemButtons[i].Enabled = true;
                 }
             }
-
             FillItemGroup();
         }
 
@@ -434,7 +434,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             labelCustomerCode.Text = trnSalesEntity.CustomerCode;
             labelCustomer.Text = trnSalesEntity.Customer;
             labelRemarks.Text = trnSalesEntity.Remarks;
-            //labelTableNumber.Text = trnSalesEntity.Table;
+            labelTableNumber.Text = trnSalesEntity.Table;
         }
 
         private void buttonSearchItem_Click(object sender, EventArgs e)

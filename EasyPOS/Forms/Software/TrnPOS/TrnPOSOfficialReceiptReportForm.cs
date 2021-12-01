@@ -135,7 +135,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Size = new Size(245, ((int)graphics.MeasureString(companyAddress, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
             };
             graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += companyAddressRectangle.Size.Height + 1.0F;
+            y += companyAddressRectangle.Size.Height + 12F;
 
             // ==========
             // TIN Number
@@ -532,53 +532,111 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Point seventhLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                     graphics.DrawLine(blackPen, seventhLineFirstPoint, seventhLineSecondPoint);
 
-                    String soldToLabel = "\nCustomer Name: _______________";
-
-                    // ==================================
-                    // Senior Citizen and PWD Information
-                    // ==================================
-                    if (collections.FirstOrDefault().SalesId != null)
+                    if (Modules.SysCurrentModule.GetCurrentSettings().ShowCustomerInfo == false)
                     {
-                        if (collections.FirstOrDefault().TrnSale.DiscountId == 7 || collections.FirstOrDefault().TrnSale.DiscountId == 16)
+                        String soldToLabel = "\nCustomer Name: ___________";
+
+                        // ==================================
+                        // Senior Citizen and PWD Information
+                        // ==================================
+                        if (collections.FirstOrDefault().SalesId != null)
                         {
-                            String seniorCitizenID = collections.FirstOrDefault().TrnSale.SeniorCitizenId;
-                            String seniorCitizenName = collections.FirstOrDefault().TrnSale.SeniorCitizenName;
-                            String seniorCitizenAge = collections.FirstOrDefault().TrnSale.SeniorCitizenAge.ToString();
+                            if (collections.FirstOrDefault().TrnSale.DiscountId == 7 || collections.FirstOrDefault().TrnSale.DiscountId == 16)
+                            {
+                                String seniorCitizenID = collections.FirstOrDefault().TrnSale.SeniorCitizenId;
+                                String seniorCitizenName = collections.FirstOrDefault().TrnSale.SeniorCitizenName;
+                                String seniorCitizenAge = collections.FirstOrDefault().TrnSale.SeniorCitizenAge.ToString();
 
-                            graphics.DrawString("\nSC/PWD ID: " + seniorCitizenID, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                            y += graphics.MeasureString(seniorCitizenID, fontArial7Regular).Height;
+                                graphics.DrawString("\nSC/PWD ID: " + seniorCitizenID, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                                y += graphics.MeasureString(seniorCitizenID, fontArial7Regular).Height;
 
-                            graphics.DrawString("\nSC/PWD Name: " + seniorCitizenName, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                            y += graphics.MeasureString(seniorCitizenName, fontArial7Regular).Height;
+                                graphics.DrawString("\nSC/PWD Name: " + seniorCitizenName, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                                y += graphics.MeasureString(seniorCitizenName, fontArial7Regular).Height;
 
-                            graphics.DrawString("\nSC/PWD Age: " + seniorCitizenAge, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                            y += graphics.MeasureString(seniorCitizenAge, fontArial7Regular).Height;
+                                graphics.DrawString("\nSC/PWD Age: " + seniorCitizenAge, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                                y += graphics.MeasureString(seniorCitizenAge, fontArial7Regular).Height;
 
-                            // ========
-                            // 8th Line
-                            // ========
-                            Point eightLineFirstPoint = new Point(0, Convert.ToInt32(y) + 18);
-                            Point eightLineSecondPoint = new Point(500, Convert.ToInt32(y) + 18);
-                            graphics.DrawLine(blackPen, eightLineFirstPoint, eightLineSecondPoint);
+                                // ========
+                                // 8th Line
+                                // ========
+                                Point eightLineFirstPoint = new Point(0, Convert.ToInt32(y) + 18);
+                                Point eightLineSecondPoint = new Point(500, Convert.ToInt32(y) + 18);
+                                graphics.DrawLine(blackPen, eightLineFirstPoint, eightLineSecondPoint);
 
-                            soldToLabel = "\n\nCustomer Name: _______________";
+                                soldToLabel = "\n\nCustomer Name: ________";
+                            }
                         }
+
+                        graphics.DrawString(soldToLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToLabel, fontArial7Regular).Height;
+
+                        String soldToAddressLabel = "Address: ______________";
+                        graphics.DrawString(soldToAddressLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToAddressLabel, fontArial7Regular).Height;
+
+                        String soldToTINLabel = "TIN: ____________";
+                        graphics.DrawString(soldToTINLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial7Regular).Height;
+
+                        String soldToBusinessStyleLabel = "Business Style: _____________";
+                        graphics.DrawString(soldToBusinessStyleLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial7Regular).Height;
                     }
+                    else
+                    {
+                        String customerName = collections.FirstOrDefault().TrnSale.MstCustomer.Customer;
+                        String customerAddress = collections.FirstOrDefault().TrnSale.MstCustomer.Address;
+                        String customerTIN = collections.FirstOrDefault().TrnSale.MstCustomer.TIN;
+                        String customerBusinessStyle = collections.FirstOrDefault().TrnSale.MstCustomer.BusinessStyle;
+                        String soldToLabel = "\nCustomer Name: " + customerName;
+                        graphics.DrawString(soldToLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToLabel, fontArial7Regular).Height;
 
-                    graphics.DrawString(soldToLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                    y += graphics.MeasureString(soldToLabel, fontArial7Regular).Height;
+                        // ==================================
+                        // Senior Citizen and PWD Information
+                        // ==================================
+                        if (collections.FirstOrDefault().SalesId != null)
+                        {
+                            if (collections.FirstOrDefault().TrnSale.DiscountId == 7 || collections.FirstOrDefault().TrnSale.DiscountId == 16)
+                            {
+                                String seniorCitizenID = collections.FirstOrDefault().TrnSale.SeniorCitizenId;
+                                String seniorCitizenName = collections.FirstOrDefault().TrnSale.SeniorCitizenName;
+                                String seniorCitizenAge = collections.FirstOrDefault().TrnSale.SeniorCitizenAge.ToString();
 
-                    String soldToAddressLabel = "Address: _____________________";
-                    graphics.DrawString(soldToAddressLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                    y += graphics.MeasureString(soldToAddressLabel, fontArial7Regular).Height;
+                                graphics.DrawString("\nSC/PWD ID: " + seniorCitizenID, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                                y += graphics.MeasureString(seniorCitizenID, fontArial7Regular).Height;
 
-                    String soldToTINLabel = "TIN: _________________________";
-                    graphics.DrawString(soldToTINLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                    y += graphics.MeasureString(soldToTINLabel, fontArial7Regular).Height;
+                                graphics.DrawString("\nSC/PWD Name: " + seniorCitizenName, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                                y += graphics.MeasureString(seniorCitizenName, fontArial7Regular).Height;
 
-                    String soldToBusinessStyleLabel = "Business Style: ________________";
-                    graphics.DrawString(soldToBusinessStyleLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                    y += graphics.MeasureString(soldToTINLabel, fontArial7Regular).Height;
+                                graphics.DrawString("\nSC/PWD Age: " + seniorCitizenAge, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                                y += graphics.MeasureString(seniorCitizenAge, fontArial7Regular).Height;
+
+                                // ========
+                                // 8th Line
+                                // ========
+                                Point eightLineFirstPoint = new Point(0, Convert.ToInt32(y) + 18);
+                                Point eightLineSecondPoint = new Point(500, Convert.ToInt32(y) + 18);
+                                graphics.DrawLine(blackPen, eightLineFirstPoint, eightLineSecondPoint);
+
+                                soldToLabel = "\n\nCustomer Name: " + customerName;
+                            }
+                        }
+
+
+
+                        String soldToAddressLabel = "Address: " + customerAddress;
+                        graphics.DrawString(soldToAddressLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToAddressLabel, fontArial7Regular).Height;
+
+                        String soldToTINLabel = "TIN: " + customerTIN;
+                        graphics.DrawString(soldToTINLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial7Regular).Height;
+
+                        String soldToBusinessStyleLabel = "Business Style: " + customerBusinessStyle;
+                        graphics.DrawString(soldToBusinessStyleLabel, fontArial7Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                        y += graphics.MeasureString(soldToTINLabel, fontArial7Regular).Height;
+                    }
 
                     // ========
                     // 9th Line

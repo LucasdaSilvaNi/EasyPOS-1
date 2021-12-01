@@ -62,6 +62,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, "");
                 }
             }
+            Close();
         }
 
         public void GetSalesLineList()

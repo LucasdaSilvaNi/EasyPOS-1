@@ -1,6 +1,6 @@
 ﻿{
-  "CompanyName": "Easyfis Corporation",
-  "Address": "Cebu City Philippines 6000",
+  "CompanyName": "Jepoy's Grill and Restaurant",
+  "Address": "City Center Park, Sagkahan, Tacloban City",
   "ContactNo": "(032) 000-0000",
   "TIN": "000-000-000-000",
   "AccreditationNo": "000000000000",
@@ -15,7 +15,7 @@
   "TenantOf": "",
   "CurrentUserId": 1,
   "CurrentUserName": "admin",
-  "CurrentVersion": "Version 1.202111241616NOR",
+  "CurrentVersion": "Version 1.202112011412NOR",
   "CurrentDeveloper": "Easyfis Corporation",
   "CurrentSupport": "(032) 234-0787",
   "CurrentPeriodId": 1,
@@ -41,12 +41,12 @@
   "EasypayMotherCardNumber": "0000000001",
   "ActivateAuditTrail": true,
   "FacepayImagePath": "D:\\Facepay",
-  "POSType": "POS Barcode",
+  "POSType": "POS Touch",
   "AllowNegativeInventory": true,
   "IsLoginDate": true,
   "EnableEasyShopIntegration": false,
   "PromptLoginSales": false,
-  "PrinterType": "Dot Matrix Printer",
+  "PrinterType": "58mm Printer",
   "SwipeLogin": false,
   "DateLogin": false,
   "HideSalesAmount": false,
@@ -64,6 +64,6 @@
   "Language": "English",
   "SingleColumnBarcodePrintOut": false,
   "RestrictCashin": false,
-  "DisableLockTender": true,
-  "PopupCustomerInfo": true
+  "DisableLockTender": false,
+  "PopupCustomerInfo": false
 }

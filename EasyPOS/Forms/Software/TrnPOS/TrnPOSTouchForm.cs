@@ -65,6 +65,18 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 }
 
                 GetTerminalList();
+
+                sysSoftwareForm = softwareForm;
+                if (Modules.SysCurrentModule.GetCurrentSettings().HideSalesAmount == true)
+                {
+                    textBoxTotalAmount.Visible = false;
+                    tabPageCollectedColumnAmount.Visible = false;
+                }
+                else
+                {
+                    textBoxTotalAmount.Visible = true;
+                    tabPageCollectedColumnAmount.Visible = true;
+                }
             }
 
             Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();

@@ -638,15 +638,13 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             // Company Name
             // ============
             String companyName = systemCurrent.CompanyName;
-            RectangleF companyNameRectangle = new RectangleF
+            float adjustStringName = 1;
+            if (companyName.Length > 43)
             {
-                X = x,
-                Y = y,
-                Size = new Size(245, ((int)graphics.MeasureString(companyName, fontArial8Bold, 245, StringFormat.GenericDefault).Height))
-            };
-
-            graphics.DrawString(companyName, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += companyNameRectangle.Size.Height + 1.0F;
+                adjustStringName = 3;
+            }
+            graphics.DrawString(companyName, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += graphics.MeasureString(companyName, fontArial8Regular).Height * adjustStringName;
 
             // ===============
             // Company Address
@@ -659,7 +657,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 Size = new Size(245, ((int)graphics.MeasureString(companyAddress, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
             };
             graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += companyAddressRectangle.Size.Height + 1.0F;
+            y += companyAddressRectangle.Size.Height + 12F;
 
             // ==========
             // TIN Number

@@ -1430,6 +1430,7 @@ namespace EasyPOS.Controllers
                                 {
                                     Decimal VATAmountPerPax = (pricePerPax / (1 + (salesLine.MstItem.MstTax1.Rate / 100))) * (salesLine.MstItem.MstTax1.Rate / 100);
 
+                                    //pricePerPaxVatExempt = pricePerPax;
                                     pricePerPaxVatExempt = pricePerPax - VATAmountPerPax;
 
                                     discountAmountPerPax = pricePerPaxVatExempt * (discountRate / 100);
@@ -1820,6 +1821,7 @@ namespace EasyPOS.Controllers
 
                     var updateSales = sales.FirstOrDefault();
                     updateSales.TableId = tableId;
+                    updateSales.MstTable.TableCode = tableCode;
                     updateSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
                     updateSales.UpdateDateTime = DateTime.Now;
                     db.SubmitChanges();

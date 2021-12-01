@@ -184,7 +184,20 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             trnPOSTouchForm.UpdateSalesListGridDataSource();
 
+            Entities.TrnSalesEntity newSalesEntity = new Entities.TrnSalesEntity()
+            {
+                Table = tableCode
+            };
+
+            if (trnPOSTouchDetailForm != null)
+            {
+                trnPOSTouchDetailForm.trnSalesEntity.Table = newSalesEntity.Table;
+            }
+
+            trnPOSTouchDetailForm.GetSalesDetail();
+
             Close();
+
         }
 
         private void buttonClose_Click(object sender, EventArgs e)
@@ -205,7 +218,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             FillTableGroup();
         }
-        
+
         private void buttonTableGroupPageNext_Click(object sender, EventArgs e)
         {
             tableGroupPage++;

@@ -702,6 +702,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
             Font fontArial12Regular = new Font("Arial", 12, FontStyle.Regular);
             Font fontArial11Bold = new Font("Arial", 11, FontStyle.Bold);
             Font fontArial11Regular = new Font("Arial", 11, FontStyle.Regular);
+            Font fontArial10Bold = new Font("Arial", 10, FontStyle.Bold);
+            Font fontArial10Regular = new Font("Arial", 10, FontStyle.Regular);
             Font fontArial8Bold = new Font("Arial", 8, FontStyle.Bold);
             Font fontArial8Regular = new Font("Arial", 8, FontStyle.Regular);
             Font fontArial7Bold = new Font("Arial", 7, FontStyle.Bold);
@@ -757,11 +759,13 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
             if (sales.Any())
             {
-
+                String spaceHeader = "";
+                graphics.DrawString(spaceHeader, fontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                y += graphics.MeasureString(spaceHeader, fontArial10Regular).Height + 100F;
 
                 String collectionNumberText = sales.FirstOrDefault().SalesNumber;
-                graphics.DrawString(collectionNumberText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                y += graphics.MeasureString(collectionNumberText, fontArial8Regular).Height;
+                graphics.DrawString(collectionNumberText, fontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                y += graphics.MeasureString(collectionNumberText, fontArial10Regular).Height;
 
 
 
@@ -780,8 +784,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Decimal totalNumberOfItems = 0;
 
                 String itemLabel = "\nITEM";
-                graphics.DrawString(itemLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                y += graphics.MeasureString(itemLabel, fontArial8Regular).Height + 5.0F;
+                graphics.DrawString(itemLabel, fontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                y += graphics.MeasureString(itemLabel, fontArial10Regular).Height + 5.0F;
 
 
 
@@ -832,9 +836,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                     {
                                         X = x,
                                         Y = y,
-                                        Size = new Size(150, ((int)graphics.MeasureString(itemData, fontArial8Regular, 150, StringFormat.GenericDefault).Height))
+                                        Size = new Size(180, ((int)graphics.MeasureString(itemData, fontArial10Regular, 150, StringFormat.GenericDefault).Height))
                                     };
-                                    graphics.DrawString(itemData, fontArial8Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
+                                    graphics.DrawString(itemData, fontArial10Regular, Brushes.Black, itemDataRectangle, drawFormatLeft);
 
                                     y += itemDataRectangle.Size.Height + 3.0F;
 
@@ -884,9 +888,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Point thirdLineSecondPoint = new Point(500, Convert.ToInt32(y) + 5);
                 graphics.DrawLine(blackPen, thirdLineFirstPoint, thirdLineSecondPoint);
 
-                String remarks = "\nRemarks:  " + salesLines.FirstOrDefault().TrnSale.Remarks;
-                graphics.DrawString(remarks, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                y += graphics.MeasureString(remarks, fontArial8Regular).Height;
+                String remarks = "\nRemarks:  " + "\n" +salesLines.FirstOrDefault().TrnSale.Remarks;
+                graphics.DrawString(remarks, fontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                y += graphics.MeasureString(remarks, fontArial10Regular).Height + 1.0F;
 
                 // ========
                 // 5th Line
@@ -902,9 +906,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                 String cashierLabel = "\nTeller";
                 String cashierUserData = "\n" + cashier;
-                graphics.DrawString(cashierLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                graphics.DrawString(cashierUserData, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(cashierUserData, fontArial8Regular).Height;
+                graphics.DrawString(cashierLabel, fontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                graphics.DrawString(cashierUserData, fontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(cashierUserData, fontArial10Regular).Height;
 
                 // ========
                 // 6th Line
@@ -914,12 +918,15 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 graphics.DrawLine(blackPen, sixthLineFirstPoint, sixthLineSecondPoint);
 
                 String collectionDateText = "\n" + sales.FirstOrDefault().SalesDate.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
-                graphics.DrawString(collectionDateText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
-                String tableNoText = "\nTable: " + sales.FirstOrDefault().MstTable.TableCode;
-                graphics.DrawString(tableNoText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                graphics.DrawString(collectionDateText, fontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                
                 String collectionTimeText = "\n" + sales.FirstOrDefault().UpdateDateTime.ToString("H:mm:ss", CultureInfo.InvariantCulture);
-                graphics.DrawString(collectionTimeText, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
-                y += graphics.MeasureString(collectionTimeText, fontArial8Regular).Height;
+                graphics.DrawString(collectionTimeText, fontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                y += graphics.MeasureString(collectionTimeText, fontArial10Regular).Height;
+
+                String tableNoText = "\nTable: " + sales.FirstOrDefault().MstTable.TableCode;
+                graphics.DrawString(tableNoText, fontArial10Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+                y += graphics.MeasureString(tableNoText, fontArial10Regular).Height;
             }
         }
 

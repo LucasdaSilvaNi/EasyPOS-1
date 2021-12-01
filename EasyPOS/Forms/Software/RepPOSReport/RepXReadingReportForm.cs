@@ -518,7 +518,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 Size = new Size(245, ((int)graphics.MeasureString(companyAddress, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
             };
             graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += companyAddressRectangle.Size.Height + 1.0F;
+            y += companyAddressRectangle.Size.Height + 12F;
 
             // ==========
             // TIN Number

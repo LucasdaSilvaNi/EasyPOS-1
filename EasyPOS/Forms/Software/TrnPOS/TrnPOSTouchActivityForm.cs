@@ -17,6 +17,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
         public TrnPOSTouchForm trnPOSTouchForm;
         public Entities.TrnSalesEntity trnSalesEntity;
 
+        private Modules.SysUserRightsModule sysUserRights;
+
         public TrnPOSTouchActivityForm(SysSoftwareForm softwareForm, TrnPOSTouchForm POSTouchForm, Entities.TrnSalesEntity salesEntity)
         {
             InitializeComponent();
@@ -24,6 +26,30 @@ namespace EasyPOS.Forms.Software.TrnPOS
             sysSoftwareForm = softwareForm;
             trnPOSTouchForm = POSTouchForm;
             trnSalesEntity = salesEntity;
+
+            sysUserRights = new Modules.SysUserRightsModule("TrnRestaurant");
+            if (sysUserRights.GetUserRights() == null)
+            {
+                MessageBox.Show("No rights!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                if (sysUserRights.GetUserRights().CanTender == false)
+                {
+                    buttonTender.Enabled = false;
+                }
+
+                if (sysUserRights.GetUserRights().CanPrint == false)
+                {
+                    buttonReprint.Enabled = false;
+                }
+
+                if (sysUserRights.GetUserRights().CanCancel == false)
+                {
+                    buttonCancel.Enabled = false;
+                }
+
+            }
 
             labelInvoiceNumber.Text = trnSalesEntity.SalesNumber;
 
@@ -60,6 +86,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
             {
                 buttonCancel.Enabled = false;
             }
+
+
         }
 
         private void buttonEditOrder_Click(object sender, EventArgs e)
