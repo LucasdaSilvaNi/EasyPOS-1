@@ -49,6 +49,10 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     buttonCancel.Enabled = false;
                 }
 
+                if (sysUserRights.GetUserRights().CanEdit == false)
+                {
+                    buttonEditOrder.Enabled = false;
+                }
             }
 
             labelInvoiceNumber.Text = trnSalesEntity.SalesNumber;

@@ -136,20 +136,20 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 {
                     dataGridViewSalesList.Columns[1].Visible = false;
                 }
-
-                lockOption = new List<String>
-                {
-                    SetLabel("All"),
-                    SetLabel("Locked"),
-                    SetLabel("Unlocked"),
-                    SetLabel("Tendered"),
-                    SetLabel("Cancelled")
-                };
-                comboBoxLockOption.DataSource = lockOption;
-
-                GetTerminalList();
-                timerRefreshSalesListGrid.Start();
             }
+
+            lockOption = new List<String>
+            {
+                SetLabel("All"),
+                SetLabel("Locked"),
+                SetLabel("Unlocked"),
+                SetLabel("Tendered"),
+                SetLabel("Cancelled")
+            };
+            comboBoxLockOption.DataSource = lockOption;
+
+            GetTerminalList();
+            timerRefreshSalesListGrid.Start();
 
             Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
             textBoxLastChange.Text = trnPOSSalesController.GetLastChange(Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().TerminalId)).ToString("#,##0.00");
