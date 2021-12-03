@@ -148,24 +148,24 @@
             this.buttonSupplierListPageListLast = new System.Windows.Forms.Button();
             this.textBoxSupplierListPageNumber = new System.Windows.Forms.TextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.dataGridViewLanguageList = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.buttonLanguageListPageListFirst = new System.Windows.Forms.Button();
             this.buttonLanguageListPageListPrevious = new System.Windows.Forms.Button();
             this.buttonLanguageListPageListNext = new System.Windows.Forms.Button();
             this.buttonLanguageListPageListLast = new System.Windows.Forms.Button();
             this.textBoxLanguageListPageNumber = new System.Windows.Forms.TextBox();
+            this.dataGridViewLanguageList = new System.Windows.Forms.DataGridView();
+            this.ColumnLanguageListButtonEdit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnLanguageListButtonDelete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ColumnLanguageListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLanguageListLabel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnLanguageListDisplayLabel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBoxLanguageListFilter = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.ColumnLanguageListButtonEdit = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnLanguageListButtonDelete = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.ColumnLanguageListId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLanguageListLabel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnLanguageListDisplayLabel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             this.tabControlSystemTable.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -197,8 +197,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSupplierList)).BeginInit();
             this.panel4.SuspendLayout();
             this.tabPage8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLanguageList)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLanguageList)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -207,10 +207,10 @@
             // 
             this.panel2.Controls.Add(this.tabControlSystemTable);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 50);
+            this.panel2.Location = new System.Drawing.Point(0, 62);
             this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1096, 510);
+            this.panel2.Size = new System.Drawing.Size(1370, 638);
             this.panel2.TabIndex = 6;
             // 
             // tabControlSystemTable
@@ -223,21 +223,22 @@
             this.tabControlSystemTable.Controls.Add(this.tabPage6);
             this.tabControlSystemTable.Controls.Add(this.tabPage7);
             this.tabControlSystemTable.Controls.Add(this.tabPage8);
-            this.tabControlSystemTable.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tabControlSystemTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlSystemTable.Location = new System.Drawing.Point(0, 0);
+            this.tabControlSystemTable.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControlSystemTable.Name = "tabControlSystemTable";
             this.tabControlSystemTable.SelectedIndex = 0;
-            this.tabControlSystemTable.Size = new System.Drawing.Size(1096, 510);
+            this.tabControlSystemTable.Size = new System.Drawing.Size(1370, 638);
             this.tabControlSystemTable.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.panel9);
-            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Location = new System.Drawing.Point(4, 32);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(1088, 478);
+            this.tabPage1.Size = new System.Drawing.Size(1362, 602);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Account";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -252,7 +253,7 @@
             this.panel9.Location = new System.Drawing.Point(2, 2);
             this.panel9.Margin = new System.Windows.Forms.Padding(2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1084, 474);
+            this.panel9.Size = new System.Drawing.Size(1358, 598);
             this.panel9.TabIndex = 1;
             // 
             // dataGridViewAccountList
@@ -272,14 +273,15 @@
             this.ColumnAccountListCode,
             this.ColumnAccountListAccount,
             this.ColumnAccountListAccountType});
-            this.dataGridViewAccountList.Location = new System.Drawing.Point(4, 31);
+            this.dataGridViewAccountList.Location = new System.Drawing.Point(5, 39);
             this.dataGridViewAccountList.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewAccountList.MultiSelect = false;
             this.dataGridViewAccountList.Name = "dataGridViewAccountList";
             this.dataGridViewAccountList.ReadOnly = true;
+            this.dataGridViewAccountList.RowHeadersWidth = 51;
             this.dataGridViewAccountList.RowTemplate.Height = 24;
             this.dataGridViewAccountList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAccountList.Size = new System.Drawing.Size(1076, 396);
+            this.dataGridViewAccountList.Size = new System.Drawing.Size(1348, 501);
             this.dataGridViewAccountList.TabIndex = 24;
             this.dataGridViewAccountList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAccountList_CellClick);
             // 
@@ -288,6 +290,7 @@
             this.ColumnAccountListButtonEdit.DataPropertyName = "ColumnAccountListButtonEdit";
             this.ColumnAccountListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnAccountListButtonEdit.HeaderText = "";
+            this.ColumnAccountListButtonEdit.MinimumWidth = 6;
             this.ColumnAccountListButtonEdit.Name = "ColumnAccountListButtonEdit";
             this.ColumnAccountListButtonEdit.ReadOnly = true;
             this.ColumnAccountListButtonEdit.Width = 70;
@@ -297,6 +300,7 @@
             this.ColumnAccountListButtonDelete.DataPropertyName = "ColumnAccountListButtonDelete";
             this.ColumnAccountListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnAccountListButtonDelete.HeaderText = "";
+            this.ColumnAccountListButtonDelete.MinimumWidth = 6;
             this.ColumnAccountListButtonDelete.Name = "ColumnAccountListButtonDelete";
             this.ColumnAccountListButtonDelete.ReadOnly = true;
             this.ColumnAccountListButtonDelete.Width = 70;
@@ -305,14 +309,17 @@
             // 
             this.ColumnAccountListId.DataPropertyName = "ColumnAccountListId";
             this.ColumnAccountListId.HeaderText = "Id";
+            this.ColumnAccountListId.MinimumWidth = 6;
             this.ColumnAccountListId.Name = "ColumnAccountListId";
             this.ColumnAccountListId.ReadOnly = true;
             this.ColumnAccountListId.Visible = false;
+            this.ColumnAccountListId.Width = 125;
             // 
             // ColumnAccountListCode
             // 
             this.ColumnAccountListCode.DataPropertyName = "ColumnAccountListCode";
             this.ColumnAccountListCode.HeaderText = "Code";
+            this.ColumnAccountListCode.MinimumWidth = 6;
             this.ColumnAccountListCode.Name = "ColumnAccountListCode";
             this.ColumnAccountListCode.ReadOnly = true;
             this.ColumnAccountListCode.Width = 150;
@@ -321,6 +328,7 @@
             // 
             this.ColumnAccountListAccount.DataPropertyName = "ColumnAccountListAccount";
             this.ColumnAccountListAccount.HeaderText = "Account";
+            this.ColumnAccountListAccount.MinimumWidth = 6;
             this.ColumnAccountListAccount.Name = "ColumnAccountListAccount";
             this.ColumnAccountListAccount.ReadOnly = true;
             this.ColumnAccountListAccount.Width = 250;
@@ -329,6 +337,7 @@
             // 
             this.ColumnAccountListAccountType.DataPropertyName = "ColumnAccountListAccountType";
             this.ColumnAccountListAccountType.HeaderText = "Type";
+            this.ColumnAccountListAccountType.MinimumWidth = 6;
             this.ColumnAccountListAccountType.Name = "ColumnAccountListAccountType";
             this.ColumnAccountListAccountType.ReadOnly = true;
             this.ColumnAccountListAccountType.Width = 200;
@@ -337,10 +346,10 @@
             // 
             this.textBoxAccountListFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxAccountListFilter.Location = new System.Drawing.Point(4, 2);
+            this.textBoxAccountListFilter.Location = new System.Drawing.Point(5, 2);
             this.textBoxAccountListFilter.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxAccountListFilter.Name = "textBoxAccountListFilter";
-            this.textBoxAccountListFilter.Size = new System.Drawing.Size(1077, 26);
+            this.textBoxAccountListFilter.Size = new System.Drawing.Size(1348, 30);
             this.textBoxAccountListFilter.TabIndex = 23;
             this.textBoxAccountListFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxAccountListFilter_KeyDown);
             // 
@@ -353,10 +362,10 @@
             this.panel15.Controls.Add(this.buttonAccountListPageListLast);
             this.panel15.Controls.Add(this.textBoxAccountListPageNumber);
             this.panel15.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel15.Location = new System.Drawing.Point(0, 432);
+            this.panel15.Location = new System.Drawing.Point(0, 546);
             this.panel15.Margin = new System.Windows.Forms.Padding(2);
             this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(1084, 42);
+            this.panel15.Size = new System.Drawing.Size(1358, 52);
             this.panel15.TabIndex = 22;
             // 
             // buttonAccountListPageListFirst
@@ -366,10 +375,10 @@
             this.buttonAccountListPageListFirst.FlatAppearance.BorderSize = 0;
             this.buttonAccountListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAccountListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonAccountListPageListFirst.Location = new System.Drawing.Point(10, 9);
+            this.buttonAccountListPageListFirst.Location = new System.Drawing.Point(12, 11);
             this.buttonAccountListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAccountListPageListFirst.Name = "buttonAccountListPageListFirst";
-            this.buttonAccountListPageListFirst.Size = new System.Drawing.Size(66, 26);
+            this.buttonAccountListPageListFirst.Size = new System.Drawing.Size(82, 32);
             this.buttonAccountListPageListFirst.TabIndex = 13;
             this.buttonAccountListPageListFirst.TabStop = false;
             this.buttonAccountListPageListFirst.Text = "First";
@@ -383,10 +392,10 @@
             this.buttonAccountListPageListPrevious.FlatAppearance.BorderSize = 0;
             this.buttonAccountListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAccountListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonAccountListPageListPrevious.Location = new System.Drawing.Point(80, 9);
+            this.buttonAccountListPageListPrevious.Location = new System.Drawing.Point(100, 11);
             this.buttonAccountListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAccountListPageListPrevious.Name = "buttonAccountListPageListPrevious";
-            this.buttonAccountListPageListPrevious.Size = new System.Drawing.Size(66, 26);
+            this.buttonAccountListPageListPrevious.Size = new System.Drawing.Size(82, 32);
             this.buttonAccountListPageListPrevious.TabIndex = 14;
             this.buttonAccountListPageListPrevious.TabStop = false;
             this.buttonAccountListPageListPrevious.Text = "Previous";
@@ -399,10 +408,10 @@
             this.buttonAccountListPageListNext.FlatAppearance.BorderSize = 0;
             this.buttonAccountListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAccountListPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonAccountListPageListNext.Location = new System.Drawing.Point(210, 9);
+            this.buttonAccountListPageListNext.Location = new System.Drawing.Point(262, 11);
             this.buttonAccountListPageListNext.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAccountListPageListNext.Name = "buttonAccountListPageListNext";
-            this.buttonAccountListPageListNext.Size = new System.Drawing.Size(66, 26);
+            this.buttonAccountListPageListNext.Size = new System.Drawing.Size(82, 32);
             this.buttonAccountListPageListNext.TabIndex = 15;
             this.buttonAccountListPageListNext.TabStop = false;
             this.buttonAccountListPageListNext.Text = "Next";
@@ -415,10 +424,10 @@
             this.buttonAccountListPageListLast.FlatAppearance.BorderSize = 0;
             this.buttonAccountListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAccountListPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonAccountListPageListLast.Location = new System.Drawing.Point(278, 9);
+            this.buttonAccountListPageListLast.Location = new System.Drawing.Point(348, 11);
             this.buttonAccountListPageListLast.Margin = new System.Windows.Forms.Padding(2);
             this.buttonAccountListPageListLast.Name = "buttonAccountListPageListLast";
-            this.buttonAccountListPageListLast.Size = new System.Drawing.Size(66, 26);
+            this.buttonAccountListPageListLast.Size = new System.Drawing.Size(82, 32);
             this.buttonAccountListPageListLast.TabIndex = 16;
             this.buttonAccountListPageListLast.TabStop = false;
             this.buttonAccountListPageListLast.Text = "Last";
@@ -431,11 +440,11 @@
             this.textBoxAccountListPageNumber.BackColor = System.Drawing.Color.White;
             this.textBoxAccountListPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxAccountListPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxAccountListPageNumber.Location = new System.Drawing.Point(150, 13);
+            this.textBoxAccountListPageNumber.Location = new System.Drawing.Point(188, 16);
             this.textBoxAccountListPageNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxAccountListPageNumber.Name = "textBoxAccountListPageNumber";
             this.textBoxAccountListPageNumber.ReadOnly = true;
-            this.textBoxAccountListPageNumber.Size = new System.Drawing.Size(55, 16);
+            this.textBoxAccountListPageNumber.Size = new System.Drawing.Size(69, 20);
             this.textBoxAccountListPageNumber.TabIndex = 17;
             this.textBoxAccountListPageNumber.TabStop = false;
             this.textBoxAccountListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -443,11 +452,11 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel10);
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Location = new System.Drawing.Point(4, 32);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(1088, 478);
+            this.tabPage2.Size = new System.Drawing.Size(1362, 602);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Pay Type";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -462,7 +471,7 @@
             this.panel10.Location = new System.Drawing.Point(2, 2);
             this.panel10.Margin = new System.Windows.Forms.Padding(2);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1084, 474);
+            this.panel10.Size = new System.Drawing.Size(1358, 598);
             this.panel10.TabIndex = 2;
             // 
             // dataGridViewPayTypeList
@@ -483,14 +492,15 @@
             this.ColumnPayTypeListPayType,
             this.ColumnAccountId,
             this.ColumnPayTypeListAccount});
-            this.dataGridViewPayTypeList.Location = new System.Drawing.Point(4, 31);
+            this.dataGridViewPayTypeList.Location = new System.Drawing.Point(5, 39);
             this.dataGridViewPayTypeList.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewPayTypeList.MultiSelect = false;
             this.dataGridViewPayTypeList.Name = "dataGridViewPayTypeList";
             this.dataGridViewPayTypeList.ReadOnly = true;
+            this.dataGridViewPayTypeList.RowHeadersWidth = 51;
             this.dataGridViewPayTypeList.RowTemplate.Height = 24;
             this.dataGridViewPayTypeList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPayTypeList.Size = new System.Drawing.Size(1076, 396);
+            this.dataGridViewPayTypeList.Size = new System.Drawing.Size(1348, 501);
             this.dataGridViewPayTypeList.TabIndex = 26;
             this.dataGridViewPayTypeList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPayTypeList_CellClick);
             // 
@@ -499,6 +509,7 @@
             this.ColumnPayTypeListButtonEdit.DataPropertyName = "ColumnPayTypeListButtonEdit";
             this.ColumnPayTypeListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnPayTypeListButtonEdit.HeaderText = "";
+            this.ColumnPayTypeListButtonEdit.MinimumWidth = 6;
             this.ColumnPayTypeListButtonEdit.Name = "ColumnPayTypeListButtonEdit";
             this.ColumnPayTypeListButtonEdit.ReadOnly = true;
             this.ColumnPayTypeListButtonEdit.Width = 70;
@@ -508,6 +519,7 @@
             this.ColumnPayTypeListButtonDelete.DataPropertyName = "ColumnPayTypeListButtonDelete";
             this.ColumnPayTypeListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnPayTypeListButtonDelete.HeaderText = "";
+            this.ColumnPayTypeListButtonDelete.MinimumWidth = 6;
             this.ColumnPayTypeListButtonDelete.Name = "ColumnPayTypeListButtonDelete";
             this.ColumnPayTypeListButtonDelete.ReadOnly = true;
             this.ColumnPayTypeListButtonDelete.Width = 70;
@@ -516,14 +528,17 @@
             // 
             this.ColumnPayTypeListId.DataPropertyName = "ColumnPayTypeListId";
             this.ColumnPayTypeListId.HeaderText = "Id";
+            this.ColumnPayTypeListId.MinimumWidth = 6;
             this.ColumnPayTypeListId.Name = "ColumnPayTypeListId";
             this.ColumnPayTypeListId.ReadOnly = true;
             this.ColumnPayTypeListId.Visible = false;
+            this.ColumnPayTypeListId.Width = 125;
             // 
             // ColumnPayTypeListPayTypeCode
             // 
             this.ColumnPayTypeListPayTypeCode.DataPropertyName = "ColumnPayTypeListPayTypeCode";
             this.ColumnPayTypeListPayTypeCode.HeaderText = "Code";
+            this.ColumnPayTypeListPayTypeCode.MinimumWidth = 6;
             this.ColumnPayTypeListPayTypeCode.Name = "ColumnPayTypeListPayTypeCode";
             this.ColumnPayTypeListPayTypeCode.ReadOnly = true;
             this.ColumnPayTypeListPayTypeCode.Width = 150;
@@ -532,6 +547,7 @@
             // 
             this.ColumnPayTypeListPayType.DataPropertyName = "ColumnPayTypeListPayType";
             this.ColumnPayTypeListPayType.HeaderText = "Pay Type";
+            this.ColumnPayTypeListPayType.MinimumWidth = 6;
             this.ColumnPayTypeListPayType.Name = "ColumnPayTypeListPayType";
             this.ColumnPayTypeListPayType.ReadOnly = true;
             this.ColumnPayTypeListPayType.Width = 250;
@@ -540,14 +556,17 @@
             // 
             this.ColumnAccountId.DataPropertyName = "ColumnAccountId";
             this.ColumnAccountId.HeaderText = "AccountId";
+            this.ColumnAccountId.MinimumWidth = 6;
             this.ColumnAccountId.Name = "ColumnAccountId";
             this.ColumnAccountId.ReadOnly = true;
             this.ColumnAccountId.Visible = false;
+            this.ColumnAccountId.Width = 125;
             // 
             // ColumnPayTypeListAccount
             // 
             this.ColumnPayTypeListAccount.DataPropertyName = "ColumnPayTypeListAccount";
             this.ColumnPayTypeListAccount.HeaderText = "Account";
+            this.ColumnPayTypeListAccount.MinimumWidth = 6;
             this.ColumnPayTypeListAccount.Name = "ColumnPayTypeListAccount";
             this.ColumnPayTypeListAccount.ReadOnly = true;
             this.ColumnPayTypeListAccount.Width = 200;
@@ -556,10 +575,10 @@
             // 
             this.textBoxPayTypeListFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPayTypeListFilter.Location = new System.Drawing.Point(4, 2);
+            this.textBoxPayTypeListFilter.Location = new System.Drawing.Point(5, 2);
             this.textBoxPayTypeListFilter.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPayTypeListFilter.Name = "textBoxPayTypeListFilter";
-            this.textBoxPayTypeListFilter.Size = new System.Drawing.Size(1077, 26);
+            this.textBoxPayTypeListFilter.Size = new System.Drawing.Size(1348, 30);
             this.textBoxPayTypeListFilter.TabIndex = 25;
             this.textBoxPayTypeListFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPayTypeListFilter_KeyDown);
             // 
@@ -572,10 +591,10 @@
             this.panel16.Controls.Add(this.buttonPayTypeListPageListLast);
             this.panel16.Controls.Add(this.textBoxPayTypeListPageNumber);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel16.Location = new System.Drawing.Point(0, 432);
+            this.panel16.Location = new System.Drawing.Point(0, 546);
             this.panel16.Margin = new System.Windows.Forms.Padding(2);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(1084, 42);
+            this.panel16.Size = new System.Drawing.Size(1358, 52);
             this.panel16.TabIndex = 23;
             // 
             // buttonPayTypeListPageListFirst
@@ -585,10 +604,10 @@
             this.buttonPayTypeListPageListFirst.FlatAppearance.BorderSize = 0;
             this.buttonPayTypeListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPayTypeListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonPayTypeListPageListFirst.Location = new System.Drawing.Point(10, 9);
+            this.buttonPayTypeListPageListFirst.Location = new System.Drawing.Point(12, 11);
             this.buttonPayTypeListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPayTypeListPageListFirst.Name = "buttonPayTypeListPageListFirst";
-            this.buttonPayTypeListPageListFirst.Size = new System.Drawing.Size(66, 26);
+            this.buttonPayTypeListPageListFirst.Size = new System.Drawing.Size(82, 32);
             this.buttonPayTypeListPageListFirst.TabIndex = 13;
             this.buttonPayTypeListPageListFirst.TabStop = false;
             this.buttonPayTypeListPageListFirst.Text = "First";
@@ -602,10 +621,10 @@
             this.buttonPayTypeListPageListPrevious.FlatAppearance.BorderSize = 0;
             this.buttonPayTypeListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPayTypeListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonPayTypeListPageListPrevious.Location = new System.Drawing.Point(80, 9);
+            this.buttonPayTypeListPageListPrevious.Location = new System.Drawing.Point(100, 11);
             this.buttonPayTypeListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPayTypeListPageListPrevious.Name = "buttonPayTypeListPageListPrevious";
-            this.buttonPayTypeListPageListPrevious.Size = new System.Drawing.Size(66, 26);
+            this.buttonPayTypeListPageListPrevious.Size = new System.Drawing.Size(82, 32);
             this.buttonPayTypeListPageListPrevious.TabIndex = 14;
             this.buttonPayTypeListPageListPrevious.TabStop = false;
             this.buttonPayTypeListPageListPrevious.Text = "Previous";
@@ -618,10 +637,10 @@
             this.buttonPayTypeListPageListNext.FlatAppearance.BorderSize = 0;
             this.buttonPayTypeListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPayTypeListPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonPayTypeListPageListNext.Location = new System.Drawing.Point(210, 9);
+            this.buttonPayTypeListPageListNext.Location = new System.Drawing.Point(262, 11);
             this.buttonPayTypeListPageListNext.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPayTypeListPageListNext.Name = "buttonPayTypeListPageListNext";
-            this.buttonPayTypeListPageListNext.Size = new System.Drawing.Size(66, 26);
+            this.buttonPayTypeListPageListNext.Size = new System.Drawing.Size(82, 32);
             this.buttonPayTypeListPageListNext.TabIndex = 15;
             this.buttonPayTypeListPageListNext.TabStop = false;
             this.buttonPayTypeListPageListNext.Text = "Next";
@@ -634,10 +653,10 @@
             this.buttonPayTypeListPageListLast.FlatAppearance.BorderSize = 0;
             this.buttonPayTypeListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPayTypeListPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonPayTypeListPageListLast.Location = new System.Drawing.Point(278, 9);
+            this.buttonPayTypeListPageListLast.Location = new System.Drawing.Point(348, 11);
             this.buttonPayTypeListPageListLast.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPayTypeListPageListLast.Name = "buttonPayTypeListPageListLast";
-            this.buttonPayTypeListPageListLast.Size = new System.Drawing.Size(66, 26);
+            this.buttonPayTypeListPageListLast.Size = new System.Drawing.Size(82, 32);
             this.buttonPayTypeListPageListLast.TabIndex = 16;
             this.buttonPayTypeListPageListLast.TabStop = false;
             this.buttonPayTypeListPageListLast.Text = "Last";
@@ -650,11 +669,11 @@
             this.textBoxPayTypeListPageNumber.BackColor = System.Drawing.Color.White;
             this.textBoxPayTypeListPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPayTypeListPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxPayTypeListPageNumber.Location = new System.Drawing.Point(150, 13);
+            this.textBoxPayTypeListPageNumber.Location = new System.Drawing.Point(188, 16);
             this.textBoxPayTypeListPageNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPayTypeListPageNumber.Name = "textBoxPayTypeListPageNumber";
             this.textBoxPayTypeListPageNumber.ReadOnly = true;
-            this.textBoxPayTypeListPageNumber.Size = new System.Drawing.Size(55, 16);
+            this.textBoxPayTypeListPageNumber.Size = new System.Drawing.Size(69, 20);
             this.textBoxPayTypeListPageNumber.TabIndex = 17;
             this.textBoxPayTypeListPageNumber.TabStop = false;
             this.textBoxPayTypeListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -662,11 +681,11 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.panel11);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Location = new System.Drawing.Point(4, 32);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage3.Size = new System.Drawing.Size(1088, 478);
+            this.tabPage3.Size = new System.Drawing.Size(1362, 602);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tax";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -681,7 +700,7 @@
             this.panel11.Location = new System.Drawing.Point(2, 2);
             this.panel11.Margin = new System.Windows.Forms.Padding(2);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(1084, 474);
+            this.panel11.Size = new System.Drawing.Size(1358, 598);
             this.panel11.TabIndex = 2;
             // 
             // dataGridViewTaxList
@@ -703,14 +722,15 @@
             this.ColumnTaxListRate,
             this.ColumnTaxListAccountId,
             this.ColumnTaxListAccount});
-            this.dataGridViewTaxList.Location = new System.Drawing.Point(4, 31);
+            this.dataGridViewTaxList.Location = new System.Drawing.Point(5, 39);
             this.dataGridViewTaxList.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewTaxList.MultiSelect = false;
             this.dataGridViewTaxList.Name = "dataGridViewTaxList";
             this.dataGridViewTaxList.ReadOnly = true;
+            this.dataGridViewTaxList.RowHeadersWidth = 51;
             this.dataGridViewTaxList.RowTemplate.Height = 24;
             this.dataGridViewTaxList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTaxList.Size = new System.Drawing.Size(1076, 396);
+            this.dataGridViewTaxList.Size = new System.Drawing.Size(1348, 501);
             this.dataGridViewTaxList.TabIndex = 28;
             this.dataGridViewTaxList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTaxList_CellClick);
             // 
@@ -719,6 +739,7 @@
             this.ColumnTaxListButtonEdit.DataPropertyName = "ColumnTaxListButtonEdit";
             this.ColumnTaxListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnTaxListButtonEdit.HeaderText = "";
+            this.ColumnTaxListButtonEdit.MinimumWidth = 6;
             this.ColumnTaxListButtonEdit.Name = "ColumnTaxListButtonEdit";
             this.ColumnTaxListButtonEdit.ReadOnly = true;
             this.ColumnTaxListButtonEdit.Width = 70;
@@ -728,6 +749,7 @@
             this.ColumnTaxListButtonDelete.DataPropertyName = "ColumnTaxListButtonDelete";
             this.ColumnTaxListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnTaxListButtonDelete.HeaderText = "";
+            this.ColumnTaxListButtonDelete.MinimumWidth = 6;
             this.ColumnTaxListButtonDelete.Name = "ColumnTaxListButtonDelete";
             this.ColumnTaxListButtonDelete.ReadOnly = true;
             this.ColumnTaxListButtonDelete.Width = 70;
@@ -736,14 +758,17 @@
             // 
             this.ColumnTaxListId.DataPropertyName = "ColumnTaxListId";
             this.ColumnTaxListId.HeaderText = "Id";
+            this.ColumnTaxListId.MinimumWidth = 6;
             this.ColumnTaxListId.Name = "ColumnTaxListId";
             this.ColumnTaxListId.ReadOnly = true;
             this.ColumnTaxListId.Visible = false;
+            this.ColumnTaxListId.Width = 125;
             // 
             // ColumnTaxListCode
             // 
             this.ColumnTaxListCode.DataPropertyName = "ColumnTaxListCode";
             this.ColumnTaxListCode.HeaderText = "Code";
+            this.ColumnTaxListCode.MinimumWidth = 6;
             this.ColumnTaxListCode.Name = "ColumnTaxListCode";
             this.ColumnTaxListCode.ReadOnly = true;
             this.ColumnTaxListCode.Width = 150;
@@ -752,6 +777,7 @@
             // 
             this.ColumnTaxListTax.DataPropertyName = "ColumnTaxListTax";
             this.ColumnTaxListTax.HeaderText = "Tax";
+            this.ColumnTaxListTax.MinimumWidth = 6;
             this.ColumnTaxListTax.Name = "ColumnTaxListTax";
             this.ColumnTaxListTax.ReadOnly = true;
             this.ColumnTaxListTax.Width = 250;
@@ -762,21 +788,26 @@
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
             this.ColumnTaxListRate.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnTaxListRate.HeaderText = "Rate";
+            this.ColumnTaxListRate.MinimumWidth = 6;
             this.ColumnTaxListRate.Name = "ColumnTaxListRate";
             this.ColumnTaxListRate.ReadOnly = true;
+            this.ColumnTaxListRate.Width = 125;
             // 
             // ColumnTaxListAccountId
             // 
             this.ColumnTaxListAccountId.DataPropertyName = "ColumnTaxListAccountId";
             this.ColumnTaxListAccountId.HeaderText = "AccountId";
+            this.ColumnTaxListAccountId.MinimumWidth = 6;
             this.ColumnTaxListAccountId.Name = "ColumnTaxListAccountId";
             this.ColumnTaxListAccountId.ReadOnly = true;
             this.ColumnTaxListAccountId.Visible = false;
+            this.ColumnTaxListAccountId.Width = 125;
             // 
             // ColumnTaxListAccount
             // 
             this.ColumnTaxListAccount.DataPropertyName = "ColumnTaxListAccount";
             this.ColumnTaxListAccount.HeaderText = "Account";
+            this.ColumnTaxListAccount.MinimumWidth = 6;
             this.ColumnTaxListAccount.Name = "ColumnTaxListAccount";
             this.ColumnTaxListAccount.ReadOnly = true;
             this.ColumnTaxListAccount.Width = 200;
@@ -785,10 +816,10 @@
             // 
             this.textBoxTaxListFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxTaxListFilter.Location = new System.Drawing.Point(4, 2);
+            this.textBoxTaxListFilter.Location = new System.Drawing.Point(5, 2);
             this.textBoxTaxListFilter.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTaxListFilter.Name = "textBoxTaxListFilter";
-            this.textBoxTaxListFilter.Size = new System.Drawing.Size(1077, 26);
+            this.textBoxTaxListFilter.Size = new System.Drawing.Size(1348, 30);
             this.textBoxTaxListFilter.TabIndex = 27;
             this.textBoxTaxListFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxTaxListFilter_KeyDown);
             // 
@@ -801,10 +832,10 @@
             this.panel17.Controls.Add(this.buttonTaxListPageListLast);
             this.panel17.Controls.Add(this.textBoxTaxListPageNumber);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel17.Location = new System.Drawing.Point(0, 432);
+            this.panel17.Location = new System.Drawing.Point(0, 546);
             this.panel17.Margin = new System.Windows.Forms.Padding(2);
             this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(1084, 42);
+            this.panel17.Size = new System.Drawing.Size(1358, 52);
             this.panel17.TabIndex = 23;
             // 
             // buttonTaxListPageListFirst
@@ -814,10 +845,10 @@
             this.buttonTaxListPageListFirst.FlatAppearance.BorderSize = 0;
             this.buttonTaxListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTaxListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonTaxListPageListFirst.Location = new System.Drawing.Point(10, 9);
+            this.buttonTaxListPageListFirst.Location = new System.Drawing.Point(12, 11);
             this.buttonTaxListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTaxListPageListFirst.Name = "buttonTaxListPageListFirst";
-            this.buttonTaxListPageListFirst.Size = new System.Drawing.Size(66, 26);
+            this.buttonTaxListPageListFirst.Size = new System.Drawing.Size(82, 32);
             this.buttonTaxListPageListFirst.TabIndex = 22;
             this.buttonTaxListPageListFirst.TabStop = false;
             this.buttonTaxListPageListFirst.Text = "First";
@@ -831,10 +862,10 @@
             this.buttonTaxListPageListPrevious.FlatAppearance.BorderSize = 0;
             this.buttonTaxListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTaxListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonTaxListPageListPrevious.Location = new System.Drawing.Point(80, 9);
+            this.buttonTaxListPageListPrevious.Location = new System.Drawing.Point(100, 11);
             this.buttonTaxListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTaxListPageListPrevious.Name = "buttonTaxListPageListPrevious";
-            this.buttonTaxListPageListPrevious.Size = new System.Drawing.Size(66, 26);
+            this.buttonTaxListPageListPrevious.Size = new System.Drawing.Size(82, 32);
             this.buttonTaxListPageListPrevious.TabIndex = 23;
             this.buttonTaxListPageListPrevious.TabStop = false;
             this.buttonTaxListPageListPrevious.Text = "Previous";
@@ -847,10 +878,10 @@
             this.buttonTaxListPageListNext.FlatAppearance.BorderSize = 0;
             this.buttonTaxListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTaxListPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonTaxListPageListNext.Location = new System.Drawing.Point(210, 9);
+            this.buttonTaxListPageListNext.Location = new System.Drawing.Point(262, 11);
             this.buttonTaxListPageListNext.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTaxListPageListNext.Name = "buttonTaxListPageListNext";
-            this.buttonTaxListPageListNext.Size = new System.Drawing.Size(66, 26);
+            this.buttonTaxListPageListNext.Size = new System.Drawing.Size(82, 32);
             this.buttonTaxListPageListNext.TabIndex = 25;
             this.buttonTaxListPageListNext.TabStop = false;
             this.buttonTaxListPageListNext.Text = "Next";
@@ -863,10 +894,10 @@
             this.buttonTaxListPageListLast.FlatAppearance.BorderSize = 0;
             this.buttonTaxListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTaxListPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonTaxListPageListLast.Location = new System.Drawing.Point(278, 9);
+            this.buttonTaxListPageListLast.Location = new System.Drawing.Point(348, 11);
             this.buttonTaxListPageListLast.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTaxListPageListLast.Name = "buttonTaxListPageListLast";
-            this.buttonTaxListPageListLast.Size = new System.Drawing.Size(66, 26);
+            this.buttonTaxListPageListLast.Size = new System.Drawing.Size(82, 32);
             this.buttonTaxListPageListLast.TabIndex = 26;
             this.buttonTaxListPageListLast.TabStop = false;
             this.buttonTaxListPageListLast.Text = "Last";
@@ -879,11 +910,11 @@
             this.textBoxTaxListPageNumber.BackColor = System.Drawing.Color.White;
             this.textBoxTaxListPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxTaxListPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxTaxListPageNumber.Location = new System.Drawing.Point(150, 13);
+            this.textBoxTaxListPageNumber.Location = new System.Drawing.Point(188, 16);
             this.textBoxTaxListPageNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTaxListPageNumber.Name = "textBoxTaxListPageNumber";
             this.textBoxTaxListPageNumber.ReadOnly = true;
-            this.textBoxTaxListPageNumber.Size = new System.Drawing.Size(55, 16);
+            this.textBoxTaxListPageNumber.Size = new System.Drawing.Size(69, 20);
             this.textBoxTaxListPageNumber.TabIndex = 24;
             this.textBoxTaxListPageNumber.TabStop = false;
             this.textBoxTaxListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -891,11 +922,11 @@
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.panel12);
-            this.tabPage4.Location = new System.Drawing.Point(4, 28);
+            this.tabPage4.Location = new System.Drawing.Point(4, 32);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage4.Size = new System.Drawing.Size(1088, 478);
+            this.tabPage4.Size = new System.Drawing.Size(1362, 602);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Unit";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -910,7 +941,7 @@
             this.panel12.Location = new System.Drawing.Point(2, 2);
             this.panel12.Margin = new System.Windows.Forms.Padding(2);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(1084, 474);
+            this.panel12.Size = new System.Drawing.Size(1358, 598);
             this.panel12.TabIndex = 2;
             // 
             // dataGridViewUnitList
@@ -928,14 +959,15 @@
             this.ColumnUnitListButtonDelete,
             this.ColumnUnitListId,
             this.ColumnUnitListUnit});
-            this.dataGridViewUnitList.Location = new System.Drawing.Point(4, 31);
+            this.dataGridViewUnitList.Location = new System.Drawing.Point(5, 39);
             this.dataGridViewUnitList.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewUnitList.MultiSelect = false;
             this.dataGridViewUnitList.Name = "dataGridViewUnitList";
             this.dataGridViewUnitList.ReadOnly = true;
+            this.dataGridViewUnitList.RowHeadersWidth = 51;
             this.dataGridViewUnitList.RowTemplate.Height = 24;
             this.dataGridViewUnitList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewUnitList.Size = new System.Drawing.Size(1076, 396);
+            this.dataGridViewUnitList.Size = new System.Drawing.Size(1348, 501);
             this.dataGridViewUnitList.TabIndex = 30;
             this.dataGridViewUnitList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUnitList_CellClick);
             // 
@@ -944,6 +976,7 @@
             this.ColumnUnitListButtonEdit.DataPropertyName = "ColumnUnitListButtonEdit";
             this.ColumnUnitListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnUnitListButtonEdit.HeaderText = "";
+            this.ColumnUnitListButtonEdit.MinimumWidth = 6;
             this.ColumnUnitListButtonEdit.Name = "ColumnUnitListButtonEdit";
             this.ColumnUnitListButtonEdit.ReadOnly = true;
             this.ColumnUnitListButtonEdit.Width = 70;
@@ -953,6 +986,7 @@
             this.ColumnUnitListButtonDelete.DataPropertyName = "ColumnUnitListButtonDelete";
             this.ColumnUnitListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnUnitListButtonDelete.HeaderText = "";
+            this.ColumnUnitListButtonDelete.MinimumWidth = 6;
             this.ColumnUnitListButtonDelete.Name = "ColumnUnitListButtonDelete";
             this.ColumnUnitListButtonDelete.ReadOnly = true;
             this.ColumnUnitListButtonDelete.Width = 70;
@@ -961,14 +995,17 @@
             // 
             this.ColumnUnitListId.DataPropertyName = "ColumnUnitListId";
             this.ColumnUnitListId.HeaderText = "Id";
+            this.ColumnUnitListId.MinimumWidth = 6;
             this.ColumnUnitListId.Name = "ColumnUnitListId";
             this.ColumnUnitListId.ReadOnly = true;
             this.ColumnUnitListId.Visible = false;
+            this.ColumnUnitListId.Width = 125;
             // 
             // ColumnUnitListUnit
             // 
             this.ColumnUnitListUnit.DataPropertyName = "ColumnUnitListUnit";
             this.ColumnUnitListUnit.HeaderText = "Unit";
+            this.ColumnUnitListUnit.MinimumWidth = 6;
             this.ColumnUnitListUnit.Name = "ColumnUnitListUnit";
             this.ColumnUnitListUnit.ReadOnly = true;
             this.ColumnUnitListUnit.Width = 150;
@@ -977,10 +1014,10 @@
             // 
             this.textBoxUnitListFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUnitListFilter.Location = new System.Drawing.Point(4, 2);
+            this.textBoxUnitListFilter.Location = new System.Drawing.Point(5, 2);
             this.textBoxUnitListFilter.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxUnitListFilter.Name = "textBoxUnitListFilter";
-            this.textBoxUnitListFilter.Size = new System.Drawing.Size(1077, 26);
+            this.textBoxUnitListFilter.Size = new System.Drawing.Size(1348, 30);
             this.textBoxUnitListFilter.TabIndex = 29;
             this.textBoxUnitListFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxUnitListFilter_KeyDown);
             // 
@@ -993,10 +1030,10 @@
             this.panel18.Controls.Add(this.buttonUnitListPageListLast);
             this.panel18.Controls.Add(this.textBoxUnitListPageNumber);
             this.panel18.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel18.Location = new System.Drawing.Point(0, 432);
+            this.panel18.Location = new System.Drawing.Point(0, 546);
             this.panel18.Margin = new System.Windows.Forms.Padding(2);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(1084, 42);
+            this.panel18.Size = new System.Drawing.Size(1358, 52);
             this.panel18.TabIndex = 23;
             // 
             // buttonUnitListPageListFirst
@@ -1006,10 +1043,10 @@
             this.buttonUnitListPageListFirst.FlatAppearance.BorderSize = 0;
             this.buttonUnitListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonUnitListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonUnitListPageListFirst.Location = new System.Drawing.Point(10, 9);
+            this.buttonUnitListPageListFirst.Location = new System.Drawing.Point(12, 11);
             this.buttonUnitListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
             this.buttonUnitListPageListFirst.Name = "buttonUnitListPageListFirst";
-            this.buttonUnitListPageListFirst.Size = new System.Drawing.Size(66, 26);
+            this.buttonUnitListPageListFirst.Size = new System.Drawing.Size(82, 32);
             this.buttonUnitListPageListFirst.TabIndex = 13;
             this.buttonUnitListPageListFirst.TabStop = false;
             this.buttonUnitListPageListFirst.Text = "First";
@@ -1023,10 +1060,10 @@
             this.buttonUnitListPageListPrevious.FlatAppearance.BorderSize = 0;
             this.buttonUnitListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonUnitListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonUnitListPageListPrevious.Location = new System.Drawing.Point(80, 9);
+            this.buttonUnitListPageListPrevious.Location = new System.Drawing.Point(100, 11);
             this.buttonUnitListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.buttonUnitListPageListPrevious.Name = "buttonUnitListPageListPrevious";
-            this.buttonUnitListPageListPrevious.Size = new System.Drawing.Size(66, 26);
+            this.buttonUnitListPageListPrevious.Size = new System.Drawing.Size(82, 32);
             this.buttonUnitListPageListPrevious.TabIndex = 14;
             this.buttonUnitListPageListPrevious.TabStop = false;
             this.buttonUnitListPageListPrevious.Text = "Previous";
@@ -1039,10 +1076,10 @@
             this.buttonUnitListPageListNext.FlatAppearance.BorderSize = 0;
             this.buttonUnitListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonUnitListPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonUnitListPageListNext.Location = new System.Drawing.Point(210, 9);
+            this.buttonUnitListPageListNext.Location = new System.Drawing.Point(262, 11);
             this.buttonUnitListPageListNext.Margin = new System.Windows.Forms.Padding(2);
             this.buttonUnitListPageListNext.Name = "buttonUnitListPageListNext";
-            this.buttonUnitListPageListNext.Size = new System.Drawing.Size(66, 26);
+            this.buttonUnitListPageListNext.Size = new System.Drawing.Size(82, 32);
             this.buttonUnitListPageListNext.TabIndex = 15;
             this.buttonUnitListPageListNext.TabStop = false;
             this.buttonUnitListPageListNext.Text = "Next";
@@ -1055,10 +1092,10 @@
             this.buttonUnitListPageListLast.FlatAppearance.BorderSize = 0;
             this.buttonUnitListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonUnitListPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonUnitListPageListLast.Location = new System.Drawing.Point(278, 9);
+            this.buttonUnitListPageListLast.Location = new System.Drawing.Point(348, 11);
             this.buttonUnitListPageListLast.Margin = new System.Windows.Forms.Padding(2);
             this.buttonUnitListPageListLast.Name = "buttonUnitListPageListLast";
-            this.buttonUnitListPageListLast.Size = new System.Drawing.Size(66, 26);
+            this.buttonUnitListPageListLast.Size = new System.Drawing.Size(82, 32);
             this.buttonUnitListPageListLast.TabIndex = 16;
             this.buttonUnitListPageListLast.TabStop = false;
             this.buttonUnitListPageListLast.Text = "Last";
@@ -1071,11 +1108,11 @@
             this.textBoxUnitListPageNumber.BackColor = System.Drawing.Color.White;
             this.textBoxUnitListPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxUnitListPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxUnitListPageNumber.Location = new System.Drawing.Point(150, 13);
+            this.textBoxUnitListPageNumber.Location = new System.Drawing.Point(188, 16);
             this.textBoxUnitListPageNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxUnitListPageNumber.Name = "textBoxUnitListPageNumber";
             this.textBoxUnitListPageNumber.ReadOnly = true;
-            this.textBoxUnitListPageNumber.Size = new System.Drawing.Size(55, 16);
+            this.textBoxUnitListPageNumber.Size = new System.Drawing.Size(69, 20);
             this.textBoxUnitListPageNumber.TabIndex = 17;
             this.textBoxUnitListPageNumber.TabStop = false;
             this.textBoxUnitListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1083,11 +1120,11 @@
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.panel13);
-            this.tabPage5.Location = new System.Drawing.Point(4, 28);
+            this.tabPage5.Location = new System.Drawing.Point(4, 32);
             this.tabPage5.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage5.Size = new System.Drawing.Size(1088, 478);
+            this.tabPage5.Size = new System.Drawing.Size(1362, 602);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Period";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1102,7 +1139,7 @@
             this.panel13.Location = new System.Drawing.Point(2, 2);
             this.panel13.Margin = new System.Windows.Forms.Padding(2);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(1084, 474);
+            this.panel13.Size = new System.Drawing.Size(1358, 598);
             this.panel13.TabIndex = 2;
             // 
             // dataGridViewPeriodList
@@ -1120,14 +1157,15 @@
             this.ColumnPeriodListButtonDelete,
             this.ColumnPeriodListId,
             this.ColumnPeriodListPeriod});
-            this.dataGridViewPeriodList.Location = new System.Drawing.Point(4, 31);
+            this.dataGridViewPeriodList.Location = new System.Drawing.Point(5, 39);
             this.dataGridViewPeriodList.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewPeriodList.MultiSelect = false;
             this.dataGridViewPeriodList.Name = "dataGridViewPeriodList";
             this.dataGridViewPeriodList.ReadOnly = true;
+            this.dataGridViewPeriodList.RowHeadersWidth = 51;
             this.dataGridViewPeriodList.RowTemplate.Height = 24;
             this.dataGridViewPeriodList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewPeriodList.Size = new System.Drawing.Size(1076, 396);
+            this.dataGridViewPeriodList.Size = new System.Drawing.Size(1348, 501);
             this.dataGridViewPeriodList.TabIndex = 32;
             this.dataGridViewPeriodList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPeriodList_CellClick);
             // 
@@ -1136,6 +1174,7 @@
             this.ColumnPeriodListButtonEdit.DataPropertyName = "ColumnPeriodListButtonEdit";
             this.ColumnPeriodListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnPeriodListButtonEdit.HeaderText = "";
+            this.ColumnPeriodListButtonEdit.MinimumWidth = 6;
             this.ColumnPeriodListButtonEdit.Name = "ColumnPeriodListButtonEdit";
             this.ColumnPeriodListButtonEdit.ReadOnly = true;
             this.ColumnPeriodListButtonEdit.Width = 70;
@@ -1145,6 +1184,7 @@
             this.ColumnPeriodListButtonDelete.DataPropertyName = "ColumnPeriodListButtonDelete";
             this.ColumnPeriodListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnPeriodListButtonDelete.HeaderText = "";
+            this.ColumnPeriodListButtonDelete.MinimumWidth = 6;
             this.ColumnPeriodListButtonDelete.Name = "ColumnPeriodListButtonDelete";
             this.ColumnPeriodListButtonDelete.ReadOnly = true;
             this.ColumnPeriodListButtonDelete.Width = 70;
@@ -1153,14 +1193,17 @@
             // 
             this.ColumnPeriodListId.DataPropertyName = "ColumnPeriodListId";
             this.ColumnPeriodListId.HeaderText = "Id";
+            this.ColumnPeriodListId.MinimumWidth = 6;
             this.ColumnPeriodListId.Name = "ColumnPeriodListId";
             this.ColumnPeriodListId.ReadOnly = true;
             this.ColumnPeriodListId.Visible = false;
+            this.ColumnPeriodListId.Width = 125;
             // 
             // ColumnPeriodListPeriod
             // 
             this.ColumnPeriodListPeriod.DataPropertyName = "ColumnPeriodListPeriod";
             this.ColumnPeriodListPeriod.HeaderText = "Period";
+            this.ColumnPeriodListPeriod.MinimumWidth = 6;
             this.ColumnPeriodListPeriod.Name = "ColumnPeriodListPeriod";
             this.ColumnPeriodListPeriod.ReadOnly = true;
             this.ColumnPeriodListPeriod.Width = 150;
@@ -1169,10 +1212,10 @@
             // 
             this.textBoxPeriodListFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPeriodListFilter.Location = new System.Drawing.Point(4, 2);
+            this.textBoxPeriodListFilter.Location = new System.Drawing.Point(5, 2);
             this.textBoxPeriodListFilter.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPeriodListFilter.Name = "textBoxPeriodListFilter";
-            this.textBoxPeriodListFilter.Size = new System.Drawing.Size(1077, 26);
+            this.textBoxPeriodListFilter.Size = new System.Drawing.Size(1348, 30);
             this.textBoxPeriodListFilter.TabIndex = 31;
             this.textBoxPeriodListFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxPeriodListFilter_KeyDown);
             // 
@@ -1185,10 +1228,10 @@
             this.panel19.Controls.Add(this.buttonPeriodListPageListLast);
             this.panel19.Controls.Add(this.textBoxPeriodListPageNumber);
             this.panel19.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel19.Location = new System.Drawing.Point(0, 432);
+            this.panel19.Location = new System.Drawing.Point(0, 546);
             this.panel19.Margin = new System.Windows.Forms.Padding(2);
             this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(1084, 42);
+            this.panel19.Size = new System.Drawing.Size(1358, 52);
             this.panel19.TabIndex = 23;
             // 
             // buttonPeriodListPageListFirst
@@ -1198,10 +1241,10 @@
             this.buttonPeriodListPageListFirst.FlatAppearance.BorderSize = 0;
             this.buttonPeriodListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPeriodListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonPeriodListPageListFirst.Location = new System.Drawing.Point(10, 9);
+            this.buttonPeriodListPageListFirst.Location = new System.Drawing.Point(12, 11);
             this.buttonPeriodListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPeriodListPageListFirst.Name = "buttonPeriodListPageListFirst";
-            this.buttonPeriodListPageListFirst.Size = new System.Drawing.Size(66, 26);
+            this.buttonPeriodListPageListFirst.Size = new System.Drawing.Size(82, 32);
             this.buttonPeriodListPageListFirst.TabIndex = 13;
             this.buttonPeriodListPageListFirst.TabStop = false;
             this.buttonPeriodListPageListFirst.Text = "First";
@@ -1215,10 +1258,10 @@
             this.buttonPeriodListPageListPrevious.FlatAppearance.BorderSize = 0;
             this.buttonPeriodListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPeriodListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonPeriodListPageListPrevious.Location = new System.Drawing.Point(80, 9);
+            this.buttonPeriodListPageListPrevious.Location = new System.Drawing.Point(100, 11);
             this.buttonPeriodListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPeriodListPageListPrevious.Name = "buttonPeriodListPageListPrevious";
-            this.buttonPeriodListPageListPrevious.Size = new System.Drawing.Size(66, 26);
+            this.buttonPeriodListPageListPrevious.Size = new System.Drawing.Size(82, 32);
             this.buttonPeriodListPageListPrevious.TabIndex = 14;
             this.buttonPeriodListPageListPrevious.TabStop = false;
             this.buttonPeriodListPageListPrevious.Text = "Previous";
@@ -1231,10 +1274,10 @@
             this.buttonPeriodListPageListNext.FlatAppearance.BorderSize = 0;
             this.buttonPeriodListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPeriodListPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonPeriodListPageListNext.Location = new System.Drawing.Point(210, 9);
+            this.buttonPeriodListPageListNext.Location = new System.Drawing.Point(262, 11);
             this.buttonPeriodListPageListNext.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPeriodListPageListNext.Name = "buttonPeriodListPageListNext";
-            this.buttonPeriodListPageListNext.Size = new System.Drawing.Size(66, 26);
+            this.buttonPeriodListPageListNext.Size = new System.Drawing.Size(82, 32);
             this.buttonPeriodListPageListNext.TabIndex = 15;
             this.buttonPeriodListPageListNext.TabStop = false;
             this.buttonPeriodListPageListNext.Text = "Next";
@@ -1247,10 +1290,10 @@
             this.buttonPeriodListPageListLast.FlatAppearance.BorderSize = 0;
             this.buttonPeriodListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonPeriodListPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonPeriodListPageListLast.Location = new System.Drawing.Point(278, 9);
+            this.buttonPeriodListPageListLast.Location = new System.Drawing.Point(348, 11);
             this.buttonPeriodListPageListLast.Margin = new System.Windows.Forms.Padding(2);
             this.buttonPeriodListPageListLast.Name = "buttonPeriodListPageListLast";
-            this.buttonPeriodListPageListLast.Size = new System.Drawing.Size(66, 26);
+            this.buttonPeriodListPageListLast.Size = new System.Drawing.Size(82, 32);
             this.buttonPeriodListPageListLast.TabIndex = 16;
             this.buttonPeriodListPageListLast.TabStop = false;
             this.buttonPeriodListPageListLast.Text = "Last";
@@ -1263,11 +1306,11 @@
             this.textBoxPeriodListPageNumber.BackColor = System.Drawing.Color.White;
             this.textBoxPeriodListPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPeriodListPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxPeriodListPageNumber.Location = new System.Drawing.Point(150, 13);
+            this.textBoxPeriodListPageNumber.Location = new System.Drawing.Point(188, 16);
             this.textBoxPeriodListPageNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPeriodListPageNumber.Name = "textBoxPeriodListPageNumber";
             this.textBoxPeriodListPageNumber.ReadOnly = true;
-            this.textBoxPeriodListPageNumber.Size = new System.Drawing.Size(55, 16);
+            this.textBoxPeriodListPageNumber.Size = new System.Drawing.Size(69, 20);
             this.textBoxPeriodListPageNumber.TabIndex = 17;
             this.textBoxPeriodListPageNumber.TabStop = false;
             this.textBoxPeriodListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1275,11 +1318,11 @@
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.panel14);
-            this.tabPage6.Location = new System.Drawing.Point(4, 28);
+            this.tabPage6.Location = new System.Drawing.Point(4, 32);
             this.tabPage6.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage6.Size = new System.Drawing.Size(1088, 478);
+            this.tabPage6.Size = new System.Drawing.Size(1362, 602);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Terminal";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1294,7 +1337,7 @@
             this.panel14.Location = new System.Drawing.Point(2, 2);
             this.panel14.Margin = new System.Windows.Forms.Padding(2);
             this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(1084, 474);
+            this.panel14.Size = new System.Drawing.Size(1358, 598);
             this.panel14.TabIndex = 2;
             // 
             // dataGridViewTerminalList
@@ -1312,14 +1355,15 @@
             this.ColumnTerminalListButtonDelete,
             this.ColumnTerminalListId,
             this.ColumnTerminalListTerminal});
-            this.dataGridViewTerminalList.Location = new System.Drawing.Point(4, 31);
+            this.dataGridViewTerminalList.Location = new System.Drawing.Point(5, 39);
             this.dataGridViewTerminalList.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewTerminalList.MultiSelect = false;
             this.dataGridViewTerminalList.Name = "dataGridViewTerminalList";
             this.dataGridViewTerminalList.ReadOnly = true;
+            this.dataGridViewTerminalList.RowHeadersWidth = 51;
             this.dataGridViewTerminalList.RowTemplate.Height = 24;
             this.dataGridViewTerminalList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewTerminalList.Size = new System.Drawing.Size(1076, 396);
+            this.dataGridViewTerminalList.Size = new System.Drawing.Size(1348, 501);
             this.dataGridViewTerminalList.TabIndex = 32;
             this.dataGridViewTerminalList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTerminalList_CellClick);
             // 
@@ -1328,6 +1372,7 @@
             this.ColumnTerminalListButtonEdit.DataPropertyName = "ColumnTerminalListButtonEdit";
             this.ColumnTerminalListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnTerminalListButtonEdit.HeaderText = "";
+            this.ColumnTerminalListButtonEdit.MinimumWidth = 6;
             this.ColumnTerminalListButtonEdit.Name = "ColumnTerminalListButtonEdit";
             this.ColumnTerminalListButtonEdit.ReadOnly = true;
             this.ColumnTerminalListButtonEdit.Width = 70;
@@ -1337,6 +1382,7 @@
             this.ColumnTerminalListButtonDelete.DataPropertyName = "ColumnTerminalListButtonDelete";
             this.ColumnTerminalListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnTerminalListButtonDelete.HeaderText = "";
+            this.ColumnTerminalListButtonDelete.MinimumWidth = 6;
             this.ColumnTerminalListButtonDelete.Name = "ColumnTerminalListButtonDelete";
             this.ColumnTerminalListButtonDelete.ReadOnly = true;
             this.ColumnTerminalListButtonDelete.Width = 70;
@@ -1345,14 +1391,17 @@
             // 
             this.ColumnTerminalListId.DataPropertyName = "ColumnTerminalListId";
             this.ColumnTerminalListId.HeaderText = "Id";
+            this.ColumnTerminalListId.MinimumWidth = 6;
             this.ColumnTerminalListId.Name = "ColumnTerminalListId";
             this.ColumnTerminalListId.ReadOnly = true;
             this.ColumnTerminalListId.Visible = false;
+            this.ColumnTerminalListId.Width = 125;
             // 
             // ColumnTerminalListTerminal
             // 
             this.ColumnTerminalListTerminal.DataPropertyName = "ColumnTerminalListTerminal";
             this.ColumnTerminalListTerminal.HeaderText = "Terminal";
+            this.ColumnTerminalListTerminal.MinimumWidth = 6;
             this.ColumnTerminalListTerminal.Name = "ColumnTerminalListTerminal";
             this.ColumnTerminalListTerminal.ReadOnly = true;
             this.ColumnTerminalListTerminal.Width = 150;
@@ -1361,10 +1410,10 @@
             // 
             this.textBoxTerminalListFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxTerminalListFilter.Location = new System.Drawing.Point(4, 2);
+            this.textBoxTerminalListFilter.Location = new System.Drawing.Point(5, 2);
             this.textBoxTerminalListFilter.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTerminalListFilter.Name = "textBoxTerminalListFilter";
-            this.textBoxTerminalListFilter.Size = new System.Drawing.Size(1077, 26);
+            this.textBoxTerminalListFilter.Size = new System.Drawing.Size(1348, 30);
             this.textBoxTerminalListFilter.TabIndex = 31;
             this.textBoxTerminalListFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxTerminalListFilter_KeyDown);
             // 
@@ -1377,10 +1426,10 @@
             this.panel20.Controls.Add(this.buttonTerminalListPageListLast);
             this.panel20.Controls.Add(this.textBoxTerminalListPageNumber);
             this.panel20.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel20.Location = new System.Drawing.Point(0, 432);
+            this.panel20.Location = new System.Drawing.Point(0, 546);
             this.panel20.Margin = new System.Windows.Forms.Padding(2);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(1084, 42);
+            this.panel20.Size = new System.Drawing.Size(1358, 52);
             this.panel20.TabIndex = 23;
             // 
             // buttonTerminalListPageListFirst
@@ -1390,10 +1439,10 @@
             this.buttonTerminalListPageListFirst.FlatAppearance.BorderSize = 0;
             this.buttonTerminalListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTerminalListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonTerminalListPageListFirst.Location = new System.Drawing.Point(10, 9);
+            this.buttonTerminalListPageListFirst.Location = new System.Drawing.Point(12, 11);
             this.buttonTerminalListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTerminalListPageListFirst.Name = "buttonTerminalListPageListFirst";
-            this.buttonTerminalListPageListFirst.Size = new System.Drawing.Size(66, 26);
+            this.buttonTerminalListPageListFirst.Size = new System.Drawing.Size(82, 32);
             this.buttonTerminalListPageListFirst.TabIndex = 13;
             this.buttonTerminalListPageListFirst.TabStop = false;
             this.buttonTerminalListPageListFirst.Text = "First";
@@ -1407,10 +1456,10 @@
             this.buttonTerminalListPageListPrevious.FlatAppearance.BorderSize = 0;
             this.buttonTerminalListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTerminalListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonTerminalListPageListPrevious.Location = new System.Drawing.Point(80, 9);
+            this.buttonTerminalListPageListPrevious.Location = new System.Drawing.Point(100, 11);
             this.buttonTerminalListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTerminalListPageListPrevious.Name = "buttonTerminalListPageListPrevious";
-            this.buttonTerminalListPageListPrevious.Size = new System.Drawing.Size(66, 26);
+            this.buttonTerminalListPageListPrevious.Size = new System.Drawing.Size(82, 32);
             this.buttonTerminalListPageListPrevious.TabIndex = 14;
             this.buttonTerminalListPageListPrevious.TabStop = false;
             this.buttonTerminalListPageListPrevious.Text = "Previous";
@@ -1423,10 +1472,10 @@
             this.buttonTerminalListPageListNext.FlatAppearance.BorderSize = 0;
             this.buttonTerminalListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTerminalListPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonTerminalListPageListNext.Location = new System.Drawing.Point(210, 9);
+            this.buttonTerminalListPageListNext.Location = new System.Drawing.Point(262, 11);
             this.buttonTerminalListPageListNext.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTerminalListPageListNext.Name = "buttonTerminalListPageListNext";
-            this.buttonTerminalListPageListNext.Size = new System.Drawing.Size(66, 26);
+            this.buttonTerminalListPageListNext.Size = new System.Drawing.Size(82, 32);
             this.buttonTerminalListPageListNext.TabIndex = 15;
             this.buttonTerminalListPageListNext.TabStop = false;
             this.buttonTerminalListPageListNext.Text = "Next";
@@ -1439,10 +1488,10 @@
             this.buttonTerminalListPageListLast.FlatAppearance.BorderSize = 0;
             this.buttonTerminalListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonTerminalListPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonTerminalListPageListLast.Location = new System.Drawing.Point(278, 9);
+            this.buttonTerminalListPageListLast.Location = new System.Drawing.Point(348, 11);
             this.buttonTerminalListPageListLast.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTerminalListPageListLast.Name = "buttonTerminalListPageListLast";
-            this.buttonTerminalListPageListLast.Size = new System.Drawing.Size(66, 26);
+            this.buttonTerminalListPageListLast.Size = new System.Drawing.Size(82, 32);
             this.buttonTerminalListPageListLast.TabIndex = 16;
             this.buttonTerminalListPageListLast.TabStop = false;
             this.buttonTerminalListPageListLast.Text = "Last";
@@ -1455,11 +1504,11 @@
             this.textBoxTerminalListPageNumber.BackColor = System.Drawing.Color.White;
             this.textBoxTerminalListPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxTerminalListPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxTerminalListPageNumber.Location = new System.Drawing.Point(150, 13);
+            this.textBoxTerminalListPageNumber.Location = new System.Drawing.Point(188, 16);
             this.textBoxTerminalListPageNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTerminalListPageNumber.Name = "textBoxTerminalListPageNumber";
             this.textBoxTerminalListPageNumber.ReadOnly = true;
-            this.textBoxTerminalListPageNumber.Size = new System.Drawing.Size(55, 16);
+            this.textBoxTerminalListPageNumber.Size = new System.Drawing.Size(69, 20);
             this.textBoxTerminalListPageNumber.TabIndex = 17;
             this.textBoxTerminalListPageNumber.TabStop = false;
             this.textBoxTerminalListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1467,11 +1516,11 @@
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.panel3);
-            this.tabPage7.Location = new System.Drawing.Point(4, 28);
+            this.tabPage7.Location = new System.Drawing.Point(4, 32);
             this.tabPage7.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage7.Size = new System.Drawing.Size(1088, 478);
+            this.tabPage7.Size = new System.Drawing.Size(1362, 602);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Supplier";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1486,7 +1535,7 @@
             this.panel3.Location = new System.Drawing.Point(2, 2);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1084, 474);
+            this.panel3.Size = new System.Drawing.Size(1358, 598);
             this.panel3.TabIndex = 3;
             // 
             // dataGridViewSupplierList
@@ -1512,14 +1561,15 @@
             this.ColumnSupplierListTIN,
             this.ColumnSupplierListAccountId,
             this.ColumnSupplierListIsLocked});
-            this.dataGridViewSupplierList.Location = new System.Drawing.Point(4, 31);
+            this.dataGridViewSupplierList.Location = new System.Drawing.Point(5, 39);
             this.dataGridViewSupplierList.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewSupplierList.MultiSelect = false;
             this.dataGridViewSupplierList.Name = "dataGridViewSupplierList";
             this.dataGridViewSupplierList.ReadOnly = true;
+            this.dataGridViewSupplierList.RowHeadersWidth = 51;
             this.dataGridViewSupplierList.RowTemplate.Height = 24;
             this.dataGridViewSupplierList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewSupplierList.Size = new System.Drawing.Size(1076, 396);
+            this.dataGridViewSupplierList.Size = new System.Drawing.Size(1348, 501);
             this.dataGridViewSupplierList.TabIndex = 32;
             this.dataGridViewSupplierList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSupplierList_CellClick);
             // 
@@ -1528,6 +1578,7 @@
             this.ColumnSupplierListButtonEdit.DataPropertyName = "ColumnSupplierListButtonEdit";
             this.ColumnSupplierListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnSupplierListButtonEdit.HeaderText = "";
+            this.ColumnSupplierListButtonEdit.MinimumWidth = 6;
             this.ColumnSupplierListButtonEdit.Name = "ColumnSupplierListButtonEdit";
             this.ColumnSupplierListButtonEdit.ReadOnly = true;
             this.ColumnSupplierListButtonEdit.Width = 70;
@@ -1537,6 +1588,7 @@
             this.ColumnSupplierListButtonDelete.DataPropertyName = "ColumnSupplierListButtonDelete";
             this.ColumnSupplierListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnSupplierListButtonDelete.HeaderText = "";
+            this.ColumnSupplierListButtonDelete.MinimumWidth = 6;
             this.ColumnSupplierListButtonDelete.Name = "ColumnSupplierListButtonDelete";
             this.ColumnSupplierListButtonDelete.ReadOnly = true;
             this.ColumnSupplierListButtonDelete.Width = 70;
@@ -1545,14 +1597,17 @@
             // 
             this.ColumnSupplierListId.DataPropertyName = "ColumnSupplierListId";
             this.ColumnSupplierListId.HeaderText = "Id";
+            this.ColumnSupplierListId.MinimumWidth = 6;
             this.ColumnSupplierListId.Name = "ColumnSupplierListId";
             this.ColumnSupplierListId.ReadOnly = true;
             this.ColumnSupplierListId.Visible = false;
+            this.ColumnSupplierListId.Width = 125;
             // 
             // ColumnSupplierListSupplier
             // 
             this.ColumnSupplierListSupplier.DataPropertyName = "ColumnSupplierListSupplier";
             this.ColumnSupplierListSupplier.HeaderText = "Supplier";
+            this.ColumnSupplierListSupplier.MinimumWidth = 6;
             this.ColumnSupplierListSupplier.Name = "ColumnSupplierListSupplier";
             this.ColumnSupplierListSupplier.ReadOnly = true;
             this.ColumnSupplierListSupplier.Width = 200;
@@ -1561,6 +1616,7 @@
             // 
             this.ColumnSupplierListAddress.DataPropertyName = "ColumnSupplierListAddress";
             this.ColumnSupplierListAddress.HeaderText = "Address";
+            this.ColumnSupplierListAddress.MinimumWidth = 6;
             this.ColumnSupplierListAddress.Name = "ColumnSupplierListAddress";
             this.ColumnSupplierListAddress.ReadOnly = true;
             this.ColumnSupplierListAddress.Width = 250;
@@ -1569,6 +1625,7 @@
             // 
             this.ColumnSupplierListTelephoneNumber.DataPropertyName = "ColumnSupplierListTelephoneNumber";
             this.ColumnSupplierListTelephoneNumber.HeaderText = "Tel. No.";
+            this.ColumnSupplierListTelephoneNumber.MinimumWidth = 6;
             this.ColumnSupplierListTelephoneNumber.Name = "ColumnSupplierListTelephoneNumber";
             this.ColumnSupplierListTelephoneNumber.ReadOnly = true;
             this.ColumnSupplierListTelephoneNumber.Width = 150;
@@ -1577,6 +1634,7 @@
             // 
             this.ColumnSupplierListCellphoneNumber.DataPropertyName = "ColumnSupplierListCellphoneNumber";
             this.ColumnSupplierListCellphoneNumber.HeaderText = "Cell. No.";
+            this.ColumnSupplierListCellphoneNumber.MinimumWidth = 6;
             this.ColumnSupplierListCellphoneNumber.Name = "ColumnSupplierListCellphoneNumber";
             this.ColumnSupplierListCellphoneNumber.ReadOnly = true;
             this.ColumnSupplierListCellphoneNumber.Width = 150;
@@ -1585,22 +1643,27 @@
             // 
             this.ColumnSupplierListFaxNumber.DataPropertyName = "ColumnSupplierListFaxNumber";
             this.ColumnSupplierListFaxNumber.HeaderText = "FaxNumber";
+            this.ColumnSupplierListFaxNumber.MinimumWidth = 6;
             this.ColumnSupplierListFaxNumber.Name = "ColumnSupplierListFaxNumber";
             this.ColumnSupplierListFaxNumber.ReadOnly = true;
             this.ColumnSupplierListFaxNumber.Visible = false;
+            this.ColumnSupplierListFaxNumber.Width = 125;
             // 
             // ColumnSupplierListTermId
             // 
             this.ColumnSupplierListTermId.DataPropertyName = "ColumnSupplierListTermId";
             this.ColumnSupplierListTermId.HeaderText = "TermId";
+            this.ColumnSupplierListTermId.MinimumWidth = 6;
             this.ColumnSupplierListTermId.Name = "ColumnSupplierListTermId";
             this.ColumnSupplierListTermId.ReadOnly = true;
             this.ColumnSupplierListTermId.Visible = false;
+            this.ColumnSupplierListTermId.Width = 125;
             // 
             // ColumnSupplierListTIN
             // 
             this.ColumnSupplierListTIN.DataPropertyName = "ColumnSupplierListTIN";
             this.ColumnSupplierListTIN.HeaderText = "TIN";
+            this.ColumnSupplierListTIN.MinimumWidth = 6;
             this.ColumnSupplierListTIN.Name = "ColumnSupplierListTIN";
             this.ColumnSupplierListTIN.ReadOnly = true;
             this.ColumnSupplierListTIN.Width = 150;
@@ -1609,27 +1672,31 @@
             // 
             this.ColumnSupplierListAccountId.DataPropertyName = "ColumnSupplierListAccountId";
             this.ColumnSupplierListAccountId.HeaderText = "AccountId";
+            this.ColumnSupplierListAccountId.MinimumWidth = 6;
             this.ColumnSupplierListAccountId.Name = "ColumnSupplierListAccountId";
             this.ColumnSupplierListAccountId.ReadOnly = true;
             this.ColumnSupplierListAccountId.Visible = false;
+            this.ColumnSupplierListAccountId.Width = 125;
             // 
             // ColumnSupplierListIsLocked
             // 
             this.ColumnSupplierListIsLocked.DataPropertyName = "ColumnSupplierListIsLocked";
             this.ColumnSupplierListIsLocked.HeaderText = "Lock";
+            this.ColumnSupplierListIsLocked.MinimumWidth = 6;
             this.ColumnSupplierListIsLocked.Name = "ColumnSupplierListIsLocked";
             this.ColumnSupplierListIsLocked.ReadOnly = true;
             this.ColumnSupplierListIsLocked.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnSupplierListIsLocked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnSupplierListIsLocked.Width = 125;
             // 
             // textBoxSupplierListFilter
             // 
             this.textBoxSupplierListFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxSupplierListFilter.Location = new System.Drawing.Point(4, 2);
+            this.textBoxSupplierListFilter.Location = new System.Drawing.Point(5, 2);
             this.textBoxSupplierListFilter.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSupplierListFilter.Name = "textBoxSupplierListFilter";
-            this.textBoxSupplierListFilter.Size = new System.Drawing.Size(1077, 26);
+            this.textBoxSupplierListFilter.Size = new System.Drawing.Size(1348, 30);
             this.textBoxSupplierListFilter.TabIndex = 31;
             this.textBoxSupplierListFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxSupplierListFilter_KeyDown);
             // 
@@ -1642,10 +1709,10 @@
             this.panel4.Controls.Add(this.buttonSupplierListPageListLast);
             this.panel4.Controls.Add(this.textBoxSupplierListPageNumber);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 432);
+            this.panel4.Location = new System.Drawing.Point(0, 546);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1084, 42);
+            this.panel4.Size = new System.Drawing.Size(1358, 52);
             this.panel4.TabIndex = 23;
             // 
             // buttonSupplierListPageListFirst
@@ -1655,10 +1722,10 @@
             this.buttonSupplierListPageListFirst.FlatAppearance.BorderSize = 0;
             this.buttonSupplierListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSupplierListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonSupplierListPageListFirst.Location = new System.Drawing.Point(10, 9);
+            this.buttonSupplierListPageListFirst.Location = new System.Drawing.Point(12, 11);
             this.buttonSupplierListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSupplierListPageListFirst.Name = "buttonSupplierListPageListFirst";
-            this.buttonSupplierListPageListFirst.Size = new System.Drawing.Size(66, 26);
+            this.buttonSupplierListPageListFirst.Size = new System.Drawing.Size(82, 32);
             this.buttonSupplierListPageListFirst.TabIndex = 13;
             this.buttonSupplierListPageListFirst.TabStop = false;
             this.buttonSupplierListPageListFirst.Text = "First";
@@ -1672,10 +1739,10 @@
             this.buttonSupplierListPageListPrevious.FlatAppearance.BorderSize = 0;
             this.buttonSupplierListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSupplierListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonSupplierListPageListPrevious.Location = new System.Drawing.Point(80, 9);
+            this.buttonSupplierListPageListPrevious.Location = new System.Drawing.Point(100, 11);
             this.buttonSupplierListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSupplierListPageListPrevious.Name = "buttonSupplierListPageListPrevious";
-            this.buttonSupplierListPageListPrevious.Size = new System.Drawing.Size(66, 26);
+            this.buttonSupplierListPageListPrevious.Size = new System.Drawing.Size(82, 32);
             this.buttonSupplierListPageListPrevious.TabIndex = 14;
             this.buttonSupplierListPageListPrevious.TabStop = false;
             this.buttonSupplierListPageListPrevious.Text = "Previous";
@@ -1688,10 +1755,10 @@
             this.buttonSupplierListPageListNext.FlatAppearance.BorderSize = 0;
             this.buttonSupplierListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSupplierListPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonSupplierListPageListNext.Location = new System.Drawing.Point(210, 9);
+            this.buttonSupplierListPageListNext.Location = new System.Drawing.Point(262, 11);
             this.buttonSupplierListPageListNext.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSupplierListPageListNext.Name = "buttonSupplierListPageListNext";
-            this.buttonSupplierListPageListNext.Size = new System.Drawing.Size(66, 26);
+            this.buttonSupplierListPageListNext.Size = new System.Drawing.Size(82, 32);
             this.buttonSupplierListPageListNext.TabIndex = 15;
             this.buttonSupplierListPageListNext.TabStop = false;
             this.buttonSupplierListPageListNext.Text = "Next";
@@ -1704,10 +1771,10 @@
             this.buttonSupplierListPageListLast.FlatAppearance.BorderSize = 0;
             this.buttonSupplierListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSupplierListPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonSupplierListPageListLast.Location = new System.Drawing.Point(278, 9);
+            this.buttonSupplierListPageListLast.Location = new System.Drawing.Point(348, 11);
             this.buttonSupplierListPageListLast.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSupplierListPageListLast.Name = "buttonSupplierListPageListLast";
-            this.buttonSupplierListPageListLast.Size = new System.Drawing.Size(66, 26);
+            this.buttonSupplierListPageListLast.Size = new System.Drawing.Size(82, 32);
             this.buttonSupplierListPageListLast.TabIndex = 16;
             this.buttonSupplierListPageListLast.TabStop = false;
             this.buttonSupplierListPageListLast.Text = "Last";
@@ -1720,11 +1787,11 @@
             this.textBoxSupplierListPageNumber.BackColor = System.Drawing.Color.White;
             this.textBoxSupplierListPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxSupplierListPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxSupplierListPageNumber.Location = new System.Drawing.Point(150, 13);
+            this.textBoxSupplierListPageNumber.Location = new System.Drawing.Point(188, 16);
             this.textBoxSupplierListPageNumber.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSupplierListPageNumber.Name = "textBoxSupplierListPageNumber";
             this.textBoxSupplierListPageNumber.ReadOnly = true;
-            this.textBoxSupplierListPageNumber.Size = new System.Drawing.Size(55, 16);
+            this.textBoxSupplierListPageNumber.Size = new System.Drawing.Size(69, 20);
             this.textBoxSupplierListPageNumber.TabIndex = 17;
             this.textBoxSupplierListPageNumber.TabStop = false;
             this.textBoxSupplierListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1734,13 +1801,110 @@
             this.tabPage8.Controls.Add(this.panel5);
             this.tabPage8.Controls.Add(this.dataGridViewLanguageList);
             this.tabPage8.Controls.Add(this.textBoxLanguageListFilter);
-            this.tabPage8.Location = new System.Drawing.Point(4, 28);
+            this.tabPage8.Location = new System.Drawing.Point(4, 32);
+            this.tabPage8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(1088, 478);
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage8.Size = new System.Drawing.Size(1362, 602);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Label";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.buttonLanguageListPageListFirst);
+            this.panel5.Controls.Add(this.buttonLanguageListPageListPrevious);
+            this.panel5.Controls.Add(this.buttonLanguageListPageListNext);
+            this.panel5.Controls.Add(this.buttonLanguageListPageListLast);
+            this.panel5.Controls.Add(this.textBoxLanguageListPageNumber);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(4, 546);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1354, 52);
+            this.panel5.TabIndex = 33;
+            // 
+            // buttonLanguageListPageListFirst
+            // 
+            this.buttonLanguageListPageListFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonLanguageListPageListFirst.Enabled = false;
+            this.buttonLanguageListPageListFirst.FlatAppearance.BorderSize = 0;
+            this.buttonLanguageListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLanguageListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonLanguageListPageListFirst.Location = new System.Drawing.Point(12, 11);
+            this.buttonLanguageListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonLanguageListPageListFirst.Name = "buttonLanguageListPageListFirst";
+            this.buttonLanguageListPageListFirst.Size = new System.Drawing.Size(82, 32);
+            this.buttonLanguageListPageListFirst.TabIndex = 13;
+            this.buttonLanguageListPageListFirst.TabStop = false;
+            this.buttonLanguageListPageListFirst.Text = "First";
+            this.buttonLanguageListPageListFirst.UseVisualStyleBackColor = false;
+            this.buttonLanguageListPageListFirst.Click += new System.EventHandler(this.buttonLanguageListPageListFirst_Click);
+            // 
+            // buttonLanguageListPageListPrevious
+            // 
+            this.buttonLanguageListPageListPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonLanguageListPageListPrevious.Enabled = false;
+            this.buttonLanguageListPageListPrevious.FlatAppearance.BorderSize = 0;
+            this.buttonLanguageListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLanguageListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonLanguageListPageListPrevious.Location = new System.Drawing.Point(100, 11);
+            this.buttonLanguageListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonLanguageListPageListPrevious.Name = "buttonLanguageListPageListPrevious";
+            this.buttonLanguageListPageListPrevious.Size = new System.Drawing.Size(82, 32);
+            this.buttonLanguageListPageListPrevious.TabIndex = 14;
+            this.buttonLanguageListPageListPrevious.TabStop = false;
+            this.buttonLanguageListPageListPrevious.Text = "Previous";
+            this.buttonLanguageListPageListPrevious.UseVisualStyleBackColor = false;
+            this.buttonLanguageListPageListPrevious.Click += new System.EventHandler(this.buttonLanguageListPageListPrevious_Click);
+            // 
+            // buttonLanguageListPageListNext
+            // 
+            this.buttonLanguageListPageListNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonLanguageListPageListNext.FlatAppearance.BorderSize = 0;
+            this.buttonLanguageListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLanguageListPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonLanguageListPageListNext.Location = new System.Drawing.Point(262, 11);
+            this.buttonLanguageListPageListNext.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonLanguageListPageListNext.Name = "buttonLanguageListPageListNext";
+            this.buttonLanguageListPageListNext.Size = new System.Drawing.Size(82, 32);
+            this.buttonLanguageListPageListNext.TabIndex = 15;
+            this.buttonLanguageListPageListNext.TabStop = false;
+            this.buttonLanguageListPageListNext.Text = "Next";
+            this.buttonLanguageListPageListNext.UseVisualStyleBackColor = false;
+            this.buttonLanguageListPageListNext.Click += new System.EventHandler(this.buttonLanguageListPageListNext_Click);
+            // 
+            // buttonLanguageListPageListLast
+            // 
+            this.buttonLanguageListPageListLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonLanguageListPageListLast.FlatAppearance.BorderSize = 0;
+            this.buttonLanguageListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLanguageListPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.buttonLanguageListPageListLast.Location = new System.Drawing.Point(348, 11);
+            this.buttonLanguageListPageListLast.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonLanguageListPageListLast.Name = "buttonLanguageListPageListLast";
+            this.buttonLanguageListPageListLast.Size = new System.Drawing.Size(82, 32);
+            this.buttonLanguageListPageListLast.TabIndex = 16;
+            this.buttonLanguageListPageListLast.TabStop = false;
+            this.buttonLanguageListPageListLast.Text = "Last";
+            this.buttonLanguageListPageListLast.UseVisualStyleBackColor = false;
+            this.buttonLanguageListPageListLast.Click += new System.EventHandler(this.buttonLanguageListPageListLast_Click);
+            // 
+            // textBoxLanguageListPageNumber
+            // 
+            this.textBoxLanguageListPageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxLanguageListPageNumber.BackColor = System.Drawing.Color.White;
+            this.textBoxLanguageListPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxLanguageListPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.textBoxLanguageListPageNumber.Location = new System.Drawing.Point(188, 16);
+            this.textBoxLanguageListPageNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxLanguageListPageNumber.Name = "textBoxLanguageListPageNumber";
+            this.textBoxLanguageListPageNumber.ReadOnly = true;
+            this.textBoxLanguageListPageNumber.Size = new System.Drawing.Size(69, 20);
+            this.textBoxLanguageListPageNumber.TabIndex = 17;
+            this.textBoxLanguageListPageNumber.TabStop = false;
+            this.textBoxLanguageListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dataGridViewLanguageList
             // 
@@ -1758,200 +1922,23 @@
             this.ColumnLanguageListId,
             this.ColumnLanguageListLabel,
             this.ColumnLanguageListDisplayLabel});
-            this.dataGridViewLanguageList.Location = new System.Drawing.Point(6, 33);
+            this.dataGridViewLanguageList.Location = new System.Drawing.Point(8, 41);
+            this.dataGridViewLanguageList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewLanguageList.MultiSelect = false;
             this.dataGridViewLanguageList.Name = "dataGridViewLanguageList";
             this.dataGridViewLanguageList.ReadOnly = true;
+            this.dataGridViewLanguageList.RowHeadersWidth = 51;
             this.dataGridViewLanguageList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewLanguageList.Size = new System.Drawing.Size(1076, 396);
+            this.dataGridViewLanguageList.Size = new System.Drawing.Size(1345, 495);
             this.dataGridViewLanguageList.TabIndex = 0;
             this.dataGridViewLanguageList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewLanguageList_CellClick);
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Controls.Add(this.buttonLanguageListPageListFirst);
-            this.panel5.Controls.Add(this.buttonLanguageListPageListPrevious);
-            this.panel5.Controls.Add(this.buttonLanguageListPageListNext);
-            this.panel5.Controls.Add(this.buttonLanguageListPageListLast);
-            this.panel5.Controls.Add(this.textBoxLanguageListPageNumber);
-            this.panel5.Location = new System.Drawing.Point(2, 434);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1084, 42);
-            this.panel5.TabIndex = 33;
-            // 
-            // buttonLanguageListPageListFirst
-            // 
-            this.buttonLanguageListPageListFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLanguageListPageListFirst.Enabled = false;
-            this.buttonLanguageListPageListFirst.FlatAppearance.BorderSize = 0;
-            this.buttonLanguageListPageListFirst.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLanguageListPageListFirst.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonLanguageListPageListFirst.Location = new System.Drawing.Point(10, 9);
-            this.buttonLanguageListPageListFirst.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonLanguageListPageListFirst.Name = "buttonLanguageListPageListFirst";
-            this.buttonLanguageListPageListFirst.Size = new System.Drawing.Size(66, 26);
-            this.buttonLanguageListPageListFirst.TabIndex = 13;
-            this.buttonLanguageListPageListFirst.TabStop = false;
-            this.buttonLanguageListPageListFirst.Text = "First";
-            this.buttonLanguageListPageListFirst.UseVisualStyleBackColor = false;
-            this.buttonLanguageListPageListFirst.Click += new System.EventHandler(this.buttonLanguageListPageListFirst_Click);
-            // 
-            // buttonLanguageListPageListPrevious
-            // 
-            this.buttonLanguageListPageListPrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLanguageListPageListPrevious.Enabled = false;
-            this.buttonLanguageListPageListPrevious.FlatAppearance.BorderSize = 0;
-            this.buttonLanguageListPageListPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLanguageListPageListPrevious.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonLanguageListPageListPrevious.Location = new System.Drawing.Point(80, 9);
-            this.buttonLanguageListPageListPrevious.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonLanguageListPageListPrevious.Name = "buttonLanguageListPageListPrevious";
-            this.buttonLanguageListPageListPrevious.Size = new System.Drawing.Size(66, 26);
-            this.buttonLanguageListPageListPrevious.TabIndex = 14;
-            this.buttonLanguageListPageListPrevious.TabStop = false;
-            this.buttonLanguageListPageListPrevious.Text = "Previous";
-            this.buttonLanguageListPageListPrevious.UseVisualStyleBackColor = false;
-            this.buttonLanguageListPageListPrevious.Click += new System.EventHandler(this.buttonLanguageListPageListPrevious_Click);
-            // 
-            // buttonLanguageListPageListNext
-            // 
-            this.buttonLanguageListPageListNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLanguageListPageListNext.FlatAppearance.BorderSize = 0;
-            this.buttonLanguageListPageListNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLanguageListPageListNext.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonLanguageListPageListNext.Location = new System.Drawing.Point(210, 9);
-            this.buttonLanguageListPageListNext.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonLanguageListPageListNext.Name = "buttonLanguageListPageListNext";
-            this.buttonLanguageListPageListNext.Size = new System.Drawing.Size(66, 26);
-            this.buttonLanguageListPageListNext.TabIndex = 15;
-            this.buttonLanguageListPageListNext.TabStop = false;
-            this.buttonLanguageListPageListNext.Text = "Next";
-            this.buttonLanguageListPageListNext.UseVisualStyleBackColor = false;
-            this.buttonLanguageListPageListNext.Click += new System.EventHandler(this.buttonLanguageListPageListNext_Click);
-            // 
-            // buttonLanguageListPageListLast
-            // 
-            this.buttonLanguageListPageListLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonLanguageListPageListLast.FlatAppearance.BorderSize = 0;
-            this.buttonLanguageListPageListLast.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonLanguageListPageListLast.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.buttonLanguageListPageListLast.Location = new System.Drawing.Point(278, 9);
-            this.buttonLanguageListPageListLast.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonLanguageListPageListLast.Name = "buttonLanguageListPageListLast";
-            this.buttonLanguageListPageListLast.Size = new System.Drawing.Size(66, 26);
-            this.buttonLanguageListPageListLast.TabIndex = 16;
-            this.buttonLanguageListPageListLast.TabStop = false;
-            this.buttonLanguageListPageListLast.Text = "Last";
-            this.buttonLanguageListPageListLast.UseVisualStyleBackColor = false;
-            this.buttonLanguageListPageListLast.Click += new System.EventHandler(this.buttonLanguageListPageListLast_Click);
-            // 
-            // textBoxLanguageListPageNumber
-            // 
-            this.textBoxLanguageListPageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxLanguageListPageNumber.BackColor = System.Drawing.Color.White;
-            this.textBoxLanguageListPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxLanguageListPageNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.textBoxLanguageListPageNumber.Location = new System.Drawing.Point(150, 13);
-            this.textBoxLanguageListPageNumber.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxLanguageListPageNumber.Name = "textBoxLanguageListPageNumber";
-            this.textBoxLanguageListPageNumber.ReadOnly = true;
-            this.textBoxLanguageListPageNumber.Size = new System.Drawing.Size(55, 16);
-            this.textBoxLanguageListPageNumber.TabIndex = 17;
-            this.textBoxLanguageListPageNumber.TabStop = false;
-            this.textBoxLanguageListPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // textBoxLanguageListFilter
-            // 
-            this.textBoxLanguageListFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLanguageListFilter.Location = new System.Drawing.Point(6, 4);
-            this.textBoxLanguageListFilter.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxLanguageListFilter.Name = "textBoxLanguageListFilter";
-            this.textBoxLanguageListFilter.Size = new System.Drawing.Size(1077, 26);
-            this.textBoxLanguageListFilter.TabIndex = 32;
-            this.textBoxLanguageListFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxLanguageListFilter_KeyDown_1);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.buttonAdd);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.buttonClose);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1096, 50);
-            this.panel1.TabIndex = 5;
-            // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
-            this.buttonAdd.FlatAppearance.BorderSize = 0;
-            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAdd.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.ForeColor = System.Drawing.Color.White;
-            this.buttonAdd.Location = new System.Drawing.Point(941, 10);
-            this.buttonAdd.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(70, 32);
-            this.buttonAdd.TabIndex = 20;
-            this.buttonAdd.TabStop = false;
-            this.buttonAdd.Text = "Add";
-            this.buttonAdd.UseVisualStyleBackColor = false;
-            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::EasyPOS.Properties.Resources.System_Tables;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(38, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(50, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 28);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "System Tables";
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(79)))), ((int)(((byte)(28)))));
-            this.buttonClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(79)))), ((int)(((byte)(28)))));
-            this.buttonClose.FlatAppearance.BorderSize = 0;
-            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClose.ForeColor = System.Drawing.Color.White;
-            this.buttonClose.Location = new System.Drawing.Point(1016, 10);
-            this.buttonClose.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(70, 32);
-            this.buttonClose.TabIndex = 21;
-            this.buttonClose.TabStop = false;
-            this.buttonClose.Text = "Close";
-            this.buttonClose.UseVisualStyleBackColor = false;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
             // ColumnLanguageListButtonEdit
             // 
             this.ColumnLanguageListButtonEdit.DataPropertyName = "ColumnLanguageListButtonEdit";
             this.ColumnLanguageListButtonEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnLanguageListButtonEdit.HeaderText = "";
+            this.ColumnLanguageListButtonEdit.MinimumWidth = 6;
             this.ColumnLanguageListButtonEdit.Name = "ColumnLanguageListButtonEdit";
             this.ColumnLanguageListButtonEdit.ReadOnly = true;
             this.ColumnLanguageListButtonEdit.Width = 70;
@@ -1961,6 +1948,7 @@
             this.ColumnLanguageListButtonDelete.DataPropertyName = "ColumnLanguageListButtonDelete";
             this.ColumnLanguageListButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ColumnLanguageListButtonDelete.HeaderText = "";
+            this.ColumnLanguageListButtonDelete.MinimumWidth = 6;
             this.ColumnLanguageListButtonDelete.Name = "ColumnLanguageListButtonDelete";
             this.ColumnLanguageListButtonDelete.ReadOnly = true;
             this.ColumnLanguageListButtonDelete.Width = 70;
@@ -1969,12 +1957,13 @@
             // 
             this.ColumnLanguageListId.DataPropertyName = "ColumnLanguageListId";
             this.ColumnLanguageListId.HeaderText = "Id";
+            this.ColumnLanguageListId.MinimumWidth = 6;
             this.ColumnLanguageListId.Name = "ColumnLanguageListId";
             this.ColumnLanguageListId.ReadOnly = true;
             this.ColumnLanguageListId.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnLanguageListId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ColumnLanguageListId.Visible = false;
-            this.ColumnLanguageListId.Width = 5;
+            this.ColumnLanguageListId.Width = 6;
             // 
             // ColumnLanguageListLabel
             // 
@@ -1997,17 +1986,102 @@
             this.ColumnLanguageListDisplayLabel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ColumnLanguageListDisplayLabel.Width = 200;
             // 
+            // textBoxLanguageListFilter
+            // 
+            this.textBoxLanguageListFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLanguageListFilter.Location = new System.Drawing.Point(8, 5);
+            this.textBoxLanguageListFilter.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxLanguageListFilter.Name = "textBoxLanguageListFilter";
+            this.textBoxLanguageListFilter.Size = new System.Drawing.Size(1345, 30);
+            this.textBoxLanguageListFilter.TabIndex = 32;
+            this.textBoxLanguageListFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxLanguageListFilter_KeyDown_1);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.buttonAdd);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.buttonClose);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1370, 62);
+            this.panel1.TabIndex = 5;
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(166)))), ((int)(((byte)(240)))));
+            this.buttonAdd.FlatAppearance.BorderSize = 0;
+            this.buttonAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonAdd.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAdd.ForeColor = System.Drawing.Color.White;
+            this.buttonAdd.Location = new System.Drawing.Point(1176, 12);
+            this.buttonAdd.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(88, 40);
+            this.buttonAdd.TabIndex = 20;
+            this.buttonAdd.TabStop = false;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = false;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::EasyPOS.Properties.Resources.System_Tables;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(48, 40);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(62, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(180, 35);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "System Tables";
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(79)))), ((int)(((byte)(28)))));
+            this.buttonClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(79)))), ((int)(((byte)(28)))));
+            this.buttonClose.FlatAppearance.BorderSize = 0;
+            this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClose.ForeColor = System.Drawing.Color.White;
+            this.buttonClose.Location = new System.Drawing.Point(1270, 12);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(88, 40);
+            this.buttonClose.TabIndex = 21;
+            this.buttonClose.TabStop = false;
+            this.buttonClose.Text = "Close";
+            this.buttonClose.UseVisualStyleBackColor = false;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
             // SysSystemTablesForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1096, 560);
+            this.ClientSize = new System.Drawing.Size(1370, 700);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.Name = "SysSystemTablesForm";
             this.Text = "SysTablesForm";
             this.panel2.ResumeLayout(false);
@@ -2056,9 +2130,9 @@
             this.panel4.PerformLayout();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLanguageList)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLanguageList)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
