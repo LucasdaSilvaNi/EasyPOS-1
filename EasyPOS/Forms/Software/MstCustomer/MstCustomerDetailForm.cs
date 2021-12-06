@@ -81,7 +81,9 @@ namespace EasyPOS.Forms.Software.MstCustomer
                 List<String> priceLevel = new List<String>
                     {
                         "Retail Price",
-                        "Dealer Price"
+                        "Dealer Price",
+                        "Mega Dealer Price",
+                        "Sub Dealer Price"
                     };
 
                 comboBoxPriceLevel.DataSource = priceLevel;

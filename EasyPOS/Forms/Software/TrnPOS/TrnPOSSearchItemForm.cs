@@ -250,8 +250,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
             var customerPriceLevel = customer.FirstOrDefault();
 
             var itemPrice = from d in db.MstItemPrices
-                            where d.PriceDescription == "Dealer Price" && d.ItemId == Convert.ToInt32(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[0].Value)
-                            select d;
+                                  where d.PriceDescription == customerPriceLevel.PriceLevel && d.ItemId == Convert.ToInt32(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[0].Value)
+                                  select d;
+
 
             if (dataGridViewSearchItemList.CurrentCell.ColumnIndex == dataGridViewSearchItemList.Columns["ColumnSearchItemButtonPick"].Index)
             {
@@ -269,12 +270,12 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                 if (itemPrice.Any())
                 {
-                    var dealerPrice = itemPrice.FirstOrDefault();
-                    Price = customerPriceLevel.PriceLevel == "Dealer Price" ? dealerPrice.Price : Convert.ToDecimal(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[9].Value);
+                    var itemSellingPrice = itemPrice.FirstOrDefault();
+                    Price = itemSellingPrice.Price;
                 }
                 else
                 {
-                    Price = Convert.ToDecimal(dataGridViewSearchItemList.Rows[e.RowIndex].Cells[9].Value);
+                    Price = Convert.ToDecimal(dataGridViewSearchItemList.Rows[dataGridViewSearchItemList.CurrentCell.RowIndex].Cells[9].Value);
                 }
 
                 Decimal TaxAmount = 0;
