@@ -282,6 +282,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                         if (trnPOSBarcodeForm != null)
                         {
+                            this.Hide();
                             trnPOSBarcodeDetailForm.trnSalesListForm.newSales();
                         }
                     }

@@ -49,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.checkBoxPopupCustomer = new System.Windows.Forms.CheckBox();
             this.checkBoxDisableLockTender = new System.Windows.Forms.CheckBox();
             this.comboBoxLanguage = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -188,7 +189,6 @@
             this.buttonKitchenPageListLast = new System.Windows.Forms.Button();
             this.textBoxKitchenPageNumber = new System.Windows.Forms.TextBox();
             this.backgroundWorkerEasyfisIntegration = new System.ComponentModel.BackgroundWorker();
-            this.checkBoxPopupCustomer = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -501,6 +501,19 @@
             this.panel5.Size = new System.Drawing.Size(1095, 472);
             this.panel5.TabIndex = 34;
             // 
+            // checkBoxPopupCustomer
+            // 
+            this.checkBoxPopupCustomer.AutoSize = true;
+            this.checkBoxPopupCustomer.Enabled = false;
+            this.checkBoxPopupCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxPopupCustomer.Location = new System.Drawing.Point(874, 114);
+            this.checkBoxPopupCustomer.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBoxPopupCustomer.Name = "checkBoxPopupCustomer";
+            this.checkBoxPopupCustomer.Size = new System.Drawing.Size(165, 23);
+            this.checkBoxPopupCustomer.TabIndex = 97;
+            this.checkBoxPopupCustomer.Text = "Pop-up Customer Info";
+            this.checkBoxPopupCustomer.UseVisualStyleBackColor = true;
+            // 
             // checkBoxDisableLockTender
             // 
             this.checkBoxDisableLockTender.AutoSize = true;
@@ -509,9 +522,9 @@
             this.checkBoxDisableLockTender.Location = new System.Drawing.Point(874, 87);
             this.checkBoxDisableLockTender.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxDisableLockTender.Name = "checkBoxDisableLockTender";
-            this.checkBoxDisableLockTender.Size = new System.Drawing.Size(181, 23);
+            this.checkBoxDisableLockTender.Size = new System.Drawing.Size(169, 23);
             this.checkBoxDisableLockTender.TabIndex = 97;
-            this.checkBoxDisableLockTender.Text = "Disable Lock after Tender";
+            this.checkBoxDisableLockTender.Text = "Disable Tender on Lock";
             this.checkBoxDisableLockTender.UseVisualStyleBackColor = true;
             // 
             // comboBoxLanguage
@@ -2145,19 +2158,6 @@
             this.backgroundWorkerEasyfisIntegration.WorkerReportsProgress = true;
             this.backgroundWorkerEasyfisIntegration.WorkerSupportsCancellation = true;
             this.backgroundWorkerEasyfisIntegration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerEasyfisIntegration_DoWork);
-            // 
-            // checkBoxPopupCustomer
-            // 
-            this.checkBoxPopupCustomer.AutoSize = true;
-            this.checkBoxPopupCustomer.Enabled = false;
-            this.checkBoxPopupCustomer.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxPopupCustomer.Location = new System.Drawing.Point(874, 114);
-            this.checkBoxPopupCustomer.Margin = new System.Windows.Forms.Padding(2);
-            this.checkBoxPopupCustomer.Name = "checkBoxPopupCustomer";
-            this.checkBoxPopupCustomer.Size = new System.Drawing.Size(165, 23);
-            this.checkBoxPopupCustomer.TabIndex = 97;
-            this.checkBoxPopupCustomer.Text = "Pop-up Customer Info";
-            this.checkBoxPopupCustomer.UseVisualStyleBackColor = true;
             // 
             // SysSettingsForm
             // 
