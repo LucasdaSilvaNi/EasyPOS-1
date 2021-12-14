@@ -184,15 +184,32 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 Decimal totalVATZeroRatedSales = 0;
                 Decimal totalNoOfSKUs = 0;
                 Decimal totalQUantity = 0;
+                //Decimal serviceChargeQty = 0;
+                //Decimal totalserviceChargeQty = 0;
 
                 var salesLinesQuery = from d in currentCollectionSalesLineQuery
-                                      where d.Quantity > 0
+                                      where d.Quantity > 0 && d.MstItem.ItemCode != "0000000001"
                                       select d;
+
+                //var serviceCharge = from d in currentCollectionSalesLineQuery
+                //                    where d.MstItem.ItemCode == "0000000001"
+                //                    select d;
+
 
                 if (salesLinesQuery.Any())
                 {
+                    //=====================================
+                    // Service Charge Qty Count equals to 1
+                    //=====================================
+
+                    //foreach (var i in serviceCharge)
+                    //{
+                    //    serviceChargeQty += 1;
+                    //}
+
                     totalNoOfSKUs += salesLinesQuery.Count();
                     totalQUantity += salesLinesQuery.Sum(d => d.Quantity);
+                    //totalserviceChargeQty = totalQUantity + serviceChargeQty;
 
                     var salesLines = salesLinesQuery.ToArray();
 
@@ -295,6 +312,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 repZReadingReportEntity.TotalVATZeroRated = totalVATZeroRatedSales;
                 repZReadingReportEntity.TotalNumberOfSKU = totalNoOfSKUs;
                 repZReadingReportEntity.TotalQuantity = totalQUantity;
+                //repZReadingReportEntity.TotalQuantity = totalserviceChargeQty;
             }
 
             var disbursmenet = from d in db.TrnDisbursements
@@ -1397,7 +1415,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
 
                 String zReadingEndLabel = "\n" + zReadingFooter;
                 graphics.DrawString(zReadingEndLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-                y += graphics.MeasureString(zReadingEndLabel, fontArial8Regular).Height;               
+                y += graphics.MeasureString(zReadingEndLabel, fontArial8Regular).Height;
             }
         }
     }

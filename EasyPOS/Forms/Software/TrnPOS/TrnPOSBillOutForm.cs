@@ -253,7 +253,14 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     {
                         foreach (var salesLine in salesLineGroupbyItem.ToList())
                         {
-                            totalNumberOfItems += 1;
+                            if (salesLine.MstItem.ItemCode != "0000000001")
+                            {
+                                totalNumberOfItems += 1;
+                            }
+                            else
+                            {
+                                totalNumberOfItems += 0;
+                            }
 
                             totalGrossSales += salesLine.Amount + salesLine.DiscountAmount;
                             totalSales += salesLine.Amount;
@@ -437,7 +444,14 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     {
                         foreach (var salesLine in salesLineGroupbyItem.ToList())
                         {
-                            totalNumberOfItems += 1;
+                            if (salesLine.MstItem.ItemCode != "0000000001")
+                            {
+                                totalNumberOfItems += 1;
+                            }
+                            else
+                            {
+                                totalNumberOfItems += 0;
+                            }
 
                             totalGrossSales += salesLine.Amount + salesLine.DiscountAmount;
                             totalSales += salesLine.Amount;

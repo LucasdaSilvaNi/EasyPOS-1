@@ -192,7 +192,7 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 Decimal totalQUantity = 0;
 
                 var salesLinesQuery = from d in currentCollectionSalesLineQuery
-                                      where d.Quantity > 0
+                                      where d.Quantity > 0 && d.MstItem.ItemCode != "0000000001"
                                       select d;
 
                 if (salesLinesQuery.Any())
