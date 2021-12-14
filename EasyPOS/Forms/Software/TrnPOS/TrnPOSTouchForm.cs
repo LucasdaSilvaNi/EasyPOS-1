@@ -490,7 +490,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                   ColumnDelete = "Delete",
                                   ColumnId = d.Id,
                                   ColumnTerminal = d.Terminal,
-                                  ColumnSalesDate = d.SalesDate,
                                   ColumnSalesNumber = d.SalesNumber,
                                   ColumnManualSalesNumber = d.ManualInvoiceNumber,
                                   ColumnRececiptInvoiceNumber = d.CollectionNumber,
@@ -501,10 +500,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                   ColumnIsLocked = d.IsLocked,
                                   ColumnIsTendered = d.IsTendered,
                                   ColumnIsCancelled = d.IsCancelled,
+                                  ColumnSalesDate = d.EntryDateTime.ToString(),
                                   ColumnSpace = "",
                                   ColumnRemarks = d.Remarks,
                                   ColumnAmount = d.Amount.ToString("#,##0.00"),
-                                  ColumnDelivery = d.DeliveryDriver,
+                                  ColumnDelivery = d.DeliveryDriver
                               };
 
                     rowList = row.ToList();
@@ -563,14 +563,14 @@ namespace EasyPOS.Forms.Software.TrnPOS
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnDelete"].DisplayIndex = 1;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnId"].DisplayIndex = 2;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnTerminal"].DisplayIndex = 3;
-            dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnSalesDate"].DisplayIndex = 4;
+            dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnSalesDate"].DisplayIndex = 18;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnSalesNumber"].DisplayIndex = 5;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnManualSalesNumber"].DisplayIndex = 7;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnCollectionNumber"].DisplayIndex = 8;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnCustomerCode"].DisplayIndex = 9;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnCustomer"].DisplayIndex = 10;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnSalesAgent"].DisplayIndex = 12;
-            dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnTable"].DisplayIndex = 5;
+            dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnTable"].DisplayIndex = 4;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnIsLocked"].DisplayIndex = 13;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnIsTendered"].DisplayIndex = 14;
             dataGridViewCollectedSalesList.Columns["tabPageCollectedColumnIsCancelled"].DisplayIndex = 15;
