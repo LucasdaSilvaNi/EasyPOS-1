@@ -133,7 +133,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Size = new Size(245, ((int)graphics.MeasureString(companyAddress, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
             };
             graphics.DrawString(companyAddress, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
-            y += companyAddressRectangle.Size.Height + 1.0F;
+            y += companyAddressRectangle.Size.Height + 12F;
 
             // ==========
             // TIN Number
@@ -160,6 +160,20 @@ namespace EasyPOS.Forms.Software.TrnPOS
             };
             graphics.DrawString("SN: " + serialNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
             y += SNNumbersRectangle.Size.Height + 1.0F;
+
+            // =============
+            // Permit Number
+            // =============
+            String permitNo = systemCurrent.PermitNo;
+            graphics.DrawString("PN: " + permitNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
+
+            // ====================
+            // Accreditation Number
+            // ====================
+            String accrdNo = systemCurrent.AccreditationNo;
+            graphics.DrawString("Acred No.: " + accrdNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += graphics.MeasureString(companyAddress, fontArial8Regular).Height;
 
             // ==============
             // Machine Number
