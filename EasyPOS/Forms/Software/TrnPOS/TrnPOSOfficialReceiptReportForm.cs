@@ -163,6 +163,32 @@ namespace EasyPOS.Forms.Software.TrnPOS
             graphics.DrawString("SN: " + serialNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
             y += SNNumbersRectangle.Size.Height + 1.0F;
 
+            //==============
+            // Permit Number
+            //==============
+            String permitNumber = systemCurrent.PermitNo;
+            RectangleF PermitNumberRectangle = new RectangleF
+            {
+                X = x,
+                Y = y,
+                Size = new Size(245, ((int)graphics.MeasureString(permitNumber, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
+            };
+            graphics.DrawString("PN: " + permitNumber, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += PermitNumberRectangle.Size.Height + 1.0F;
+
+            //=====================
+            // Accreditation Number
+            //=====================
+            String accrdNo = systemCurrent.AccreditationNo;
+            RectangleF AccrdNumberRectangle = new RectangleF
+            {
+                X = x,
+                Y = y,
+                Size = new Size(245, ((int)graphics.MeasureString(accrdNo, fontArial8Regular, 245, StringFormat.GenericDefault).Height))
+            };
+            graphics.DrawString("Acred No.: " + accrdNo, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatCenter);
+            y += AccrdNumberRectangle.Size.Height + 1.0F;
+
             // ==============
             // Machine Number
             // ==============
