@@ -34,7 +34,7 @@
   "CustomerDisplayFirstLineMessage": "WELCOME!",
   "CustomerDisplayIfCounterClosedMessage": "NEXT COUNTER PLS.",
   "CollectionReport": "Official Receipt",
-  "ZReadingFooter": "POS VENDOR: Easy Cloud Systems Inc.\nUnit 1023 City Soho Bldg. B. Rodriguez St. Guadalupe Cebu City Phil, 6000\nVAT REG TIN: 751-968-730-000\n\nAccreditation No.: 000000000000 \nDate Issued: mm-dd-yyy\nValid Until: mm-dd-yyyy\n\nPTU No.: 000000000000 \nDate Issued: mm-dd-yyy\nValid Until: mm-dd-yyyy",
+  "ZReadingFooter": "POS VENDOR: Easyfis Corporation\nUnit 1023 City Soho Bldg. B. Rodriguez St. Guadalupe Cebu City Phil, 6000\nVAT REG TIN: 010-045-930-000\n\nAccreditation No.: 0820100459302021061436\nDate Issued: November 3,2021\nValid Until: November 3,2026\n\nPTU No.: 000000000000 \nDate Issued: mm-dd-yyy\nValid Until: mm-dd-yyyy\n\nTHIS INVOICE SHALL BE VALID FOR FIVE (5) YEARS FROM THE DATE OF THE PERMIT TO USE",
   "EasypayAPIURL": "http://localhost:2650",
   "EasypayDefaultUsername": "sonnets_lear",
   "EasypayDefaultPassword": "@Sodex123",
