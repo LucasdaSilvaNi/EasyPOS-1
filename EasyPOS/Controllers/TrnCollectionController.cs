@@ -103,7 +103,7 @@ namespace EasyPOS.Controllers
                               where d.CustomerId == customerId
                               && d.TerminalId == terminalId
                               && d.IsLocked == true
-                              && d.BalanceAmount > 0 
+                              && d.BalanceAmount > 0
                               select new Entities.TrnSalesEntity
                               {
                                   Id = d.Id,
@@ -509,6 +509,7 @@ namespace EasyPOS.Controllers
                     db.SubmitChanges();
 
                     UpdateAccountsReceivable(objCollection.SalesId);
+                    UpdateAccountsReceivableRewards(objCollection.SalesId, objCollection.Id);
 
                     String newObject = Modules.SysAuditTrailModule.GetObjectString(collection.FirstOrDefault());
 
@@ -566,6 +567,99 @@ namespace EasyPOS.Controllers
             }
         }
 
+        public void UpdateAccountsReceivableRewards(Int32? salesId, Int32? collectionId)
+        {
+            if (salesId != null)
+            {
+                var sales = from d in db.TrnSales
+                            where d.Id == salesId
+                            select d;
+
+                if (sales.Any())
+                {
+                    Decimal totalCollectionLineAmountReward = 0;
+
+                    var collectionLinesRewards = from d in db.TrnCollectionLines
+                                                 where d.CollectionId == collectionId
+                                                 && d.TrnCollection.IsLocked == true
+                                                 && d.MstPayType.PayTypeCode == "REWARDS"
+                                                 select d;
+
+                    if (collectionLinesRewards.Any())
+                    {
+                        totalCollectionLineAmountReward = collectionLinesRewards.Sum(d => d.Amount);
+                    }
+
+                    if (sales.FirstOrDefault().MstCustomer.WithReward == true)
+                    {
+                        Decimal rewardConversion = sales.FirstOrDefault().MstCustomer.RewardConversion;
+                        if (rewardConversion != 0)
+                        {
+                            var customer = from d in db.MstCustomers
+                                           where d.Id == sales.FirstOrDefault().CustomerId
+                                           select d;
+
+                            if (customer.Any())
+                            {
+                                Decimal existingReward = customer.FirstOrDefault().AvailableReward;
+
+                                var updateRewards = customer.FirstOrDefault();
+                                updateRewards.AvailableReward = existingReward - totalCollectionLineAmountReward;
+                                db.SubmitChanges();
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        public void UpdateAccountsReceivableRewardsUnlock(Int32? salesId, Int32? collectionId)
+        {
+            if (salesId != null)
+            {
+                var sales = from d in db.TrnSales
+                            where d.Id == salesId
+                            select d;
+
+                if (sales.Any())
+                {
+                    Decimal totalCollectionLineAmountReward = 0;
+
+                    var collectionLinesRewards = from d in db.TrnCollectionLines
+                                                 where d.CollectionId == collectionId
+                                                 && d.MstPayType.PayTypeCode == "REWARDS"
+                                                 select d;
+
+                    if (collectionLinesRewards.Any())
+                    {
+                        totalCollectionLineAmountReward = collectionLinesRewards.Sum(d => d.Amount);
+                    }
+
+                    if (sales.FirstOrDefault().MstCustomer.WithReward == true)
+                    {
+                        Decimal rewardConversion = sales.FirstOrDefault().MstCustomer.RewardConversion;
+                        if (rewardConversion != 0)
+                        {
+                            var customer = from d in db.MstCustomers
+                                           where d.Id == sales.FirstOrDefault().CustomerId
+                                           select d;
+
+                            if (customer.Any())
+                            {
+                                Decimal existingReward = customer.FirstOrDefault().AvailableReward;
+
+                                var updateRewards = customer.FirstOrDefault();
+                                updateRewards.AvailableReward = existingReward + totalCollectionLineAmountReward;
+                                db.SubmitChanges();
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
         // =================
         // Unlock Collection
         // =================
@@ -599,6 +693,7 @@ namespace EasyPOS.Controllers
                     db.SubmitChanges();
 
                     UpdateAccountsReceivable(collection.FirstOrDefault().SalesId);
+                    UpdateAccountsReceivableRewardsUnlock(collection.FirstOrDefault().SalesId, collection.FirstOrDefault().Id);
 
                     String newObject = Modules.SysAuditTrailModule.GetObjectString(collection.FirstOrDefault());
 
