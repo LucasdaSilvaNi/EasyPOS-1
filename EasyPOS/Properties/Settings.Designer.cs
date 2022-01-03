@@ -97,5 +97,15 @@ namespace EasyPOS.Properties {
                 return ((string)(this["easyposConnectionString2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-RT4V2EU\\SQLEXPRESS;Initial Catalog=easypos_july;User ID=sa")]
+        public string easypos_julyConnectionString {
+            get {
+                return ((string)(this["easypos_julyConnectionString"]));
+            }
+        }
     }
 }

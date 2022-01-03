@@ -516,6 +516,12 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                     totalAccumulatedSalesReturn = (VATSalesReturn + VATExemptSalesReturn);
                 }
             }
+            // -------- Custom Previous Accumulated Net Sales --------------------------
+            DateTime minusDay = filterDate.AddDays(-1);
+            var accNetSales = from d in db.SysReadingPrevAccNetSales
+                              where d.ReadingDate == minusDay
+                              select d;
+            // -------------------------------------------------------------------------
 
             repZReadingReportEntity.GrossSalesTotalPreviousReading = totalAccumulatedGrossSales;
             repZReadingReportEntity.GrossSalesRunningTotal = (repZReadingReportEntity.TotalGrossSales * currentDeclareRate) + repZReadingReportEntity.GrossSalesTotalPreviousReading;
@@ -525,15 +531,49 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             String _totalAccumulatedSeniorCitizenDiscount = totalAccumulatedSeniorCitizenDiscount.ToString("#,##0.00");
             String _totalAccumulatedPWDDiscount = totalAccumulatedPWDDiscount.ToString("#,##0.00");
             String _totalAccumulatedSalesReturn = totalAccumulatedSalesReturn.ToString("#,##0.00");
+            Decimal _totalAccumulatedPreviousNetSales = 0;
 
-            Decimal _totalAccumulatedPreviousNetSales = Convert.ToDecimal(_totalAccumulatedGrossSales) -
-                                                    Convert.ToDecimal(_totalAccumulatedRegularDiscount) -
-                                                    Convert.ToDecimal(_totalAccumulatedSeniorCitizenDiscount) -
-                                                    Convert.ToDecimal(_totalAccumulatedPWDDiscount) -
-                                                    (Convert.ToDecimal(_totalAccumulatedSalesReturn) * -1);
+            // -------- Custom Previous Accumulated Net Sales ------------------------
+            if (accNetSales.Any())
+            {
+                var prevAccNetSales = accNetSales.FirstOrDefault().AccumulatedNetSales;
+                _totalAccumulatedPreviousNetSales = prevAccNetSales;
+            }
+            else
+            {
+                _totalAccumulatedPreviousNetSales = Convert.ToDecimal(_totalAccumulatedGrossSales) -
+                         Convert.ToDecimal(_totalAccumulatedRegularDiscount) -
+                         Convert.ToDecimal(_totalAccumulatedSeniorCitizenDiscount) -
+                         Convert.ToDecimal(_totalAccumulatedPWDDiscount) -
+                         (Convert.ToDecimal(_totalAccumulatedSalesReturn) * -1);
+            }
+            // -------------------------------------------------------------------------
 
             repZReadingReportEntity.NetSalesTotalPreviousReading = _totalAccumulatedPreviousNetSales;
             repZReadingReportEntity.NetSalesRunningTotal = repZReadingReportEntity.TotalNetSales + repZReadingReportEntity.NetSalesTotalPreviousReading;
+
+            // -------- Custom Previous Accumulated Net Sales --------------------------
+            var accNetSalesCurrent = from d in db.SysReadingPrevAccNetSales
+                                     where d.ReadingDate == Convert.ToDateTime(filterDate.ToShortDateString())
+                                     select d;
+
+            Entities.SysReadingPrevAccNetSales newPrevAccNetSales = new Entities.SysReadingPrevAccNetSales()
+            {
+                ReadingDate = Convert.ToDateTime(filterDate.ToShortDateString()),
+                AccumulatedNetSales = repZReadingReportEntity.NetSalesRunningTotal
+            };
+
+            Controllers.SysReadingPrevAccNetSales addAccNetSales = new Controllers.SysReadingPrevAccNetSales();
+            if (accNetSalesCurrent.Any())
+            {
+                addAccNetSales.UpdatePrevAccNetSales(Convert.ToDateTime(filterDate.ToShortDateString()), newPrevAccNetSales);
+            }
+            else
+            {
+                addAccNetSales.InsertPrevAccNetSales(newPrevAccNetSales);
+            }
+            
+            // -------------------------------------------------------------------------
 
             var firstCollection = from d in db.TrnCollections
                                   where d.IsLocked == true

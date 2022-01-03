@@ -254,6 +254,7 @@
     <Compile Include="Controllers\SysLoginController.cs" />
     <Compile Include="Controllers\IntCloudSettingsController.cs" />
     <Compile Include="Controllers\SysCurrentController.cs" />
+    <Compile Include="Controllers\SysReadingPrevAccNetSales.cs" />
     <Compile Include="Controllers\SysReadingPrintCountController.cs" />
     <Compile Include="Controllers\SysSoftwareController.cs" />
     <Compile Include="Controllers\TrnCollectionController.cs" />
@@ -429,6 +430,7 @@
     <Compile Include="Entities\SysFormEntity.cs" />
     <Compile Include="Entities\SysKitchenItemEntity.cs" />
     <Compile Include="Entities\SysLanguageEntity.cs" />
+    <Compile Include="Entities\SysReadingPrevAccNetSales.cs" />
     <Compile Include="Entities\SysReadingPrintCount.cs" />
     <Compile Include="Entities\SysUserRightsEntity.cs" />
     <Compile Include="Entities\TrnCollectionEntity.cs" />
