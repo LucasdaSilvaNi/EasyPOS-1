@@ -23,24 +23,26 @@ namespace EasyPOS.Forms.Software.RepSalesReport
         public Int32 pageSize = 50;
 
         public DateTime dateAsOf;
+        public Int32 customerId;
 
-        public RepAccountsReceivableSummaryReportForm(DateTime _dateAsOf)
+        public RepAccountsReceivableSummaryReportForm(DateTime _dateAsOf, Int32 _customerId)
         {
             InitializeComponent();
 
             dateAsOf = _dateAsOf;
+            customerId = _customerId;
 
             GetSalesSummaryListDataSource();
             CreateSalesSummaryListDataGrid();
         }
 
-        public List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity> GetSalesSummaryListData(DateTime dateAsOf)
+        public List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity> GetSalesSummaryListData(DateTime dateAsOf, Int32 customerId)
         {
             List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity> rowList = new List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity>();
 
             Controllers.RepSalesReportController repAccountsReceivableSummaryReportController = new Controllers.RepSalesReportController();
 
-            var salesList = repAccountsReceivableSummaryReportController.AccountsReceivableSummaryReport(dateAsOf);
+            var salesList = repAccountsReceivableSummaryReportController.AccountsReceivableSummaryReport(dateAsOf, customerId);
             if (salesList.Any())
             {
                 Decimal totalBalance = 0;
@@ -79,7 +81,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
         public void GetSalesSummaryListDataSource()
         {
-            salesList = GetSalesSummaryListData(dateAsOf);
+            salesList = GetSalesSummaryListData(dateAsOf, customerId);
             if (salesList.Any())
             {
 
@@ -264,7 +266,7 @@ namespace EasyPOS.Forms.Software.RepSalesReport
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
-            new RepAccountsReceivableReportPDFForm(dateAsOf);
+            new RepAccountsReceivableReportPDFForm(dateAsOf, customerId);
         }
     }
 }

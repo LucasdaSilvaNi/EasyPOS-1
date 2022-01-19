@@ -1094,57 +1094,112 @@ namespace EasyPOS.Controllers
         // ===================
         // Accounts Receivable
         // ===================
-        public List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity> AccountsReceivableSummaryReport(DateTime dateAsOf)
+        public List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity> AccountsReceivableSummaryReport(DateTime dateAsOf, Int32 customerId)
         {
             List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity> newSales = new List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity>();
 
-            var sales = from d in db.TrnSales
-                        where d.SalesDate <= Convert.ToDateTime(dateAsOf)
-                        && d.BalanceAmount > 0
-                        && d.IsLocked == true
-                        && d.IsTendered == false
-                        && d.IsCancelled == false
-                        select d;
-
-            if (sales.Any())
+            if (customerId == 0)
             {
-                foreach (var sale in sales)
+                var sales = from d in db.TrnSales
+                            where d.SalesDate <= Convert.ToDateTime(dateAsOf)
+                            && d.BalanceAmount > 0
+                            && d.IsLocked == true
+                            && d.IsTendered == false
+                            && d.IsCancelled == false
+                            select d;
+
+                if (sales.Any())
                 {
-                    var ColumnSalesAmount = sale.Amount.ToString("#,##0.00");
-                    var ColumnPaymentAmount = sale.PaidAmount.ToString("#,##0.00");
-                    var ColumnBalanceAmount = sale.BalanceAmount.ToString("#,##0.00");
-                    var ColumnDueDate = sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays)).ToShortDateString();
-                    var ColumnCurrent = ComputeAge(0, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
-                    var Column30Days = ComputeAge(1, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
-                    var Column60Days = ComputeAge(2, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
-                    var Column90Days = ComputeAge(3, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
-                    var Column120Days = ComputeAge(4, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
-
-                    newSales.Add(new Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity
+                    foreach (var sale in sales)
                     {
-                        ColumnCustomer = sale.MstCustomer.Customer,
-                        ColumnTerm = sale.MstTerm.Term,
-                        ColumnCreditLimit = sale.MstCustomer.CreditLimit.ToString("#,##0.00"),
-                        ColumnSalesNumber = sale.SalesNumber,
-                        ColumnSalesDate = sale.SalesDate.ToShortDateString(),
-                        ColumnSalesAmount = ColumnSalesAmount,
-                        ColumnPaymentAmount = ColumnPaymentAmount,
-                        ColumnBalanceAmount = ColumnBalanceAmount,
-                        ColumnDueDate = ColumnDueDate,
-                        ColumnCurrent = ColumnCurrent,
-                        Column30Days = Column30Days,
-                        Column60Days = Column60Days,
-                        Column90Days = Column90Days,
-                        Column120Days = Column120Days
-                    });
-                }
+                        var ColumnSalesAmount = sale.Amount.ToString("#,##0.00");
+                        var ColumnPaymentAmount = sale.PaidAmount.ToString("#,##0.00");
+                        var ColumnBalanceAmount = sale.BalanceAmount.ToString("#,##0.00");
+                        var ColumnDueDate = sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays)).ToShortDateString();
+                        var ColumnCurrent = ComputeAge(0, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
+                        var Column30Days = ComputeAge(1, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
+                        var Column60Days = ComputeAge(2, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
+                        var Column90Days = ComputeAge(3, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
+                        var Column120Days = ComputeAge(4, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
 
-                return newSales.ToList();
+                        newSales.Add(new Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity
+                        {
+                            ColumnCustomer = sale.MstCustomer.Customer,
+                            ColumnTerm = sale.MstTerm.Term,
+                            ColumnCreditLimit = sale.MstCustomer.CreditLimit.ToString("#,##0.00"),
+                            ColumnSalesNumber = sale.SalesNumber,
+                            ColumnSalesDate = sale.SalesDate.ToShortDateString(),
+                            ColumnSalesAmount = ColumnSalesAmount,
+                            ColumnPaymentAmount = ColumnPaymentAmount,
+                            ColumnBalanceAmount = ColumnBalanceAmount,
+                            ColumnDueDate = ColumnDueDate,
+                            ColumnCurrent = ColumnCurrent,
+                            Column30Days = Column30Days,
+                            Column60Days = Column60Days,
+                            Column90Days = Column90Days,
+                            Column120Days = Column120Days
+                        });
+                    }
+
+                    return newSales.ToList();
+                }
+                else
+                {
+                    return new List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity>();
+                }
             }
             else
             {
-                return new List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity>();
+                var sales = from d in db.TrnSales
+                            where d.SalesDate <= Convert.ToDateTime(dateAsOf)
+                            && d.CustomerId == customerId
+                            && d.BalanceAmount > 0
+                            && d.IsLocked == true
+                            && d.IsTendered == false
+                            && d.IsCancelled == false
+                            select d;
+
+                if (sales.Any())
+                {
+                    foreach (var sale in sales)
+                    {
+                        var ColumnSalesAmount = sale.Amount.ToString("#,##0.00");
+                        var ColumnPaymentAmount = sale.PaidAmount.ToString("#,##0.00");
+                        var ColumnBalanceAmount = sale.BalanceAmount.ToString("#,##0.00");
+                        var ColumnDueDate = sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays)).ToShortDateString();
+                        var ColumnCurrent = ComputeAge(0, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
+                        var Column30Days = ComputeAge(1, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
+                        var Column60Days = ComputeAge(2, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
+                        var Column90Days = ComputeAge(3, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
+                        var Column120Days = ComputeAge(4, Convert.ToDateTime(dateAsOf).Subtract(sale.SalesDate.AddDays(Convert.ToInt32(sale.MstTerm.NumberOfDays))).Days, sale.BalanceAmount).ToString("#,##0.00");
+
+                        newSales.Add(new Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity
+                        {
+                            ColumnCustomer = sale.MstCustomer.Customer,
+                            ColumnTerm = sale.MstTerm.Term,
+                            ColumnCreditLimit = sale.MstCustomer.CreditLimit.ToString("#,##0.00"),
+                            ColumnSalesNumber = sale.SalesNumber,
+                            ColumnSalesDate = sale.SalesDate.ToShortDateString(),
+                            ColumnSalesAmount = ColumnSalesAmount,
+                            ColumnPaymentAmount = ColumnPaymentAmount,
+                            ColumnBalanceAmount = ColumnBalanceAmount,
+                            ColumnDueDate = ColumnDueDate,
+                            ColumnCurrent = ColumnCurrent,
+                            Column30Days = Column30Days,
+                            Column60Days = Column60Days,
+                            Column90Days = Column90Days,
+                            Column120Days = Column120Days
+                        });
+                    }
+
+                    return newSales.ToList();
+                }
+                else
+                {
+                    return new List<Entities.DgvRepSalesReportAccountsReceivableSummaryReportListEntity>();
+                }
             }
+
         }
     }
 }
