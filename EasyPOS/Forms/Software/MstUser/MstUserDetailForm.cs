@@ -160,7 +160,7 @@ namespace EasyPOS.Forms.Software.MstUser
                     sysSoftwareForm.RemoveTabPage();
                 }
             }
-            
+
         }
 
         public void GetUserDetail()
@@ -209,6 +209,10 @@ namespace EasyPOS.Forms.Software.MstUser
 
         private void buttonLock_Click(object sender, EventArgs e)
         {
+            if (textBoxUserCardNumber.Text == "")
+            {
+                textBoxUserCardNumber.Text = "NA";
+            }
             Controllers.MstUserController mstUserController = new Controllers.MstUserController();
 
             Entities.MstUserEntity newUserEntity = new Entities.MstUserEntity()
@@ -218,6 +222,7 @@ namespace EasyPOS.Forms.Software.MstUser
                 FullName = textBoxFullName.Text,
                 UserCardNumber = textBoxUserCardNumber.Text,
             };
+
 
             String[] lockUser = mstUserController.LockUser(mstUserEntity.Id, newUserEntity);
             if (lockUser[1].Equals("0") == false)
