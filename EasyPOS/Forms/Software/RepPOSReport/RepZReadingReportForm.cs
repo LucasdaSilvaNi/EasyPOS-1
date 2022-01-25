@@ -52,6 +52,11 @@ namespace EasyPOS.Forms.Software.RepPOSReport
                 printDocumentZReadingReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 280, 38500);
                 ZReadingDataSource();
             }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "HP A799")
+            {
+                printDocumentZReadingReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 280, 38500);
+                ZReadingDataSource();
+            }
             else
             {
                 printDocumentZReadingReport.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
@@ -674,6 +679,11 @@ namespace EasyPOS.Forms.Software.RepPOSReport
             {
                 x = 5; y = 5;
                 width = 270.0F; height = 0F;
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "HP A799")
+            {
+                x = 5; y = 5;
+                width = 260.0F; height = 0F;
             }
             else
             {

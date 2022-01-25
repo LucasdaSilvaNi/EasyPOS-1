@@ -28,7 +28,12 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
             }
             else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
             {
-                printDocumentOfficialReceipt.DefaultPageSettings.PaperSize = new PaperSize("Disbursement Report", 270, 1000);
+                printDocumentOfficialReceipt.DefaultPageSettings.PaperSize = new PaperSize("Disbursement Report", 280, 1000);
+                printDocumentOfficialReceipt.Print();
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "HP A799")
+            {
+                printDocumentOfficialReceipt.DefaultPageSettings.PaperSize = new PaperSize("Disbursement Report", 280, 1000);
                 printDocumentOfficialReceipt.Print();
             }
             else
@@ -76,6 +81,11 @@ namespace EasyPOS.Forms.Software.TrnDisbursement
                 width = 245.0F; height = 0F;
             }
             else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+            {
+                x = 5; y = 5;
+                width = 270.0F; height = 0F;
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "HP A799")
             {
                 x = 5; y = 5;
                 width = 260.0F; height = 0F;

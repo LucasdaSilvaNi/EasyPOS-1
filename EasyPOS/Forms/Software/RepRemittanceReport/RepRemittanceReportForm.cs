@@ -58,7 +58,12 @@ namespace EasyPOS.Forms.Software.RepRemittanceReport
             }
             else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
             {
-                printDocumentRemittanceReport.DefaultPageSettings.PaperSize = new PaperSize("Remittance Report", 270, 1000);
+                printDocumentRemittanceReport.DefaultPageSettings.PaperSize = new PaperSize("Remittance Report", 280, 1000);
+                RemittanceReportDataSource();
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "HP A799")
+            {
+                printDocumentRemittanceReport.DefaultPageSettings.PaperSize = new PaperSize("Remittance Report", 280, 1000);
                 RemittanceReportDataSource();
             }
             else
@@ -318,6 +323,11 @@ namespace EasyPOS.Forms.Software.RepRemittanceReport
                 width = 245.0F; height = 0F;
             }
             else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "Thermal Printer")
+            {
+                x = 5; y = 5;
+                width = 270.0F; height = 0F;
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "HP A799")
             {
                 x = 5; y = 5;
                 width = 260.0F; height = 0F;

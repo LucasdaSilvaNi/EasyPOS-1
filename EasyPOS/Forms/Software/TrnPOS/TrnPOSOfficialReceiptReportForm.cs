@@ -41,6 +41,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 printDocumentOfficialReceipt.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 280, 38500);
                 printDocumentOfficialReceipt.Print();
             }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "HP A799")
+            {
+                printDocumentOfficialReceipt.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 280, 38500);
+                printDocumentOfficialReceipt.Print();
+            }
             else
             {
                 printDocumentOfficialReceipt.DefaultPageSettings.PaperSize = new PaperSize("Official Receipt", 175, 38500);
@@ -86,6 +91,11 @@ namespace EasyPOS.Forms.Software.TrnPOS
             {
                 x = 5; y = 5;
                 width = 270.0F; height = 0F;
+            }
+            else if (Modules.SysCurrentModule.GetCurrentSettings().PrinterType == "HP A799")
+            {
+                x = 5; y = 5;
+                width = 260.0F; height = 0F;
             }
             else
             {
