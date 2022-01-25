@@ -1689,27 +1689,51 @@ namespace EasyPOS.Controllers
                     if (customerSales.Any())
                     {
                         Decimal customerTerms = customerSales.FirstOrDefault().MstCustomer.MstTerm.NumberOfDays;
+                        Decimal customeCreditLimit = customerSales.FirstOrDefault().MstCustomer.CreditLimit;
 
                         var previousSales = from d in customerSales
                                             where d.SalesDate < sales.FirstOrDefault().SalesDate
                                             && d.BalanceAmount > 0
                                             select d;
 
-                        if (previousSales.Any())
+                        var previousSalesBalance = from d in customerSales
+                                            where d.Id != salesId
+                                            && d.BalanceAmount > 0
+                                            select d;
+
+                        Decimal totalPreviousSalesBalance = 0;
+                        Decimal totalBalance = 0;
+
+                        if (previousSalesBalance.Any())
                         {
-                            if (customerTerms != 0)
+                            totalPreviousSalesBalance = previousSalesBalance.Sum(d => d.BalanceAmount);
+                        }
+
+                        totalBalance = totalPreviousSalesBalance + objSales.Amount;
+
+                        if (totalBalance > customeCreditLimit)
+                        {
+                            return new String[] { "Exceeds Credit Limit.", "0" };
+                        }
+                        else
+                        {
+                            if (previousSales.Any())
                             {
-                                var start_sales_date = previousSales.OrderBy(d => d.SalesDate).FirstOrDefault().SalesDate;
-                                var end_sales_date = sales.FirstOrDefault().SalesDate;
-
-                                var totalDays = (end_sales_date - start_sales_date).TotalDays;
-
-                                if (Convert.ToDecimal(totalDays) > customerTerms)
+                                if (customerTerms != 0)
                                 {
-                                    return new String[] { "Please settle the previous balance first.", "0" };
+                                    var start_sales_date = previousSales.OrderBy(d => d.SalesDate).FirstOrDefault().SalesDate;
+                                    var end_sales_date = sales.FirstOrDefault().SalesDate;
+
+                                    var totalDays = (end_sales_date - start_sales_date).TotalDays;
+
+                                    if (Convert.ToDecimal(totalDays) > customerTerms)
+                                    {
+                                        return new String[] { "Please settle the previous balance first.", "0" };
+                                    }
                                 }
                             }
                         }
+                        
                     }
 
                     var lockSales = sales.FirstOrDefault();
