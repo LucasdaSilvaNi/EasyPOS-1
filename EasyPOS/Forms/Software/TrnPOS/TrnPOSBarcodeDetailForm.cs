@@ -636,25 +636,28 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 trnSalesDetailSalesItemDetailForm.ShowDialog();
             }
 
-
-            if (e.RowIndex > -1 && dataGridViewSalesLineList.CurrentCell.ColumnIndex == dataGridViewSalesLineList.Columns["ColumnSalesLineDelete"].Index)
+            if (dataGridViewSalesLineList.Rows.Count > 0)
             {
-                DialogResult deleteDialogResult = MessageBox.Show("Delete Item?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (deleteDialogResult == DialogResult.Yes)
+                if (e.RowIndex > -1 && dataGridViewSalesLineList.CurrentCell.ColumnIndex == dataGridViewSalesLineList.Columns["ColumnSalesLineDelete"].Index)
                 {
-                    Controllers.TrnSalesLineController trnPOSSalesLineController = new Controllers.TrnSalesLineController();
+                    DialogResult deleteDialogResult = MessageBox.Show("Delete Item?", "Easy POS", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (deleteDialogResult == DialogResult.Yes)
+                    {
+                        Controllers.TrnSalesLineController trnPOSSalesLineController = new Controllers.TrnSalesLineController();
 
-                    String[] deleteSalesLine = trnPOSSalesLineController.DeleteSalesLine(Convert.ToInt32(dataGridViewSalesLineList.Rows[e.RowIndex].Cells[2].Value));
-                    if (deleteSalesLine[1].Equals("0") == false)
-                    {
-                        GetSalesLineList();
-                    }
-                    else
-                    {
-                        MessageBox.Show(deleteSalesLine[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        String[] deleteSalesLine = trnPOSSalesLineController.DeleteSalesLine(Convert.ToInt32(dataGridViewSalesLineList.Rows[e.RowIndex].Cells[2].Value));
+                        if (deleteSalesLine[1].Equals("0") == false)
+                        {
+                            GetSalesLineList();
+                        }
+                        else
+                        {
+                            MessageBox.Show(deleteSalesLine[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
+            
         }
 
         private void textBoxBarcode_KeyDown(object sender, KeyEventArgs e)
