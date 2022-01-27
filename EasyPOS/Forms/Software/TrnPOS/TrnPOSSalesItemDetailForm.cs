@@ -45,7 +45,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     label11.Text = SetLabel(label11.Text);
                     label12.Text = SetLabel(label12.Text);
                     label13.Text = SetLabel(label13.Text);
-                    
+
                 }
             }
 
@@ -74,7 +74,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 textBoxSalesLinePrice.Enabled = false;
             }
 
-                GetDiscountList();
+            GetDiscountList();
 
             textBoxSalesLineQuantity.Focus();
             textBoxSalesLineQuantity.SelectAll();
@@ -233,7 +233,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Price2 = 0,
                 Price2LessTax = 0,
                 PriceSplitPercentage = 0,
-                
+
             };
 
             Controllers.TrnSalesLineController trnPOSSalesLineController = new Controllers.TrnSalesLineController();
@@ -252,7 +252,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         trnPOSTouchDetailForm.GetSalesLineList();
                         trnPOSTouchDetailForm.UpdatePOSTouchSalesListDataSource();
                     }
-                    if(trnPOSSearchItemForm != null)
+                    if (trnPOSSearchItemForm != null)
                     {
                         trnPOSSearchItemForm.resetCursor();
                     }
@@ -283,6 +283,21 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 else
                 {
                     MessageBox.Show(addSales[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                if (Convert.ToDecimal(textBoxSalesLineQuantity.Text) == 0)
+                {
+                    Controllers.TrnSalesLineController trnSalesLineController = new Controllers.TrnSalesLineController();
+
+                    String[] deleteSalesLine = trnSalesLineController.DeleteSalesLine(trnSalesLineEntity.Id);
+                    if (deleteSalesLine[1].Equals("0") == false)
+                    {
+                        trnSalesDetailForm.GetSalesLineList();
+                    }
+                    else
+                    {
+                        MessageBox.Show(deleteSalesLine[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -335,7 +350,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 {
                     textBoxSalesLineDiscountRate.ReadOnly = true;
                     textBoxSalesLineDiscountAmount.ReadOnly = true;
-                    if(selectedItemDiscount.DiscountRate == 0)
+                    if (selectedItemDiscount.DiscountRate == 0)
                     {
                         textBoxSalesLineDiscountAmount.Text = selectedItemDiscount.DiscountAmount.ToString("#,##0.00");
                     }
@@ -349,7 +364,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     textBoxSalesLineDiscountAmount.Text = selectedItemDiscount.DiscountAmount.ToString("#,##0.00");
                     ComputeDiscountRate();
                 }
-                
+
                 ComputeAmount();
 
             }
@@ -386,7 +401,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     textBoxSalesLineAmount.Text = amount.ToString("#,##0.00");
                     textBoxSalesLineVATAmount.Text = taxAmount.ToString("#,##0.00");
                 }
-               
+
             }
             catch (Exception ex)
             {
