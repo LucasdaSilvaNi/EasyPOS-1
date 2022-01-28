@@ -882,26 +882,55 @@ namespace EasyPOS.Forms.Software.SysUtilities
         public void GetItemBarcodeList()
         {
             Controllers.MstItemController mstItemController = new Controllers.MstItemController();
-            var items = mstItemController.DropdownListRecalculateItemInventoryList();
-            if (items.Any())
+
+            List<Entities.MstItemEntity> newItemList = new List<Entities.MstItemEntity>();
+            newItemList.Add(new Entities.MstItemEntity
             {
-                cboBarcode.DataSource = items;
-                cboBarcode.ValueMember = "Id";
-                cboBarcode.DisplayMember = "BarCode";
-            }
+                Id = 0,
+                BarCode = "ALL",
+                ItemDescription = "ALL"
+            });
+
+            foreach (var obj in mstItemController.DropdownListRecalculateItemInventoryList())
+            {
+                newItemList.Add(new Entities.MstItemEntity
+                {
+                    Id = obj.Id,
+                    BarCode = obj.BarCode,
+                    ItemDescription = obj.ItemDescription
+                });
+            };
+
+            cboBarcode.DataSource = newItemList;
+            cboBarcode.ValueMember = "Id";
+            cboBarcode.DisplayMember = "BarCode";
 
             GetItemDescriptionList();
         }
         public void GetItemDescriptionList()
         {
             Controllers.MstItemController mstItemController= new Controllers.MstItemController();
-            var itemdesc = mstItemController.DropdownListRecalculateItemInventoryList();
-            if (itemdesc.Any())
+
+            List<Entities.MstItemEntity> newItemList = new List<Entities.MstItemEntity>();
+            newItemList.Add(new Entities.MstItemEntity
             {
-                cboItemDescription.DataSource = itemdesc;
+                Id = 0,
+                BarCode = "ALL",
+                ItemDescription = "ALL"
+            });
+
+            foreach (var obj in mstItemController.DropdownListRecalculateItemInventoryList())
+            {
+                newItemList.Add(new Entities.MstItemEntity
+                {
+                    Id = obj.Id,
+                    BarCode = obj.BarCode,
+                    ItemDescription = obj.ItemDescription
+                });
+            };
+                cboItemDescription.DataSource = newItemList;
                 cboItemDescription.ValueMember = "Id";
                 cboItemDescription.DisplayMember = "ItemDescription";
-            }
         }
         private void buttonRecalculate_Click(object sender, EventArgs e)
         {
