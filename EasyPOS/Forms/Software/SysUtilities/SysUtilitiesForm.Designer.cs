@@ -114,6 +114,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.folderBrowserDialogGenerateCSV = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialogImportCSV = new System.Windows.Forms.OpenFileDialog();
+            this.cProgressBarRecalculateInventory = new CircularProgressBar.CircularProgressBar();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAuditTrailList)).BeginInit();
@@ -1095,6 +1096,7 @@
             // 
             // tabPageRecalculateInventory
             // 
+            this.tabPageRecalculateInventory.Controls.Add(this.cProgressBarRecalculateInventory);
             this.tabPageRecalculateInventory.Controls.Add(this.label10);
             this.tabPageRecalculateInventory.Controls.Add(this.cboItemDescription);
             this.tabPageRecalculateInventory.Controls.Add(this.label9);
@@ -1123,6 +1125,8 @@
             // 
             // cboItemDescription
             // 
+            this.cboItemDescription.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cboItemDescription.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboItemDescription.FormattingEnabled = true;
             this.cboItemDescription.Location = new System.Drawing.Point(231, 68);
             this.cboItemDescription.Margin = new System.Windows.Forms.Padding(2);
@@ -1144,6 +1148,8 @@
             // 
             // cboBarcode
             // 
+            this.cboBarcode.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.cboBarcode.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBarcode.FormattingEnabled = true;
             this.cboBarcode.Location = new System.Drawing.Point(62, 68);
             this.cboBarcode.Margin = new System.Windows.Forms.Padding(2);
@@ -1160,7 +1166,7 @@
             this.buttonRecalculate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRecalculate.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRecalculate.ForeColor = System.Drawing.Color.White;
-            this.buttonRecalculate.Location = new System.Drawing.Point(62, 106);
+            this.buttonRecalculate.Location = new System.Drawing.Point(221, 263);
             this.buttonRecalculate.Margin = new System.Windows.Forms.Padding(2);
             this.buttonRecalculate.Name = "buttonRecalculate";
             this.buttonRecalculate.Size = new System.Drawing.Size(165, 45);
@@ -1195,6 +1201,40 @@
             // openFileDialogImportCSV
             // 
             this.openFileDialogImportCSV.FileName = "openFileDialogImportCSV";
+            // 
+            // cProgressBarRecalculateInventory
+            // 
+            this.cProgressBarRecalculateInventory.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
+            this.cProgressBarRecalculateInventory.AnimationSpeed = 500;
+            this.cProgressBarRecalculateInventory.BackColor = System.Drawing.Color.Transparent;
+            this.cProgressBarRecalculateInventory.Cursor = System.Windows.Forms.Cursors.Default;
+            this.cProgressBarRecalculateInventory.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cProgressBarRecalculateInventory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cProgressBarRecalculateInventory.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.cProgressBarRecalculateInventory.InnerMargin = 2;
+            this.cProgressBarRecalculateInventory.InnerWidth = -1;
+            this.cProgressBarRecalculateInventory.Location = new System.Drawing.Point(231, 110);
+            this.cProgressBarRecalculateInventory.MarqueeAnimationSpeed = 2000;
+            this.cProgressBarRecalculateInventory.Name = "cProgressBarRecalculateInventory";
+            this.cProgressBarRecalculateInventory.OuterColor = System.Drawing.Color.FromArgb(((int)(((byte)(118)))), ((int)(((byte)(114)))), ((int)(((byte)(113)))));
+            this.cProgressBarRecalculateInventory.OuterMargin = -26;
+            this.cProgressBarRecalculateInventory.OuterWidth = 14;
+            this.cProgressBarRecalculateInventory.ProgressColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(188)))), ((int)(((byte)(0)))));
+            this.cProgressBarRecalculateInventory.ProgressWidth = 18;
+            this.cProgressBarRecalculateInventory.SecondaryFont = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cProgressBarRecalculateInventory.Size = new System.Drawing.Size(143, 137);
+            this.cProgressBarRecalculateInventory.StartAngle = 80;
+            this.cProgressBarRecalculateInventory.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.cProgressBarRecalculateInventory.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.cProgressBarRecalculateInventory.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
+            this.cProgressBarRecalculateInventory.SubscriptText = "";
+            this.cProgressBarRecalculateInventory.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.cProgressBarRecalculateInventory.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
+            this.cProgressBarRecalculateInventory.SuperscriptText = "";
+            this.cProgressBarRecalculateInventory.TabIndex = 40;
+            this.cProgressBarRecalculateInventory.Text = "Recalculate";
+            this.cProgressBarRecalculateInventory.TextMargin = new System.Windows.Forms.Padding(1);
+            this.cProgressBarRecalculateInventory.Value = 60;
             // 
             // SysUtilitiesForm
             // 
@@ -1327,5 +1367,6 @@
         private System.Windows.Forms.Button buttonRecalculate;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label7;
+        private CircularProgressBar.CircularProgressBar cProgressBarRecalculateInventory;
     }
 }

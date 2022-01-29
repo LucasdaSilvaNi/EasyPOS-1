@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +17,11 @@ namespace EasyPOS.Forms.Software.SysUtilities
 {
     public partial class SysUtilitiesForm : Form
     {
+        // ============
+        // Data Context
+        // ============
+        public Data.easyposdbDataContext db = new Data.easyposdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+
         public SysSoftwareForm sysSoftwareForm;
 
         public static List<Entities.DgvSysSysUtilitiesAuditTrailListEntity> auditTrailListData = new List<Entities.DgvSysSysUtilitiesAuditTrailListEntity>();
@@ -39,6 +45,10 @@ namespace EasyPOS.Forms.Software.SysUtilities
 
             GetUserList();
             CreateItemListDataGridView();
+
+            cProgressBarRecalculateInventory.Value = 0;
+            cProgressBarRecalculateInventory.StartAngle = 80;
+            cProgressBarRecalculateInventory.Text = "Recalculate";
         }
         public List<Entities.MstItemEntity> itemList = new List<Entities.MstItemEntity>();
         public List<Entities.MstCustomerEntity> CustomerList = new List<Entities.MstCustomerEntity>();
@@ -936,16 +946,47 @@ namespace EasyPOS.Forms.Software.SysUtilities
         {
             try
             {
-                Controllers.MstItemController mstItemController = new Controllers.MstItemController();
-                String[] updateItemInventory = mstItemController.UpdateItemInventory(Convert.ToInt32(cboBarcode.SelectedValue));
-                if (updateItemInventory[1].Equals("0") == false)
+                if (Convert.ToInt32(cboBarcode.SelectedValue) == 0)
                 {
-                    MessageBox.Show("Updated Successfully", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var items = from d in db.MstItems
+                                where d.IsLocked == true
+                                select d;
+                    var itemCount = items.Count();
 
+                    cProgressBarRecalculateInventory.Value = 0;
+                    cProgressBarRecalculateInventory.StartAngle = 80;
+                    cProgressBarRecalculateInventory.Text = "Recalculating...";
+                    cProgressBarRecalculateInventory.Minimum = 0;
+                    cProgressBarRecalculateInventory.Maximum = Convert.ToInt32(itemCount);
+
+                    if (items.Any())
+                    {
+                        foreach (var item in items)
+                        {
+                            Thread.Sleep(5);
+                            Controllers.MstItemController mstItemController = new Controllers.MstItemController();
+                            String[] updateItemInventory = mstItemController.UpdateItemInventory(item.Id);
+                            cProgressBarRecalculateInventory.Value += 1;
+                            cProgressBarRecalculateInventory.Update();
+                        }
+                    }
+
+                    cProgressBarRecalculateInventory.Text = "Successful...";
                 }
                 else
                 {
-                    MessageBox.Show(updateItemInventory[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Int32 selectedItemId = Convert.ToInt32(cboBarcode.SelectedValue);
+                    Controllers.MstItemController mstItemController = new Controllers.MstItemController();
+                    String[] updateItemInventory = mstItemController.UpdateItemInventory(selectedItemId);
+                    if (updateItemInventory[1].Equals("0") == false)
+                    {
+                        MessageBox.Show("Updated Successfully", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else
+                    {
+                        MessageBox.Show(updateItemInventory[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)

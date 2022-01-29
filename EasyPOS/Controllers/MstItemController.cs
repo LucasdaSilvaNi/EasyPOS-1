@@ -974,10 +974,11 @@ namespace EasyPOS.Controllers
 
                 var items = from d in db.MstItems
                            where d.Id == itemId
+                           && d.IsLocked == true
                            select d;
 
-                var allItems = from d in db.MstItems
-                            select d;
+                //var allItems = from d in db.MstItems
+                //            select d;
 
                 if (itemId != 0)
                 {
@@ -1063,93 +1064,93 @@ namespace EasyPOS.Controllers
                         return new String[] { "Item not found.", "0" };
                     }
                 }
-                else
-                {
-                    if (allItems.Any())
-                    {
-                        foreach (var item in allItems)
-                        {
-                            var currentInInventories = from d in db.TrnStockInLines
-                                                       where d.TrnStockIn.IsLocked == true
-                                                       && d.ItemId == item.Id
-                                                       select d;
-                            Decimal stockInQty = 0;
-                            if (currentInInventories.Any())
-                            {
-                                stockInQty = currentInInventories.Sum(d => d.Quantity);
-                            }
+                //else
+                //{
+                //    if (allItems.Any())
+                //    {
+                //        foreach (var item in allItems)
+                //        {
+                //            var currentInInventories = from d in db.TrnStockInLines
+                //                                       where d.TrnStockIn.IsLocked == true
+                //                                       && d.ItemId == item.Id
+                //                                       select d;
+                //            Decimal stockInQty = 0;
+                //            if (currentInInventories.Any())
+                //            {
+                //                stockInQty = currentInInventories.Sum(d => d.Quantity);
+                //            }
 
-                            var currentSoldInventories = from d in db.TrnSalesLines
-                                                         where d.TrnSale.IsLocked == true
-                                                         && d.TrnSale.IsCancelled == false
-                                                         && d.ItemId == item.Id
-                                                         select d;
+                //            var currentSoldInventories = from d in db.TrnSalesLines
+                //                                         where d.TrnSale.IsLocked == true
+                //                                         && d.TrnSale.IsCancelled == false
+                //                                         && d.ItemId == item.Id
+                //                                         select d;
 
-                            Decimal salesQty = 0;
-                            if (currentSoldInventories.Any())
-                            {
-                                salesQty = currentSoldInventories.Sum(d => d.Quantity);
-                            }
+                //            Decimal salesQty = 0;
+                //            if (currentSoldInventories.Any())
+                //            {
+                //                salesQty = currentSoldInventories.Sum(d => d.Quantity);
+                //            }
 
-                            var currentSoldComponents = from d in db.TrnSalesLines
-                                                        where d.TrnSale.IsLocked == true
-                                                        && d.TrnSale.IsCancelled == false
-                                                        && d.MstItem.MstItemComponents.Any() == true
-                                                        && d.ItemId == item.Id
-                                                        select d;
+                //            var currentSoldComponents = from d in db.TrnSalesLines
+                //                                        where d.TrnSale.IsLocked == true
+                //                                        && d.TrnSale.IsCancelled == false
+                //                                        && d.MstItem.MstItemComponents.Any() == true
+                //                                        && d.ItemId == item.Id
+                //                                        select d;
 
-                            Decimal componentQty = 0;
-                            Decimal totalComponentQty = 0;
-                            if (currentSoldComponents.ToList().Any() == true)
-                            {
-                                foreach (var currentSoldComponent in currentSoldComponents.ToList())
-                                {
-                                    var itemComponents = from d in currentSoldComponent.MstItem.MstItemComponents.ToList()
-                                                         where d.ComponentItemId == item.Id
-                                                         select d;
+                //            Decimal componentQty = 0;
+                //            Decimal totalComponentQty = 0;
+                //            if (currentSoldComponents.ToList().Any() == true)
+                //            {
+                //                foreach (var currentSoldComponent in currentSoldComponents.ToList())
+                //                {
+                //                    var itemComponents = from d in currentSoldComponent.MstItem.MstItemComponents.ToList()
+                //                                         where d.ComponentItemId == item.Id
+                //                                         select d;
 
-                                    if (itemComponents.Any() == true)
-                                    {
-                                        foreach (var itemComponent in itemComponents.ToList())
-                                        {
-                                            componentQty = itemComponent.Quantity * currentSoldComponent.Quantity;
-                                            totalComponentQty += componentQty;
-                                        }
-                                    }
-                                }
-                            }
+                //                    if (itemComponents.Any() == true)
+                //                    {
+                //                        foreach (var itemComponent in itemComponents.ToList())
+                //                        {
+                //                            componentQty = itemComponent.Quantity * currentSoldComponent.Quantity;
+                //                            totalComponentQty += componentQty;
+                //                        }
+                //                    }
+                //                }
+                //            }
 
-                            var currentOutInventories = from d in db.TrnStockOutLines
-                                                        where d.TrnStockOut.IsLocked == true
-                                                        && d.ItemId == item.Id
-                                                        select d;
+                //            var currentOutInventories = from d in db.TrnStockOutLines
+                //                                        where d.TrnStockOut.IsLocked == true
+                //                                        && d.ItemId == item.Id
+                //                                        select d;
 
-                            Decimal stockOutQty = 0;
-                            if (currentOutInventories.Any())
-                            {
-                                stockOutQty = currentOutInventories.Sum(d => d.Quantity);
-                            }
+                //            Decimal stockOutQty = 0;
+                //            if (currentOutInventories.Any())
+                //            {
+                //                stockOutQty = currentOutInventories.Sum(d => d.Quantity);
+                //            }
 
-                            Decimal totalInQty = 0;
-                            Decimal totalOutQty = 0;
+                //            Decimal totalInQty = 0;
+                //            Decimal totalOutQty = 0;
 
-                            totalInQty = stockInQty;
-                            totalOutQty = salesQty + totalComponentQty + stockOutQty;
+                //            totalInQty = stockInQty;
+                //            totalOutQty = salesQty + totalComponentQty + stockOutQty;
 
-                            Decimal onhandQty = 0;
+                //            Decimal onhandQty = 0;
 
-                            onhandQty = totalInQty - totalOutQty;
+                //            onhandQty = totalInQty - totalOutQty;
 
-                            var updateItem = item;
-                            updateItem.OnhandQuantity = onhandQty;
-                            db.SubmitChanges();
-                        }
-                    }
-                    else
-                    {
-                        return new String[] { "Item not found.", "0" };
-                    }
-                }
+                //            var updateItem = item;
+                //            updateItem.OnhandQuantity = onhandQty;
+                //            db.SubmitChanges();
+                //        }
+                //    }
+                //    else
+                //    {
+                //        return new String[] { "Item not found.", "0" };
+                //    }
+                //}
 
                 return new String[] { "", "" };
             }

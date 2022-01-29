@@ -1,5 +1,5 @@
 ﻿{
-  "DataSource": "localhost",
+  "DataSource": "DESKTOP-RT4V2EU\\SQLEXPRESS",
   "InitialCatalog": "easypos",
   "UserId": "sa",
   "Password": "easyfis"
