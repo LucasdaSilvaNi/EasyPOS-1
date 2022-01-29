@@ -975,18 +975,20 @@ namespace EasyPOS.Forms.Software.SysUtilities
                 }
                 else
                 {
+                    cProgressBarRecalculateInventory.Value = 0;
+                    cProgressBarRecalculateInventory.StartAngle = 80;
+                    cProgressBarRecalculateInventory.Text = "Recalculating...";
+                    cProgressBarRecalculateInventory.Minimum = 0;
+                    cProgressBarRecalculateInventory.Maximum = 1;
+
+                    Thread.Sleep(5);
                     Int32 selectedItemId = Convert.ToInt32(cboBarcode.SelectedValue);
                     Controllers.MstItemController mstItemController = new Controllers.MstItemController();
                     String[] updateItemInventory = mstItemController.UpdateItemInventory(selectedItemId);
-                    if (updateItemInventory[1].Equals("0") == false)
-                    {
-                        MessageBox.Show("Updated Successfully", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    cProgressBarRecalculateInventory.Value += 1;
+                    cProgressBarRecalculateInventory.Update();
 
-                    }
-                    else
-                    {
-                        MessageBox.Show(updateItemInventory[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    cProgressBarRecalculateInventory.Text = "Successful...";
                 }
             }
             catch (Exception ex)
@@ -997,6 +999,10 @@ namespace EasyPOS.Forms.Software.SysUtilities
 
         private void cboBarcode_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cProgressBarRecalculateInventory.Value = 0;
+            cProgressBarRecalculateInventory.StartAngle = 80;
+            cProgressBarRecalculateInventory.Text = "Recalculate";
+
             if (cboBarcode.SelectedIndex > -1)
             {
                 cboItemDescription.SelectedValue = cboBarcode.SelectedValue;
@@ -1005,6 +1011,10 @@ namespace EasyPOS.Forms.Software.SysUtilities
 
         private void cboItemDescription_SelectedIndexChanged(object sender, EventArgs e)
         {
+            cProgressBarRecalculateInventory.Value = 0;
+            cProgressBarRecalculateInventory.StartAngle = 80;
+            cProgressBarRecalculateInventory.Text = "Recalculate";
+
             if (cboItemDescription.SelectedIndex > -1)
             {
                 cboBarcode.SelectedValue = cboItemDescription.SelectedValue;
