@@ -22,7 +22,7 @@ namespace EasyPOS.Data
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="easypos_july")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="easypos")]
 	public partial class easyposdbDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -120,6 +120,9 @@ namespace EasyPOS.Data
     partial void InsertSysLabel(SysLabel instance);
     partial void UpdateSysLabel(SysLabel instance);
     partial void DeleteSysLabel(SysLabel instance);
+    partial void InsertSysReadingPrevAccNetSale(SysReadingPrevAccNetSale instance);
+    partial void UpdateSysReadingPrevAccNetSale(SysReadingPrevAccNetSale instance);
+    partial void DeleteSysReadingPrevAccNetSale(SysReadingPrevAccNetSale instance);
     partial void InsertSysReadingPrintCount(SysReadingPrintCount instance);
     partial void UpdateSysReadingPrintCount(SysReadingPrintCount instance);
     partial void DeleteSysReadingPrintCount(SysReadingPrintCount instance);
@@ -174,13 +177,10 @@ namespace EasyPOS.Data
     partial void InsertTrnStockOut(TrnStockOut instance);
     partial void UpdateTrnStockOut(TrnStockOut instance);
     partial void DeleteTrnStockOut(TrnStockOut instance);
-    partial void InsertSysReadingPrevAccNetSale(SysReadingPrevAccNetSale instance);
-    partial void UpdateSysReadingPrevAccNetSale(SysReadingPrevAccNetSale instance);
-    partial void DeleteSysReadingPrevAccNetSale(SysReadingPrevAccNetSale instance);
     #endregion
 		
 		public easyposdbDataContext() : 
-				base(global::EasyPOS.Properties.Settings.Default.easypos_julyConnectionString, mappingSource)
+				base(global::EasyPOS.Properties.Settings.Default.easyposConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -449,6 +449,14 @@ namespace EasyPOS.Data
 			}
 		}
 		
+		public System.Data.Linq.Table<SysReadingPrevAccNetSale> SysReadingPrevAccNetSales
+		{
+			get
+			{
+				return this.GetTable<SysReadingPrevAccNetSale>();
+			}
+		}
+		
 		public System.Data.Linq.Table<SysReadingPrintCount> SysReadingPrintCounts
 		{
 			get
@@ -590,14 +598,6 @@ namespace EasyPOS.Data
 			get
 			{
 				return this.GetTable<TrnStockOut>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SysReadingPrevAccNetSale> SysReadingPrevAccNetSales
-		{
-			get
-			{
-				return this.GetTable<SysReadingPrevAccNetSale>();
 			}
 		}
 	}
@@ -2580,7 +2580,7 @@ namespace EasyPOS.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PriceLevel", DbType="NVarChar(255)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PriceLevel", DbType="NVarChar(100)")]
 		public string PriceLevel
 		{
 			get
@@ -13186,6 +13186,116 @@ namespace EasyPOS.Data
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SysReadingPrevAccNetSales")]
+	public partial class SysReadingPrevAccNetSale : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.DateTime _ReadingDate;
+		
+		private decimal _AccumulatedNetSales;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnReadingDateChanging(System.DateTime value);
+    partial void OnReadingDateChanged();
+    partial void OnAccumulatedNetSalesChanging(decimal value);
+    partial void OnAccumulatedNetSalesChanged();
+    #endregion
+		
+		public SysReadingPrevAccNetSale()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReadingDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ReadingDate
+		{
+			get
+			{
+				return this._ReadingDate;
+			}
+			set
+			{
+				if ((this._ReadingDate != value))
+				{
+					this.OnReadingDateChanging(value);
+					this.SendPropertyChanging();
+					this._ReadingDate = value;
+					this.SendPropertyChanged("ReadingDate");
+					this.OnReadingDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccumulatedNetSales", DbType="Decimal(18,5) NOT NULL")]
+		public decimal AccumulatedNetSales
+		{
+			get
+			{
+				return this._AccumulatedNetSales;
+			}
+			set
+			{
+				if ((this._AccumulatedNetSales != value))
+				{
+					this.OnAccumulatedNetSalesChanging(value);
+					this.SendPropertyChanging();
+					this._AccumulatedNetSales = value;
+					this.SendPropertyChanged("AccumulatedNetSales");
+					this.OnAccumulatedNetSalesChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SysReadingPrintCount")]
 	public partial class SysReadingPrintCount : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -21556,6 +21666,12 @@ namespace EasyPOS.Data
 		
 		private System.Nullable<bool> _IsPrinted;
 		
+		private System.Nullable<decimal> _BodegaItemQty;
+		
+		private System.Nullable<bool> _IsDelivery;
+		
+		private string _DeliveryStatus;
+		
 		private EntityRef<MstAccount> _MstAccount;
 		
 		private EntityRef<MstAccount> _MstAccount1;
@@ -21634,6 +21750,12 @@ namespace EasyPOS.Data
     partial void OnPriceSplitPercentageChanged();
     partial void OnIsPrintedChanging(System.Nullable<bool> value);
     partial void OnIsPrintedChanged();
+    partial void OnBodegaItemQtyChanging(System.Nullable<decimal> value);
+    partial void OnBodegaItemQtyChanged();
+    partial void OnIsDeliveryChanging(System.Nullable<bool> value);
+    partial void OnIsDeliveryChanged();
+    partial void OnDeliveryStatusChanging(string value);
+    partial void OnDeliveryStatusChanged();
     #endregion
 		
 		public TrnSalesLine()
@@ -22227,6 +22349,66 @@ namespace EasyPOS.Data
 					this._IsPrinted = value;
 					this.SendPropertyChanged("IsPrinted");
 					this.OnIsPrintedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BodegaItemQty", DbType="Decimal(18,5)")]
+		public System.Nullable<decimal> BodegaItemQty
+		{
+			get
+			{
+				return this._BodegaItemQty;
+			}
+			set
+			{
+				if ((this._BodegaItemQty != value))
+				{
+					this.OnBodegaItemQtyChanging(value);
+					this.SendPropertyChanging();
+					this._BodegaItemQty = value;
+					this.SendPropertyChanged("BodegaItemQty");
+					this.OnBodegaItemQtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDelivery", DbType="Bit")]
+		public System.Nullable<bool> IsDelivery
+		{
+			get
+			{
+				return this._IsDelivery;
+			}
+			set
+			{
+				if ((this._IsDelivery != value))
+				{
+					this.OnIsDeliveryChanging(value);
+					this.SendPropertyChanging();
+					this._IsDelivery = value;
+					this.SendPropertyChanged("IsDelivery");
+					this.OnIsDeliveryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeliveryStatus", DbType="NVarChar(50)")]
+		public string DeliveryStatus
+		{
+			get
+			{
+				return this._DeliveryStatus;
+			}
+			set
+			{
+				if ((this._DeliveryStatus != value))
+				{
+					this.OnDeliveryStatusChanging(value);
+					this.SendPropertyChanging();
+					this._DeliveryStatus = value;
+					this.SendPropertyChanged("DeliveryStatus");
+					this.OnDeliveryStatusChanged();
 				}
 			}
 		}
@@ -25724,116 +25906,6 @@ namespace EasyPOS.Data
 		{
 			this.SendPropertyChanging();
 			entity.TrnStockOut = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SysReadingPrevAccNetSales")]
-	public partial class SysReadingPrevAccNetSale : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private System.DateTime _ReadingDate;
-		
-		private decimal _AccumulatedNetSales;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnReadingDateChanging(System.DateTime value);
-    partial void OnReadingDateChanged();
-    partial void OnAccumulatedNetSalesChanging(decimal value);
-    partial void OnAccumulatedNetSalesChanged();
-    #endregion
-		
-		public SysReadingPrevAccNetSale()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReadingDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ReadingDate
-		{
-			get
-			{
-				return this._ReadingDate;
-			}
-			set
-			{
-				if ((this._ReadingDate != value))
-				{
-					this.OnReadingDateChanging(value);
-					this.SendPropertyChanging();
-					this._ReadingDate = value;
-					this.SendPropertyChanged("ReadingDate");
-					this.OnReadingDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccumulatedNetSales", DbType="Decimal(18,5) NOT NULL")]
-		public decimal AccumulatedNetSales
-		{
-			get
-			{
-				return this._AccumulatedNetSales;
-			}
-			set
-			{
-				if ((this._AccumulatedNetSales != value))
-				{
-					this.OnAccumulatedNetSalesChanging(value);
-					this.SendPropertyChanging();
-					this._AccumulatedNetSales = value;
-					this.SendPropertyChanged("AccumulatedNetSales");
-					this.OnAccumulatedNetSalesChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 }

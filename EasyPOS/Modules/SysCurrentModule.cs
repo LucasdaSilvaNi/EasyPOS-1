@@ -109,7 +109,8 @@ namespace EasyPOS.Modules
                 SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut,
                 RestrictCashin = currentSettings.RestrictCashin,
                 DisableLockTender = currentSettings.DisableLockTender,
-                PopupCustomerInfo = currentSettings.PopupCustomerInfo
+                PopupCustomerInfo = currentSettings.PopupCustomerInfo,
+                BodegaTransaction = currentSettings.BodegaTransaction
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);
@@ -192,7 +193,8 @@ namespace EasyPOS.Modules
                 SingleColumnBarcodePrintOut = objSysCurrentEntity.SingleColumnBarcodePrintOut,
                 RestrictCashin = objSysCurrentEntity.RestrictCashin,
                 DisableLockTender = objSysCurrentEntity.DisableLockTender,
-                PopupCustomerInfo = objSysCurrentEntity.PopupCustomerInfo
+                PopupCustomerInfo = objSysCurrentEntity.PopupCustomerInfo,
+                BodegaTransaction = objSysCurrentEntity.BodegaTransaction
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newSysCurrentEntities);
@@ -276,7 +278,8 @@ namespace EasyPOS.Modules
                 SingleColumnBarcodePrintOut = currentSettings.SingleColumnBarcodePrintOut,
                 RestrictCashin = currentSettings.RestrictCashin,
                 DisableLockTender = currentSettings.DisableLockTender,
-                PopupCustomerInfo = currentSettings.PopupCustomerInfo
+                PopupCustomerInfo = currentSettings.PopupCustomerInfo,
+                BodegaTransaction = currentSettings.BodegaTransaction
             };
 
             String newJson = new JavaScriptSerializer().Serialize(newEntities);

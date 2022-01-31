@@ -542,7 +542,10 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         objSalesLineList.Price1.ToString("#,##0.00"),
                         objSalesLineList.Price2.ToString("#,##0.00"),
                         objSalesLineList.Price2LessTax.ToString("#,##0.00"),
-                        objSalesLineList.PriceSplitPercentage.ToString("#,##0.00")
+                        objSalesLineList.PriceSplitPercentage.ToString("#,##0.00"),
+                        objSalesLineList.BodegaItemQty.ToString("#,##0.00"),
+                        objSalesLineList.IsDelivery,
+                        objSalesLineList.DeliveryStatus
                     );
                 }
             }
@@ -598,6 +601,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Decimal Price2 = Convert.ToDecimal(dataGridViewSalesLineList.Rows[e.RowIndex].Cells[28].Value);
                 Decimal Price2LessTax = Convert.ToDecimal(dataGridViewSalesLineList.Rows[e.RowIndex].Cells[29].Value);
                 Decimal PriceSplitPercentage = Convert.ToDecimal(dataGridViewSalesLineList.Rows[e.RowIndex].Cells[30].Value);
+                Decimal BodegaItemQty = Convert.ToDecimal(dataGridViewSalesLineList.Rows[e.RowIndex].Cells[31].Value);
+                Boolean? IsDelivery = Convert.ToBoolean(dataGridViewSalesLineList.Rows[e.RowIndex].Cells[32].Value);
+                String DeliveryStatus = dataGridViewSalesLineList.Rows[e.RowIndex].Cells[33].Value.ToString();
 
                 Entities.TrnSalesLineEntity trnSalesLineEntity = new Entities.TrnSalesLineEntity()
                 {
@@ -630,6 +636,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     Price2 = Price2,
                     Price2LessTax = Price2LessTax,
                     PriceSplitPercentage = PriceSplitPercentage,
+                    BodegaItemQty = BodegaItemQty,
+                    IsDelivery = IsDelivery,
+                    DeliveryStatus = DeliveryStatus
                 };
 
                 TrnPOSSalesItemDetailForm trnSalesDetailSalesItemDetailForm = new TrnPOSSalesItemDetailForm(this, null, trnSalesLineEntity, null);
@@ -657,7 +666,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     }
                 }
             }
-            
+
         }
 
         private void textBoxBarcode_KeyDown(object sender, KeyEventArgs e)
@@ -948,6 +957,13 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         private void buttonPrint_Click(object sender, EventArgs e)
         {
+            // ============
+            // Data Context
+            // ============
+            Data.easyposdbDataContext db = new Data.easyposdbDataContext(Modules.SysConnectionStringModule.GetConnectionString());
+
+            var salesLines = from d in db.TrnSalesLines where d.SalesId == trnSalesEntity.Id && d.BodegaItemQty > 0 select d;
+
             if (Modules.SysCurrentModule.GetCurrentSettings().ChoosePrinter == true)
             {
                 DialogResult printDialogResult = printDialogSalesOrder.ShowDialog();
@@ -959,7 +975,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     }
                     else
                     {
-                        Debug.WriteLine(Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType);
+                        //Debug.WriteLine(Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType);
 
                         if (Modules.SysCurrentModule.GetCurrentSettings().SalesOrderPrinterType == "Label Printer")
                         {
@@ -968,6 +984,13 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                         else
                         {
+                            if (Modules.SysCurrentModule.GetCurrentSettings().BodegaTransaction == true)
+                            {
+                                if (salesLines.Any())
+                                {
+                                    new TrnPOSSalesOrderBodegaForm(trnSalesEntity.Id, printDialogSalesOrder.PrinterSettings.PrinterName);
+                                }
+                            }
                             new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, printDialogSalesOrder.PrinterSettings.PrinterName);
                         }
                     }
@@ -985,6 +1008,13 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 }
                 else
                 {
+                    if (Modules.SysCurrentModule.GetCurrentSettings().BodegaTransaction == true)
+                    {
+                        if (salesLines.Any())
+                        {
+                            new TrnPOSSalesOrderBodegaForm(trnSalesEntity.Id, "");
+                        }
+                    }
                     new TrnPOSSalesOrderReportForm(trnSalesEntity.Id, "");
                 }
             }

@@ -58,7 +58,11 @@ namespace EasyPOS.Controllers
                                  PriceSplitPercentage = d.PriceSplitPercentage,
                                  TableId = d.TrnSale.TableId,
                                  TableCode = d.TrnSale.TableId != null ? d.TrnSale.MstTable.TableCode : "",
-                                 IsPrinted = d.IsPrinted
+                                 IsPrinted = d.IsPrinted,
+                                 BodegaItemQty = Convert.ToDecimal(d.BodegaItemQty),
+                                 IsDelivery = Convert.ToBoolean(d.IsDelivery),
+                                 DeliveryStatus = d.DeliveryStatus
+
                              };
 
             return salesLines.OrderByDescending(d => d.Id).ToList();
@@ -286,7 +290,10 @@ namespace EasyPOS.Controllers
                     Price1 = 0,
                     Price2 = 0,
                     Price2LessTax = 0,
-                    PriceSplitPercentage = 0
+                    PriceSplitPercentage = 0,
+                    BodegaItemQty = objSalesLine.BodegaItemQty,
+                    IsDelivery = objSalesLine.IsDelivery,
+                    DeliveryStatus = objSalesLine.DeliveryStatus
                 };
 
                 db.TrnSalesLines.InsertOnSubmit(newSaleLine);
@@ -404,6 +411,9 @@ namespace EasyPOS.Controllers
                     updateSalesLine.UserId = user.FirstOrDefault().Id;
                     updateSalesLine.Preparation = objSalesLine.Preparation;
                     updateSalesLine.IsPrinted = objSalesLine.IsPrinted;
+                    updateSalesLine.BodegaItemQty = objSalesLine.BodegaItemQty;
+                    updateSalesLine.IsDelivery = objSalesLine.IsDelivery;
+                    updateSalesLine.DeliveryStatus = objSalesLine.DeliveryStatus;
                     db.SubmitChanges();
 
                     String newObject = Modules.SysAuditTrailModule.GetObjectString(salesLine.FirstOrDefault());
@@ -565,7 +575,7 @@ namespace EasyPOS.Controllers
                     Price1 = 0,
                     Price2 = 0,
                     Price2LessTax = 0,
-                    PriceSplitPercentage = 0,
+                    PriceSplitPercentage = 0
                 };
 
                 db.TrnSalesLines.InsertOnSubmit(newSaleLine);

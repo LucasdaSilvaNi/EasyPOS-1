@@ -23,6 +23,27 @@ namespace EasyPOS.Forms.Software.TrnPOS
         {
             InitializeComponent();
 
+            if (Modules.SysCurrentModule.GetCurrentSettings().BodegaTransaction == true)
+            {
+                textBoxBodegaItemQty.Enabled = true;
+                checkBoxDelivery.Enabled = true;
+            }
+            else
+            {
+                textBoxBodegaItemQty.Enabled = false;
+                checkBoxDelivery.Enabled = false;
+            }
+
+                List<String> deliveryStatus = new List<String>
+            {
+                "Paid",
+                "COD",
+                "Reserved"
+            };
+
+            comboBoxDeliveryStatus.DataSource = deliveryStatus;
+            comboBoxDeliveryStatus.Enabled = false;
+
             Controllers.SysLanguageController sysLabel = new Controllers.SysLanguageController();
             if (sysLabel.ListLanguage("").Any())
             {
@@ -172,6 +193,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
             textBoxSalesLineVATRate.Text = trnSalesLineEntity.TaxRate.ToString("#,##0.00");
             textBoxSalesLineVATAmount.Text = trnSalesLineEntity.TaxAmount.ToString("#,##0.00");
             textBoxSalesLineRemarks.Text = trnSalesLineEntity.Preparation;
+            textBoxBodegaItemQty.Text = trnSalesLineEntity.BodegaItemQty.ToString("#,##0.00");
+            checkBoxDelivery.Checked = Convert.ToBoolean(trnSalesLineEntity.IsDelivery);
+            comboBoxDeliveryStatus.Text = trnSalesLineEntity.DeliveryStatus;
 
             Int32? discountId = null;
 
@@ -233,7 +257,9 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 Price2 = 0,
                 Price2LessTax = 0,
                 PriceSplitPercentage = 0,
-
+                BodegaItemQty = Convert.ToDecimal(textBoxBodegaItemQty.Text),
+                IsDelivery = Convert.ToBoolean(checkBoxDelivery.Checked),
+                DeliveryStatus = Convert.ToString(comboBoxDeliveryStatus.SelectedValue)
             };
 
             Controllers.TrnSalesLineController trnPOSSalesLineController = new Controllers.TrnSalesLineController();
@@ -563,6 +589,18 @@ namespace EasyPOS.Forms.Software.TrnPOS
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void checkBoxDelivery_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxDelivery.Checked == true)
+            {
+                comboBoxDeliveryStatus.Enabled = true;
+            }
+            else
+            {
+                comboBoxDeliveryStatus.Enabled = false;
+            }
         }
     }
 }

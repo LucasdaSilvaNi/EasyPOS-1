@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="easypos_july" Class="easyposdbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-RT4V2EU\SQLEXPRESS;Initial Catalog=easypos_july;User ID=sa" SettingsObjectName="EasyPOS.Properties.Settings" SettingsPropertyName="easypos_julyConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="easypos" Class="easyposdbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(local);Initial Catalog=easypos;Persist Security Info=True;User ID=sa" SettingsObjectName="EasyPOS.Properties.Settings" SettingsPropertyName="easyposConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="dbo.IntCloudSettings" Member="IntCloudSettings">
     <Type Name="IntCloudSetting">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -82,7 +82,7 @@
       <Column Name="CustomerCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="BusinessStyle" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="LoadAmount" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
-      <Column Name="PriceLevel" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="PriceLevel" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="MstCustomer_MstCustomerLoad" Member="MstCustomerLoads" ThisKey="Id" OtherKey="CustomerId" Type="MstCustomerLoad" />
       <Association Name="MstCustomer_TrnCollection" Member="TrnCollections" ThisKey="Id" OtherKey="CustomerId" Type="TrnCollection" />
       <Association Name="MstCustomer_TrnSale" Member="TrnSales" ThisKey="Id" OtherKey="CustomerId" Type="TrnSale" />
@@ -541,6 +541,13 @@
       <Column Name="Language" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.SysReadingPrevAccNetSales" Member="SysReadingPrevAccNetSales">
+    <Type Name="SysReadingPrevAccNetSale">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ReadingDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="AccumulatedNetSales" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="dbo.SysReadingPrintCount" Member="SysReadingPrintCounts">
     <Type Name="SysReadingPrintCount">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -896,6 +903,9 @@
       <Column Name="Price2LessTax" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
       <Column Name="PriceSplitPercentage" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
       <Column Name="IsPrinted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="BodegaItemQty" Type="System.Decimal" DbType="Decimal(18,5)" CanBeNull="true" />
+      <Column Name="IsDelivery" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DeliveryStatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="MstAccount_TrnSalesLine" Member="MstAccount" ThisKey="SalesAccountId" OtherKey="Id" Type="MstAccount" IsForeignKey="true" />
       <Association Name="MstAccount_TrnSalesLine1" Member="MstAccount1" ThisKey="AssetAccountId" OtherKey="Id" Type="MstAccount" IsForeignKey="true" />
       <Association Name="MstAccount_TrnSalesLine2" Member="MstAccount2" ThisKey="CostAccountId" OtherKey="Id" Type="MstAccount" IsForeignKey="true" />
@@ -1027,13 +1037,6 @@
       <Association Name="MstUser_TrnStockOut2" Member="MstUser2" ThisKey="ApprovedBy" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
       <Association Name="MstUser_TrnStockOut3" Member="MstUser3" ThisKey="EntryUserId" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
       <Association Name="MstUser_TrnStockOut4" Member="MstUser4" ThisKey="UpdateUserId" OtherKey="Id" Type="MstUser" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SysReadingPrevAccNetSales" Member="SysReadingPrevAccNetSales">
-    <Type Name="SysReadingPrevAccNetSale">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ReadingDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="AccumulatedNetSales" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>
