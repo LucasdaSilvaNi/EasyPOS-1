@@ -462,7 +462,8 @@ namespace EasyPOS.Forms.Software.SysSettings
                 "Dot Matrix Printer",
                 "Thermal Printer",
                 "58mm Printer",
-                "HP A799"
+                "HP A799",
+                "ZiJiang Label Printer"
             };
 
             comboBoxPrinterType.DataSource = printerType;

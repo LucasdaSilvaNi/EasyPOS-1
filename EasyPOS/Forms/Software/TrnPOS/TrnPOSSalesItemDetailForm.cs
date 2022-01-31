@@ -294,6 +294,13 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 String[] addSales = trnPOSSalesLineController.UpdateSalesLine(trnSalesLineEntity.Id, newSalesLineEntity);
                 if (addSales[1].Equals("0") == false)
                 {
+                    if (Convert.ToDecimal(textBoxSalesLineQuantity.Text) == 0)
+                    {
+                        Controllers.TrnSalesLineController trnSalesLineController = new Controllers.TrnSalesLineController();
+
+                        String[] deleteSalesLine = trnSalesLineController.DeleteSalesLine(trnSalesLineEntity.Id);
+                    }
+
                     if (trnSalesDetailForm != null)
                     {
                         trnSalesDetailForm.GetSalesLineList();
@@ -309,21 +316,6 @@ namespace EasyPOS.Forms.Software.TrnPOS
                 else
                 {
                     MessageBox.Show(addSales[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                if (Convert.ToDecimal(textBoxSalesLineQuantity.Text) == 0)
-                {
-                    Controllers.TrnSalesLineController trnSalesLineController = new Controllers.TrnSalesLineController();
-
-                    String[] deleteSalesLine = trnSalesLineController.DeleteSalesLine(trnSalesLineEntity.Id);
-                    if (deleteSalesLine[1].Equals("0") == false)
-                    {
-                        trnSalesDetailForm.GetSalesLineList();
-                    }
-                    else
-                    {
-                        MessageBox.Show(deleteSalesLine[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
             }
         }
