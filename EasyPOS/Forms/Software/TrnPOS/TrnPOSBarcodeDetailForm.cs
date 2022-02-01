@@ -436,6 +436,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             labelCustomerCode.Text = trnSalesEntity.CustomerCode;
             labelCustomer.Text = trnSalesEntity.Customer;
             labelRemarks.Text = trnSalesEntity.Remarks;
+
         }
 
         private void buttonTender_Click(object sender, EventArgs e)

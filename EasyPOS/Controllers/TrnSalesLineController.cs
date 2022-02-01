@@ -62,7 +62,6 @@ namespace EasyPOS.Controllers
                                  BodegaItemQty = Convert.ToDecimal(d.BodegaItemQty),
                                  IsDelivery = Convert.ToBoolean(d.IsDelivery),
                                  DeliveryStatus = d.DeliveryStatus
-
                              };
 
             return salesLines.OrderByDescending(d => d.Id).ToList();

@@ -93,6 +93,7 @@
             this.ColumnAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSalesAgent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCashier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTenderedAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnIsLocked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnIsTendered = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColumnIsCancelled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -262,6 +263,7 @@
             this.ColumnAmount,
             this.ColumnSalesAgent,
             this.ColumnCashier,
+            this.ColumnTenderedAmount,
             this.ColumnIsLocked,
             this.ColumnIsTendered,
             this.ColumnIsCancelled,
@@ -863,6 +865,16 @@
             this.ColumnCashier.ReadOnly = true;
             this.ColumnCashier.Width = 125;
             // 
+            // ColumnTenderedAmount
+            // 
+            this.ColumnTenderedAmount.DataPropertyName = "ColumnTenderedAmount";
+            this.ColumnTenderedAmount.HeaderText = "Tendered Amount";
+            this.ColumnTenderedAmount.MinimumWidth = 6;
+            this.ColumnTenderedAmount.Name = "ColumnTenderedAmount";
+            this.ColumnTenderedAmount.ReadOnly = true;
+            this.ColumnTenderedAmount.Visible = false;
+            this.ColumnTenderedAmount.Width = 125;
+            // 
             // ColumnIsLocked
             // 
             this.ColumnIsLocked.DataPropertyName = "ColumnIsLocked";
@@ -1030,6 +1042,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSalesAgent;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCashier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTenderedAmount;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnIsLocked;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnIsTendered;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnIsCancelled;

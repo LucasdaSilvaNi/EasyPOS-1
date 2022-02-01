@@ -551,6 +551,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxDisableLockTender.Checked = Convert.ToBoolean(sysCurrent.DisableLockTender);
                 checkBoxPopupCustomer.Checked = Convert.ToBoolean(sysCurrent.PopupCustomerInfo);
                 checkBoxBodega.Checked = Convert.ToBoolean(sysCurrent.BodegaTransaction);
+                checkBoxChangeComputeOnLock.Checked = Convert.ToBoolean(sysCurrent.ChangeComputationOnLock);
             }
         }
 
@@ -638,7 +639,8 @@ namespace EasyPOS.Forms.Software.SysSettings
                 RestrictCashin = checkBoxRestrictCashin.Checked,
                 DisableLockTender = checkBoxDisableLockTender.Checked,
                 PopupCustomerInfo = checkBoxPopupCustomer.Checked,
-                BodegaTransaction = checkBoxBodega.Checked
+                BodegaTransaction = checkBoxBodega.Checked,
+                ChangeComputationOnLock = checkBoxChangeComputeOnLock.Checked
             };
 
             String[] saveSysCurrent = sysSettingsController.UpdateSysCurrent(sysCurrentEntity);
@@ -707,6 +709,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxDisableLockTender.Enabled = false;
                 checkBoxPopupCustomer.Enabled = false;
                 checkBoxBodega.Enabled = false;
+                checkBoxChangeComputeOnLock.Enabled = false;
             }
             else
             {
@@ -800,6 +803,7 @@ namespace EasyPOS.Forms.Software.SysSettings
                 checkBoxDisableLockTender.Enabled = true;
                 checkBoxPopupCustomer.Enabled = true;
                 checkBoxBodega.Enabled = true;
+                checkBoxChangeComputeOnLock.Enabled = true;
             }
         }
 

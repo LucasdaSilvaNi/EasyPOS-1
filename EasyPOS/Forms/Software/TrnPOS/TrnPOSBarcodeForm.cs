@@ -402,7 +402,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
                                   ColumnSpace = "",
                                   ColumnTable = d.Table,
                                   ColumnManualSalesNumber = d.ManualInvoiceNumber,
-                                  ColumnDelivery = d.DeliveryDriver
+                                  ColumnDelivery = d.DeliveryDriver,
+                                  ColumnTenderedAmount = d.CollectedAmount.ToString("#,##0.00")
                               };
 
                     rowList = row.ToList();

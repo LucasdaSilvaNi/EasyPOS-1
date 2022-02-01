@@ -81,6 +81,8 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
                 GetCustomerList();
             }
+
+
         }
 
         public void GetCustomerList()
@@ -123,6 +125,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
             comboBoxTenderSalesCustomer.SelectedValue = trnSalesEntity.CustomerId;
             comboBoxTenderSalesTerms.SelectedValue = trnSalesEntity.TermId;
             textBoxTenderSalesRemarks.Text = trnSalesEntity.Remarks;
+            textBoxTenderedAmount.Text = trnSalesEntity.CollectedAmount.ToString("#,##0.00");
         }
 
         private void comboBoxTenderSalesCustomer_SelectedIndexChanged(object sender, EventArgs e)
@@ -146,54 +149,69 @@ namespace EasyPOS.Forms.Software.TrnPOS
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            Entities.TrnSalesEntity newSalesEntity = new Entities.TrnSalesEntity()
+            if ((Convert.ToDecimal(textBoxTenderedAmount.Text) > 0 && Convert.ToDecimal(textBoxTenderedAmount.Text) >= trnSalesEntity.Amount) && textBoxTenderedAmount.Text != "")
             {
-                CustomerId = Convert.ToInt32(comboBoxTenderSalesCustomer.SelectedValue),
-                TermId = Convert.ToInt32(comboBoxTenderSalesTerms.SelectedValue),
-                Remarks = textBoxTenderSalesRemarks.Text,
-                SalesAgent = Convert.ToInt32(comboBoxTenderSalesUsers.SelectedValue),
-                Amount = trnSalesEntity.Amount
-            };
-
-            Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
-            String[] updateSales = trnPOSSalesController.LockSales(trnSalesEntity.Id, newSalesEntity);
-            if (updateSales[1].Equals("0") == false)
-            {
-                if (trnPOSBarcodeDetailForm != null)
+                Entities.TrnSalesEntity newSalesEntity = new Entities.TrnSalesEntity()
                 {
-                    trnPOSBarcodeDetailForm.trnSalesEntity.CustomerCode = customerCode;
-                    trnPOSBarcodeDetailForm.trnSalesEntity.Customer = customerName;
-                    trnPOSBarcodeDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
+                    CustomerId = Convert.ToInt32(comboBoxTenderSalesCustomer.SelectedValue),
+                    TermId = Convert.ToInt32(comboBoxTenderSalesTerms.SelectedValue),
+                    Remarks = textBoxTenderSalesRemarks.Text,
+                    SalesAgent = Convert.ToInt32(comboBoxTenderSalesUsers.SelectedValue),
+                    Amount = trnSalesEntity.Amount,
+                    CollectedAmount = Convert.ToDecimal(textBoxTenderedAmount.Text),
+                    OrderChangeAmount = Convert.ToDecimal(textBoxTenderedAmount.Text) - trnSalesEntity.Amount,
+                };
 
-                    trnPOSBarcodeDetailForm.GetSalesDetail();
-                    trnPOSBarcodeDetailForm.LockComponents(true);
-
-                    trnPOSBarcodeDetailForm.trnSalesEntity.CustomerId = newSalesEntity.CustomerId;
-                    trnPOSBarcodeDetailForm.trnSalesEntity.TermId = newSalesEntity.TermId;
-                    trnPOSBarcodeDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
-                    trnPOSBarcodeDetailForm.trnSalesEntity.SalesAgent = newSalesEntity.SalesAgent;
-                }
-
-                if (trnPOSTouchDetailForm != null)
+                Controllers.TrnSalesController trnPOSSalesController = new Controllers.TrnSalesController();
+                String[] updateSales = trnPOSSalesController.LockSales(trnSalesEntity.Id, newSalesEntity);
+                if (updateSales[1].Equals("0") == false)
                 {
-                    trnPOSTouchDetailForm.trnSalesEntity.CustomerCode = customerCode;
-                    trnPOSTouchDetailForm.trnSalesEntity.Customer = customerName;
-                    trnPOSTouchDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
+                    if (trnPOSBarcodeDetailForm != null)
+                    {
+                        trnPOSBarcodeDetailForm.trnSalesEntity.CustomerCode = customerCode;
+                        trnPOSBarcodeDetailForm.trnSalesEntity.Customer = customerName;
+                        trnPOSBarcodeDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
+                        trnSalesEntity.CollectedAmount = newSalesEntity.CollectedAmount;
+                        trnSalesEntity.OrderChangeAmount = newSalesEntity.OrderChangeAmount;
 
-                    trnPOSTouchDetailForm.GetSalesDetail();
-                    trnPOSTouchDetailForm.LockComponents(true);
+                        trnPOSBarcodeDetailForm.GetSalesDetail();
+                        trnPOSBarcodeDetailForm.LockComponents(true);
 
-                    trnPOSTouchDetailForm.trnSalesEntity.CustomerId = newSalesEntity.CustomerId;
-                    trnPOSTouchDetailForm.trnSalesEntity.TermId = newSalesEntity.TermId;
-                    trnPOSTouchDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
-                    trnPOSTouchDetailForm.trnSalesEntity.SalesAgent = newSalesEntity.SalesAgent;
+                        trnPOSBarcodeDetailForm.trnSalesEntity.CustomerId = newSalesEntity.CustomerId;
+                        trnPOSBarcodeDetailForm.trnSalesEntity.TermId = newSalesEntity.TermId;
+                        trnPOSBarcodeDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
+                        trnPOSBarcodeDetailForm.trnSalesEntity.SalesAgent = newSalesEntity.SalesAgent;
+                        trnSalesEntity.CollectedAmount = newSalesEntity.CollectedAmount;
+                        trnSalesEntity.OrderChangeAmount = newSalesEntity.OrderChangeAmount;
+                    }
+
+                    if (trnPOSTouchDetailForm != null)
+                    {
+                        trnPOSTouchDetailForm.trnSalesEntity.CustomerCode = customerCode;
+                        trnPOSTouchDetailForm.trnSalesEntity.Customer = customerName;
+                        trnPOSTouchDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
+
+                        trnPOSTouchDetailForm.GetSalesDetail();
+                        trnPOSTouchDetailForm.LockComponents(true);
+
+                        trnPOSTouchDetailForm.trnSalesEntity.CustomerId = newSalesEntity.CustomerId;
+                        trnPOSTouchDetailForm.trnSalesEntity.TermId = newSalesEntity.TermId;
+                        trnPOSTouchDetailForm.trnSalesEntity.Remarks = newSalesEntity.Remarks;
+                        trnPOSTouchDetailForm.trnSalesEntity.SalesAgent = newSalesEntity.SalesAgent;
+                    }
+
+                    Close();
                 }
-
-                Close();
+                else
+                {
+                    MessageBox.Show(updateSales[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show(updateSales[0], "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Invalid Tendered Amount!", "Easy POS", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                textBoxTenderedAmount.Focus();
+                textBoxTenderedAmount.SelectAll();
             }
         }
 
@@ -236,6 +254,16 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         if (buttonClose.Enabled == true)
                         {
                             buttonClose.PerformClick();
+                            Focus();
+                        }
+
+                        break;
+                    }
+                case Keys.Enter:
+                    {
+                        if (buttonSave.Enabled == true)
+                        {
+                            buttonSave.PerformClick();
                             Focus();
                         }
 

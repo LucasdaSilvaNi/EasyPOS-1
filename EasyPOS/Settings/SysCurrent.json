@@ -66,5 +66,6 @@
   "RestrictCashin": false,
   "DisableLockTender": false,
   "PopupCustomerInfo": false,
-  "BodegaTransaction":  true
+  "BodegaTransaction": true,
+  "ChangeComputationOnLock": true
 }

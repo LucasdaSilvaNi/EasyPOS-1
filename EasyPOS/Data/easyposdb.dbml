@@ -833,6 +833,8 @@
       <Column Name="Pax" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PostCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="DiscountedPax" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CollectedAmount" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
+      <Column Name="OrderChangeAmount" Type="System.Decimal" DbType="Decimal(18,5) NOT NULL" CanBeNull="false" />
       <Association Name="TrnSale_SysSalesLocked" Member="SysSalesLockeds" ThisKey="Id" OtherKey="SalesId" Type="SysSalesLocked" />
       <Association Name="TrnSale_TrnCollection" Member="TrnCollections" ThisKey="Id" OtherKey="SalesId" Type="TrnCollection" />
       <Association Name="TrnSale_TrnCollectionLine" Member="TrnCollectionLines" ThisKey="Id" OtherKey="SalesReturnSalesId" Type="TrnCollectionLine" />

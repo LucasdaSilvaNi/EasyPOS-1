@@ -196,7 +196,9 @@ namespace EasyPOS.Controllers
                                 UpdatedUserName = d.MstUser4.UserName,
                                 UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
                                 Pax = d.Pax,
-                                PostCode = d.PostCode
+                                PostCode = d.PostCode,
+                                CollectedAmount = d.CollectedAmount,
+                                OrderChangeAmount = d.OrderChangeAmount
                             };
 
                 return sales.OrderByDescending(d => d.Id).ToList();
@@ -267,7 +269,9 @@ namespace EasyPOS.Controllers
                                 UpdatedUserName = d.MstUser4.FullName,
                                 UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
                                 Pax = d.Pax,
-                                PostCode = d.PostCode
+                                PostCode = d.PostCode,
+                                CollectedAmount = d.CollectedAmount,
+                                OrderChangeAmount = d.OrderChangeAmount
                             };
 
                 return sales.OrderByDescending(d => d.Id).ToList();
@@ -338,7 +342,9 @@ namespace EasyPOS.Controllers
                                 UpdatedUserName = d.MstUser4.FullName,
                                 UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
                                 Pax = d.Pax,
-                                PostCode = d.PostCode
+                                PostCode = d.PostCode,
+                                CollectedAmount = d.CollectedAmount,
+                                OrderChangeAmount = d.OrderChangeAmount
                             };
 
                 return sales.OrderByDescending(d => d.Id).ToList();
@@ -416,7 +422,9 @@ namespace EasyPOS.Controllers
                                 UpdatedUserName = d.MstUser4.FullName,
                                 UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
                                 Pax = d.Pax,
-                                PostCode = d.PostCode
+                                PostCode = d.PostCode,
+                                CollectedAmount = d.CollectedAmount,
+                                OrderChangeAmount = d.OrderChangeAmount
                             };
 
                 return sales.OrderByDescending(d => d.Id).ToList();
@@ -488,7 +496,9 @@ namespace EasyPOS.Controllers
                             UpdateDateTime = d.UpdateDateTime.ToShortDateString(),
                             UpdateTime = d.UpdateDateTime.ToShortTimeString(),
                             Pax = d.Pax,
-                            PostCode = d.PostCode
+                            PostCode = d.PostCode,
+                            CollectedAmount = d.CollectedAmount,
+                            OrderChangeAmount = d.OrderChangeAmount
                         };
 
             return sales.FirstOrDefault();
@@ -1745,6 +1755,8 @@ namespace EasyPOS.Controllers
                     lockSales.BalanceAmount = objSales.Amount;
                     lockSales.UpdateUserId = Convert.ToInt32(Modules.SysCurrentModule.GetCurrentSettings().CurrentUserId);
                     lockSales.UpdateDateTime = DateTime.Now;
+                    lockSales.CollectedAmount = objSales.CollectedAmount;
+                    lockSales.OrderChangeAmount = objSales.OrderChangeAmount;
                     db.SubmitChanges();
 
                     Modules.TrnInventoryModule trnInventoryModule = new Modules.TrnInventoryModule();

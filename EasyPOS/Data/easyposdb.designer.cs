@@ -19541,6 +19541,10 @@ namespace EasyPOS.Data
 		
 		private System.Nullable<int> _DiscountedPax;
 		
+		private decimal _CollectedAmount;
+		
+		private decimal _OrderChangeAmount;
+		
 		private EntitySet<SysSalesLocked> _SysSalesLockeds;
 		
 		private EntitySet<TrnCollection> _TrnCollections;
@@ -19667,6 +19671,10 @@ namespace EasyPOS.Data
     partial void OnPostCodeChanged();
     partial void OnDiscountedPaxChanging(System.Nullable<int> value);
     partial void OnDiscountedPaxChanged();
+    partial void OnCollectedAmountChanging(decimal value);
+    partial void OnCollectedAmountChanged();
+    partial void OnOrderChangeAmountChanging(decimal value);
+    partial void OnOrderChangeAmountChanged();
     #endregion
 		
 		public TrnSale()
@@ -20558,6 +20566,46 @@ namespace EasyPOS.Data
 					this._DiscountedPax = value;
 					this.SendPropertyChanged("DiscountedPax");
 					this.OnDiscountedPaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CollectedAmount", DbType="Decimal(18,5) NOT NULL")]
+		public decimal CollectedAmount
+		{
+			get
+			{
+				return this._CollectedAmount;
+			}
+			set
+			{
+				if ((this._CollectedAmount != value))
+				{
+					this.OnCollectedAmountChanging(value);
+					this.SendPropertyChanging();
+					this._CollectedAmount = value;
+					this.SendPropertyChanged("CollectedAmount");
+					this.OnCollectedAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderChangeAmount", DbType="Decimal(18,5) NOT NULL")]
+		public decimal OrderChangeAmount
+		{
+			get
+			{
+				return this._OrderChangeAmount;
+			}
+			set
+			{
+				if ((this._OrderChangeAmount != value))
+				{
+					this.OnOrderChangeAmountChanging(value);
+					this.SendPropertyChanging();
+					this._OrderChangeAmount = value;
+					this.SendPropertyChanged("OrderChangeAmount");
+					this.OnOrderChangeAmountChanged();
 				}
 			}
 		}

@@ -71,6 +71,8 @@ namespace EasyPOS.Entities
         public Decimal NumberOfItems { get; set; }
         public Decimal NumberOfItemsPrepared { get; set; }
         public String Status { get; set; }
+        public Decimal CollectedAmount { get; set; }
+        public Decimal OrderChangeAmount { get; set; }
     }
 
     public class SysDeliverDriver

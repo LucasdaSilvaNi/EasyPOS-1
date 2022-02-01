@@ -466,6 +466,7 @@ namespace EasyPOS.Forms.Software.TrnPOS
                     // ==========
                     Decimal totalAmount = 0;
                     Decimal totalNumberOfItems = 0;
+                    Decimal totalTenderedAmount = 0;
 
                     String itemLabel = "\nITEM";
                     String amountLabel = "\nAMOUNT";
@@ -589,6 +590,22 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         graphics.DrawString(totalSalesLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                         graphics.DrawString(totalSalesAmount, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                         y += graphics.MeasureString(totalSalesAmount, fontArial8Bold).Height;
+
+                        if (Modules.SysCurrentModule.GetCurrentSettings().ChangeComputationOnLock == true)
+                        {
+                            String totalCollectedAmountLabel = "Tendered Amount";
+                            Decimal totalCollectedAmount = sales.FirstOrDefault().CollectedAmount;
+                            graphics.DrawString(totalCollectedAmountLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                            graphics.DrawString(totalCollectedAmount.ToString("#,##0.00"), fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                            y += graphics.MeasureString(totalCollectedAmount.ToString(), fontArial8Regular).Height;
+
+                            String totalChangeLabel = "Change";
+                            Decimal totalChangeAmount = sales.FirstOrDefault().OrderChangeAmount;
+                            graphics.DrawString(totalChangeLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                            graphics.DrawString(totalChangeAmount.ToString("#,##0.00"), fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                            y += graphics.MeasureString(totalChangeAmount.ToString(), fontArial8Regular).Height;
+                        }
+                        
                     }
                     else
                     {
@@ -597,6 +614,21 @@ namespace EasyPOS.Forms.Software.TrnPOS
                         graphics.DrawString(totalSalesLabel, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
                         graphics.DrawString(totalSalesAmount, fontArial8Bold, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
                         y += graphics.MeasureString(totalSalesAmount, fontArial8Bold).Height;
+
+                        if (Modules.SysCurrentModule.GetCurrentSettings().ChangeComputationOnLock == true)
+                        {
+                            String totalCollectedAmountLabel = "Tendered Amount";
+                            Decimal totalCollectedAmount = sales.FirstOrDefault().CollectedAmount;
+                            graphics.DrawString(totalCollectedAmountLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                            graphics.DrawString(totalCollectedAmount.ToString("#,##0.00"), fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                            y += graphics.MeasureString(totalCollectedAmount.ToString(), fontArial8Regular).Height;
+
+                            String totalChangeLabel = "Change";
+                            Decimal totalChangeAmount = sales.FirstOrDefault().OrderChangeAmount;
+                            graphics.DrawString(totalChangeLabel, fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatLeft);
+                            graphics.DrawString(totalChangeAmount.ToString("#,##0.00"), fontArial8Regular, drawBrush, new RectangleF(x, y, width, height), drawFormatRight);
+                            y += graphics.MeasureString(totalChangeAmount.ToString(), fontArial8Regular).Height;
+                        }
                     }
 
                     String totalNumberOfItemsLabel = "Total No. of Item(s)";
